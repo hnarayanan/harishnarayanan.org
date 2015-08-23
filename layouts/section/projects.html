@@ -1,14 +1,10 @@
 {{ partial "header.html" . }}
 
-<section id="main">
-  <div>
-   <h1 id="title">Projects I've worked on</h1>
-        <ul id="list">
-            {{ range .Data.Pages }}
-                {{ .Render "li"}}
-            {{ end }}
-        </ul>
-  </div>
-</section>
+<h1 id="main-description">Projects I've worked on</h1>
+<ul id="list">
+  {{ range .Data.Pages }}
+  {{ .Render "li"}}
+  {{ end }}
+</ul>
 
 {{ partial "footer.html" . }}
