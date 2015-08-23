@@ -1,10 +1,8 @@
 {{ partial "header.html" . }}
 
 <h1 id="main-description">Moments from my life</h1>
-<ul id="list">
-  {{ range .Data.Pages }}
-  {{ .Render "li"}}
-  {{ end }}
-</ul>
+{{ range .Data.Pages }}
+{{ .Render "summary"}}
+{{ end }}
 
 {{ partial "footer.html" . }}
