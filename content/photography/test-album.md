@@ -1,7 +1,7 @@
 ---
 date: 2015-08-23T11:02:42+01:00
 draft: true
-title: test album
+title: Test Album
 ---
 
-This is a test album.
+This is a test album. It's exceptionally well shot.

@@ -1,7 +1,7 @@
 ---
 date: 2015-08-23T10:51:51+01:00
 draft: true
-title: about
+title: About me
 ---
 
 I'm a quant. Ph.D. who loves learning about and building sophisticated

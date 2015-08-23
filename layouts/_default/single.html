@@ -1,1 +1,12 @@
-This is a default single entity.
+{{ partial "header.html" . }}
+
+<section id="main">
+  <h1 id="title">{{ .Title }}</h1>
+  <div>
+    <article id="content">
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+
+{{ partial "footer.html" . }}

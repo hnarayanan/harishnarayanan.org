@@ -1,1 +1,14 @@
-This is a single project.
+{{ partial "header.html" . }}
+
+<section id="main">
+  <h1 id="title">{{ .Title }}</h1>
+  <div>
+    <article id="content">
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+
+<p>(This page uses the single project template.)</p>
+
+{{ partial "footer.html" . }}
