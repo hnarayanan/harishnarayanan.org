@@ -10,22 +10,30 @@
     <meta name="author" content="Harish Narayanan">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,400italic,700" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/custom.css">
   </head>
 
   <body>
     <header role="banner" aria-labelledby="banner-description">
       <p class="visuallyhidden"><a href="#content">Skip to main content</a></p>
-      <h1 id="banner-description"><a href="/">Harish Narayanan</a></h1>
-      <nav role="navigation" aria-labelledby="navigation-description">
+      <!-- <h1 id="banner-description"><a href="/">Harish Narayanan</a></h1> -->
+      <nav class="navbar" role="navigation" aria-labelledby="navigation-description">
         <h2 class="visuallyhidden"><span id="navigation-description">Main</span> Navigation</h2>
-        <ul>
-          <li><a href="/writing/">Writing</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/photography/">Photography</a></li>
-          <li><a href="/about/">About</a></li>
-        </ul>
+	<div class="container">
+	  <ul class="navbar-list">
+            <li class="navbar-item"><a class="navbar-link" href="/">Home</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="/writing/">Writing</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="/projects/">Projects</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="/photography/">Photography</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="/about/">About</a></li>
+	  </ul>
+	</div>
       </nav>
     </header>
     <main id="content" role="main" aria-labelledby="main-description" tabindex="-1">
