@@ -1,7 +1,7 @@
 ---
 date: 2015-08-23T10:51:51+01:00
 draft: true
-title: About me
+title: Hi! I'm Harish Narayanan
 ---
 
 I'm a quant. Ph.D. who loves learning about and building sophisticated
@@ -21,8 +21,3 @@ becoming a father to a [cute baby boy](http://narayanan.co/).
 
 [Being silly on twitter](https://twitter.com/copingbear) is how I cope
 with the excitement of it all.
-
-## Lists of things like academic talks and writing?
-
-This could be like [Trent Walton's site](http://trentwalton.com/info)
-or [Katie Kovalcin's](http://kovalc.in/about.html).
