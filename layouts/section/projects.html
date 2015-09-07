@@ -1,8 +1,104 @@
 {{ partial "header.html" . }}
 <div class="container">
-<h1 id="main-description">Projects I've worked on</h1>
-{{ range .Data.Pages }}
+  <h1 id="main-description">Projects I’ve worked on</h1>
+  <p>Much of my leisure time over the years has been spent merrily making and improving the sorts of <a href="#websites">websites</a> and <a href="#software">software utilities</a> you see on this page. If you&#8217;re interested in learning more about any of these projects, I&#8217;d be delighted to hear from you!</p>
+  <!-- TODO: Featured stuff goes here: shpotify, femtable -->
+  <h2 id="websites" style="margin-bottom: 1.0em;">Sites around the web</h2>
+  <!-- TODO: Edgefolio, thinkbot, FEM table etc. -->
+    <div class="row">
+      <div class="one-half column">
+        <a href="/projects/mechanics-academy/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Mechanics Academy thumbnail"></a>
+        <div class="gallery-item-description"><a href="/projects/mechanics-academy/">Mechanics Academy</a> &mdash; 2013</div>
+      </div>
+      <div class="one-half column">
+        <a href="/projects/wilderness-embassy/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Wilderness Embassy"></a>
+        <div class="gallery-item-description"><a href="/projects/wilderness-embassy/">Wilderness Embassy</a></div>
+        <div class="gallery-item-meta">2013</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="http://wisdemy.com/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Wisdemy thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://wisdemy.com/">Wisdemy</a></div>
+        <div class="gallery-item-meta">2012 &ndash; 2013</div>
+      </div>
+      <div class="one-half column">
+        <a href="http://camowiki.simula.no/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Camowiki thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://camowiki.simula.no/">Cardiac&nbsp;Modelling<br/>Group Wiki</a></div>
+        <div class="gallery-item-meta">2011 &ndash; 2012</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="http://fenicsproject.org/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="FEniCS Project thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://fenicsproject.org/">FEniCS Project</a></div>
+        <div class="gallery-item-meta">2010 &ndash;</div>
+      </div>
+      <div class="one-half column">
+        <a href="/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Personal Website thumbnail"></a>
+        <div class="gallery-item-description"><a href="/">Personal<br/>Website (v4)</a></div>
+        <div class="gallery-item-meta">2007 &ndash; 2015</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="http://comp-phys.engin.umich.edu/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Computational Physics Group thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://comp-phys.engin.umich.edu/">Computational<br> Physics Group</a></div>
+        <div class="gallery-item-meta">2007 &ndash; 2013</div>
+      </div>
+      <div class="one-half column">
+        <a href="http://delineate.wahgnube.org/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="Delineate thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://delineate.wahgnube.org/">Photo Journal</a></div>
+        <div class="gallery-item-meta">2004 &ndash; 2008</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="http://emphaticallystatic.org/"><img class="u-max-full-width" src="http://placehold.it/900x600/E08E79/ffffff" alt="actuality.log thumbnail"></a>
+        <div class="gallery-item-description"><a href="http://emphaticallystatic.org/">Personal Journal</a></div>
+        <div class="gallery-item-meta">2002 &ndash; 2013</div>
+      </div>
+    </div>
+    <h2 id="software" style="margin-bottom: 1.0em;">Simple software utilities</h2>
+    <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
+    <div class="row">
+      <div class="one-half column">
+        <a href="/projects/dorsal/"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/dorsal.jpg" alt="Dorsal" title="Dorsal, a simple package management system"></a>
+        <div class="gallery-item-description"><a href="/projects/dorsal/">Dorsal package manager</a></div>
+        <div class="gallery-item-meta">2007 &ndash; 2015</div>
+      </div>
+      <div class="one-half column">
+        <a href="https://github.com/hnarayanan/googleplus-album-fetcher"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/googleplus-album-fetcher.jpg" alt="Google+ album fetcher" title="Google+ album fetcher"></a>
+        <div class="gallery-item-description"><a href="https://github.com/hnarayanan/googleplus-album-fetcher">Google+ album fetcher</a></div>
+        <div class="gallery-item-meta">2012</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="https://github.com/hnarayanan/shpotify"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/shpotify.png" alt="A command-line interface for Spotify on a Mac" title="A command-line interface for Spotify on a Mac"></a>
+        <div class="gallery-item-description"><a href="/projects/shpotify/">Command-line Spotify interface</a></div>
+        <div class="gallery-item-meta">2012 &ndash;</div>
+      </div>
+      <div class="one-half column">
+        <a href="/projects/ios-cas/"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/ios-cas.png" alt="A computer algebra system for iOS" title="A computer algebra system for iOS"></a>
+        <div class="gallery-item-description"><a href="/projects/ios-cas/">iOS algebra system</a></div>
+        <div class="gallery-item-meta">2011</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <a href="http://localhost/files/projects/transform/transform.tar.bz2"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/point-transform.png" alt="Point cloud transformation" title="Point cloud transformation"></a>
+        <div class="gallery-item-description"><a href="http://localhost/files/projects/transform/transform.tar.bz2">Point cloud transformation</a></div>
+        <div class="gallery-item-meta">2011</div>
+      </div>
+      <div class="one-half column">
+        <a href="http://localhost/files/projects/body-tracking/body-tracking.tar.bz2"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/body-tracking.png" alt="Tracking body statistics" title="Tracking body statistics"></a>
+        <div class="gallery-item-description"><a href="http://localhost/files/projects/body-tracking/body-tracking.tar.bz2">Tracking body statistics</a></div>
+        <div class="gallery-item-meta">2011</div>
+      </div>
+    </div>
+<!--{{ range .Data.Pages }}
 {{ .Render "summary"}}
-{{ end }}
+{{ end }}-->
 </div>
 {{ partial "footer.html" . }}
