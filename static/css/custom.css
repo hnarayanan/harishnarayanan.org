@@ -16,7 +16,7 @@
     display: block;
     width: 100%;
     height: 6.5rem;
-    background: #fff;
+    background: #fbf7f0;
     z-index: 99;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -103,6 +103,7 @@ body {
     font-family: "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif;
     color: #222;
     font-size: 1.8em;
+    background-color: #fbf7f0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,4 +136,22 @@ img.svg-icon {
     display: inline-block;
     text-transform: uppercase;
     white-space: nowrap;
+}
+
+a {
+    color: #c6531a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #823711;
+    text-decoration: underline;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eee;
+    padding: 0;
 }
