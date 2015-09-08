@@ -2,63 +2,18 @@
 <div class="container">
 
   <h1 id="main-description">Moments from my life</h1>
-  <p>Much of our new photos feature Hugo, so you're better off following the family blog.</p>
+  <p>Most of the photos I take these days involve my baby boy, and end up on our <a href="http://narayanan.co/">family blog</a>. You should follow along there for a regularly updated stream of photos.</p>
+  <p><a href="http://narayanan.co/"><img class="u-max-full-width" src="/img/photos/_MG_4196.JPG" alt="Cute little Hugo"></a></p>
 
-  <img class="u-max-full-width" src="http://narayanan.co/content/images/2015/08/_MG_4197.JPG">
-
-  <h2 style="margin-top: 0.5em;">Some older memories</h2>
-  <div class="row">
+  <h2>Some older memories</h2>
+  {{ range $index, $element := .Data.Pages }}
+  {{ if mod (add $index 1) 2 }}<div class="row">{{end}}
     <div class="six columns">
-      <img class="u-max-full-width" src="https://lh5.googleusercontent.com/-kXlUd_M0zZY/UthNyTypCPI/AAAAAAAAMmA/uO5xSn6m_Q0/w1332-h888-no/MH-525.jpg">
-      <p>Wedding in Madras (2013)</p>
+      {{ .Render "summary"}}
     </div>
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh3.googleusercontent.com/-0czyzyDDJtA/UhT74yONfGI/AAAAAAAAFPo/-QcQJJWOvS8/w1332-h888-no/_MG_2817.JPG">
-      <p>Wedding in Oslo (2013)</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh5.googleusercontent.com/-bDgtb5M-jRI/Uf4BvJ8YJUI/AAAAAAAAE8o/2YDsfZKYG2g/w1332-h888-no/_MG_2639.jpg">
-      <p>Colourful Madras (2013)</p>
-    </div>
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh5.googleusercontent.com/-P_dxXFrhFqc/UJpj8vIaYoI/AAAAAAAADx8/bvYyzj_mdak/w1332-h888-no/_MG_1326.JPG">
-      <p>Piglet and Lumpie (2013)</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh5.googleusercontent.com/-NXQQla98DjI/UToFECzifFI/AAAAAAAAEZQ/69xe8NTRiUU/w1332-h888-no/_MG_2166.JPG">
-      <p>Service Jam (2012)</p>
-    </div>
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh3.googleusercontent.com/-hnFM4-pSZ8M/UQ1sfyg47OI/AAAAAAAAEMU/UJU3wKI787g/w1332-h888-no/_MG_1977.JPG">
-      <p>Save the date cupcakes (2012)</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh4.googleusercontent.com/-1OlBaT1q9Ew/UD2ucqGeLmI/AAAAAAAADaI/BCH3oOAFY5Q/w1332-h888-no/_MG_8087.jpg">
-      <p>Martin and Claudia's wedding (2011)</p>
-    </div>
-    <div class="six columns">
-      <img class="u-max-full-width" src="https://lh6.googleusercontent.com/-bKsQczmgQuY/T4BmxKvAnuI/AAAAAAAACWY/NNlVtOVa5tM/w1331-h888-no/_MG_7299.jpg">
-      <p>Flowers of some sort (2011)</p>
-    </div>
-  </div>
-
-
-
-<!-- <h1 id="main-description">Moments from my life</h1>
-{{ range .Data.Pages }}
-{{ .Render "summary"}}
-{{ end }}
--->
+    {{ if mod $index 2 }}</div>{{end}}
+  <!-- TODO: Some additional logic needs to go here to close the last div if we have an odd number of images. -->
+  {{ end }}
 
 </div>
-
 {{ partial "footer.html" . }}
