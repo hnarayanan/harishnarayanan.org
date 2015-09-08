@@ -6,14 +6,15 @@
   <p><a href="http://narayanan.co/"><img class="u-max-full-width" src="/img/photos/hugo.jpg" alt="Cute little Hugo"></a></p>
 
   <h2>Some older memories</h2>
+  {{ $len := len .Data.Pages}}
   {{ range $index, $element := .Data.Pages }}
   {{ if mod (add $index 1) 2 }}<div class="row">{{end}}
     <div class="six columns">
       {{ .Render "summary"}}
     </div>
     {{ if mod $index 2 }}</div>{{end}}
-  <!-- TODO: Some additional logic needs to go here to close the last div if we have an odd number of images. -->
   {{ end }}
+  {{ if mod $len 2 }}</div>{{ end }}
 
 </div>
 {{ partial "footer.html" . }}
