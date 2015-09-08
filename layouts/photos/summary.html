@@ -1,2 +1,2 @@
-<a href="#"><img class="u-max-full-width" src="https://lh5.googleusercontent.com/-kXlUd_M0zZY/UthNyTypCPI/AAAAAAAAMmA/uO5xSn6m_Q0/w1332-h888-no/MH-525.jpg" alt="#"></a>
-<p><a href="#">{{ .Title }}</a> ({{ .Date.Format "2006" }})</p>
+<a href="{{ .Params.album }}"><img class="u-max-full-width" src="{{ .Params.thumbnail }}" alt="{{ .Title }}"></a>
+<p><a href="{{ .Params.album }}">{{ .Title }}</a> ({{ .Date.Format "2006" }})</p>
