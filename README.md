@@ -12,6 +12,7 @@ since that doesn't give you much scope to do anything with it.
 The following list is in addition to the liberal `TODO`s sprinkled all
 over the code.
 
+- Expose RSS feed
 - Replace the above non-license with something friendlier
 - Replace this file with a useful README
 - Grep for and remove all remaining egregious uses of inline styling
@@ -23,6 +24,8 @@ over the code.
 - Create a sister Ansible repository to setup the personal site?
 - Reintroduce a meta section of the site... or perhaps move relevant
   information in this README and link to it?
+- Incorporate online learning portfolio somewhere?
+- Highlight recommended classes
 
 ## Notes
 
