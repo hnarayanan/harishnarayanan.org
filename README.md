@@ -19,3 +19,7 @@ over the code.
 - Create archetypes for each primary content type on the site
 - Incorporate some taxonomy for the articles (e.g. tags like Devops,
   Kubernetes, Django) to later start connecting up sets of articles
+- Move in souped-up nginx configuration from the earlier repository
+- Create a sister Ansible repository to setup the personal site?
+- Reintroduce a meta section of the site... or perhaps move relevant
+  information in this README and link to it?
