@@ -1,6 +1,8 @@
 {{ partial "header.html" . }}
 <div class="container">
 
+  <!-- TODO: Mark some articles as 'prominent, or 'weight' them heavily so they can be auto-pulled to prominence on this page. -->
+
   <h1 id="main-description">Theory ⋂ Practice</h1>
   {{ range .Data.Pages }}
   {{ .Render "summary"}}
