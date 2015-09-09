@@ -8,9 +8,9 @@
   <h2>Some older memories</h2>
   {{ $len := len .Data.Pages}}
   {{ range $index, $element := .Data.Pages }}
-  {{ if mod (add $index 1) 2 }}<div class="row">{{end}}
+  {{ if mod (add $index 1) 2 }}<div class="row">{{ end }}
     <div class="six columns">
-      {{ .Render "summary"}}
+      {{ .Render "summary" }}
     </div>
     {{ if mod $index 2 }}</div>{{end}}
   {{ end }}
