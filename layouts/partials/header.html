@@ -11,17 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+    <!-- TODO: Merge the following CSS calls into a single request -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Lora:400,400italic,700" rel="stylesheet" type="text/css">
 
+    <!-- TODO: After custom.css is cleaned up, merge and minify the following CSS requests -->
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/skeleton.css">
     <link rel="stylesheet" href="/css/custom.css">
   </head>
 
   <body>
+    <!-- TODO: Bring back ARIA roles and helpers once code stabilizes -->
     <header role="banner">
       <p class="visuallyhidden"><a href="#content">Skip to main content</a></p>
+      <!-- TODO: Fix the following navbar on small screen sizes -->
       <nav class="navbar" role="navigation">
 	<div class="container">
           <h2 class="visuallyhidden"><span id="navigation-description">Main</span> Navigation</h2>
