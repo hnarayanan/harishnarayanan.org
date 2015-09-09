@@ -26,6 +26,7 @@ over the code.
   information in this README and link to it?
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
+- Add the winter in Asia gallery?
 
 ## Notes
 
