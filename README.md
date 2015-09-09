@@ -23,3 +23,7 @@ over the code.
 - Create a sister Ansible repository to setup the personal site?
 - Reintroduce a meta section of the site... or perhaps move relevant
   information in this README and link to it?
+
+## Notes
+
+rsync -aPvhe ssh --delete --exclude-from=/Users/harish/Scratch/Backup/exclude2 public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
