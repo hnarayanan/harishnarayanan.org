@@ -178,3 +178,7 @@ hr {
       /* .l-box:hover { */
       /* 	  -webkit-filter: none; */
       /* } */
+
+      li.active a {
+	  font-weight: 700;
+      }
