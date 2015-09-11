@@ -148,6 +148,7 @@ a:hover {
 }
 
 hr {
+    margin-top: 0;
     display: block;
     height: 1px;
     border: 0;
@@ -164,6 +165,8 @@ hr {
     .pure-g {
         padding-left: 0px;
         padding-right: 0px;
+	/* max-width: 1280px; */
+	/* margin: 0 auto; */
       }
       .l-box {
         padding: 0px;
