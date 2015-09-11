@@ -154,3 +154,24 @@ hr {
     border-top: 1px solid #eee;
     padding: 0;
 }
+
+.pure-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+    .pure-g {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      .l-box {
+        padding: 0px;
+      }
+      /* .l-box { */
+      /* 	  -webkit-filter: grayscale(90%); */
+      /* } */
+
+      /* .l-box:hover { */
+      /* 	  -webkit-filter: none; */
+      /* } */

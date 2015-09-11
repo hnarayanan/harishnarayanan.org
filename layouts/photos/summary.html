@@ -1,3 +1,7 @@
-<a href="{{ .Params.album }}"><img class="u-max-full-width" src="{{ .Params.thumbnail }}" alt="{{ .Title }}"></a>
-<p><a href="{{ .Params.album }}">{{ .Title }}</a> ({{ .Date.Format "2006" }})</p>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-xl-1-4">
+  <div class="l-box">
+    <a href="{{ .Params.album }}"><img class="pure-img" src="{{ .Params.thumbnail }}" alt="{{ .Title }}"></a>
+  </div>
+</div>
+<!-- <p><a href="{{ .Params.album }}">{{ .Title }}</a> ({{ .Date.Format "2006" }})</p> -->
 <!-- TODO: Instead of hard-coding the thumbnail in the content, figure out how to get the slug portion of the URL and use that instead above -->
