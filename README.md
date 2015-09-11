@@ -13,6 +13,7 @@ The following list is in addition to the liberal `TODO`s sprinkled all
 over the code.
 
 - Expose RSS feed
+- Every section needs a title and a description in some dictionary
 - Replace the above non-license with something friendlier
 - Replace this file with a useful README
 - Grep for and remove all remaining egregious uses of inline styling
@@ -27,6 +28,7 @@ over the code.
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
 - Add the winter in Asia gallery?
+
 
 ## Notes
 
