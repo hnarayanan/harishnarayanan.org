@@ -38,18 +38,18 @@
     name=nginx
     enabled=yes
 
-- name: Setup our project as one of the available nginx sites
+- name: Setup this website as one of the available nginx sites
   sudo: yes
   template:
-    src=harishnarayanan.org.j2
-    dest=/etc/nginx/sites-available/harishnarayanan.org
+    src=nginx.conf.j2
+    dest=/etc/nginx/sites-available/{{ domain_name }}
   notify: restart nginx
 
-- name: Setup our project as one of the enabled nginx sites
+- name: Setup this website as one of the enabled nginx sites
   sudo: yes
   file:
-    src=/etc/nginx/sites-available/harishnarayanan.org
-    dest=/etc/nginx/sites-enabled/harishnarayanan.org
+    src=/etc/nginx/sites-available/{{ domain_name }}
+    dest=/etc/nginx/sites-enabled/{{ domain_name }}
     state=link
   notify: restart nginx
 
