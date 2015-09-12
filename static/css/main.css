@@ -47,23 +47,17 @@
     box-sizing: border-box;
 }
 
-
 @media (min-width: 400px) {
   .container {
-    width: 85%;
-    padding: 0; }
+      width: 85%;
+      padding: 0;
+  }
 }
 
 @media (min-width: 550px) {
-  .container {
-    width: 80%; }
-  .column,
-  .columns {
-    margin-left: 4%; }
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 0; }
-
+    .container {
+	width: 80%;
+    }
 }
 
 /* Base Styles
