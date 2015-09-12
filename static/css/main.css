@@ -21,6 +21,7 @@
 
 /* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
+- Container
 - Grid
 - Base Styles
 - Typography
@@ -32,9 +33,10 @@
 - Utilities
 - Misc
 - Navbar
+- Post
 */
 
-/* Grid
+/* Container
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
     position: relative;
@@ -43,6 +45,25 @@
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
+}
+
+
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
 }
 
 /* Base Styles
@@ -69,11 +90,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 2rem;
 }
 
-h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
-h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -.1rem; }
-h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -.1rem; }
-h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
-h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -0.2rem;}
+h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -0.16rem; }
+h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -0.12rem; }
+h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -0.08rem; }
+h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -0.04rem; }
 h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
 @media (min-width: 550px) {
@@ -223,7 +244,6 @@ form {
 
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
@@ -237,13 +257,13 @@ hr {
     clear: both;
 }
 
-/* Clearing
+/* Navbar
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .navbar {
     display: none;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 750px) {
   .navbar {
       display: block;
       width: 100%;
@@ -251,7 +271,6 @@ hr {
       background: #fbf7f0;
       z-index: 99;
       border-bottom: 1px solid #eee;
-  }
   }
   .navbar-list {
       list-style: none;
@@ -276,4 +295,30 @@ hr {
   .navbar-link.active {
       color: #33C3F0;
   }
+}
+
+/* Post
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.post-meta {
+    display: block;
+    margin: -2rem 0 2rem 0;
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: #9EABB3;
+}
+
+.post-date {
+    display: inline-block;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* TODO: Clean the following up
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+img.svg-icon {
+    width: 20px;
+    padding-right: 20px;
+    fill: #ff0000;
 }

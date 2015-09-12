@@ -1,33 +1,9 @@
-/* Grid
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-/* For devices larger than 400px */
-@media (min-width: 400px) {
-  .container {
-    width: 85%;
-    padding: 0; }
-}
-
-/* For devices larger than 550px */
-@media (min-width: 550px) {
-  .container {
-    width: 80%; }
-  .column,
-  .columns {
-    margin-left: 4%; }
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 0; }
-
-}
-
 /* Typography
 ------------------------ */
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
-
 
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
