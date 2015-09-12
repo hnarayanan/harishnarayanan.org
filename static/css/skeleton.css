@@ -7,13 +7,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*
-Note: The best way to structure the use of media queries is to create the queries
-near the relevant code. For example, if you wanted to change the styles for buttons
-on small devices, paste the mobile query code up in the buttons section and style it
-there.
-*/
-
 
 /* Larger than mobile */
 @media (min-width: 400px) {}
