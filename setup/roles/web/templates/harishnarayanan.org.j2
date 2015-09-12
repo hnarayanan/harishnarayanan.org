@@ -1,39 +1,39 @@
 server_tokens off;
 
 server {
-  server_name www.harishnarayanan.org;
+  server_name www.{{ domain_name }};
 
-  ssl_certificate /etc/nginx/ssl/harishnarayanan.org.crt;
-  ssl_certificate_key /etc/nginx/ssl/harishnarayanan.org.key;
+  ssl_certificate /etc/nginx/ssl/{{ domain_name }}.crt;
+  ssl_certificate_key /etc/nginx/ssl/{{ domain_name }}.key;
 
   listen *:80;
   listen *:443 ssl spdy;
   listen [::]:80;
   listen [::]:443 ssl spdy;
 
-  return 301 https://harishnarayanan.org$request_uri;
+  return 301 https://{{ domain_name }}$request_uri;
 }
 
 server {
-  server_name harishnarayanan.org;
+  server_name {{ domain_name }};
 
   listen *:80;
   listen [::]:80;
 
-  return 301 https://harishnarayanan.org$request_uri;
+  return 301 https://{{ domain_name }}$request_uri;
 }
 
 server {
-  server_name harishnarayanan.org;
+  server_name {{ domain_name }};
 
-  ssl_certificate /etc/nginx/ssl/harishnarayanan.org.crt;
-  ssl_certificate_key /etc/nginx/ssl/harishnarayanan.org.key;
+  ssl_certificate /etc/nginx/ssl/{{ domain_name }}.crt;
+  ssl_certificate_key /etc/nginx/ssl/{{ domain_name }}.key;
 
   listen *:443 ssl spdy;
   listen [::]:443 ipv6only=on ssl spdy;
 
-  access_log /var/log/nginx/harishnarayanan.org.access.log;
-  error_log /var/log/nginx/harishnarayanan.org.error.log;
+  access_log /var/log/nginx/{{ domain_name }}.access.log;
+  error_log /var/log/nginx/{{ domain_name }}.error.log;
 
   charset utf-8;
   client_max_body_size 75M;
@@ -46,7 +46,7 @@ server {
 
   spdy_headers_comp 0;
 
-  ssl_dhparam /etc/nginx/ssl/harishnarayanan.org.pem;
+  ssl_dhparam /etc/nginx/ssl/{{ domain_name }}.pem;
 
   ssl_session_cache   shared:SSL:10m;
   ssl_session_timeout 10m;
@@ -54,11 +54,11 @@ server {
   ssl_buffer_size 1400;
 
   location /cv.pdf {
-    root /home/ubuntu/harishnarayanan.org/files/cv;
+    root /home/ubuntu/{{ domain_name }}/files/cv;
   }
 
   location /resume.pdf {
-    root /home/ubuntu/harishnarayanan.org/files/cv;
+    root /home/ubuntu/{{ domain_name }}/files/cv;
   }
 
   location / {
@@ -66,6 +66,6 @@ server {
     set $MY_DOCUMENT_ROOT "";
     gzip_static on;
     expires max;
-    root /home/ubuntu/harishnarayanan.org;
+    root /home/ubuntu/{{ domain_name }};
   }
 }

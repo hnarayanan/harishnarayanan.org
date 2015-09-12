@@ -6,5 +6,8 @@
 
 - name: "Configure and deploy web server"
   hosts: webserver
+  vars:
+    domain_name: harishnarayanan.org
+
   roles:
     - web
