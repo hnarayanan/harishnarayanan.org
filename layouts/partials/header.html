@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- TODO: Clean up ugly pluralization of section names -->
-    <title>{{ .Title }}{{ if ne .URLPath.URL "/" }} &mdash; {{ .Site.Title }}{{ end }}</title>
+    <title>{{ if (index .Site.Data.TitleFixes .Title) }}{{ index .Site.Data.TitleFixes .Title }}{{ else }}{{ .Title }}{{ end }}{{ if ne .URLPath.URL "/" }} &mdash; {{ .Site.Title }}{{ end }}</title>
     <!-- TODO: Add section descriptions to a dictionary somewhere -->
     <meta name="description" content="">
     <meta name="author" content="Harish Narayanan">
