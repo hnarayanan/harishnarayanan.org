@@ -1245,6 +1245,12 @@ p {
     margin-top: 0;
 }
 
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+}
+
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
@@ -1462,4 +1468,16 @@ img.svg-icon {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.l-box-container {
+    margin: -10px;
+}
+
+.l-box {
+    padding: 10px;
+}
+
+h5 {
+    margin-bottom: 0.2em;
 }
