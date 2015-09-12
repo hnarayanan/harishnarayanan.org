@@ -28,6 +28,7 @@ over the code.
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
 - Add the winter in Asia gallery?
+- Things I am playing with: Mesos, Kubernetes, Go, Containers and Swift-iOS
 
 
 ## Notes
