@@ -1,0 +1,64 @@
+- name: Add a custom repository for nginx
+  sudo: yes
+  apt_repository:
+    repo='ppa:nginx/stable'
+    state=present
+
+- name: Install nginx
+  sudo: yes
+  apt:
+    name=nginx
+    state=latest
+    update_cache=yes
+
+- name: Create a directory to store SSL files
+  sudo: yes
+  file:
+    path=/etc/nginx/ssl
+    state=directory
+
+- name: Copy over SSL files
+  sudo: yes
+  copy:
+    src={{ item }}
+    dest=/etc/nginx/ssl/
+  with_fileglob:
+    - ssl/*
+
+- name: Delete the default symbolic linked nginx website
+  sudo: yes
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: restart nginx
+
+- name: Configure nginx to start on boot
+  sudo: yes
+  service:
+    name=nginx
+    enabled=yes
+
+- name: Setup our project as one of the available nginx sites
+  sudo: yes
+  template:
+    src=harishnarayanan.org.j2
+    dest=/etc/nginx/sites-available/harishnarayanan.org
+  notify: restart nginx
+
+- name: Setup our project as one of the enabled nginx sites
+  sudo: yes
+  file:
+    src=/etc/nginx/sites-available/harishnarayanan.org
+    dest=/etc/nginx/sites-enabled/harishnarayanan.org
+    state=link
+  notify: restart nginx
+
+- name: Configure firewall rules to allow HTTP(S)
+  sudo: yes
+  ufw:
+    rule={{ item.rule }}
+    port={{ item.port }}
+    proto={{ item.proto }}
+  with_items:
+    - { rule: 'allow', port: '80', proto: 'tcp' }
+    - { rule: 'allow', port: '443', proto: 'tcp' }

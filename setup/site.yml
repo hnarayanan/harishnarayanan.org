@@ -1,0 +1,10 @@
+---
+- name: "Apply base configuration to the server(s)"
+  hosts: all
+  roles:
+    - base
+
+- name: "Configure and deploy web server"
+  hosts: webserver
+  roles:
+    - web

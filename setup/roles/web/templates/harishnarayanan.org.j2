@@ -1,0 +1,71 @@
+server_tokens off;
+
+server {
+  server_name www.harishnarayanan.org;
+
+  ssl_certificate /etc/nginx/ssl/harishnarayanan.org.crt;
+  ssl_certificate_key /etc/nginx/ssl/harishnarayanan.org.key;
+
+  listen *:80;
+  listen *:443 ssl spdy;
+  listen [::]:80;
+  listen [::]:443 ssl spdy;
+
+  return 301 https://harishnarayanan.org$request_uri;
+}
+
+server {
+  server_name harishnarayanan.org;
+
+  listen *:80;
+  listen [::]:80;
+
+  return 301 https://harishnarayanan.org$request_uri;
+}
+
+server {
+  server_name harishnarayanan.org;
+
+  ssl_certificate /etc/nginx/ssl/harishnarayanan.org.crt;
+  ssl_certificate_key /etc/nginx/ssl/harishnarayanan.org.key;
+
+  listen *:443 ssl spdy;
+  listen [::]:443 ipv6only=on ssl spdy;
+
+  access_log /var/log/nginx/harishnarayanan.org.access.log;
+  error_log /var/log/nginx/harishnarayanan.org.error.log;
+
+  charset utf-8;
+  client_max_body_size 75M;
+
+  add_header Strict-Transport-Security 'max-age=31536000';
+
+  ssl_prefer_server_ciphers on;
+  ssl_ciphers 'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !MD5 !EXP !DSS !PSK !SRP !kECDH !CAMELLIA !RC4 !SEED';
+  ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+
+  spdy_headers_comp 0;
+
+  ssl_dhparam /etc/nginx/ssl/harishnarayanan.org.pem;
+
+  ssl_session_cache   shared:SSL:10m;
+  ssl_session_timeout 10m;
+
+  ssl_buffer_size 1400;
+
+  location /cv.pdf {
+    root /home/ubuntu/harishnarayanan.org/files/cv;
+  }
+
+  location /resume.pdf {
+    root /home/ubuntu/harishnarayanan.org/files/cv;
+  }
+
+  location / {
+    ssi on;
+    set $MY_DOCUMENT_ROOT "";
+    gzip_static on;
+    expires max;
+    root /home/ubuntu/harishnarayanan.org;
+  }
+}
