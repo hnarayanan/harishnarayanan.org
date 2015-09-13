@@ -16,6 +16,8 @@ over the code.
 - Every section needs a title and a description in some dictionary
 - Replace the above non-license with something friendlier
 - Replace this file with a useful README
+- Go through the TODOs in the code and this list and create a
+  collection of isues on GitHub
 - Grep for and remove all remaining egregious uses of inline styling
 - Collect all article notes and make them draft posts
 - Create archetypes for each primary content type on the site
@@ -28,8 +30,13 @@ over the code.
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
 - Add the winter in Asia gallery?
-- Things I am playing with: Mesos, Kubernetes, Go, Containers and Swift-iOS
-
+- Things I am playing with: Mesos, Kubernetes, Go, Containers and
+  Swift-iOS
+- Catalogue content from the test-lanyon attempt
+- Look at GitHub for a reminder of recent projects
+- Don't hard code the swap file size to 4GB. Instead make it 1.5x
+  system RAM.
+- Canonicalize breakpoints of Pure and Skeleton
 
 ## Notes
 
