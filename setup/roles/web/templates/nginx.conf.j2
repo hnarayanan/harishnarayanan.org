@@ -6,6 +6,8 @@ server {
   ssl_certificate /etc/nginx/ssl/{{ domain_name }}.crt;
   ssl_certificate_key /etc/nginx/ssl/{{ domain_name }}.key;
 
+  # TODO: Ready the following for HTTP2 instead of SPDY
+
   listen *:80;
   listen *:443 ssl spdy;
   listen [::]:80;
@@ -38,6 +40,8 @@ server {
   charset utf-8;
   client_max_body_size 75M;
 
+  # TODO: Improve the following after looking at the enhanced nginx ssl configuration (in a branch) on v5
+
   add_header Strict-Transport-Security 'max-age=31536000';
 
   ssl_prefer_server_ciphers on;
@@ -53,6 +57,8 @@ server {
 
   ssl_buffer_size 1400;
 
+  # TODO: Symlink these to linkedin (yuck) or remove the following
+
   location /cv.pdf {
     root /home/ubuntu/{{ domain_name }}/files/cv;
   }
@@ -67,5 +73,6 @@ server {
     gzip_static on;
     expires max;
     root /home/ubuntu/{{ domain_name }};
+    error_page 404 /404.html;
   }
 }
