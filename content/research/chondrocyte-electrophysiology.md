@@ -18,8 +18,7 @@ the biological processes involved in its formation, so worn out tissue
 can be replaced. For this, we turn our attention to the cell
 responsible for the synthesis of cartilage: *the chondrocyte*.
 
-<!-- <img src="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" class="centered-photo" alt="Electron micrograph of a typical articular chondrocyte" title="Electron micrograph of a typical articular chondrocyte" /> -->
-<!-- <p class="caption">Electron micrograph of a typical articular chondrocyte (<a href="http://dx.doi.org/10.1016/S1357-2725(02)00301-1">Archer &amp; Francis-West, 2003</a>).</p> -->
+{{< figure src="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
 
 Chondrocytes seem to be at the crux of our story because they are the
 single cell type found in cartilage. They are extremely active cells
@@ -43,8 +42,7 @@ implemented in Octave, and [a current version is
 available](http://localhost/files/projects/chondrocyte-model/chondrocyte-model.zip)
 as Free Software under the GNU GPL.
 
-<!-- <a href="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-model.png"><img src="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-model.small.png" class="centered-photo" alt="A schematic of the ion channels in a single chondrocyte" title="A schematic of the ion channels in a single chondrocyte" /></a> -->
-<!-- <p class="caption">A schematic of the ion channels in a single chondrocyte.</p> -->
+{{< figure src="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-model.small.png" title="A schematic of the ion channels in a single chondrocyte." >}}
 
 When our computer model of the chondrocyte is subjected to several
 different clinically-relevant environments, we begin to gain an
@@ -53,8 +51,7 @@ hints at ideal conditions the cell must be subjected to as it relates
 to the synthesis of viable cartilage, and circumstances where this
 might be disrupted.
 
-<!-- <img src="http://localhost/files/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" class="centered-photo" alt="Comparing the model behaviour (blue) with experiment (red)" title="Comparing the model behaviour (blue) with experiment (red)" /> -->
-<!-- <p class="caption">Comparing the model behaviour (blue) with experiment (red).</p> -->
+{{< figure src="http://localhost/files/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
 
 We envision that the insight gained from this work will help in
 multiple ways. First, it will help clinicians and biochemists design

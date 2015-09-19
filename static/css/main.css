@@ -1481,3 +1481,27 @@ img.svg-icon {
 h5 {
     margin-bottom: 0.2em;
 }
+
+figure {
+    width: 120%;
+    margin: 0;
+    display: inline-block;
+    max-width: 120%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* for Safari and iOS */
+    -ms-transform: translateX(-50%); /* for IE9 */
+    transform: translateX(-50%);
+}
+
+figure img {
+    margin: 0 auto;
+}
+
+figcaption {
+    font-size: 90%;
+    font-style: italic;
+    text-align: center;
+    margin-top: .5em;
+}
