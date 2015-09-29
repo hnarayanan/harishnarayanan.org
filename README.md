@@ -37,6 +37,11 @@ over the code.
 - Don't hard code the swap file size to 4GB. Instead make it 1.5x
   system RAM.
 - Canonicalize breakpoints of Pure and Skeleton
+- Computational biology
+- - applied mathematician
+  - computational biologist
+  - all-around web technologist
+- Embed relevant talks in research articles
 
 ## Notes
 
