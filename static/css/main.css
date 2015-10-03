@@ -1505,3 +1505,14 @@ figcaption {
     text-align: center;
     margin-top: .5em;
 }
+
+.mainfooter {
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .2rem;
+    color: #222;
+    border-top: 1px solid #eee;
+    line-height: 6.5rem;
+}
