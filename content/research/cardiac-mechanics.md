@@ -1,5 +1,5 @@
 ---
-date: 2015-09-07T16:39:37+01:00
+date: 2012-06-01
 title: Modelling the active mechanical response of the heart
 short_title: Cardiac mechanics
 thumbnail: /img/research/cardiac-mechanics/cardiac-mechanics.png

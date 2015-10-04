@@ -1,8 +1,9 @@
 ---
-date: 2015-10-03T21:54:59+01:00
+date: 2010-01-03
 title: Adaptive multiphase flow through porous media
 short_title: Multiphase flow in porous media
 thumbnail: /img/research/porous-flow/adaptive-water-snake.gif
+featured: yes
 ---
 
 From the transport of dissolved nutrients through biological tissue to

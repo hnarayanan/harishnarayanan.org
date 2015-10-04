@@ -1,5 +1,5 @@
 ---
-date: 2015-09-19T12:11:24+01:00
+date: 2011-09-19
 draft: true
 title: An electrophysiological model for the chondrocyte
 short_title: Chondrocyte electrophysiology
