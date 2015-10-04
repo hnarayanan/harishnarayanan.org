@@ -2,85 +2,17 @@
 <div class="container">
 
   <h1 id="main-description">Academic research</h1>
-  <!-- TODO: Rewrite this description, to point out that this page contains descriptions of work, tools, writing, talks etc. Give ids to each section and link them in the text?-->
-  <p>My entrepreneurial journey started towards the end of 2012. For the decade prior, I enjoyed the significantly less risky lifestyle of a curious academic. The following is a representative sample of the questions I’ve pondered in this phase, spanning continuous field theory, numerical algorithms, and a range of applications in biophysics.</p>
-  <h2 id="areas">Primary investigations</h2>
+  <p>For the decade prior to becoming an entrepreneur (2002—2012), I enjoyed the lifestyle of a curious academic. My research in this period was inspired by a range of applications in biophysics, and focused on continuum field theory and numerical algorithms. This page links to <a href="#areas">descriptions of my work</a>, and serves as a catalogue of my <a href="#articles">scientific writing</a>, <a href="#talks">presentations</a> and <a href="">software tools</a>.</p>
 
+  <h2 id="areas">Primary investigations</h2>
   <div class="pure-g l-box-container">
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/FE4365/ffffff">
-        <h5>Cardiac mechanics</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/FC9D9A/ffffff">
-        <h5>Chondrocyte electrophysiology</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/1800x600/C8C8A9/ffffff">
-        <h5>Featured project</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/F9CDAD/ffffff">
-        <h5>Multiphase flow in porous media</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/83AF9B/ffffff">
-        <h5>Algorithms for finite elasticity</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/1800x600/FE4365/ffffff">
-        <h5>Multiphase flow in porous media</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/FC9D9A/ffffff">
-        <h5>Cardiac mechanics</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-      <div class="l-box">
-        <img class="pure-img" src="http://placehold.it/900x600/C8C8A9/ffffff">
-        <h5>Chondrocyte electrophysiology</h5>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-        </p>
-      </div>
-    </div>
+    {{ $len := len .Data.Pages}}
+    {{ range $index, $element := .Data.Pages }}
+    {{ .Render "summary" }}
+    {{ end }}
   </div>
-  <h2>Journal articles</h2>
+
+  <h2 id="articles">Journal articles</h2>
   <ol class="writing">
     <li>
       <strong>“The roles of K+ currents in human articular chondrocyte electrophysiology: A computational perspective”</strong>
@@ -134,7 +66,8 @@
       <br>Vol. 52(7), pp. 1595–1625, 2004
     </li>
   </ol>
-  <h2>Chapters in books</h2>
+
+  <h2 id="chapters">Chapters in books</h2>
   <ol class="writing">
     <li>
       <strong>“A computational framework for nonlinear elasticity”</strong>
@@ -169,7 +102,8 @@
       <br>Chap. 8, pp. 77–84, 2005
     </li>
   </ol>
-  <h2>Conference proceedings</h2>
+
+  <h2 id="proceedings">Conference proceedings</h2>
   <ol class="writing">
     <li>
       <strong>“Experimental and computational investigation of viscoelasticity of native and engineered ligament and tendon”</strong>
@@ -199,7 +133,8 @@
       <br>Vol. 5(3), pp. 2235–2238, 2008
     </li>
   </ol>
-  <h2>Other academic writing</h2>
+
+  <h2 id="other-writing">Other academic writing</h2>
   <ol class="writing">
     <li>
       <strong>“A continuum theory of multiphase mixtures for modelling biological growth”</strong>
@@ -217,6 +152,7 @@
       <br>2005
     </li>
   </ol>
+
   <h2 id="talks">Selected conference talks</h2>
   <!-- TODO: Go to v4 and see if all interesting talks have been migrated -->
   <!-- TODO: Should the slides be uploaded to e.g. slideshare instead of hosted locally? What are the (dis)advantages of doing so? -->
@@ -324,8 +260,6 @@
 
   <!-- <img class="u-max-full-width" src="http://localhost/files/images/research/gallery/spotlight/mobius-poisson.png" alt="Poisson's equation on a Mobius strip" title="Attempts in solving the Poisson's equation on a M&#246;bius strip"></a> -->
   <!--   <p class="caption">Attempts in solving the Poisson’s equation on a <a href="http://en.wikipedia.org/wiki/M%C3%B6bius_strip">M&#246;bius strip</a>.</p> -->
-
-
     <!--   <div class="row"> -->
     <!--   <div class="one-third column"> -->
     <!-- 	<a href="/research/cardiac-mechanics/"><img class="gallery-item-image" src="http://localhost/files/images/research/gallery/biventricle-mesh.png" alt="Modelling the active mechanical response of the heart" title="Modelling the active mechanical response of the heart"></a> -->
@@ -374,7 +308,6 @@
     <!-- </div> -->
 
 
-    
     <!--     <h2 id="software">Related software projects</h2> -->
     <!-- <p>Much of the research code distributed below is human-readable Python sitting atop the <a href="http://fenicsproject.org/">FEniCS Project</a>. FEniCS is a collaborative project for the automation of computational mathematical modelling based on the finite element method. In order to play with the code, you need to have <a href="http://fenicsproject.org/download/">a working installation of FEniCS</a>. Please <a href="mailto:harish at simula dot no">write to me</a> if you need help getting the code to work or are interested in collaborating on future extensions.</p> -->
     <!-- <div class="row"> -->

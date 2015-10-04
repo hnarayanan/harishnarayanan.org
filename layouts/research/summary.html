@@ -1,0 +1,10 @@
+    <div class="pure-u-1 {{ if not .Params.featured }}pure-u-md-1-2{{ end }}">
+      <div class="l-box">
+        <a href="{{ .RelPermalink }}"><img class="pure-img" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a>
+        <h5>{{ .Params.short_title }}</h5>
+        <p>
+	  This is a simple description of this research. The description does not exceed the length of a tweet, or one hundred and forty characters.
+	  <!-- {{ .Summary }} -->
+        </p>
+      </div>
+    </div>

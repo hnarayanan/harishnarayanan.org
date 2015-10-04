@@ -42,6 +42,7 @@ over the code.
   - computational biologist
   - all-around web technologist
 - Embed relevant talks in research articles
+- Move research-related software to the projects page?
 
 ## Notes
 
