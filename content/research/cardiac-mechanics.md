@@ -2,6 +2,7 @@
 date: 2015-09-07T16:39:37+01:00
 title: Modelling the active mechanical response of the heart
 short_title: Cardiac mechanics
+thumbnail: /img/research/cardiac-mechanics/cardiac-mechanics.png
 ---
 
 Ventricular myocardium serves as the functional tissue of the heart

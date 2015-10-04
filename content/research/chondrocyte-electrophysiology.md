@@ -2,6 +2,8 @@
 date: 2015-09-19T12:11:24+01:00
 draft: true
 title: An electrophysiological model for the chondrocyte
+short_title: Chondrocyte electrophysiology
+thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-electrophysiology.png
 ---
 
 Cartilage is the soft tissue that cushions bones at joints and usually
