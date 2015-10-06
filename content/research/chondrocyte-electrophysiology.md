@@ -19,7 +19,7 @@ disease.
 In this work, we use computer models to better understand the cell
 responsible for the synthesis of cartilage: *the chondrocyte*.
 
-{{< figure src="http://localhost/files/images/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
+{{< figure src="/img/research/chondrocyte-electrophysiology/chondrocyte-micrograph-original.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
 
 Chondrocytes seem to be at the crux of our story because they are the
 single cell type found in cartilage. They are extremely active cells
@@ -54,7 +54,7 @@ suggests ideal conditions that the cell must be subjected to as it
 relates to the synthesis of viable cartilage, and circumstances where
 this might be disrupted.
 
-{{< figure src="http://localhost/files/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
+{{< figure src="/img/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
 
 We envision that the insight gained from this work will help in
 multiple ways. First, it will help clinicians and biochemists design
