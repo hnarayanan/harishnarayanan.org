@@ -23,14 +23,7 @@ computational framework for nonlinear elasticity,
 [CBC.Twist](/research/automated-mechanics/), allows us to easily
 implement and test this physiologically-relevant constitutive model.
 
-![Orthotropic response of the passive myocardium
- model](http://localhost/files/images/research/cardiac-mechanics/orthotropic-passive-stress.png
- "Orthotropic response of the passive myocardium model")
-
-The orthotropic response of the myocardium model demonstrated by
-varying simple shear-stress responses along different planes defined
-by the muscle fibre (f), myocite sheet (s) and sheet-normal (n)
-directions.
+{{< figure src="/img/research/cardiac-mechanics/orthotropic-passive-stress.png" title="The orthotropic response of the myocardium model demonstrated by varying simple shear-stress responses along different planes defined by the muscle fibre (f), myocite sheet (s) and sheet-normal (n) directions." >}}
 
 We then introduce, via a multiplicative decomposition of the
 deformation gradient ([Ambrosi and Pezzuto,
@@ -51,12 +44,7 @@ of cross-bridge cycling. This should soon allow us to solve numerical
 problems on realistic geometries to demonstrate key aspects of the
 coupled active response of the myocardium.
 
-![A generic biventricle finite element
- mesh](http://localhost/files/images/research/cardiac-mechanics/biventricle-mesh.png
- "A generic biventricle finite element mesh")
-
-A finite element mesh of a generic biventricle generated with
-[CGAL](http://www.cgal.org/).
+{{< figure src="/img/research/cardiac-mechanics/biventricle-mesh.png" title="A finite element mesh of a generic biventricle generated with CGAL." >}}
 
 The code for this effort (Python sitting atop the [FEniCS
 Project](http://fenicsproject.org/)) will be released under the GPL

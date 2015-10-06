@@ -24,16 +24,10 @@ The following animation presents the results from a simple (yet
 non-trivial!) calculation involving the flow of water and oil through
 fluid-saturated clay. The flow is driven from left to right by a
 pressure gradient. Because of the specific choice of a [single,
-winding
-crack](http://www.dealii.org/6.2.1/doxygen/deal.II/step_21.html#plain-Singlecurvingcrackpermeability)
-that snakes through the domain, it is in this high-permeability region
-that the greatest flow rates are set up.
+winding crack][dealiiexample] that snakes through the domain, it is in
+this high-permeability region that the greatest flow rates are set up.
 
-![Water snaking through oil-rich
- clay](http://localhost/files/images/research/porous-flow/adaptive-water-snake-2.gif
- "Water snaking through oil-rich clay!")
-
-Water snaking through oil-rich clay!
+{{< figure src="/img/research/porous-flow/adaptive-water-snake.gif" title="Water snaking through oil-rich clay!" >}}
 
 The model for the above example contains an elliptic equation and a
 nonlinear hyperbolic transport equation. This system is solved at each
@@ -46,8 +40,10 @@ domain.
 
 This research was carried out in collaboration with Garth N. Wells at
 the University of Cambridge from November 2009 to February 2010\. The
-[code for this
-effort](http://localhost/files/projects/adaptive-porous-flow/adaptive-porous-flow.zip)
-comprises entirely of a few hundred lines of human-readable Python
-sitting atop the [FEniCS Project](http://fenicsproject.org/). It is
+[code for this effort][src] comprises entirely of a few hundred lines
+of human-readable Python sitting atop the [FEniCS Project][fpo]. It is
 released as Free Software under the GNU GPL.
+
+[dealiiexample]: http://www.dealii.org/6.2.1/doxygen/deal.II/step_21.html#plain-Singlecurvingcrackpermeability
+[src]: http://localhost/files/projects/adaptive-porous-flow/adaptive-porous-flow.zip
+[fpo]: http://fenicsproject.org/
