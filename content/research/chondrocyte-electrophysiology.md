@@ -1,9 +1,12 @@
 ---
 date: 2011-09-19
+years: 2011 – 2012
 draft: true
 title: An electrophysiological model for the chondrocyte
 short_title: Chondrocyte electrophysiology
-thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-electrophysiology.png
+description: Better understanding the cell type responsible for the synthesis of cartilage.
+thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg
+period: 2010 – 2011
 ---
 
 Cartilage is the soft tissue that cushions bones at joints and usually
