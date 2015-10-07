@@ -2,7 +2,7 @@
 date: 2012-06-01
 title: Modelling the active mechanical response of the heart
 short_title: Cardiac mechanics
-thumbnail: /img/research/cardiac-mechanics/cardiac-mechanics.png
+thumbnail: /img/research/cardiac-mechanics/biventricle-mesh.png
 description: Modelling the active mechanical response of ventricular myocardium.
 period: 2011 – 2012
 ---
