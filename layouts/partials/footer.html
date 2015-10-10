@@ -21,7 +21,9 @@
 
       </div>
     </footer>
-    {{ if .Params.includes_code }}<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>{{ end }}
+    {{ if .Params.includes_code }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    {{ end }}
   </body>
 </html>
