@@ -5,6 +5,6 @@
 	   <time class="post-date">{{ .Params.period }}</time>
 	</section>
         <p style="margin-bottom: 1.2rem;"><a href="{{ .RelPermalink }}"><img class="pure-img" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a></p>
-	<p>{{ if .Description }}{{ .Description }}{{ else }}This is some generic description of the research. It contains two sentences.{{ end }}</p>
+	<p>{{ .Description }}</p>
       </div>
     </div>
