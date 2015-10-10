@@ -25,5 +25,19 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     {{ end }}
+    {{ if .Params.includes_video }}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="/js/jquery.fitvids.js"></script>
+    <script>
+    (function ($, undefined) {
+      "use strict";
+      var $document = $(document);
+      $document.ready(function () {
+        var $postContent = $(".post-content");
+        $postContent.fitVids();
+      });
+    })(jQuery);
+    </script>
+    {{ end }}
   </body>
 </html>
