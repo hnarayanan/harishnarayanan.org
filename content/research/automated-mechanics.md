@@ -23,7 +23,7 @@ error-prone. We believe our automated computational framework for
 nonlinear elasticity, [CBC.Twist][cbctwist] is an elegant solution to
 this problem.
 
-{{< figure src="http://localhost/files/images/research/automated-mechanics/fishy.gif" title="Hyperelastic dolphin in a flow field." >}}
+{{< figure src="/img/research/automated-mechanics/fishy.gif" title="Hyperelastic dolphin in a flow field." >}}
 
 [CBC.Twist][cbctwist] aims to allow researchers to easily pose their
 problems in a straightforward manner, so that they may focus on
@@ -93,7 +93,7 @@ computation.
 When run, we see quadratic convergence of the Newton-Raphson scheme
 used to solve the nonlinear problem and a pretty solution!
 
-{{< figure src="http://localhost/files/images/research/automated-mechanics/twisted-block.png" title="Twisting a hyperelastic block." >}}
+{{< figure src="/img/research/automated-mechanics/twisted-block.png" title="Twisting a hyperelastic block." >}}
 
 But the fun does not stop there. [CBC.Twist][cbctwist] includes a lot
 of other nifty features, including:
