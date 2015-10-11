@@ -6,8 +6,14 @@
 
   <h2 id="areas">Primary investigations</h2>
   <div class="pure-g l-box-container">
-    {{ $len := len .Data.Pages}}
-    {{ range $index, $element := .Data.Pages }}
+    {{ range where .Data.Pages "Params.kind" "==" "primary" }}
+    {{ .Render "summary" }}
+    {{ end }}
+  </div>
+
+  <h2 id="curiosities">Curiosities along the way</h2>
+  <div class="pure-g l-box-container">
+    {{ range where .Data.Pages "Params.kind" "==" "curiosity" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
