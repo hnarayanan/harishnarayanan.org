@@ -4,6 +4,7 @@ title: Robust methods for modelling biological flow
 short_title: Robust methods for bio-flows
 thumbnail: http://placehold.it/1200x800/83AF9B/ffffff
 description: Accurate and efficient modelling of aneurysm growth.
+kind: primary
 period: 2008 – 2010
 includes_code: yes
 includes_math: yes

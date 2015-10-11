@@ -5,6 +5,7 @@ short_title: Multiphase flow in porous media
 thumbnail: /img/research/porous-flow/adaptive-water-snake.gif
 featured: yes
 description: A robust, error-controlled implementation that’s human readable.
+kind: primary
 period: 2010
 ---
 
