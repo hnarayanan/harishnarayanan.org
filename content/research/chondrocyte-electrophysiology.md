@@ -1,7 +1,5 @@
 ---
 date: 2011-09-19
-years: 2011 – 2012
-draft: true
 title: An electrophysiological model for the chondrocyte
 short_title: Chondrocyte electrophysiology
 description: Better understanding the cell type responsible for the synthesis of cartilage.
