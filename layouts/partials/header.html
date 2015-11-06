@@ -8,7 +8,7 @@
 
     <title>{{ if (index .Site.Data.TitleFixes .Title) }}{{ index .Site.Data.TitleFixes .Title }}{{ else }}{{ .Title }}{{ end }}{{ if ne .URLPath.URL "/" }} &mdash; {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsNode }}{{ if (index .Site.Data.Descriptions .Title) }}{{ index .Site.Data.Descriptions .Title }}{{ end }}{{ else }}{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}{{ end }}">
-    <!-- TODO: If the content has one, use the description instead of the summary -->
+    <!-- TODO: The above meta description doesn't handle photo detail pages since they have no content -->
     <meta name="author" content="Harish Narayanan">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
