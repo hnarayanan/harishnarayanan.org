@@ -1564,3 +1564,7 @@ figcaption {
 code.hljs {
     padding: 2rem;
 }
+
+h3.portfolio a {
+    color: #2D2B27;
+}

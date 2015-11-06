@@ -1,6 +1,6 @@
     <div class="pure-u-1 {{ if not .Params.featured }}pure-u-md-1-2{{ end }}">
       <div class="l-box">
-        <h3 class="portfolio">{{ .Params.short_title }}</h3>
+        <h3 class="portfolio"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}">{{ .Params.short_title }}</a></h3>
 	<!-- TODO: Remove inline styling below -->
 	<section style="margin-bottom: 1.2rem;" class="post-meta">
 	   <time class="post-date">{{ .Params.period }}</time>
