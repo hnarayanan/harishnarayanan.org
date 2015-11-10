@@ -29,7 +29,7 @@ over the code.
 - Highlight recommended classes
 - Add the winter in Asia gallery?
 - Things I am playing with: Mesos, Kubernetes, Go, Containers and
-  Swift-iOS
+  Swift-iOS, Machine Learning, sicm+scheme
 - Catalogue content from the test-lanyon attempt
 - Look at GitHub for a reminder of recent projects
 - Don't hard code the swap file size to 4GB. Instead make it 1.5x
