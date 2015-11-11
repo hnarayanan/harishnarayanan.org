@@ -1,6 +1,19 @@
 server_tokens off;
 
 server {
+  listen 80 default_server;
+  server_name _;
+  server_name_in_redirect off;
+
+  access_log off;
+  error_log off;
+
+  location / {
+    deny all;
+  }
+}
+
+server {
   server_name www.{{ domain_name }};
 
   # TODO: Ready the following for HTTP2 instead of SPDY
