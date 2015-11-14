@@ -3,7 +3,7 @@ date: 2011-09-19
 title: An electrophysiological model for the chondrocyte
 short_title: Chondrocyte electrophysiology
 description: Better understanding the cell type responsible for the synthesis of cartilage.
-thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg
+thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-micrograph-cropped.jpg
 kind: primary
 period: 2010 – 2011
 ---
@@ -18,7 +18,7 @@ disease.
 In this work, we use computer models to better understand the cell
 responsible for the synthesis of cartilage: *the chondrocyte*.
 
-{{< figure src="/img/research/chondrocyte-electrophysiology/chondrocyte-micrograph-original.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
+{{< figure src="/img/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
 
 Chondrocytes seem to be at the crux of our story because they are the
 single cell type found in cartilage. They are extremely active cells
