@@ -5,6 +5,6 @@ short_title: Shape reconstruction
 thumbnail: /img/research/shape-reconstruction/contours.png
 description: Level sets in shape reconstruction from unorganised data sets.
 kind: curiosity
-exterior_link: http://localhost/files/papers/reconstruction.pdf
+exterior_link: /papers/reconstruction.pdf
 period: 2005
 ---
