@@ -1,0 +1,2 @@
+AddType text/html .html
+AddHandler server-parsed .html
