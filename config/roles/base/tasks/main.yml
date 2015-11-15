@@ -1,7 +1,7 @@
 ---
 - name: Create swap file
   sudo: yes
-  command: fallocate -l 4G /swapfile
+  command: fallocate -l {{ 2*ansible_memtotal_mb }}M /swapfile
            creates=/swapfile
 
 - name: Change swap file permissions
