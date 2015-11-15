@@ -1,9 +1,12 @@
-<article>
-  <header>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+<article class="">
+  <header class="post-header">
+    <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     <section class="post-meta">
       <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time>
     </section>
   </header>
-  <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+  <section class="post-excerpt">
+    <p>{{ .Summary }}</p>
+    <p><a class="read-more" href="{{.RelPermalink}}">Read more &raquo;</a></p>
+  </section>
 </article>
