@@ -2,6 +2,7 @@
 date: 2015-09-07T21:12:08+01:00
 draft: true
 title: Scalable and resilient Django with Kubernetes
+category: devops
 ---
 
 If things work out as you’ve envisioned, there will be a time in your

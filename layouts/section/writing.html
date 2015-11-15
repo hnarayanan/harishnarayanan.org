@@ -6,7 +6,7 @@
   <!-- TODO: Incorporate twitter feed somehow? -->
 
   <h1 id="main-description">Theory ⋂ Practice</h1>
-  {{ range .Data.Pages }}
+  {{ range where .Data.Pages "Params.category" "!=" "personal" }}
   {{ .Render "summary"}}
   {{ end }}
 
