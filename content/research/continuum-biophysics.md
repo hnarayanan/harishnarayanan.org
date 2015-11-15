@@ -2,7 +2,7 @@
 date: 2004-06-01
 title: Understanding the physics of biology
 short_title: Tissue growth and development
-thumbnail: http://placehold.it/1200x800/83AF9B/ffffff
+thumbnail: https://placehold.it/1200x800/83AF9B/ffffff
 description: 
 category: primary
 featured: yes
