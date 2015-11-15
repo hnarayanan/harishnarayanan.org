@@ -4,7 +4,7 @@ title: Some thoughts on the Navier-Stokes equations
 short_title: Navier-Stokes formulation
 thumbnail: /img/research/navier-stokes/navier-stokes.png
 description: Theoretically equivalent formulations aren’t always equal in practice.
-kind: curiosity
+category: curiosity
 period: 2008
 includes_math: yes
 ---

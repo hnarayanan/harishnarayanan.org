@@ -6,14 +6,14 @@
 
   <h2 id="areas">Primary investigations</h2>
   <div class="pure-g l-box-container">
-    {{ range where .Data.Pages "Params.kind" "==" "primary" }}
+    {{ range where .Data.Pages "Params.category" "==" "primary" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
 
   <h2 id="curiosities">Curiosities along the way</h2>
   <div class="pure-g l-box-container">
-    {{ range where .Data.Pages "Params.kind" "==" "curiosity" }}
+    {{ range where .Data.Pages "Params.category" "==" "curiosity" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>

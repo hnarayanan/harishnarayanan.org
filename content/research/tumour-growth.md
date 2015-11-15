@@ -4,7 +4,7 @@ title: Modelling the energetics of growing tumours
 short_title: Energetics of growing tumours
 description: Modelling the bio-chemo-mechanics of tumour growth.
 thumbnail: /img/research/tumour-growth/tumour-growth.png
-kind: primary
+category: primary
 period: 2006 – 2010
 ---
 

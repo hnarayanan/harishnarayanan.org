@@ -4,7 +4,7 @@ title: Phase transfer in battery materials
 short_title: Phase transfer in batteries
 thumbnail: /img/research/phase-transfer/cahn-hilliard-art.png
 description: Modelling mechanical phenomena associated with moving ions.
-kind: primary
+category: primary
 period: 2008
 includes_video: yes
 ---
