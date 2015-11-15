@@ -109,5 +109,14 @@ server {
     expires max;
     root /home/ubuntu/{{ domain_name }};
     error_page 404 /404.html;
+    location /papers {
+	autoindex on;
+    }
+    location /posters {
+	autoindex on;
+    }
+    location /talks {
+	autoindex on;
+    }
   }
 }
