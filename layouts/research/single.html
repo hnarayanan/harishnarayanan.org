@@ -5,7 +5,8 @@
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
     <section class="post-meta">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time>
+      <!-- TODO: Note that the following markup is incorrect for date ranges (which are in addition poorly formatted) -->
+      <time class="post-date">{{ .Params.period }}</time>
     </section>
   </header>
 
