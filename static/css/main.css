@@ -1264,6 +1264,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     margin-top: 0.5em;
     margin-bottom: 2rem;
+    -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    text-rendering: geometricPrecision;
 }
 
 h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -0.2rem;}
@@ -1302,6 +1306,7 @@ html, button, input, select, textarea,
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 a {
     color: #c6531a;
     text-decoration: none;
@@ -1567,4 +1572,21 @@ code.hljs {
 
 h3.portfolio a {
     color: #2D2B27;
+}
+
+h2 a {
+    color: #2D2B27;
+}
+
+h2 a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.post-summary {
+    margin-bottom: 4rem;
+}
+
+.post-excerpt p {
+    margin-bottom: 1rem;
 }
