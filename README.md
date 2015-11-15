@@ -17,7 +17,8 @@ over the code.
 - Replace this file with a useful README
 - Go through the TODOs in the code and this list and create a
   collection of isues on GitHub
-- Replace placeholder favicon.ico with something meaningful
+- Replace placeholder favicon.ico, apple-touch-icon.png, tile.png
+  etc. with something custom
 - Grep for and remove all remaining egregious uses of inline styling
 - Collect all article notes and make them draft posts
 - Create archetypes for each primary content type on the site
