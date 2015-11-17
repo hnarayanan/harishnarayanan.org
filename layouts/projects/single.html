@@ -1,14 +1,28 @@
 {{ partial "header.html" . }}
+<div class="container">
+<article class="">
 
-<section id="main">
-  <h1 id="title">{{ .Title }}</h1>
-  <div>
-    <article id="content">
-      {{ .Content }}
-    </article>
-  </div>
-</section>
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    <section class="post-meta">
+      <!-- TODO: Note that the following markup is incorrect for date ranges (which are in addition poorly formatted) -->
+      <time class="post-date">{{ .Params.period }}</time>
+    </section>
+  </header>
 
-<p>(This page uses the single project template.)</p>
+  <section class="post-content">
+    {{ .Content }}
+  </section>
+
+  <footer class="post-footer">
+    <section class="share">
+      <h4>Call to action</h4>
+      <p>Something about learning more about this project.</p>
+      <!-- TODO: Bring back some sharing options here, as a partial to be reused with the article template -->
+    </section>
+  </footer>
+
+</article>
+</div>
 
 {{ partial "footer.html" . }}
