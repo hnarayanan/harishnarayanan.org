@@ -3,7 +3,8 @@
         <h3 class="portfolio"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}">{{ .Params.short_title }}</a></h3>
 	<!-- TODO: Remove inline styling below -->
 	<section style="margin-bottom: 1.2rem;" class="post-meta">
-	   <time class="post-date">{{ .Params.period }}</time>
+	  <!-- TODO: Fix markup below with a <time>start-date</time> -- <time>end-date</time> instead -->
+	  <time class="post-date">{{ .Params.period }}</time>
 	</section>
         <p style="margin-bottom: 1.2rem;"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}"><img class="pure-img" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a></p>
 	<p>{{ .Description }}</p>
