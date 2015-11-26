@@ -20,7 +20,8 @@ over the code.
 - Replace placeholder favicon.ico, apple-touch-icon.png, tile.png
   etc. with something custom
 - Grep for and remove all remaining egregious uses of inline styling
-- Collect all article notes and make them draft posts
+- Collect all article notes and make them draft posts (especially from
+ `test-lanyon`)
 - Create archetypes for each primary content type on the site
 - Incorporate some taxonomy for the articles (e.g. tags like Devops,
   Kubernetes, Django) to later start connecting up sets of articles
