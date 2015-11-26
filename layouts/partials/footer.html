@@ -31,7 +31,7 @@
     {{ end }}
     {{ if .Params.includes_video }}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="/js/jquery.fitvids.js"></script>
+    <script src="/scripts/jquery.fitvids.js"></script>
     <script>
     (function ($, undefined) {
       "use strict";
@@ -44,8 +44,8 @@
     </script>
     {{ end }}
     {{ if eq .URLPath.URL "/projects/" }}
-    <script src="/js/xtk.js"></script>
-    <script src="/js/thinkbot-demo.js"></script>
+    <script src="/scripts/xtk.js"></script>
+    <script src="/scripts/thinkbot-demo.js"></script>
     {{ end }}
   </body>
 </html>
