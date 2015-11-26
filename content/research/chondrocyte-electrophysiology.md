@@ -5,7 +5,8 @@ short_title: Chondrocyte electrophysiology
 description: Better understanding the cell type responsible for the synthesis of cartilage.
 thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-micrograph-cropped.jpg
 category: primary
-period: 2010 – 2011
+start_date: 2010
+end_date: 2011
 ---
 
 Cartilage is the soft tissue that cushions bones at joints and usually

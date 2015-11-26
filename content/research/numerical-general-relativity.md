@@ -6,5 +6,5 @@ thumbnail: https://placehold.it/1200x800/83AF9B/ffffff
 description: Reality exists, ever unchanging, in a four-dimensional spacetime.
 category: curiosity
 exterior_link: /talks/talk13/talk13.pdf
-period: 2006
+start_date: 2006
 ---

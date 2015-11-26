@@ -6,7 +6,8 @@ thumbnail: /img/research/porous-flow/adaptive-water-snake.gif
 featured: yes
 description: A robust, error-controlled implementation that’s human readable.
 category: primary
-period: 2010
+start_date: 2009
+end_date: 2010
 ---
 
 There are numerous systems in which it is of interest to study the

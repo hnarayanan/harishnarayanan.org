@@ -5,7 +5,8 @@ short_title: Cardiac mechanics
 thumbnail: /img/research/cardiac-mechanics/biventricle-mesh.png
 description: Modelling the active mechanical response of ventricular myocardium.
 category: primary
-period: 2011 – 2012
+start_date: 2011
+end_date: 2012
 ---
 
 Ventricular myocardium serves as the functional tissue of the heart

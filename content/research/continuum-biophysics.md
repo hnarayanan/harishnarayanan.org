@@ -6,7 +6,8 @@ thumbnail: https://placehold.it/1200x800/83AF9B/ffffff
 description: 
 category: primary
 featured: yes
-period: 2002 – 2007
+start_date: 2002
+end_date: 2007
 ---
 
 ## Recent resplendent results!
