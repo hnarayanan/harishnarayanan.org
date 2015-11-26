@@ -6,15 +6,15 @@
 		local('Open Sans'),
 		local('OpenSans'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3fY6323mHUZFJMgTvxaG2iE.eot */
-		url('Open_Sans_400.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Open_Sans_400.eot?#iefix') format('embedded-opentype'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff */
-		url('Open_Sans_400.woff') format('woff'),
+		url('/fonts/Open_Sans_400.woff') format('woff'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2 */
-		url('Open_Sans_400.woff2') format('woff2'),
+		url('/fonts/Open_Sans_400.woff2') format('woff2'),
 		/* from http://fonts.gstatic.com/l/font?kit=cJZKeOuBrn4kERxqtaUH3Zbd9NUM7myrQQz30yPaGQ4&skey=62c1cbfccc78b4b2#OpenSans */
-		url('Open_Sans_400.svg#OpenSans') format('svg'),
+		url('/fonts/Open_Sans_400.svg#OpenSans') format('svg'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf */
-		url('Open_Sans_400.ttf') format('truetype');
+		url('/fonts/Open_Sans_400.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Open Sans';
@@ -24,15 +24,15 @@
 		local('Open Sans Bold'),
 		local('OpenSans-Bold'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzHZ2MAKAc2x4R1uOSeegc5U.eot */
-		url('Open_Sans_700.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Open_Sans_700.eot?#iefix') format('embedded-opentype'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff */
-		url('Open_Sans_700.woff') format('woff'),
+		url('/fonts/Open_Sans_700.woff') format('woff'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2 */
-		url('Open_Sans_700.woff2') format('woff2'),
+		url('/fonts/Open_Sans_700.woff2') format('woff2'),
 		/* from http://fonts.gstatic.com/l/font?kit=k3k702ZOKiLJc3WVjuplzFlIn5tFQcqMuf-jhyJP0ps&skey=cd9e1a36bb25a3c3#OpenSans */
-		url('Open_Sans_700.svg#OpenSans') format('svg'),
+		url('/fonts/Open_Sans_700.svg#OpenSans') format('svg'),
 		/* from http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs.ttf */
-		url('Open_Sans_700.ttf') format('truetype');
+		url('/fonts/Open_Sans_700.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Lora';
@@ -42,15 +42,15 @@
 		local('Lora'),
 		local('Lora-Regular'),
 		/* from http://fonts.gstatic.com/s/lora/v9/rMDaOpSw-8ss9B8Y3bLqyA.eot */
-		url('Lora_400.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Lora_400.eot?#iefix') format('embedded-opentype'),
 		/* from http://fonts.gstatic.com/s/lora/v9/5-AYViExptypIdFoLKAxTA.woff */
-		url('Lora_400.woff') format('woff'),
+		url('/fonts/Lora_400.woff') format('woff'),
 		/* from http://fonts.gstatic.com/s/lora/v9/4vqKRIwnQQGUQQh-PnvdMA.woff2 */
-		url('Lora_400.woff2') format('woff2'),
+		url('/fonts/Lora_400.woff2') format('woff2'),
 		/* from http://fonts.gstatic.com/l/font?kit=b9Q3-ov7xEcW76ymki76Ag&skey=1d294b6d956fb8e#Lora */
-		url('Lora_400.svg#Lora') format('svg'),
+		url('/fonts/Lora_400.svg#Lora') format('svg'),
 		/* from http://fonts.gstatic.com/s/lora/v9/4A-myfZX6oDr9CtSTkTGig.ttf */
-		url('Lora_400.ttf') format('truetype');
+		url('/fonts/Lora_400.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Lora';
@@ -60,15 +60,15 @@
 		local('Lora Italic'),
 		local('Lora-Italic'),
 		/* from http://fonts.gstatic.com/s/lora/v9/EJ2E0VlN4DLy-wT0t9nagw.eot */
-		url('Lora_400italic.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Lora_400italic.eot?#iefix') format('embedded-opentype'),
 		/* from http://fonts.gstatic.com/s/lora/v9/wXeMvRh7Gui36p_I04Ex6g.woff */
-		url('Lora_400italic.woff') format('woff'),
+		url('/fonts/Lora_400italic.woff') format('woff'),
 		/* from http://fonts.gstatic.com/s/lora/v9/_RSiB1sBuflZfa9fxV8cOg.woff2 */
-		url('Lora_400italic.woff2') format('woff2'),
+		url('/fonts/Lora_400italic.woff2') format('woff2'),
 		/* from http://fonts.gstatic.com/l/font?kit=Hm0XuTrgQw0KWgYD2kG1hw&skey=92aaeeb853a906d8#Lora */
-		url('Lora_400italic.svg#Lora') format('svg'),
+		url('/fonts/Lora_400italic.svg#Lora') format('svg'),
 		/* from http://fonts.gstatic.com/s/lora/v9/DeoOq1kX9ExfArSHppos_g.ttf */
-		url('Lora_400italic.ttf') format('truetype');
+		url('/fonts/Lora_400italic.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Lora';
@@ -78,13 +78,13 @@
 		local('Lora Bold'),
 		local('Lora-Bold'),
 		/* from http://fonts.gstatic.com/s/lora/v9/1HJZfNlOezBHPPwzRKlEcQ.eot */
-		url('Lora_700.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Lora_700.eot?#iefix') format('embedded-opentype'),
 		/* from http://fonts.gstatic.com/s/lora/v9/XpaepWHcooQHSRnzoohUng.woff */
-		url('Lora_700.woff') format('woff'),
+		url('/fonts/Lora_700.woff') format('woff'),
 		/* from http://fonts.gstatic.com/s/lora/v9/P18Nsu9EiYldSvHIj_0e5w.woff2 */
-		url('Lora_700.woff2') format('woff2'),
+		url('/fonts/Lora_700.woff2') format('woff2'),
 		/* from http://fonts.gstatic.com/l/font?kit=zqoBbCqeaofBZQ-8-sdxfQ&skey=6a30ff590836b94c#Lora */
-		url('Lora_700.svg#Lora') format('svg'),
+		url('/fonts/Lora_700.svg#Lora') format('svg'),
 		/* from http://fonts.gstatic.com/s/lora/v9/rapsGf8n-DpRu9kcmAAciA.ttf */
-		url('Lora_700.ttf') format('truetype');
+		url('/fonts/Lora_700.ttf') format('truetype');
 }
