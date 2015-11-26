@@ -24,7 +24,6 @@ over the code.
 - Create archetypes for each primary content type on the site
 - Incorporate some taxonomy for the articles (e.g. tags like Devops,
   Kubernetes, Django) to later start connecting up sets of articles
-- Move in souped-up nginx configuration from the earlier repository
 - Reintroduce a meta section of the site... or perhaps move relevant
   information in this README and link to it?
 - Incorporate online learning portfolio somewhere?
@@ -34,8 +33,6 @@ over the code.
   Swift-iOS, Machine Learning, sicm+scheme
 - Catalogue content from the test-lanyon attempt
 - Look at GitHub for a reminder of recent projects
-- Don't hard code the swap file size to 4GB. Instead make it 1.5x
-  system RAM.
 - Canonicalize breakpoints of Pure and Skeleton
 - Computational biology
 - - applied mathematician
