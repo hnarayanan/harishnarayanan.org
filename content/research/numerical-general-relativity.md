@@ -1,7 +1,7 @@
 ---
 date: 2006-11-03
 title: Finite element methods in general relativity
-short_title: Numerical general relativity
+short_title: Numerical relativity
 thumbnail: /img/research/numerical-general-relativity/differential-geometry.png
 description: Differential geometry and numerical methods for 4D spacetime.
 category: curiosity

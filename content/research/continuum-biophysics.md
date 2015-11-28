@@ -2,7 +2,7 @@
 date: 2004-06-01
 title: Understanding the physics of biology
 short_title: Tissue growth and development
-thumbnail: https://placehold.it/1200x800/83AF9B/ffffff
+thumbnail: /img/research/continuum-biophysics/constricted-ecf-flow.png
 description: 
 category: primary
 featured: yes
