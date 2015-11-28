@@ -1607,7 +1607,9 @@ img.svg-icon {
 
 figure {
     width: 120%;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     display: inline-block;
     max-width: 120%;
     height: auto;
