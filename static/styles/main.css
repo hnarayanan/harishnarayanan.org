@@ -1642,6 +1642,10 @@ figcaption {
     line-height: 6.5rem;
 }
 
+.mainfooter p {
+    margin: 0;
+}
+
 code.hljs {
     padding: 2rem;
 }
