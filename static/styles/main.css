@@ -1606,12 +1606,12 @@ img.svg-icon {
 }
 
 figure {
-    width: 120%;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
     display: inline-block;
-    max-width: 120%;
+    max-width: 100%;
     height: auto;
     position: relative;
     left: 50%;

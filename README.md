@@ -22,6 +22,8 @@ over the code.
 - Grep for and remove all remaining egregious uses of inline styling
 - Collect all article notes and make them draft posts (especially from
  `test-lanyon`)
+- Make large images in article pages overflow the container and go to
+  the full width of the page
 - Create archetypes for each primary content type on the site
 - Incorporate some taxonomy for the articles (e.g. tags like Devops,
   Kubernetes, Django) to later start connecting up sets of
