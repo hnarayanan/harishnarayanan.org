@@ -1527,3 +1527,7 @@ h2 a:hover {
 .post-excerpt p {
     margin-bottom: 1rem;
 }
+
+.summary {
+    margin-bottom: 1.2rem;
+}
