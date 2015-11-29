@@ -1,11 +1,12 @@
 ---
 date: 2009-01-01
 title: Robust methods for modelling biological flow
-short_title: Robust methods for bio-flows
+short_title: Robust methods for flows
 thumbnail: /img/research/biological-flow/adapted-mesh.png
 description: Accurate and efficient modelling of aneurysm growth.
 category: primary
-period: 2008 – 2010
+start_date: 2008
+end_date: 2010
 includes_code: yes
 includes_math: yes
 includes_video: yes

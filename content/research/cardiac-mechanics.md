@@ -5,7 +5,8 @@ short_title: Cardiac mechanics
 thumbnail: /img/research/cardiac-mechanics/biventricle-mesh.png
 description: Modelling the active mechanical response of ventricular myocardium.
 category: primary
-period: 2011 – 2012
+start_date: 2011
+end_date: 2012
 ---
 
 Ventricular myocardium serves as the functional tissue of the heart
@@ -38,6 +39,8 @@ equations ([Rice et al., 2008][Riceetal2008]). Our active model
 satisfies key physical properties, including obeying the second law of
 thermodynamics and ellipticity of the total stress.
 
+{{< figure src="/img/research/cardiac-mechanics/biventricle-mesh.png" title="A finite element mesh of a generic biventricle generated with CGAL." >}}
+
 We are currently designing and implementing an interface to allow us
 to couple the mechanics capabilities of
 [CBC.Twist](/research/automated-mechanics/) with the chemical kinetics
@@ -45,12 +48,9 @@ of cross-bridge cycling. This should soon allow us to solve numerical
 problems on realistic geometries to demonstrate key aspects of the
 coupled active response of the myocardium.
 
-{{< figure src="/img/research/cardiac-mechanics/biventricle-mesh.png" title="A finite element mesh of a generic biventricle generated with CGAL." >}}
+The work-in-progress Python code for this effort is [available under
+the GPL](https://github.com/hnarayanan/cardiac-mechanics).
 
-The code for this effort (Python sitting atop the [FEniCS
-Project](http://fenicsproject.org/)) will be released under the GPL
-once we iron out the kinks.
-
-[HolzapfelOgden2009]: http://www.biomech.tugraz.at/files/publications/Holzapfel-Ogden_Phil_Trans_R_Soc_A-2009
+[HolzapfelOgden2009]: http://rsta.royalsocietypublishing.org/content/367/1902/3445
 [AmbrosiPezzuto2011]: http://mox.polimi.it/~ambrosi/Papers/jelast.pdf
 [Riceetal2008]: http://www.ncbi.nlm.nih.gov/pubmed/18234826

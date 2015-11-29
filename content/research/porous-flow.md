@@ -6,7 +6,8 @@ thumbnail: /img/research/porous-flow/adaptive-water-snake.gif
 featured: yes
 description: A robust, error-controlled implementation that’s human readable.
 category: primary
-period: 2010
+start_date: 2009
+end_date: 2010
 ---
 
 There are numerous systems in which it is of interest to study the
@@ -38,11 +39,11 @@ within specified numerical tolerances.
 The model for the above example contains an elliptic equation and a
 nonlinear hyperbolic transport equation. This system is solved at each
 time-step using a mixed finite element formulation for the total
-velocity, pressure and water saturation in the BDM(q) x DG(q-1) x DG(q
--1) space. The Crank-Nicholson scheme is used for progressing through
-time, and the mesh is adapted using a dual-weighted residual strategy
-to concentrate the degrees of freedom in interesting parts of the
-domain.
+velocity, pressure and water saturation in the `BDM(q) x DG(q - 1) x
+DG(q - 1)` space. The Crank-Nicholson scheme is used for progressing
+through time, and the mesh is adapted using a dual-weighted residual
+strategy to concentrate the degrees of freedom in interesting parts of
+the domain.
 
 This research was carried out in collaboration with Garth N. Wells at
 the University of Cambridge from November 2009 to February 2010\. The
@@ -51,5 +52,5 @@ of human-readable Python sitting atop the [FEniCS Project][fpo]. It is
 released as Free Software under the GNU GPL.
 
 [dealiiexample]: http://www.dealii.org/6.2.1/doxygen/deal.II/step_21.html#plain-Singlecurvingcrackpermeability
-[src]: http://localhost/files/projects/adaptive-porous-flow/adaptive-porous-flow.zip
+[src]: https://github.com/hnarayanan/porous-flow
 [fpo]: http://fenicsproject.org/

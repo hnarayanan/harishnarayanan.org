@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ if (index .Site.Data.TitleFixes .Title) }}{{ index .Site.Data.TitleFixes .Title }}{{ else }}{{ .Title }}{{ end }}{{ if ne .URLPath.URL "/" }} &mdash; {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ if .IsNode }}{{ if (index .Site.Data.Descriptions .Title) }}{{ index .Site.Data.Descriptions .Title }}{{ end }}{{ else }}{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}{{ end }}">
-    <!-- TODO: The above meta description doesn't handle photo detail pages since they have no content -->
+    <title>{{ if (index .Site.Data.TitleFixes .Title) }}{{ index .Site.Data.TitleFixes .Title }}{{ else }}{{ .Title }}{{ end }}{{ if ne .URLPath.URL "/" }} — {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if .IsNode }}{{ if (index .Site.Data.Descriptions .Title) }}{{ index .Site.Data.Descriptions .Title }}{{ end }}{{ else }}{{ if .Description }}{{ .Description }}{{ else }}{{ if .Summary }}{{ .Summary }}{{ else }}A placeholder for the “{{ .Title }}” photo album{{ end }}{{ end }}{{ end }}">
     <meta name="author" content="Harish Narayanan">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +16,7 @@
     <link rel="stylesheet" href="/styles/normalize.css">
     <link rel="stylesheet" href="/styles/main.css">
     {{ if .Params.includes_code }}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/tomorrow.min.css">
+    <link rel="stylesheet" href="/styles/highlight.css">
     {{ end }}
   </head>
 
@@ -29,7 +28,7 @@
 	<div class="container">
           <h2 class="visuallyhidden"><span id="navigation-description">Main</span> Navigation</h2>
 	  <ul class="navbar-list">
-            <li class="navbar-item"><a class="navbar-link {{ if eq .URLPath.URL "/" }}active{{ end }}" href="/">Home</a></li>
+            <li class="navbar-item"><a class="navbar-link {{ if eq .URLPath.URL "/" }}active{{ end }}" href="/">About</a></li>
             <li class="navbar-item"><a class="navbar-link {{ if eq .URLPath.URL "/writing/" }}active{{ end }}" href="/writing/">Writing</a></li>
             <li class="navbar-item"><a class="navbar-link {{ if eq .URLPath.URL "/projects/" }}active{{ end }}" href="/projects/">Projects</a></li>
             <li class="navbar-item"><a class="navbar-link {{ if eq .URLPath.URL "/research/" }}active{{ end }}" href="/research/">Research</a></li>

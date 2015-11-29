@@ -1,11 +1,12 @@
 ---
 date: 2008-01-01
 title: Modelling the energetics of growing tumours
-short_title: Energetics of growing tumours
+short_title: Energetics of tumours
 description: Modelling the bio-chemo-mechanics of tumour growth.
 thumbnail: /img/research/tumour-growth/tumour-growth.png
 category: primary
-period: 2006 – 2010
+start_date: 2006
+end_date: 2010
 ---
 
 Cancer is a collective term for a class of diseases that are a leading

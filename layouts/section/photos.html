@@ -1,12 +1,5 @@
 {{ partial "header.html" . }}
 
-<!-- <div class="container"> -->
-
-<!--  <h1 id="main-description">Moments from my life</h1> -->
-<!-- <p>Since the birth of our baby boy in 2014, most of my photos are of him and end up on our <a href="http://narayanan.co/">family blog</a>. You should follow along there for a regularly updated stream of photos.</p> -->
-  <!-- <p><a href="http://narayanan.co/"><img class="u-max-full-width" src="/img/photos/hugo.jpg" alt="Cute little Hugo"></a></p> -->
-<!-- </div> -->
-
 <div class="pure-g" id="gallery">
   {{ $len := len .Data.Pages}}
   {{ range $index, $element := .Data.Pages }}
