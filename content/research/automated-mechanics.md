@@ -2,7 +2,7 @@
 date: 2009-06-01
 title: Automated algorithms for finite strain elasticity
 short_title: Automated mechanics
-thumbnail: https://placehold.it/1200x800/83AF9B/ffffff
+thumbnail: /img/research/automated-mechanics/fishy.gif
 description: Automated finite element methods reduce tedium and errors.
 category: primary
 start_date: 2009
