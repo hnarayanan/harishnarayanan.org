@@ -105,7 +105,6 @@ server {
   }
 
   location / {
-    gzip_static on;
     expires max;
     root /home/ubuntu/{{ domain_name }};
     error_page 404 /404.html;

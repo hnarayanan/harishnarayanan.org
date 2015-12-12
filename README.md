@@ -43,8 +43,8 @@ over the code.
   - computational biologist
   - all-around web technologist
 - Embed relevant talks in research articles
-- Move research-related software to the projects page?
 - Look at large green notebook for ideas for node layouts, and footer
+- Incorporate good ideas from https://github.com/h5bp/server-configs-nginx
 
 ## Notes
 

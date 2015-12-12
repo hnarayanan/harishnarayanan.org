@@ -2,12 +2,14 @@
 date: 2008-06-01
 title: Phase transfer in battery materials
 short_title: Phase transfer in batteries
-thumbnail: /img/research/phase-transfer/cahn-hilliard-art.png
+thumbnail: /images/research/phase-transfer/cahn-hilliard-art.png
 description: Modelling mechanical phenomena associated with ion transport.
 category: primary
 start_date: 2008
 includes_video: yes
 ---
+
+{{< figure src="/images/research/phase-transfer/cahn-hilliard-art.png" title="Incorrect calculations can be pretty." >}}
 
 Lithium-ion batteries are one of the most popular types of
 rechargeable batteries found in consumer electronics. In such
@@ -33,4 +35,6 @@ phases:
 
 as well as the mechanical strains this phase transfer induces:
 
-{{< figure src="http://localhost/files/images/research/grad-school/phase-transfer/chemical-potential.png" title="The chemical potential and deformation due to a LiFePO4 finger." >}}
+{{< figure src="/images/research/phase-transfer/chemical-potential.png" title="The chemical potential and deformation due to a LiFePO4 finger." >}}
+
+

@@ -7,7 +7,7 @@ window.onload = function() {
     r.interactor.init();
 
     var solution = new X.mesh();
-    solution.file = '/img/projects/thinkbot/elasticity000000.vtk';
+    solution.file = '/images/projects/thinkbot/elasticity000000.vtk';
     solution.magicmode = true;
     solution.color = [0.5, 0.5, 0.5];
     solution.opacity = 0.85;
