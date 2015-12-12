@@ -2,7 +2,7 @@
 date: 2009-01-01
 title: Robust methods for modelling biological flow
 short_title: Robust methods for flows
-thumbnail: /img/research/biological-flow/adapted-mesh.png
+thumbnail: /images/research/biological-flow/adapted-mesh.png
 description: Accurate and efficient modelling of aneurysm growth.
 category: primary
 start_date: 2008
@@ -29,7 +29,7 @@ our current problem of interest: understanding how blood flow in an
 artery affects the formation and growth of
 [aneurysms](http://en.wikipedia.org/wiki/Aneurysm).
 
-{{< figure src="/img/research/biological-flow/aneurysms.png" title="Different forms of aneurysms." >}}
+{{< figure src="/images/research/biological-flow/aneurysms.png" title="Different forms of aneurysms." >}}
 
 Such a problem motivates the need for accurate computation of
 quantities which are implicated in the growth of aneurysms (such as
@@ -70,7 +70,7 @@ allow us to compute quantities related to aneurysm growth to a
 specified accuracy requirement with minimal computational work. Notice
 that the optimal mesh changes with the goal of our computation.
 
-{{< figure src="/img/research/biological-flow/adapted-aneurysm-meshes.png" title="Optimal meshes when optimising for shear (top) and normal (bottom) stresses." >}}
+{{< figure src="/images/research/biological-flow/adapted-aneurysm-meshes.png" title="Optimal meshes when optimising for shear (top) and normal (bottom) stresses." >}}
 
 Algorithmic and software design lessons learnt from this project have
 been incorporated into [CBC.Flow](https://launchpad.net/cbc.solve), a

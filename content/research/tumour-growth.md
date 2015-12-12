@@ -3,7 +3,7 @@ date: 2008-01-01
 title: Modelling the energetics of growing tumours
 short_title: Energetics of tumours
 description: Modelling the bio-chemo-mechanics of tumour growth.
-thumbnail: /img/research/tumour-growth/tumour-growth.png
+thumbnail: /images/research/tumour-growth/tumour-growth.png
 category: primary
 start_date: 2006
 end_date: 2010
@@ -32,7 +32,7 @@ studying the growth and remodelling of biological tissue, we have
 developed an initial model [tuned to the bio-chemo-mechanics of tumour
 growth](http://dx.doi.org/10.1088/0953-8984/22/19/194122).
 
-{{< figure src="/img/research/tumour-growth/growing-tumour.gif" title="The asymmetric growth of a constrained solid tumour." >}}
+{{< figure src="/images/research/tumour-growth/growing-tumour.gif" title="The asymmetric growth of a constrained solid tumour." >}}
 
 Cancer cells, like all other cells, store chemical free energy as ATP,
 which they synthesize by consuming glucose in the presence of
@@ -46,7 +46,7 @@ by which the cells consume glucose and oxygen and create by-products,
 surrounding tissues and (e) mass transport of chemical species to and
 through the tumor.
 
-{{< figure src="/img/research/tumour-growth/heterogeneous-traction.png" title="Heterogeneous cell-ECM traction due to a non-uniform distribution of tumour cells." >}}
+{{< figure src="/images/research/tumour-growth/heterogeneous-traction.png" title="Heterogeneous cell-ECM traction due to a non-uniform distribution of tumour cells." >}}
 
 Free energy, the energy available to do useful work, is consumed or
 created in each of these processes and thus provides a universal
