@@ -44,6 +44,7 @@ over the code.
   - all-around web technologist
 - Embed relevant talks in research articles
 - Look at large green notebook for ideas for node layouts, and footer
+- Incorporate good ideas from https://github.com/h5bp/server-configs-nginx
 
 ## Notes
 
