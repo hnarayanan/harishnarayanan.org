@@ -11,6 +11,13 @@
     state=latest
     update_cache=yes
 
+- name: Setup the default configuration for nginx
+  sudo: yes
+  copy:
+    src=nginx.conf
+    dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+
 - name: Create a directory to store SSL files
   sudo: yes
   file:
