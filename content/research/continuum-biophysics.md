@@ -2,7 +2,7 @@
 date: 2004-06-01
 title: Understanding the physics of biology
 short_title: Tissue growth and development
-thumbnail: /img/research/continuum-biophysics/constricted-ecf-flow.png
+thumbnail: /images/research/continuum-biophysics/constricted-ecf-flow.png
 description: 
 category: primary
 featured: yes
@@ -201,6 +201,6 @@ Vertical stress in skin recovering from damage.
 
 This result is analogous to the experimentally observed hypertrophic scarring of skin as it recovers from damage under no applied load.
 
-{{< figure src="/img/research/automated-mechanics/fishy.gif" title="Hyperelastic dolphin in a flow field." >}}
+{{< figure src="/images/research/automated-mechanics/fishy.gif" title="Hyperelastic dolphin in a flow field." >}}
 
 [hyperelastic]: https://en.wikipedia.org/wiki/Hyperelastic_material

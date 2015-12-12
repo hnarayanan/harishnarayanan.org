@@ -2,7 +2,7 @@
 date: 2012-06-01
 title: Modelling the active mechanical response of the heart
 short_title: Cardiac mechanics
-thumbnail: /img/research/cardiac-mechanics/biventricle-mesh.png
+thumbnail: /images/research/cardiac-mechanics/biventricle-mesh.png
 description: Modelling the active mechanical response of ventricular myocardium.
 category: primary
 start_date: 2011
@@ -25,7 +25,7 @@ computational framework for nonlinear elasticity,
 [CBC.Twist](/research/automated-mechanics/), allows us to easily
 implement and test this physiologically-relevant constitutive model.
 
-{{< figure src="/img/research/cardiac-mechanics/orthotropic-passive-stress.png" title="The orthotropic response of the myocardium model demonstrated by varying simple shear-stress responses along different planes defined by the muscle fibre (f), myocite sheet (s) and sheet-normal (n) directions." >}}
+{{< figure src="/images/research/cardiac-mechanics/orthotropic-passive-stress.png" title="The orthotropic response of the myocardium model demonstrated by varying simple shear-stress responses along different planes defined by the muscle fibre (f), myocite sheet (s) and sheet-normal (n) directions." >}}
 
 We then introduce, via a multiplicative decomposition of the
 deformation gradient ([Ambrosi and Pezzuto,
@@ -39,7 +39,7 @@ equations ([Rice et al., 2008][Riceetal2008]). Our active model
 satisfies key physical properties, including obeying the second law of
 thermodynamics and ellipticity of the total stress.
 
-{{< figure src="/img/research/cardiac-mechanics/biventricle-mesh.png" title="A finite element mesh of a generic biventricle generated with CGAL." >}}
+{{< figure src="/images/research/cardiac-mechanics/biventricle-mesh.png" title="A finite element mesh of a generic biventricle generated with CGAL." >}}
 
 We are currently designing and implementing an interface to allow us
 to couple the mechanics capabilities of

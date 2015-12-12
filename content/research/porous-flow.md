@@ -2,7 +2,7 @@
 date: 2010-01-03
 title: Adaptive multiphase flow through porous media
 short_title: Multiphase flow in porous media
-thumbnail: /img/research/porous-flow/adaptive-water-snake.gif
+thumbnail: /images/research/porous-flow/adaptive-water-snake.gif
 featured: yes
 description: A robust, error-controlled implementation that’s human readable.
 category: primary
@@ -34,7 +34,7 @@ up. It is also in this region that the automatic methods most refine
 the computational mesh --- ensuring that the fields we solve for are
 within specified numerical tolerances.
 
-{{< figure src="/img/research/porous-flow/adaptive-water-snake.gif" title="Water snaking through oil-rich clay!" >}}
+{{< figure src="/images/research/porous-flow/adaptive-water-snake.gif" title="Water snaking through oil-rich clay!" >}}
 
 The model for the above example contains an elliptic equation and a
 nonlinear hyperbolic transport equation. This system is solved at each

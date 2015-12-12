@@ -3,7 +3,7 @@ date: 2011-09-19
 title: An electrophysiological model for the chondrocyte
 short_title: Chondrocyte physiology
 description: Better understanding the cell type responsible for the synthesis of cartilage.
-thumbnail: /img/research/chondrocyte-electrophysiology/chondrocyte-micrograph-cropped.jpg
+thumbnail: /images/research/chondrocyte-electrophysiology/chondrocyte-micrograph-cropped.jpg
 category: primary
 start_date: 2010
 end_date: 2011
@@ -19,7 +19,7 @@ drugs that slow down the progression of the disease.
 In this work, we use computer models to better understand the cell
 responsible for the synthesis of cartilage: *the chondrocyte*.
 
-{{< figure src="/img/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
+{{< figure src="/images/research/chondrocyte-electrophysiology/chondrocyte-micrograph.jpg" title="Electron micrograph of a typical articular chondrocyte (Archer & Francis-West, 2003)." >}}
 
 Chondrocytes seem to be at the crux of our story because they are the
 single cell type found in cartilage. They are extremely active cells
@@ -43,13 +43,13 @@ channels. Our solver for this equation system is implemented in
 Octave, and [a current version is available][Source] as Free Software
 under the GNU GPL.
 
-{{< figure src="/img/research/chondrocyte-electrophysiology/chondrocyte-model.png" title="A schematic of the ion channels in a single chondrocyte." >}}
+{{< figure src="/images/research/chondrocyte-electrophysiology/chondrocyte-model.png" title="A schematic of the ion channels in a single chondrocyte." >}}
 
 When our computer model of the chondrocyte is subjected to several
 different clinically-relevant environments, we begin to gain an
 understanding of the underlying behavior of the cell.
 
-{{< figure src="/img/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
+{{< figure src="/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
 
  Our research suggests ideal conditions that the cell must be
  subjected to as it relates to the synthesis of viable cartilage, and
