@@ -8,7 +8,7 @@ window.onload = function() {
     // create a new X.mesh
     var skull = new X.mesh();
     // .. and associate the .vtk file to it
-    skull.file = '/img/projects/thinkbot/skull.vtk';
+    skull.file = '/images/projects/thinkbot/skull.vtk';
     // .. make it transparent
     skull.opacity = 1;
     skull.magicmode = true;
