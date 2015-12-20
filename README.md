@@ -42,6 +42,28 @@ over the code.
 
 ## Notes
 
-rsync -aPvhe ssh --delete --exclude-from=/Users/harish/Scratch/Backup/exclude2 public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
+### Setup the server
+````
+cd config
+ansible-playbook site.yml -i servers/personal-site
+````
 
+### Editing the site
+````
+git clone git@github.com:hnarayanan/harishnarayanan.org.git
+cd harishnarayanan.org
+$PATH/hugo server --buildDrafts --watch
+````
+
+### Update Site
+
+````
+../hugo --buildDrafts
+rsync -aPvhe ssh --delete --exclude-from=/Users/harish/Scratch/Backup/exclude2 public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
+````
+
+### Check Links
+
+````
 wget --spider -o wget.log -e robots=off -w 1 -r -p https://harishnarayanan.org/
+````
