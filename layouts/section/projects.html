@@ -11,7 +11,6 @@
     </div>
   </div>
 
-  <!-- TODO: Go through ~/Sites to make sure all interesting sites are catalogued -->
   <h2 id="websites">Sites around the web</h2>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "website" }}
@@ -19,63 +18,14 @@
     {{ end }}
   </div>
 
-  <!-- <\!-- TODO: Edgefolio, thinkbot, FEM table etc. -\-> -->
-  <!--   <div class="row"> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="/projects/mechanics-academy/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Mechanics Academy thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="/projects/mechanics-academy/">Mechanics Academy</a> &mdash; 2013</div> -->
-  <!--     </div> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="/projects/wilderness-embassy/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Wilderness Embassy"></a> -->
-  <!--       <div class="gallery-item-description"><a href="/projects/wilderness-embassy/">Wilderness Embassy</a></div> -->
-  <!--       <div class="gallery-item-meta">2013</div> -->
-  <!--     </div> -->
-  <!--   </div> -->
-  <!--   <div class="row"> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://wisdemy.com/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Wisdemy thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://wisdemy.com/">Wisdemy</a></div> -->
-  <!--       <div class="gallery-item-meta">2012 &ndash; 2013</div> -->
-  <!--     </div> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://camowiki.simula.no/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Camowiki thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://camowiki.simula.no/">Cardiac&nbsp;Modelling<br/>Group Wiki</a></div> -->
-  <!--       <div class="gallery-item-meta">2011 &ndash; 2012</div> -->
-  <!--     </div> -->
-  <!--   </div> -->
-  <!--   <div class="row"> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://fenicsproject.org/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="FEniCS Project thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://fenicsproject.org/">FEniCS Project</a></div> -->
-  <!--       <div class="gallery-item-meta">2010 &ndash;</div> -->
-  <!--     </div> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Personal Website thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="/">Personal<br/>Website (v4)</a></div> -->
-  <!--       <div class="gallery-item-meta">2007 &ndash; 2015</div> -->
-  <!--     </div> -->
-  <!--   </div> -->
-  <!--   <div class="row"> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://comp-phys.engin.umich.edu/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Computational Physics Group thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://comp-phys.engin.umich.edu/">Computational<br> Physics Group</a></div> -->
-  <!--       <div class="gallery-item-meta">2007 &ndash; 2013</div> -->
-  <!--     </div> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://delineate.wahgnube.org/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="Delineate thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://delineate.wahgnube.org/">Photo Journal</a></div> -->
-  <!--       <div class="gallery-item-meta">2004 &ndash; 2008</div> -->
-  <!--     </div> -->
-  <!--   </div> -->
-  <!--   <div class="row"> -->
-  <!--     <div class="one-half column"> -->
-  <!--       <a href="http://emphaticallystatic.org/"><img class="u-max-full-width" src="https://placehold.it/900x600/E08E79/ffffff" alt="actuality.log thumbnail"></a> -->
-  <!--       <div class="gallery-item-description"><a href="http://emphaticallystatic.org/">Personal Journal</a></div> -->
-  <!--       <div class="gallery-item-meta">2002 &ndash; 2013</div> -->
-  <!--     </div> -->
-  <!--   </div> -->
-  <!--   <h2 id="software" style="margin-bottom: 1.0em;">Simple software utilities</h2> -->
-  <!--   <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p> -->
+  <h2 id="software">Simple software utilities</h2>
+  <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
+  <div class="pure-g l-box-container">
+    {{ range where .Data.Pages "Params.category" "==" "software" }}
+    {{ .Render "summary" }}
+    {{ end }}
+  </div>
+
   <!--   <div class="row"> -->
   <!--     <div class="one-half column"> -->
   <!--       <a href="/projects/dorsal/"><img class="u-max-full-width" src="http://localhost/files/images/projects/software/dorsal.jpg" alt="Dorsal" title="Dorsal, a simple package management system"></a> -->
