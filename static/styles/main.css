@@ -1424,7 +1424,7 @@ hr {
     text-transform: uppercase;
     font-size: 10px;
     font-weight: 400;
-    margin-right: 13px;
+    margin-right: 10px;
     text-decoration: none;
     line-height: 6.5rem;
     color: #222;
@@ -1438,7 +1438,7 @@ hr {
     .navbar-link {
 	font-size: 11px;
 	letter-spacing: .1rem;
-	margin-right: 10px;
+	margin-right: 13px;
     }
 }
 
