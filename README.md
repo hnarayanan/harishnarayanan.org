@@ -29,7 +29,6 @@ over the code.
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
 - Add the winter in Asia gallery?
-- Look at GitHub for a reminder of recent projects
 - Canonicalize breakpoints of Pure and Skeleton
 - Embed relevant talks in research articles
 - Incorporate good ideas from https://github.com/h5bp/server-configs-nginx
