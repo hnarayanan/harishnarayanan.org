@@ -1,8 +1,8 @@
 ---
 date: 2014-11-01
 title: Periodic table of the finite elements
-short_title: FEM Periodic Table
-thumbnail: /images/projects/fem-table-2.png
+short_title: Finite Element Table
+thumbnail: /images/projects/fe-table.png
 description: A visual representation of the primary spaces of finite elements.
 category: website
 exterior_link: http://femtable.org/
