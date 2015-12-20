@@ -20,8 +20,6 @@ over the code.
 - Replace placeholder favicon.ico, apple-touch-icon.png, tile.png
   etc. with something custom
 - Grep for and remove all remaining egregious uses of inline styling
-- Collect all article notes and make them draft posts (especially from
- `test-lanyon`)
 - Make large images in article pages overflow the container and go to
   the full width of the page
 - Create archetypes for each primary content type on the site
@@ -33,9 +31,6 @@ over the code.
 - Incorporate online learning portfolio somewhere?
 - Highlight recommended classes
 - Add the winter in Asia gallery?
-- Things I am playing with: Mesos, Kubernetes, Go, Containers and
-  Swift-iOS, Machine Learning, sicm+scheme
-- Catalogue content from the test-lanyon attempt
 - Look at GitHub for a reminder of recent projects
 - Canonicalize breakpoints of Pure and Skeleton
 - Computational biology
@@ -43,7 +38,6 @@ over the code.
   - computational biologist
   - all-around web technologist
 - Embed relevant talks in research articles
-- Look at large green notebook for ideas for node layouts, and footer
 - Incorporate good ideas from https://github.com/h5bp/server-configs-nginx
 
 ## Notes
