@@ -12,34 +12,39 @@
   {{ .Render "summary"}}
   {{ end }}
 
-<h2 id="diary-entries">Selected entries from my <a href="http://emphaticallystatic.org">old journal</a></h2>
-<table>
-  <tr>
-    <td><a href="/writing/lacking-functional-teats/">Lacking functional teats</a> <br /><small>April 2006</small></td>
-    <td><a href="/writing/womens-entertainment/">Women&#8217;s entertainment?</a> <br /><small>May 2006</small></td>
-    <td><a href="/writing/bipartisan-politics/">Bipartisan politics</a> <br /><small>June 2007</small></td>
-  </tr>
-  <tr>
-    <td><a href="/writing/jacks-vicarious-anguish/">On Jack&#8217;s vicarious anguish</a> <br /><small>August 2009</small></td>
-    <td><a href="/writing/harmonising-whistleblowing/">Harmonising whistleblowing</a> <br /><small>February 2007</small></td>
-    <td><a href="/writing/with-the-flow/">With the flow</a> <br /><small>November 2007</small></td>
-  </tr>
-  <tr>
-    <td><a href="/writing/happiness-is-overrated/">Happiness is overrated</a> <br /><small>August 2009</small></td>
-    <td><a href="/writing/twixt-my-nethers/">Twixt my nethers</a> <br /><small>December 2008</small></td>
-    <td><a href="/writing/seeing-a-shrink/">Seeing a shrink</a> <br /><small>April 2010</small></td>
-  </tr>
-  <tr>
-    <td><a href="/writing/growing-up/">Growing up</a> <br /><small>November 2009</small></td>
-    <td><a href="/writing/reading-elaina/">Reading Elaina</a> <br /><small>August 2007</small></td>
-    <td><a href="/writing/serendipitous-bus-rides/">Serendipitous bus rides</a> <br /><small>September 2009</small></td>
-  </tr>
-  <tr>
-    <td><a href="/writing/her-unborn-sister/">Her unborn sister</a> <br /><small>March 2009</small></td>
-    <td><a href="/writing/mellow-dramatics/">Mellow dramatics</a> <br /><small>December 2007</small></td>
-    <td><a href="/writing/of-babes-and-babies/">Of babes and babies</a> <br /><small>July 2006</small></td>
-  </tr>
-</table>
+  <h2 id="diary-entries">Selected entries from my <a href="http://emphaticallystatic.org/">old journal</a></h2>
+  <div class="pure-g l-box-container">
+  {{ range where .Data.Pages "Params.category" "==" "personal" }}
+  {{ .Render "summary-personal"}}
+  {{ end }}
+  </div>
+
+<!-- <table> -->
+<!--   <tr> -->
+<!--     <td><a href="/writing/womens-entertainment/">Women&#8217;s entertainment?</a> <br /><small>May 2006</small></td> -->
+<!--     <td><a href="/writing/bipartisan-politics/">Bipartisan politics</a> <br /><small>June 2007</small></td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td><a href="/writing/jacks-vicarious-anguish/">On Jack&#8217;s vicarious anguish</a> <br /><small>August 2009</small></td> -->
+<!--     <td><a href="/writing/harmonising-whistleblowing/">Harmonising whistleblowing</a> <br /><small>February 2007</small></td> -->
+<!--     <td><a href="/writing/with-the-flow/">With the flow</a> <br /><small>November 2007</small></td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td><a href="/writing/happiness-is-overrated/">Happiness is overrated</a> <br /><small>August 2009</small></td> -->
+<!--     <td><a href="/writing/twixt-my-nethers/">Twixt my nethers</a> <br /><small>December 2008</small></td> -->
+<!--     <td><a href="/writing/seeing-a-shrink/">Seeing a shrink</a> <br /><small>April 2010</small></td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td><a href="/writing/growing-up/">Growing up</a> <br /><small>November 2009</small></td> -->
+<!--     <td><a href="/writing/reading-elaina/">Reading Elaina</a> <br /><small>August 2007</small></td> -->
+<!--     <td><a href="/writing/serendipitous-bus-rides/">Serendipitous bus rides</a> <br /><small>September 2009</small></td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td><a href="/writing/her-unborn-sister/">Her unborn sister</a> <br /><small>March 2009</small></td> -->
+<!--     <td><a href="/writing/mellow-dramatics/">Mellow dramatics</a> <br /><small>December 2007</small></td> -->
+<!--     <td><a href="/writing/of-babes-and-babies/">Of babes and babies</a> <br /><small>July 2006</small></td> -->
+<!--   </tr> -->
+<!-- </table> -->
 
 <!-- TODO: Auto-pull recommended reading list from starred articles on Readability here? -->
 
