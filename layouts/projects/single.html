@@ -5,7 +5,7 @@
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
     <section class="post-meta">
-      <time class="post-date">{{ .Params.start_date }}</time>{{ if .Params.end_date }} – <time class="post-date">{{ .Params.end_date }}</time>{{ end }}
+      <time class="post-date">{{ .Params.start_date }}</time>{{ if ne .Params.end_date .Params.start_date }} – <time class="post-date">{{ .Params.end_date }}</time>{{ end }}
     </section>
   </header>
 
