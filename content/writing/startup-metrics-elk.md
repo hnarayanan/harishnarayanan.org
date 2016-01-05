@@ -4,5 +4,5 @@ draft: true
 title: Smart startup metric tracking
 ---
 
-How to track standard (a16z, S+C) metrics using elasticsearch, log
-stash and Kibana.
+How to track standard (a16z, S+C) metrics using Elasticsearch,
+Logstash and Kibana.
