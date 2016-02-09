@@ -1,6 +1,5 @@
 ---
 date: 2015-09-07T21:12:08+01:00
-draft: true
 title: Scalable and resilient Django with Kubernetes
 category: devops
 ---
