@@ -1,6 +1,5 @@
 ---
 date: 2015-09-07T21:12:08+01:00
-draft: true
 title: Scalable and resilient Django with Kubernetes
 category: devops
 ---
@@ -38,6 +37,13 @@ fragile server until enough people care to use your app regularly.
 With that out of the way, let’s get started.
 
 ## What are we trying to do?
+
+A non-trivial webapp involving Django might look something like the
+following:
+
+{{< figure src="//placehold.it/1440x960" title="Layout of a non-trivial Django application." >}}
+
+It contains the following pieces
 
 (A) To achieve our twin goals of scalability and resiliency, we’re going
 to follow a simple pattern:
@@ -138,6 +144,37 @@ your files to any incoming requester
 * Orchestration with Kubernetes
 * Practical example on GKE
 
+### PostgreSQL
+
+#### Persistence
+
+- Create a persistent disk
+- Attach to VM
+- ssh into VM
+- Format disk
+- Log out of VM
+- Detach from VM
+
+```
+gcloud compute disks create --size=500GB --zone=us-central1-a my-data-disk
+```
+
+http://kubernetes.io/v1.1/docs/user-guide/persistent-volumes.html#persistent-volumes-and-claims
+
+> A PersistentVolume (PV) is a piece of networked storage in the
+  cluster that has been provisioned by an administrator. It is a
+  resource in the cluster just like a node is a cluster resource. PVs
+  are volume plugins like Volumes, but have a lifecycle independent of
+  any individual pod that uses the PV. This API object captures the
+  details of the implementation of the storage, be that NFS, iSCSI, or
+  a cloud-provider-specific storage system.
+
+> A PersistentVolumeClaim (PVC) is a request for storage by a user. It
+  is similar to a pod. Pods consume node resources and PVCs consume PV
+  resources. Pods can request specific levels of resources (CPU and
+  Memory). Claims can request specific size and access modes (e.g, can
+  be mounted once read/write or many times read-only).
+
 ## References and further reading
 
 1. [Building Scalable and Resilient Web Applications on Google Cloud
@@ -150,6 +187,7 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 4. Understanding Kubernetes from the ground up — [Kubelet][kubernetes-kubelet],
 [API Server][kubernetes-api-server], [Scheduler][kubernetes-scheduler]
 5. [Packaging Django into containers][django-container]
+6. https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
 
 [linux-containers]: http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
 [docker-containers]: https://www.docker.com/what-docker
