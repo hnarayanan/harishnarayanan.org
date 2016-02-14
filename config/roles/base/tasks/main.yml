@@ -1,27 +1,27 @@
 ---
 - name: Create swap file
-  sudo: yes
+  become: yes
   command: fallocate -l {{ 2*ansible_memtotal_mb }}M /swapfile
            creates=/swapfile
 
 - name: Change swap file permissions
-  sudo: yes
+  become: yes
   file: path=/swapfile
         mode=0600
 
 - name: Check swap file type
-  sudo: yes
+  become: yes
   command: file /swapfile
   register: swapfile
   changed_when: False
 
 - name: Start using swap file
-  sudo: yes
+  become: yes
   command: mkswap /swapfile
   when: swapfile.stdout.find('swap file') == -1
 
 - name: Commit swap file to fstab
-  sudo: yes
+  become: yes
   mount:
     name=none
     src=/swapfile
@@ -32,12 +32,12 @@
     state=present
 
 - name: Mount swap
-  sudo: yes
+  become: yes
   command: swapon /swapfile
   when: ansible_swaptotal_mb < 1
 
 - name: Install common base packages
-  sudo: yes
+  become: yes
   apt:
     name={{ item }}
     state=latest
@@ -53,7 +53,7 @@
     - ufw
 
 - name: Configure default firewall rules
-  sudo: yes
+  become: yes
   ufw:
     direction={{ item.direction }}
     policy={{ item.policy }}
@@ -62,7 +62,7 @@
     - { direction: 'outgoing', policy: 'allow' }
 
 - name: Configure base firewall rule to allow SSH
-  sudo: yes
+  become: yes
   ufw:
     rule={{ item.rule }}
     port={{ item.port }}
@@ -71,18 +71,18 @@
     - { rule: 'limit', port: '22', proto: 'tcp' }
 
 - name: Enable firewall logging
-  sudo: yes
+  become: yes
   ufw: logging=on
   notify:
     - restart firewall
 
 - name: Enable firewall
-  sudo: yes
+  become: yes
   ufw: state=enabled
 
 - name: Configure git
-  sudo: yes
-  sudo_user: "{{ remote_user_name }}"
+  become: yes
+  become_user: "{{ remote_user_name }}"
   template:
     src=.gitconfig.j2
     dest=~/.gitconfig
