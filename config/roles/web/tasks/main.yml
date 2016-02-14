@@ -8,7 +8,7 @@
 - name: Add a custom repository for nginx
   become: yes
   apt_repository:
-    repo='deb http://nginx.org/packages/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx'
+    repo='deb http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx'
     state=present
 
 - name: Install nginx
