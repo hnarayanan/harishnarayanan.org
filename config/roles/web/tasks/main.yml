@@ -1,31 +1,38 @@
+---
+- name: Import the GPG key for a custom nginx repository
+  become: yes
+  apt_key:
+    url=http://nginx.org/keys/nginx_signing.key
+    state=present
+
 - name: Add a custom repository for nginx
-  sudo: yes
+  become: yes
   apt_repository:
-    repo='ppa:nginx/stable'
+    repo='deb http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx'
     state=present
 
 - name: Install nginx
-  sudo: yes
+  become: yes
   apt:
     name=nginx
     state=latest
     update_cache=yes
 
 - name: Setup the default configuration for nginx
-  sudo: yes
+  become: yes
   copy:
     src=nginx.conf
     dest=/etc/nginx/nginx.conf
   notify: restart nginx
 
 - name: Create a directory to store SSL files
-  sudo: yes
+  become: yes
   file:
     path=/etc/nginx/ssl
     state=directory
 
 - name: Copy over SSL files
-  sudo: yes
+  become: yes
   copy:
     src={{ item }}
     dest=/etc/nginx/ssl/
@@ -33,27 +40,27 @@
     - ssl/*
 
 - name: Delete the default symbolic linked nginx website
-  sudo: yes
+  become: yes
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
   notify: restart nginx
 
 - name: Configure nginx to start on boot
-  sudo: yes
+  become: yes
   service:
     name=nginx
     enabled=yes
 
 - name: Setup this website as one of the available nginx sites
-  sudo: yes
+  become: yes
   template:
     src=site.j2
     dest=/etc/nginx/sites-available/{{ domain_name }}
   notify: restart nginx
 
 - name: Setup this website as one of the enabled nginx sites
-  sudo: yes
+  become: yes
   file:
     src=/etc/nginx/sites-available/{{ domain_name }}
     dest=/etc/nginx/sites-enabled/{{ domain_name }}
@@ -61,7 +68,7 @@
   notify: restart nginx
 
 - name: Configure firewall rules to allow HTTP(S)
-  sudo: yes
+  become: yes
   ufw:
     rule={{ item.rule }}
     port={{ item.port }}

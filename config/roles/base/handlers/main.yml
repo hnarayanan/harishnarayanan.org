@@ -1,6 +1,6 @@
 ---
 - name: restart firewall
-  sudo: yes
+  become: yes
   service:
     name=ufw
     state=restarted

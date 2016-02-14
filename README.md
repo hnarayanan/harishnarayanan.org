@@ -1,61 +1,91 @@
-# Here be dragons
+# Harish Narayanan’s website
 
-This is an extreme work in progress, so be cautious about cloning this
-code any time soon.
+This repository contains the source code, assets and setup scripts for
+my personal website: [harishnarayanan.org](https://harishnarayanan.org).
+The site is generated using [Hugo](https://gohugo.io/) and its content
+is mostly written in [Markdown](https://daringfireball.net/projects/markdown/).
+The Linux server that’s hosting the site is setup using
+[Ansible](http://www.ansible.com).
 
-Also, this code at the moment is (c) Harish Narayanan 2016 **All
-Rights Reserved**. So you probably shouldn't be pulling it anyway
-since that doesn't give you much scope to do anything with it.
+Be wary of cloning this code any time soon since this is a rapidly
+evolving work in progress.
 
-## TODO
+(c) Harish Narayanan 2016 **All Rights Reserved**.
 
-The following list is in addition to the liberal `TODO`s sprinkled all
-over the code.
+## How to use this repository
 
-- Replace the above non-license with something friendlier
-- Replace this file with a useful README. This will serve to replace
-  the old "meta" section of the site.
-- Go through the TODOs in the code and this list and create a
-  collection of isues on GitHub
-- Expose RSS feed
-- Replace placeholder favicon.ico, apple-touch-icon.png, tile.png
-  etc. with something custom
-- Grep for and remove all remaining egregious uses of inline styling
-- Make large images in article pages overflow the container and go to
-  the full width of the page
-- Incorporate some taxonomy for the articles (e.g. tags like Devops,
-  Kubernetes, Django) to later start connecting up sets of
-  articles. Similarly for research articles.
-- Incorporate online learning portfolio somewhere?
-- Highlight recommended classes
-- Add the winter in Asia gallery?
-- Canonicalize breakpoints of Pure and Skeleton
-- Embed relevant talks in research articles
-- Incorporate good ideas from https://github.com/h5bp/server-configs-nginx
+The very first thing you ought to do is to get a copy of this
+repository and move into it as the working directory.
 
-## Notes
-
-### Setup the server
-````
-cd config
-ansible-playbook site.yml -i servers/personal-site
-````
-
-### Edit the site
 ````
 git clone git@github.com:hnarayanan/harishnarayanan.org.git
 cd harishnarayanan.org
+````
+
+This will take a while since this site contains a lot of large static
+assets. In order to host a copy of the site, you need to do a couple
+of things:
+
+### Setup a web server to host the site
+
+1. Go to your favourite cloud provider (I use [Digital
+   Ocean](https://m.do.co/c/e3559ea013de)) and provision a virtual
+   machine running [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/).
+
+2. Make sure you can `ssh` to this virtual machine. Edit
+   `config/servers/personal-site` to reflect the domain name (or IP)
+   and `ssh` user name. Also update `domain_name` in
+   `/config/site.yml` to point to your new server’s domain name.
+
+3. Install [Ansible](http://www.ansible.com) on your local development
+   machine.
+
+4. Run the configuration script to setup the web server and other bits
+   and bobs (like the firewall) on the virtual machine.
+
+   ````
+   cd config
+   ansible-playbook site.yml -i servers/personal-site
+   ````
+
+### Build and upload the site to the web server
+
+1. Install [hugo](https://gohugo.io) on your local development
+   machine. Let’s assume it lives somewhere in `$PATH`.
+
+2. Generate the site.
+
+   ````
+   $PATH/hugo --buildDrafts
+
+   ````
+
+3. Copy the generated files to the web server.
+
+    ````
+    rsync -aPvhe ssh --delete public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
+    ````
+
+    Edit the domain name and virtual machine `ssh` user as needed.
+
+## Everyday development
+
+For day-to-day development and content writing, you can run `hugo`
+locally to serve drafts of the site. This is an excellent way to work
+as Hugo refreshes in the browser as you save files.
+
+
+````
 $PATH/hugo server --buildDrafts --watch
 ````
 
-### Publish the site
+When you’re happy with your progess, you can build and publish the
+site just as before.
 
-````
-../hugo --buildDrafts
-rsync -aPvhe ssh --delete --exclude-from=/Users/harish/Scratch/Backup/exclude2 public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
-````
+## Checking links
 
-### Check links
+This is just a command I find handy to reduce the instances of broken
+links.
 
 ````
 wget --spider -o wget.log -e robots=off -w 1 -r -p https://harishnarayanan.org/
