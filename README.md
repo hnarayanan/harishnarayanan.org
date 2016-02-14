@@ -4,6 +4,8 @@ This repository contains the source code, assets and setup scripts for
 my personal website: [harishnarayanan.org](https://harishnarayanan.org).
 The site is generated using [Hugo](https://gohugo.io/) and its content
 is mostly written in [Markdown](https://daringfireball.net/projects/markdown/).
+The Linux server that’s hosting the site is setup using
+[Ansible](http://www.ansible.com).
 
 Be wary of cloning this code any time soon since this is a rapidly
 evolving work in progress.
