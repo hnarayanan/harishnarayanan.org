@@ -1,7 +1,14 @@
+---
+- name: Import the GPG key for a custom nginx repository
+  become: yes
+  apt_key:
+    url=http://nginx.org/keys/nginx_signing.key
+    state=present
+
 - name: Add a custom repository for nginx
   become: yes
   apt_repository:
-    repo='ppa:nginx/stable'
+    repo='deb http://nginx.org/packages/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx'
     state=present
 
 - name: Install nginx
