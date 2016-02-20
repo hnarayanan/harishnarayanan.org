@@ -7,14 +7,15 @@
   <!-- TODO: Point to research page for academic writing -->
 
   <h1 id="main-description">Theory ⋂ Practice</h1>
-  <p>I’m usually playing with a handful of technologies at any given time. At the moment these include Kubernetes, Tensorflow, Swift, Scheme and Go. The articles below are an attempt to share some of the things I’ve learnt along the way.</p>
+  <p>I’m usually playing with a handful of technologies at any given time. At the moment these include Kubernetes, Tensorflow, Swift, Scheme and Go. The articles below are an attempt to share concepts I’ve learnt along the way.</p>
+  <!-- <p>If you’re looking for my more formal writing on computational mathematics, head on over to the <a href="/research/#writing">relevant section of the research page</a>.</p> -->
 
   {{ range where .Data.Pages "Params.category" "!=" "personal" }}
   {{ .Render "summary"}}
   {{ end }}
 
 <!--   <h2 id="diary-entries">Selected entries from my <a href="http://emphaticallystatic.org">old journal</a></h2> -->
-<!--     <\!-- <p>If you’re looking for something more formal, do check out <a href="/research/#writing">my articles on computational science</a>.</p> -\-> -->
+<!--     <\!--  -\-> -->
 <!--   <\!-- <p>Not your cup of tea? Do feel free to sample <a href="diary-entries">some entries from my personal journal</a>.</p> -\-> -->
 <!-- <table> -->
 <!--   <tr> -->
