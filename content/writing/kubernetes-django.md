@@ -4,37 +4,37 @@ title: Scalable and resilient Django with Kubernetes
 category: devops
 ---
 
-If things work out as you’ve envisioned, there will be a time in your
-webapp’s lifecycle where it’s serving a large number of users. By the
-time things get to this point, it’s ideal if you’ve architected your
-webapp to both *scale gracefully* to meet this load, and also be
-*resilient to arbitrary failures* of underlying compute resources.
+If things work out as you've envisioned, there will be a time in your
+webapp's lifecycle where it's serving a large number of users. By the
+time things get to this point, it's ideal if you've architected your
+webapp to both *scale* gracefully to meet this load, and also be
+*resilient* to arbitrary failures of underlying compute resources.
 
 This article is about how you can use [Docker
 containers][docker-containers] and [Kubernetes][kubernetes] to help
 your [Django][django] webapp achieve these architectural goals. While
 it meanders a bit through theory and philosophy, it does work up to a
-concrete example to help solidify concepts.
+[concrete example][example] to help solidify concepts.
 
 ## Caveats
 
-Before we get too deep into the weeds, I’d like to note that the ideas
-expressed in this piece don’t have anything particular to do with
-Django. I’ve simply chosen it as an example because it is a framework
-I’m familiar with. It is straightforward to repurpose these principles
-for other software stacks.
+Before we get too deep into the weeds, I'd like to note that the ideas
+expressed in this piece don't have anything particular to do with
+Django. I've simply chosen it as an example because it is a popular
+framework that I'm familiar with. It is straightforward to repurpose
+these principles for other software stacks.
 
-I’d also like to point out that this article juggles many moving
+I'd also like to point out that this article juggles many moving
 pieces -- some quite immature. If you can avoid this level of
-complexity at the current stage of your webapp’s lifecycle, you
-should. Instead, focus your efforts on better understanding your
-users’ problems and testing whether your app solves them. No one is
-going to know or complain that you’re running your app on a single
+complexity at the current stage of your webapp's lifecycle, *you
+should*. Instead, focus your efforts on better understanding your
+users' problems and testing whether your app solves them. No one is
+going to know or complain that you're running your app on a single
 fragile server until enough people care to use your app regularly.
 
 *No one.*
 
-With that out of the way, let’s get started.
+With that out of the way, let's get started.
 
 ## What are we trying to do?
 
@@ -45,7 +45,7 @@ following:
 
 It contains the following pieces
 
-(A) To achieve our twin goals of scalability and resiliency, we’re going
+(A) To achieve our twin goals of scalability and resiliency, we're going
 to follow a simple pattern:
 
 1. We break up our Django application into atomic units that can be
@@ -59,7 +59,7 @@ making sure your replicas are running etc.? Container techologies like
 Docker (or Rocket) offer a plan for the first point, while Kubernetes
 offers a plan for the second.
 
-If this seems a bit abstract, let’s imagine what a non-trivial webapp
+If this seems a bit abstract, let's imagine what a non-trivial webapp
 involving Django might look like: (probably goes to (A)):
 
 * A Postgresql database serving as the core persistence tier.
@@ -71,11 +71,11 @@ involving Django might look like: (probably goes to (A)):
   workers ←-> queue ←-/
   ```
 
-Now, it’s of course possible to run all this and more on a single
+Now, it's of course possible to run all this and more on a single
 Linux server, and it is … but how would you scale the pieces
 independently? E.g., how can you greatly increase the computational
 capacity provided by Celery without getting a larger and larger box
-(whose resources aren’t touched by the other components)? Furthermore,
+(whose resources aren't touched by the other components)? Furthermore,
 what happens when this one server goes down for whatever reason?
 
 … (That business from above that started this section gets moved here)
@@ -93,7 +93,7 @@ Break your Django ++ app into pieces (and containerise them). Replace
 each individual piece with a load-balancer encompassing a collection
 that you can replication manage.
 
-Why and when in an application’s lifecycle would you want to do this?
+Why and when in an application's lifecycle would you want to do this?
 
 A brief introduction to containerised Django + cohorts
 
@@ -113,7 +113,7 @@ Split your system into components -> Make each component a container
 
 > This changes how you think about the boundaries of your
   application. Consider my case of hosting this static
-  website. Typically you’d think of this blog as the collection of
+  website. Typically you'd think of this blog as the collection of
   HTML, CSS, and images that make up the site.
 
 > What you think your application is affects how you deploy it. If
@@ -121,9 +121,9 @@ Split your system into components -> Make each component a container
   these files inside a software system that understands HTTP and can
   serve files, e.g. Apache or Nginx.
 
-> Compare this to how I’m using Docker for this blog. Instead of using
+> Compare this to how I'm using Docker for this blog. Instead of using
   a global Nginx instance to serve my blog, I create a Docker image
-  with Nginx and my blog’s files. Which makes the resulting “blog
+  with Nginx and my blog's files. Which makes the resulting “blog
   application” an atomic unit that I can build, test, and run anywhere
   as many times as I want.
 
@@ -132,7 +132,7 @@ these days. I wouldn't claim to understand completely, but here is a
 rough analogy.
 
 There is a lot of talk about containers (Docker, Rocket etc.) recently
-and I won’t claim to be an expert. But here is how I understand the
+and I won't claim to be an expert. But here is how I understand the
 situation. Think of a container as a process.
 
 You might traditionally think of a simple website as a collection of
@@ -189,6 +189,7 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 5. [Packaging Django into containers][django-container]
 6. https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
 
+[example]: https://github.com/hnarayanan/django-k8s
 [linux-containers]: http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
