@@ -56,7 +56,7 @@ of things:
 2. Generate the site.
 
    ````
-   $PATH/hugo --buildDrafts
+   $PATH/hugo
 
    ````
 
@@ -76,7 +76,7 @@ as Hugo refreshes in the browser as you save files.
 
 
 ````
-$PATH/hugo server --buildDrafts --watch
+$PATH/hugo server --watch
 ````
 
 When you’re happy with your progess, you can build and publish the
