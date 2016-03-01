@@ -36,12 +36,61 @@ fragile server until enough people care to use your app regularly.
 
 With that out of the way, let's get started.
 
-## What are we trying to do?
+## What is the problem we're trying to solve?
 
 A non-trivial webapp involving Django might look something like the
 following:
 
 {{< figure src="//placehold.it/1440x960" title="Layout of a non-trivial Django application." >}}
+
+A database such as Postgresql serves as your app's *persistence tier*
+where all its data resides. You have your Django app, served using an
+application server like uWSGI, codifying your business logic. In front
+of all this you have a web server like NGINX acting both as a reverse
+proxy and static content server.
+
+When you're first starting out with your app and you only have a
+handful of users, it makes perfect sense to put all these pieces on a
+single server. So you run up to your [favourite cloud
+provider][digital ocean referral] and fire up a VPS running Debian or
+whatever and you install all these individual bits of software on the
+same machine.
+
+{{< figure src="//placehold.it/1440x960" title="All pieces making up the app on a single machine." >}}
+
+Then, as your app starts to get more popular, you begin to think about
+scaling. First you follow the straightforward approach and provision a
+larger and larger single machines to run your app in. This works well
+until you reach a few thousand users. Now your app gets even more
+popular and you (rightly) decide to split the software components and
+put them on separate machines. And with this architecture, you can
+start to scale your components independently, meaning you can do
+things like the following,
+
+{{< figure src="//placehold.it/1440x960" title="Running many instances of the app talking to a single database." >}}
+
+with each piece needing its own VPS to be provisioned. This poses two
+problems:
+
+1. You're likely going to run into a scenario where you provision
+multiple Django app instances trying to cope with a certain peak load,
+but your normal load doesn't need nearly as many computing
+resources. This is a waste of money.
+
+2. If a computing resource fails, e.g. someone spills coffee on your
+VPS, that component of your app simply stops working.
+
+These are part of the problems Kubernetes is designed to solve.
+
+*What is Kubernetes?* It's a container orchestration framework that
+takes "containerised" applications and schedules them rationally on
+clusters. *What's a containerised app?* It's a piece of software ---
+like your Django app --- that's been packaged into a specific format
+bundling the app, its requirements and whatever stateless content it
+needs into one convenient bundle. Many people tend to describe
+containers as lightweight virtual machines, but I prefer to think of
+them as *fat static binaries* of apps.
+
 
 It contains the following pieces
 
@@ -202,3 +251,4 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [kubernetes-api-server]: http://kamalmarhubi.com/blog/2015/09/06/kubernetes-from-the-ground-up-the-api-server/
 [kubernetes-scheduler]: http://kamalmarhubi.com/blog/2015/11/17/kubernetes-from-the-ground-up-the-scheduler/
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
+[digital ocean referral]: https://something
