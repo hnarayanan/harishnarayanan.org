@@ -17,10 +17,7 @@
       <!--   <span class="hidden">Google+</span> -->
       <!-- </a> -->
     <section class="post-meta">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time>
-      <!-- TODO: Incorporate number of words and read count into the template -->
-      <!-- {{ .PageMeta.WordCount }} -->
-      <!-- {{ .PageMeta.ReadingTime }} -->
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time> — {{ .PageMeta.ReadingTime }} min read
     </section>
   </header>
 
