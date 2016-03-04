@@ -39,7 +39,7 @@ fragile server until enough people care to use your app regularly.
 
 With that out of the way, let's get started.
 
-## What is the problem we're trying to solve?
+## What are the problems we're trying to solve?
 
 Let's imagine that you're working on a Django webapp that's laid out
 in a fairly standard fashion: All your app's data resides in a
@@ -74,28 +74,50 @@ multiple instances of your app (called *horizontal scaling*) to handle
 your growing user base, while continuing to run your PostgreSQL server
 on only one (but increasingly powerful) machine.
 
-{{< figure src="//placehold.it/1440x960" title="Running many instances of the app talking to a single database." >}}
+{{< figure src="//placehold.it/1440x960" title="Running many instances of the app, talking to a single database." >}}
 
+This is actually a pretty good strategy until you realise that:
 
+1. It's annoying to have to provision and setup all these server
+instances, one for each piece. (All while making sure that the
+repeated instances are identical to each other. And making sure the
+servers are up-to-date with the latest OS updates, etc.)
 
-1. You're likely going to run into a scenario where you provision
-multiple Django app instances trying to cope with a certain peak load,
-but your normal load doesn't need nearly as many computing
-resources. This is a waste of money.
+2. You need to provision enough Django app instances to cope with your
+peak load, but your normal load  doesn't need nearly as many computing
+resources. Meaning that under most load scenarios, you're wasting
+money.
 
-2. If a computing resource fails, e.g. someone spills coffee on your
-VPS, that component of your app simply stops working.
+2. If a computing resource fails --- like someone spills coffee on a
+server --- that component of your app simply stops working. 😞
 
-These are part of the problems Kubernetes is designed to solve.
+These are the sorts of problems that Docker and Kubernetes are
+designed to solve.
 
-*What is Kubernetes?* It's a container orchestration framework that
-takes "containerised" applications and schedules them rationally on
-clusters. *What's a containerised app?* It's a piece of software ---
-like your Django app --- that's been packaged into a specific format
-bundling the app, its requirements and whatever stateless content it
-needs into one convenient bundle. Many people tend to describe
-containers as lightweight virtual machines, but I prefer to think of
-them as [fat static binaries][container-perspective] of apps.
+## A quick glossary
+
+*What is Kubernetes?*
+
+It's a container orchestration framework that takes "containerised
+applications" and schedules them systematically on clusters.
+
+*What's a containerised application?*
+
+It's a piece of software --- like your Django app --- that's been
+packaged together along with its underlying requirements and related
+data into one convenient bundle, called a *container*.
+
+Some people tend to describe containers as lightweight virtual
+machines, but I prefer to think of them as [fat static
+binaries][container-perspective] of apps. They form an atomic unit
+that can be built, tested and run anywhere as many times as needed.
+
+*What's Docker?*
+
+Docker is an umbrella term covering a lot of disparate things, but for
+the purposes of this article, it's a really popular [container
+format][docker-containers]. (And it's going to feature prominently in
+the example that I assure you we're soon going to get to.)
 
 ## So how exactly does Kubernetes help solve these problems?
 
@@ -169,43 +191,6 @@ Orchestrating them together with Kubernetes
 Explaining some tricks with the sample code to show how the app can be
 (manually) scaled to meet known traffic demands. Hit with ab bench (or
 whatever it is called), knock a server out and see how it behaves.
-
-## A detour through containerization
-
-Container technology (such as Docker or Rocket) is a really big deal
-at the moment
-
-Split your system into components -> Make each component a container
-(an atomic unit that can run anywhere)
-
-> This changes how you think about the boundaries of your
-  application. Consider my case of hosting this static
-  website. Typically you'd think of this blog as the collection of
-  HTML, CSS, and images that make up the site.
-
-> What you think your application is affects how you deploy it. If
-  your application is a bundle of files then “deploying” means placing
-  these files inside a software system that understands HTTP and can
-  serve files, e.g. Apache or Nginx.
-
-> Compare this to how I'm using Docker for this blog. Instead of using
-  a global Nginx instance to serve my blog, I create a Docker image
-  with Nginx and my blog's files. Which makes the resulting “blog
-  application” an atomic unit that I can build, test, and run anywhere
-  as many times as I want.
-
-Container technology (such as Docker or Rocket) is a really big deal
-these days. I wouldn't claim to understand completely, but here is a
-rough analogy.
-
-There is a lot of talk about containers (Docker, Rocket etc.) recently
-and I won't claim to be an expert. But here is how I understand the
-situation. Think of a container as a process.
-
-You might traditionally think of a simple website as a collection of
-HTML and CSS files that you store on a server somewhere. On this
-server also runs a web server (such as Apache or NGINX) that serves
-your files to any incoming requester
 
 * Containerisation (and building containers)
 * Orchestration with Kubernetes
