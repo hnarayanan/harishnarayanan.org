@@ -1,7 +1,10 @@
 ---
-date: 2015-09-07T21:12:08+01:00
+date: 2016-04-07T21:12:08+01:00
 title: Scalable and resilient Django with Kubernetes
 category: devops
+tags:
+   - kubernetes
+   - django
 ---
 
 If things work out as you've envisioned, there will be a time in your
@@ -38,39 +41,42 @@ With that out of the way, let's get started.
 
 ## What is the problem we're trying to solve?
 
-A non-trivial webapp involving Django might look something like the
-following:
+Let's imagine that you're working on a Django webapp that's laid out
+in a fairly standard fashion: All your app's data resides in a
+PostgreSQL database. The app itself is written in Django-flavoured
+Python, and is served up using the uWSGI application server. And in
+front of all this, you have the NGINX web server acting both as a
+reverse proxy and a static content server.
 
 {{< figure src="//placehold.it/1440x960" title="Layout of a non-trivial Django application." >}}
 
-A database such as Postgresql serves as your app's *persistence tier*
-where all its data resides. You have your Django app, served using an
-application server like uWSGI, codifying your business logic. In front
-of all this you have a web server like NGINX acting both as a reverse
-proxy and static content server.
-
 When you're first starting out with your app and you only have a
-handful of users, it makes perfect sense to put all these pieces on a
+handful of users, it makes perfect sense to run all these pieces on a
 single server. So you run up to your [favourite cloud
-provider][digital ocean referral] and fire up a VPS running Debian or
-whatever and you install all these individual bits of software on the
+provider][digital-ocean-referral], fire up a VPS running Debian or
+whatever, and install all these individual bits of software on the
 same machine.
 
 {{< figure src="//placehold.it/1440x960" title="All pieces making up the app on a single machine." >}}
 
-Then, as your app starts to get more popular, you begin to think about
-scaling. First you follow the straightforward approach and provision a
-larger and larger single machines to run your app in. This works well
-until you reach a few thousand users. Now your app gets even more
-popular and you (rightly) decide to split the software components and
-put them on separate machines. With such an architecture, you can
-start to scale your components independently, meaning you can do
-things like the following,
+Then, as your app starts to get more popular, you begin to work on
+scaling. At first, you follow the straightforward approach and simply
+provision large and larger single machines to run your app in. This is
+called *vertical scaling* and works well until you reach a few
+thousand users.
+
+And then your app gets *even more* popular.
+
+Now you realise that if you were to split the components making up
+your app and put them on separate machines, you can scale the
+components independently. Meaning, for example, that you can run
+multiple instances of your app (called *horizontal scaling*) to handle
+your growing user base, while continuing to run your PostgreSQL server
+on only one (but increasingly powerful) machine.
 
 {{< figure src="//placehold.it/1440x960" title="Running many instances of the app talking to a single database." >}}
 
-with each piece needing its own VPS to be provisioned. This poses two
-problems:
+
 
 1. You're likely going to run into a scenario where you provision
 multiple Django app instances trying to cope with a certain peak load,
@@ -263,5 +269,5 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [kubernetes-api-server]: http://kamalmarhubi.com/blog/2015/09/06/kubernetes-from-the-ground-up-the-api-server/
 [kubernetes-scheduler]: http://kamalmarhubi.com/blog/2015/11/17/kubernetes-from-the-ground-up-the-scheduler/
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
-[digital ocean referral]: https://something
+[digital-ocean-referral]: https://m.do.co/c/e3559ea013de
 [container-perspective]: http://bricolage.io/hosting-static-sites-with-docker-and-nginx/
