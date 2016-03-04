@@ -63,7 +63,7 @@ scaling. First you follow the straightforward approach and provision a
 larger and larger single machines to run your app in. This works well
 until you reach a few thousand users. Now your app gets even more
 popular and you (rightly) decide to split the software components and
-put them on separate machines. And with this architecture, you can
+put them on separate machines. With such an architecture, you can
 start to scale your components independently, meaning you can do
 things like the following,
 
@@ -89,8 +89,20 @@ like your Django app --- that's been packaged into a specific format
 bundling the app, its requirements and whatever stateless content it
 needs into one convenient bundle. Many people tend to describe
 containers as lightweight virtual machines, but I prefer to think of
-them as *fat static binaries* of apps.
+them as [fat static binaries][container-perspective] of apps.
 
+## So how exactly does Kubernetes help solve these problems?
+
+If we were to "containerise" the pieces of our application and run
+them in a replicated way on our closuter, we get the ability to
+*scale* our app with load. (If this happens automatically, all the
+better.) If we were further able to monitor and heal these containers
+(again, thinking of each one as one process of a static binary) ruch
+that if they stopped for whatever reason (e.g. if the underlying
+hardware died), they'd cleanly be restarted elsewhere, we'd then have
+a system that would be *reliable*.
+
+Kubernetes offers a user-friendly API that allows us to do just this.
 
 It contains the following pieces
 
@@ -224,7 +236,7 @@ http://kubernetes.io/v1.1/docs/user-guide/persistent-volumes.html#persistent-vol
   Memory). Claims can request specific size and access modes (e.g, can
   be mounted once read/write or many times read-only).
 
-## References and further reading
+## Selected references and further reading
 
 1. [Building Scalable and Resilient Web Applications on Google Cloud
 Platform][gcp-scalable-webapps]
@@ -252,3 +264,4 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [kubernetes-scheduler]: http://kamalmarhubi.com/blog/2015/11/17/kubernetes-from-the-ground-up-the-scheduler/
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
 [digital ocean referral]: https://something
+[container-perspective]: http://bricolage.io/hosting-static-sites-with-docker-and-nginx/
