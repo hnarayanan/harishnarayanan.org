@@ -154,11 +154,6 @@ involving Django might look like: (probably goes to (A)):
 * A Postgresql database serving as the core persistence tier.
 * Memcached providing caching to prevent …
 * Django + uwsgi …
-* ```
-  database ←-\
-  search ←-> api ←-> webapps ←-> users
-  workers ←-> queue ←-/
-  ```
 
 Now, it's of course possible to run all this and more on a single
 Linux server, and it is … but how would you scale the pieces

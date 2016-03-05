@@ -2,17 +2,18 @@ digraph Application {
     bgcolor = "#fcf9f4";
     rankdir = LR;
     node[shape=box, style=filled, fillcolor="#d28b71"];
+
     subgraph clusterClient {
-    	style = invis;
-    	browser [label="Browser"];
+        style = invis;
+        browser [label="Browser"];
     };
     subgraph clusterServer {
-    	label="Single Server";
-	bgcolor="#f5eeeb";
-    	app [label="App\n(Django uWSGI)"];
-    	database [label="Database\n(PostgreSQL)"];
-    	assets[label="Static Assets"]
-    	webserver [label="NGINX\nWebserver"];
+        label="Single Server";
+        bgcolor="#f5eeeb";
+        app [label="App\n(Django uWSGI)"];
+        database [label="Database\n(PostgreSQL)"];
+        assets[label="Static Assets"];
+        webserver [label="Webserver\n(NGINX)"];
     };
 
     database -> app [label="SQL", dir="both"];

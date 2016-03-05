@@ -27,8 +27,8 @@
 <!-- webserver -->
 <g id="node5" class="node"><title>webserver</title>
 <polygon fill="#d28b71" stroke="black" points="505,-83 411,-83 411,-35 505,-35 505,-83"/>
-<text text-anchor="middle" x="458" y="-64.6" font-family="Times,serif" font-size="18.00">NGINX</text>
-<text text-anchor="middle" x="458" y="-44.6" font-family="Times,serif" font-size="18.00">Webserver</text>
+<text text-anchor="middle" x="458" y="-64.6" font-family="Times,serif" font-size="18.00">Webserver</text>
+<text text-anchor="middle" x="458" y="-44.6" font-family="Times,serif" font-size="18.00">(NGINX)</text>
 </g>
 <!-- app&#45;&gt;webserver -->
 <g id="edge2" class="edge"><title>app&#45;&gt;webserver</title>
