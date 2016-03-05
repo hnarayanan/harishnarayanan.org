@@ -48,7 +48,7 @@ Python, and is served up using the uWSGI application server. And in
 front of all this, you have the NGINX web server acting both as a
 reverse proxy and a static content server.
 
-{{< figure src="//placehold.it/1440x960" title="Layout of a non-trivial Django application." >}}
+{{< figure src="/images/writing/kubernetes-django/test.svg" title="Layout of a non-trivial Django application." >}}
 
 When you're first starting out with your app and you only have a
 handful of users, it makes perfect sense to run all these pieces on a
@@ -145,7 +145,7 @@ load balancer.
 
 This becomes hard because what about load balancer ip discovery etc.,
 making sure your replicas are running etc.? Container techologies like
-Docker (or Rocket) offer a plan for the first point, while Kubernetes
+Docker (or offer) Rocket a plan for the first point, while Kubernetes
 offers a plan for the second.
 
 If this seems a bit abstract, let's imagine what a non-trivial webapp

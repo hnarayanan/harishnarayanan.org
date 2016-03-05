@@ -1,0 +1,28 @@
+digraph Application {
+    bgcolor = "#fcf9f4";
+    rankdir = LR;
+    node[shape=box, style=filled, fillcolor="#d28b71"];
+    /* subgraph clusterClient { */
+    /* 	label = "Client"; */
+    /* 	style = filled; */
+    /* 	bgcolor = "#f5eeeb"; */
+    /* 	browser [label="Browserina"]; */
+    /* }; */
+    /* subgraph clusterServer { */
+    /* 	label="Server"; bgcolor="#f5eeeb"; */
+    /* 	app [label="App\n(Django uWSGI)"]; */
+    /* 	database [label="Database\n(PostgreSQL)"]; */
+    /* 	assets[label="Static Assets"] */
+    /* 	webserver [label="NGINX\nWebserver"]; */
+    /* }; */
+
+    database [label="Database\n(PostgreSQL)"];
+    assets [label="Static Assets"];
+    webserver [label="NGINX\nWebserver"];
+    database [label="PostgreSQL\nDatabase"];
+    app [label="Django (uWSGI)\nApp"];
+    database -> app [label="SQL", dir="both"];
+    app -> webserver [dir="both"];
+    assets -> webserver;
+	// browser -> webserver [label="HTTP", dir="both"];
+}
