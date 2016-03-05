@@ -74,7 +74,7 @@ multiple instances of your app (called *horizontal scaling*) to handle
 your growing user base, while continuing to run your PostgreSQL server
 on only one (but increasingly powerful) machine.
 
-{{< figure src="//placehold.it/1440x960" title="Running many instances of the app, talking to a single database." >}}
+{{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." >}}
 
 This is actually a pretty good strategy until you realise that:
 
