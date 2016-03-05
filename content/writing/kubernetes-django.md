@@ -48,7 +48,7 @@ Python, and is served up using the uWSGI application server. And in
 front of all this, you have the NGINX web server acting both as a
 reverse proxy and a static content server.
 
-{{< figure src="/images/writing/kubernetes-django/test.svg" title="Layout of a non-trivial Django application." >}}
+{{< figure src="/images/writing/kubernetes-django/standard-django-application.svg" title="Layout of a non-trivial Django application." >}}
 
 When you're first starting out with your app and you only have a
 handful of users, it makes perfect sense to run all these pieces on a
@@ -57,7 +57,7 @@ provider][digital-ocean-referral], fire up a VPS running Debian or
 whatever, and install all these individual bits of software on the
 same machine.
 
-{{< figure src="//placehold.it/1440x960" title="All pieces making up the app on a single machine." >}}
+{{< figure src="/images/writing/kubernetes-django/all-in-one-server.svg" title="All pieces making up the app on a single machine." >}}
 
 Then, as your app starts to get more popular, you begin to work on
 scaling. At first, you follow the straightforward approach and simply
