@@ -121,6 +121,9 @@ the example that I assure you we're soon going to get to.)
 
 ## So how exactly does Kubernetes help solve these problems?
 
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="Application scheduled on a cluster." >}}
+
+
 If we were to "containerise" the pieces of our application and run
 them in a replicated way on our closuter, we get the ability to
 *scale* our app with load. (If this happens automatically, all the
