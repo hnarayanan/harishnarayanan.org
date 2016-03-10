@@ -5,18 +5,18 @@ digraph Application {
 
     subgraph clusterClient {
         style = invis;
-        browser [label="Browser"];
+        browser [label="Browser", fillcolor="#a89bb9"];
     };
     subgraph clusterServer {
         label="Single Server";
         bgcolor="#f5eeeb";
-        app [label="App\n(Django uWSGI)"];
+        app [label="App\n(Django Gunicorn)"];
         database [label="Database\n(PostgreSQL)"];
         assets[label="Static Assets"];
         webserver [label="Webserver\n(NGINX)"];
     };
 
-    database -> app [label="SQL", dir="both"];
+    database -> app [label="TCP", dir="both"];
     app -> webserver [label="Socket", dir="both"];
     assets -> webserver;
     webserver -> browser [label="HTTP", dir="both"];
