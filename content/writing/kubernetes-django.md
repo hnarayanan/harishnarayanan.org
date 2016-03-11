@@ -1,5 +1,5 @@
 ---
-date: 2016-04-07T21:12:08+01:00
+date: 2016-03-07T21:12:08+01:00
 title: Scalable and resilient Django with Kubernetes
 category: devops
 tags:
