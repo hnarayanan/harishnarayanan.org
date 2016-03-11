@@ -5,6 +5,7 @@ category: devops
 tags:
    - kubernetes
    - django
+includes_code: yes
 ---
 
 If things work out as you've envisioned, there will be a time in your
@@ -213,7 +214,6 @@ docker build -t hnarayanan/postgresql:9.5 .
 ````
 docker run --name database -e POSTGRES_DB=app_db -e POSTGRES_PASSWORD=app_db_pw -e POSTGRES_USER=app_db_user -d postgresql
 # docker run -it --link database:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U app_db_user'
-
 ````
 
 Push it to a repository:
@@ -245,7 +245,6 @@ docker build -t hnarayanan/nginx:1.9.11 .
 
 (docker run --name nginx -d hnarayanan/nginx:1.9.11)
 docker push hnarayanan/nginx:1.9.11
-
 ````
 
 ### Infrastructure setup
@@ -361,6 +360,10 @@ http://kubernetes.io/v1.1/docs/user-guide/persistent-volumes.html#persistent-vol
 Explaining some tricks with the sample code to show how the app can be
 (manually) scaled to meet known traffic demands. Hit with ab bench (or
 whatever it is called), knock a server out and see how it behaves.
+
+## In conclusion
+
+
 
 ## Selected references and further reading
 
