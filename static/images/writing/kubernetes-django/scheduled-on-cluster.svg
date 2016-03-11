@@ -12,16 +12,16 @@
 <g id="clust1" class="cluster"><title>clusterClient</title>
 </g>
 <g id="clust2" class="cluster"><title>clusterDatabaseServer</title>
-<polygon fill="#f5eeeb" stroke="black" points="8,-39 8,-170 125,-170 125,-39 8,-39"/>
-<text text-anchor="middle" x="66.5" y="-154.8" font-family="Times,serif" font-size="14.00">Node 1</text>
+<polygon fill="#f5eeeb" stroke="#b8afad" points="8,-39 8,-170 125,-170 125,-39 8,-39"/>
+<text text-anchor="middle" x="66.5" y="-154.8" font-family="Times,serif" font-size="14.00" fill="#b8afad">Node 1</text>
 </g>
 <g id="clust3" class="cluster"><title>clusterAppServer</title>
-<polygon fill="#f5eeeb" stroke="black" points="171,-149 171,-282 310,-282 310,-149 171,-149"/>
-<text text-anchor="middle" x="240.5" y="-266.8" font-family="Times,serif" font-size="14.00">Node 2</text>
+<polygon fill="#f5eeeb" stroke="#b8afad" points="171,-149 171,-282 310,-282 310,-149 171,-149"/>
+<text text-anchor="middle" x="240.5" y="-266.8" font-family="Times,serif" font-size="14.00" fill="#b8afad">Node 2</text>
 </g>
 <g id="clust4" class="cluster"><title>clusterAppServer3</title>
-<polygon fill="#f5eeeb" stroke="black" points="171,-8 171,-141 310,-141 310,-8 171,-8"/>
-<text text-anchor="middle" x="240.5" y="-125.8" font-family="Times,serif" font-size="14.00">Node 3</text>
+<polygon fill="#f5eeeb" stroke="#b8afad" points="171,-8 171,-141 310,-141 310,-8 171,-8"/>
+<text text-anchor="middle" x="240.5" y="-125.8" font-family="Times,serif" font-size="14.00" fill="#b8afad">Node 3</text>
 </g>
 <!-- browser -->
 <g id="node1" class="node"><title>browser</title>

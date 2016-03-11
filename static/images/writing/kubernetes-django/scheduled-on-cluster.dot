@@ -1,7 +1,7 @@
 digraph Kubernetes {
     bgcolor = "#fcf9f4";
     rankdir = LR;
-    node[shape=box, style=filled, fillcolor="#d28b71"];
+    node [shape=box, style=filled, fillcolor="#d28b71"];
 
     subgraph clusterClient {
         style = invis;
@@ -10,23 +10,31 @@ digraph Kubernetes {
 
     subgraph clusterDatabaseServer {
         label = "Node 1";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
         bgcolor = "#f5eeeb";
         database [label="Database\n(PostgreSQL)"];
-	persistentdisk [label="Persistent Disk", fillcolor="#7bbda4"]
+        persistentdisk [label="Persistent Disk", fillcolor="#7bbda4"]
     }
 
     subgraph clusterAppServer {
         label = "Node 2";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
         bgcolor = "#f5eeeb";
         app [label="App\n(Django Gunicorn)"];
         app2 [label="App\n(Django Gunicorn)"];
+        color = "#b8afad";
     };
 
     subgraph clusterAppServer3 {
         label = "Node 3";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
         bgcolor = "#f5eeeb";
         app3 [label="App\n(Django Gunicorn)"];
         app4 [label="App\n(Django Gunicorn)"];
+        color = "#b8afad";
     };
 
     webserver [label="Load Balancer", fillcolor="#7bbda4"];

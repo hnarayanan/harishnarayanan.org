@@ -8,7 +8,7 @@ tags:
 ---
 
 If things work out as you've envisioned, there will be a time in your
-webapp's lifecycle where it's serving a large number of users. By the
+webapp's lifecycle when it's serving a large number of users. By the
 time things get to this point, it's ideal if you've architected your
 webapp to both *scale* gracefully to meet this load, and also be
 *resilient* to arbitrary failures of underlying compute resources.
@@ -44,7 +44,7 @@ With that out of the way, let's get started.
 Let's imagine that you're working on a Django webapp that's laid out
 in a fairly standard fashion: All your app's data resides in a
 PostgreSQL database. The app itself is written in Django-flavoured
-Python, and is served up using the uWSGI application server. And in
+Python, and is served up using the Gunicorn application server. And in
 front of all this, you have the NGINX web server acting both as a
 reverse proxy and a static content server.
 
@@ -76,7 +76,9 @@ on only one (but increasingly powerful) machine.
 
 {{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." >}}
 
-This is actually a pretty good strategy until you realise that:
+This is actually a pretty good solution (and it's what I use today in
+practice at my day job), but it comes with its own set of
+inconveniences:
 
 1. It's annoying to have to provision and setup all these server
 instances, one for each piece. (All while making sure that the
@@ -85,11 +87,11 @@ servers are up-to-date with the latest OS updates, etc.)
 
 2. You need to provision enough Django app instances to cope with your
 peak load, but your normal load  doesn't need nearly as many computing
-resources. Meaning that under most load scenarios, you're wasting
-money.
+resources. Meaning that you're wasting money under most scenarios.
 
-2. If a computing resource fails --- like someone spills coffee on a
-server --- that component of your app simply stops working. 😞
+3. There is poor resource isolation within a given server. i.e. If you
+happen to run your app and the database on the same machine, then
+there's nothing stopping one from clobbering the other.
 
 These are the sorts of problems that Docker and Kubernetes are
 designed to solve.
@@ -110,7 +112,10 @@ data into one convenient bundle, called a *container*.
 Some people tend to describe containers as lightweight virtual
 machines, but I prefer to think of them as [fat static
 binaries][container-perspective] of apps. They form an atomic unit
-that can be built, tested and run anywhere as many times as needed.
+that can be built, tested and run anywhere as many times as
+needed. Furthermore, containers also offer resource isolation, meaning
+that if two containers are running side by side, each can only see and
+do what they're supposed to.
 
 *What's Docker?*
 
@@ -123,6 +128,9 @@ the example that I assure you we're soon going to get to.)
 
 {{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="Application scheduled on a cluster." >}}
 
+> "Building management APIs around containers rather than machines
+  shifts the *primary key* of the data center from machine to
+  application."
 
 If we were to "containerise" the pieces of our application and run
 them in a replicated way on our closuter, we get the ability to
@@ -239,7 +247,7 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 5. [Packaging Django into containers][django-container]
 6. https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
 
-[example]: https://github.com/hnarayanan/django-k8s
+[example]: https://github.com/hnarayanan/kubernetes-django
 [linux-containers]: http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
@@ -254,3 +262,4 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
 [digital-ocean-referral]: https://m.do.co/c/e3559ea013de
 [container-perspective]: http://bricolage.io/hosting-static-sites-with-docker-and-nginx/
+[borg-omega-kubernetes]: http://queue.acm.org/detail.cfm?id=2898444
