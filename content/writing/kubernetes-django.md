@@ -28,7 +28,7 @@ framework that I'm familiar with. It is straightforward to repurpose
 these principles for other software stacks.
 
 I'd also like to point out that this article juggles many moving
-pieces -- some quite immature. If you can avoid this level of
+pieces --- some quite immature. If you can avoid this level of
 complexity at the current stage of your webapp's lifecycle, *you
 should*. Instead, focus your efforts on better understanding your
 users' problems and testing whether your app solves them. No one is
@@ -37,9 +37,9 @@ fragile server until enough people care to use your app regularly.
 
 *No one.*
 
-With that out of the way, let's get started.
+With that out of the way, let's get started!
 
-## What are the problems we're trying to solve?
+## There are some problems with traditional VM-based deployments
 
 Let's imagine that you're working on a Django webapp that's laid out
 in a fairly standard fashion: All your app's data resides in a
@@ -77,26 +77,34 @@ on only one (but increasingly powerful) machine.
 {{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." >}}
 
 This is actually a pretty good solution (and it's what I use today in
-practice at my day job), but it comes with its own set of
+practice at my [day job][edgefolio]), but it comes with its own set of
 inconveniences:
 
-1. It's annoying to have to provision and setup all these server
-instances, one for each piece. (All while making sure that the
-repeated instances are identical to each other. And making sure the
-servers are up-to-date with the latest OS updates, etc.)
+1. Its annoying to provision, setup and keep up-to-date one server for
+each component.
 
-2. You need to provision enough Django app instances to cope with your
-peak load, but your normal load  doesn't need nearly as many computing
-resources. Meaning that you're wasting money under most scenarios.
+2. You generally have poor resource utilisation because you're usually
+setup for peak load, and even if you scale the number of servers
+dynamically, each component usually doesn't use up the entire server.
 
 3. There is poor resource isolation within a given server. i.e. If you
 happen to run your app and the database on the same machine, then
 there's nothing stopping one from clobbering the other.
 
-These are the sorts of problems that Docker and Kubernetes are
-designed to solve.
+- - -
 
-## A quick glossary
+What if we could shift our attention from managing servers to simply
+running the components of our app on a collection of computing
+resources? What if these components were well isolated from each other
+and efficiently used the resources they had at their disposal?
+
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application scheduled on an abstract collection of resources." >}}
+
+This philosophical shift --- from managing *servers* to running
+*services* ideally --- is precisely the promise of containers and
+Kubernetes.
+
+## So how exactly do containers and Kubernetes help?
 
 *What is Kubernetes?*
 
@@ -124,9 +132,8 @@ the purposes of this article, it's a really popular [container
 format][docker-containers]. (And it's going to feature prominently in
 the example that I assure you we're soon going to get to.)
 
-## So how exactly does Kubernetes help solve these problems?
 
-{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="Application scheduled on a cluster." >}}
+
 
 > "Building management APIs around containers rather than machines
   shifts the *primary key* of the data center from machine to
@@ -263,3 +270,4 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [digital-ocean-referral]: https://m.do.co/c/e3559ea013de
 [container-perspective]: http://bricolage.io/hosting-static-sites-with-docker-and-nginx/
 [borg-omega-kubernetes]: http://queue.acm.org/detail.cfm?id=2898444
+[edgefolio]: https://edgefolio.com/
