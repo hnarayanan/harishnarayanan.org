@@ -1,5 +1,5 @@
 digraph Kubernetes {
-    bgcolor = "#fcf9f4";
+    bgcolor = "transparent";
     rankdir = LR;
     node [shape=box, style=filled, fillcolor="#d28b71"];
 
