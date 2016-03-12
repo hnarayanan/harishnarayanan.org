@@ -99,7 +99,7 @@ running the components of our app on a collection of computing
 resources? What if these components were well isolated from each other
 and efficiently used the resources they had at their disposal?
 
-{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application scheduled on an abstract collection of resources." >}}
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." >}}
 
 This philosophical shift --- [from managing *servers* to running
 *services* ideally][borg-omega-kubernetes] --- is precisely the
