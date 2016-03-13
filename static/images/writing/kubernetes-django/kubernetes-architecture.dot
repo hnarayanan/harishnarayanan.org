@@ -1,13 +1,13 @@
 digraph KubernetesArchitecture {
     bgcolor = "transparent";
     rankdir = "LR";
-    node [shape=box, style=filled, fillcolor="#d28b71"];
+    node [shape=box, style=filled, fillcolor="#8ab3b5"];
     compound=true;
 
-    subgraph clusterClient {
-        style = invis;
+    graph [fontsize=11];
+    node [fontsize=11];
+    edge [fontname=11];
         client [label="Client\n(kubectl)", fillcolor="#a89bb9"];
-    };
 
     subgraph clusterMaster {
         label = "Kubernetes Master";
@@ -43,7 +43,7 @@ digraph KubernetesArchitecture {
         color = "#b8afad";
     };
 
-    client -> API;
-    API -> kubelet[lhead="clusterNode1"];
-    API -> kubelet2[lhead="clusterNode2"];
+    client -> API [dir="both"];
+    API -> kubelet [dir="both"];
+    API -> kubelet2 [dir="both"];
 }
