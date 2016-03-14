@@ -108,12 +108,12 @@ frameworks like Kubernetes.
 
 ## So how exactly do Docker and Kubernetes help?
 
-
-
 *What is Kubernetes?*
 
 It's a container orchestration framework that takes "containerised
 applications" and schedules them systematically on clusters.
+
+{{< figure src="/images/writing/kubernetes-django/kubernetes-architecture.svg" title="The architecture of Kubernetes." >}}
 
 *What's a containerised application?*
 
@@ -198,96 +198,149 @@ that you can replication manage.
 
 ## Practical example on GKE
 
-### Containerisation (and building containers)
+### Preliminary steps
 
-1. PostgreSQL
+1. [Install Docker](https://docs.docker.com/engine/installation/).
 
-Build the container:
+2. Take a look at and get a feel for the [example
+application](https://github.com/hnarayanan/kubernetes-django/tree/master/containers/app)
+used in this repository. It is a simple blog application built by
+following the excellent [Django Girls
+Tutorial](http://tutorial.djangogirls.org).
+
+3. [Setup a cluster managed by
+Kubernetes](http://kubernetes.io/docs/getting-started-guides/). The
+effort required to do this can be substantial, so one easy way to get
+started is to sign up (for free) on Google Cloud Platform and use a
+managed version of Kubernetes called [Google Container
+Engine](https://cloud.google.com/container-engine/) (GKE).
+
+   1. Create an account on Google Cloud Platform and update your
+      billing information.
+
+   2. Install the [command line
+      interface](https://cloud.google.com/sdk/).
+
+   3. Create a project (that we'll call `$GCP_PROJECT`) using the web
+      interface.
+
+   4. Now, we're ready to set some basic configuration.
+
+      ````
+      gcloud config set project $GCP_PROJECT
+      gcloud config set compute/zone us-central1-b
+      ````
+
+   5. Then we create the cluster itself.
+
+      ````
+      gcloud container clusters create demo
+      gcloud container clusters list
+      ````
+
+   6. Finally, we configure `kubectl` to talk to the cluster.
+
+      ````
+      gcloud container clusters get-credentials demo
+      kubectl get nodes
+      ````
+
+4. (WIP!) Setup a persistent store for the database. In this example we're
+going to be using Persistent Disks from Google Cloud Platform. In
+order to make one of these, we create a disk and format it (using an
+instance that's temporarily created just for this purpose).
 
 ````
-cd containers/postgresql
-docker build -t hnarayanan/postgresql:9.5 .
+gcloud compute disks create pg-data-disk --size 50GB
+gcloud compute instances create pg-disk-formatter
+gcloud compute instances attach-disk pg-disk-formatter --disk pg-data-disk
+gcloud compute config-ssh
+ssh pg-disk-formatter.$GCP_PROJECT
+    sudo mkfs.ext4 -F /dev/sdb
+    exit
+gcloud compute instances detach-disk pg-disk-formatter --disk pg-data-disk
+gcloud compute instances delete pg-disk-formatter
 ````
 
-"Test" the container:
-
-````
-docker run --name database -e POSTGRES_DB=app_db -e POSTGRES_PASSWORD=app_db_pw -e POSTGRES_USER=app_db_user -d postgresql
-# docker run -it --link database:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U app_db_user'
-````
-
-Push it to a repository:
+### Create and publish Docker containers
 
 For this project, we'll be using [Docker Hub](https://hub.docker.com/)
 to host and deliver our containers. If you're interested in a private
 repository, you need to instead use something like [Google Container
 Registry](https://cloud.google.com/container-registry/).
 
+#### PostgreSQL
+
+Build the container:
+
+````
+cd containers/database
+docker build -t hnarayanan/postgresql:9.5 .
+````
+
+You can check it out locally if you want:
+
+````
+docker run --name database -e POSTGRES_DB=app_db -e POSTGRES_PASSWORD=app_db_pw -e POSTGRES_USER=app_db_user -d hnarayanan/postgresql:9.5
+# Echoes $PROCESS_ID to the screen
+docker exec -i -t $PROCESS_ID bash
+````
+
+Push it to a repository:
+
 ````
 docker login
 docker push hnarayanan/postgresql:9.5
 ````
 
-2. Django + uWSGI
+#### Django app running within Gunicorn
 
-https://github.com/mbentley/docker-django-uwsgi-nginx/blob/master/Dockerfile
-http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
+Build the container (TODO: Split into SQLite3 and PostgreSQL versions):
+
+````
+cd containers/app
+docker build -t hnarayanan/djangogirls-app:0.8 .
+````
+
+You can check it out locally if you want:
 
 ````
 # docker run --name some-app --link some-postgres:postgres -d application-that-uses-postgres
 ````
 
-3. NGINX
+Push it to a repository:
 
 ````
-cd containers/nginx
-docker build -t hnarayanan/nginx:1.9.11 .
-
-(docker run --name nginx -d hnarayanan/nginx:1.9.11)
-docker push hnarayanan/nginx:1.9.11
+docker push hnarayanan/djangogirls-app:0.8
 ````
 
-### Infrastructure setup
+### Deploy these containers to the Kubernetes cluster
 
-1. A Kubernetes cluster using Google Container Engine (GKE)
+#### Django app running within Gunicorn (first with SQLite3)
 
-   ````
-   gcloud config set project $GCP_PROJECT
-   gcloud config set compute/zone us-central1-b
-   gcloud container clusters create django-k8s
-   ````
+````
+kubectl create -f kubernetes/app/replication-controller-sqlite3.yaml
+kubectl create -f kubernetes/app/service.yaml
 
-2. A persistent disk for PostgreSQL
+kubectl get pods
+kubectl get svc
 
-   Create a disk and format it (using an instance that's temporarily
-   created just for this purpose).
+kubectl scale rc app-sqlite3 --replicas=3
+kubectl get pods
 
-   ````
-   gcloud compute disks create pg-data-disk --size 50GB
-   gcloud compute instances create pg-disk-formatter
-   gcloud compute instances attach-disk pg-disk-formatter --disk pg-data-disk
-   gcloud compute config-ssh
-   ssh pg-disk-formatter.$GCP_PROJECT
-       sudo mkfs.ext4 -F /dev/sdb
-       exit
-   gcloud compute instances detach-disk pg-disk-formatter --disk pg-data-disk
-   gcloud compute instances delete pg-disk-formatter
-   ````
+kubectl describe pod <pod-id>
+kubectl logs <pod-id>
+````
 
-   Setup this disk as something that's usable in Kubernetes.
+You can check resiliency by deleting one or more app pods and see it
+respawn.
 
-   ````
-   kubectl create -f kubernetes/database/persistent-volume.yaml
-   kubectl get pv
-   kubectl create -f kubernetes/database/persistent-volume-claim.yaml
-   kubectl get pvc
-   ````
+````
+kubectl delete pod <pod-id>
+kubectl get pods
+````
 
-### Orchestration with Kubernetes
-
-### Replication Controllers
-
-1. PostgreSQL
+#### PostgreSQL
 
 Even though our application only requires a single PostgreSQL instance
 running, we still run it under a (pod) replication controller. This
@@ -295,65 +348,69 @@ way, we have a service that monitors our database pod and ensures that
 one instance is running even if something weird happens, such as the
 underlying node fails.
 
-1. PostgreSQL
-
 ````
 kubectl create -f kubernetes/database/replication-controller.yaml
 kubectl get replicationcontrollers
 kubectl get pods
+kubectl describe pod <pod-id>
+kubectl logs <pod-id>
 
-kubectl stop -f kubernetes/database/replication-controller.yaml
-kubectl get replicationcontrollers
-kubectl get pods
-````
-
-### Services
-
-````
 kubectl create -f kubernetes/database/service.yaml
 kubectl get services
 kubectl describe services database
-
-kubectl stop -f kubernetes/database/service.yaml
-kubectl get services
 ````
 
+#### Django app running within Gunicorn (now, with PostgreSQL)
 
+````
+kubectl create -f kubernetes/app/replication-controller-postgres.yaml
 
-docker build -t hnarayanan/djangogirls-app:0.1 .
-docker push hnarayanan/djangogirls-app:0.1
+kubectl get pods
+kubectl get svc
+````
 
+Setup initial migrations and create an initial user
+````
+kubectl exec <some-app-postgres-pod-id> -- python /app/manage.py migrate
+kubectl exec -it <some-app-postgres-pod-id> -- python /app/manage.py createsuperuser
+````
 
-### PostgreSQL
+Scale the PostgreSQL pods to 3 replicas, and remove all SQLite3 pods
 
-#### Persistence
+````
+kubectl scale rc app-sqlite3 --replicas=0
+kubectl get pods
 
-- Create a persistent disk
-- Attach to VM
-- ssh into VM
-- Format disk
-- Log out of VM
-- Detach from VM
+kubectl scale rc app-postgres --replicas=3
+kubectl get pods
+````
 
-```
-gcloud compute disks create --size=500GB --zone=us-central1-a my-data-disk
-```
+### Static Files
 
-http://kubernetes.io/v1.1/docs/user-guide/persistent-volumes.html#persistent-volumes-and-claims
+````
+gsutil mb gs://django-kubernetes-assets
+gsutil defacl set public-read gs://django-kubernetes-assets
+cd django-k8s/containers/app
+./manage.py collectstatic --noinput
+gsutil -m cp -r static/* gs://django-kubernetes-assets
+````
 
-> A PersistentVolume (PV) is a piece of networked storage in the
-  cluster that has been provisioned by an administrator. It is a
-  resource in the cluster just like a node is a cluster resource. PVs
-  are volume plugins like Volumes, but have a lifecycle independent of
-  any individual pod that uses the PV. This API object captures the
-  details of the implementation of the storage, be that NFS, iSCSI, or
-  a cloud-provider-specific storage system.
+### TODO: Unmerged notes
 
-> A PersistentVolumeClaim (PVC) is a request for storage by a user. It
-  is similar to a pod. Pods consume node resources and PVCs consume PV
-  resources. Pods can request specific levels of resources (CPU and
-  Memory). Claims can request specific size and access modes (e.g, can
-  be mounted once read/write or many times read-only).
+````
+- Monitoring UI
+
+- Secrets Resource
+  echo mysecretpassword | base64
+  <paste into secrets file>
+  kubectl create -f kubernetes_configs/db_password.yaml
+
+- PostgreSQL Persistent Volume (Claims)
+  kubectl create -f kubernetes/database/persistent-volume.yaml
+  kubectl get pv
+  kubectl create -f kubernetes/database/persistent-volume-claim.yaml
+  kubectl get pvc
+````
 
 ## Some example usage
 
@@ -362,8 +419,6 @@ Explaining some tricks with the sample code to show how the app can be
 whatever it is called), knock a server out and see how it behaves.
 
 ## In conclusion
-
-
 
 ## Selected references and further reading
 
