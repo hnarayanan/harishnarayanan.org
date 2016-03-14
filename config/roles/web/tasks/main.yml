@@ -39,11 +39,14 @@
   with_fileglob:
     - ssl/*
 
-- name: Delete the default symbolic linked nginx website
+- name: Setup the folders to hold site-specific nginx configuration
   become: yes
   file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
   notify: restart nginx
 
 - name: Configure nginx to start on boot
@@ -51,6 +54,11 @@
   service:
     name=nginx
     enabled=yes
+
+- name: Create a folder to house the site content
+  file:
+    path: "/home/ubuntu/{{ domain_name }}"
+    state: directory
 
 - name: Setup this website as one of the available nginx sites
   become: yes
