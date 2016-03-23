@@ -1,10 +1,13 @@
 ---
-date: 2016-03-07T21:12:08+01:00
+date: 2016-03-21T21:00:00+01:00
 title: Scalable and resilient Django with Kubernetes
 category: devops
 tags:
-   - kubernetes
+   - cluster-orchestration
+   - containers
    - django
+   - docker
+   - kubernetes
 includes_code: yes
 ---
 
@@ -141,7 +144,7 @@ the example that I assure you we're soon going to get to.)
   application."
 
 If we were to "containerise" the pieces of our application and run
-them in a replicated way on our closuter, we get the ability to
+them in a replicated way on our cluster, we get the ability to
 *scale* our app with load. (If this happens automatically, all the
 better.) If we were further able to monitor and heal these containers
 (again, thinking of each one as one process of a static binary) ruch
@@ -226,21 +229,18 @@ version of Kubernetes called [Google Container Engine][GKE] (GKE).
       `$GCP_PROJECT`) using the web interface.
 
    4. Now, we're ready to set some basic configuration.
-
       ````
       gcloud config set project $GCP_PROJECT
       gcloud config set compute/zone europe-west1-d
       ````
 
    5. Then we create the cluster itself.
-
       ````
       gcloud container clusters create demo
       gcloud container clusters list
       ````
 
    6. Finally, we configure `kubectl` to talk to the cluster.
-
       ````
       gcloud container clusters get-credentials demo
       kubectl get nodes
@@ -370,13 +370,11 @@ Before we access the website using the external IP presented by
 `kubectl get svc`, we need to do a few things:
 
 1. Perform initial migrations:
-
    ````
    kubectl exec <some-app-orange-pod-id> -- python /app/manage.py migrate
    ````
 
 2. Create an intial user for the blog:
-
    ````
    kubectl exec -it <some-app-orange-pod-id> -- python /app/manage.py createsuperuser
    ````
@@ -385,7 +383,6 @@ Before we access the website using the external IP presented by
    for this. This demo uses Google Cloud storage, but you're free to
    use whatever you want. Just make sure `STATIC_URL` in
    `containers/app/mysite/settings.py` reflects where the files are.
-
    ````
    gsutil mb gs://demo-assets
    gsutil defacl set public-read gs://demo-assets
@@ -490,6 +487,7 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [API Server][kubernetes-api-server], [Scheduler][kubernetes-scheduler]
 5. [Packaging Django into containers][django-container]
 6. https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
+7. http://queue.acm.org/detail.cfm?id=2898444
 
 [example]: https://github.com/hnarayanan/kubernetes-django
 [linux-containers]: http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
