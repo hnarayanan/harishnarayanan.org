@@ -94,16 +94,6 @@ server {
 
   # resolver <IP DNS resolver>;
 
-  # TODO: Symlink these to linkedin (yuck) or remove the following
-
-  location /cv.pdf {
-    root /home/ubuntu/{{ domain_name }}/files/cv;
-  }
-
-  location /resume.pdf {
-    root /home/ubuntu/{{ domain_name }}/files/cv;
-  }
-
   location / {
     expires max;
     root /home/ubuntu/{{ domain_name }};
