@@ -1,0 +1,54 @@
+digraph Application {
+    bgcolor = "transparent";
+    rankdir = LR;
+    node[shape=box, style=filled, fillcolor="#d28b71"];
+
+    subgraph clusterClient {
+        style = invis;
+        browser [label="Browser", fillcolor="#a89bb9"];
+    };
+
+    subgraph clusterDatabaseServer {
+        label = "Database Server";
+        bgcolor = "#f5eeeb";
+        database [label="Database\n(PostgreSQL)"];
+    }
+
+    subgraph clusterAppServer {
+        label = "Application Server 1";
+        bgcolor = "#f5eeeb";
+        app [label="App\n(Django Gunicorn)"];
+    };
+
+    subgraph clusterAppServer2 {
+        label = "Application Server 2";
+        bgcolor = "#f5eeeb";
+        app2 [label="App\n(Django Gunicorn)"];
+    };
+
+    subgraph clusterAppServer3 {
+        label = "Application Server 3";
+        bgcolor = "#f5eeeb";
+        app3 [label="App\n(Django Gunicorn)"];
+    };
+
+    subgraph clusterLoadBalancer {
+	rank = "same";
+        label = "Load Balancer";
+        bgcolor = "#f5eeeb";
+	webserver [label="Web Server\n(NGINX)"];
+        assets [label="Static Assets"];
+    };
+
+    database -> app [label="TCP", dir="both"];
+    app -> webserver [label="HTTP", dir="both"];
+
+    database -> app2 [label="TCP", dir="both"];
+    app2 -> webserver [label="HTTP", dir="both"];
+
+    database -> app3 [label="TCP", dir="both"];
+    app3 -> webserver [label="HTTP", dir="both"];
+
+    // assets -> webserver;
+    webserver -> browser [label="HTTP", dir="both"];
+}

@@ -34,6 +34,9 @@ server {
   ssl_prefer_server_ciphers on;
 
   add_header Strict-Transport-Security max-age=15768000;
+  add_header X-Frame-Options "SAMEORIGIN";
+  add_header X-Content-Type-Options nosniff;
+  add_header X-XSS-Protection "1; mode=block";
 
   ssl_stapling on;
   ssl_stapling_verify on;
@@ -75,6 +78,9 @@ server {
   ssl_prefer_server_ciphers on;
 
   add_header Strict-Transport-Security max-age=15768000;
+  add_header X-Frame-Options "SAMEORIGIN";
+  add_header X-Content-Type-Options nosniff;
+  add_header X-XSS-Protection "1; mode=block";
 
   ssl_stapling on;
   ssl_stapling_verify on;
@@ -87,16 +93,6 @@ server {
   # ssl_trusted_certificate /path/to/root_CA_cert_plus_intermediates;
 
   # resolver <IP DNS resolver>;
-
-  # TODO: Symlink these to linkedin (yuck) or remove the following
-
-  location /cv.pdf {
-    root /home/ubuntu/{{ domain_name }}/files/cv;
-  }
-
-  location /resume.pdf {
-    root /home/ubuntu/{{ domain_name }}/files/cv;
-  }
 
   location / {
     expires max;

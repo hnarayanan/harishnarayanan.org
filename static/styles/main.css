@@ -1608,7 +1608,7 @@ hr {
 
 .post-date {
     display: inline-block;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     white-space: nowrap;
 }
 

@@ -1,195 +1,461 @@
 ---
-date: 2015-09-07T21:12:08+01:00
+date: 2016-03-21T21:00:00+01:00
 title: Scalable and resilient Django with Kubernetes
 category: devops
+tags:
+   - cluster-orchestration
+   - containers
+   - django
+   - docker
+   - kubernetes
+includes_code: yes
 ---
 
-If things work out as you’ve envisioned, there will be a time in your
-webapp’s lifecycle where it’s serving a large number of users. By the
-time things get to this point, it’s ideal if you’ve architected your
-webapp to both *scale gracefully* to meet this load, and also be
-*resilient to arbitrary failures* of underlying compute resources.
+If things work out as you've envisioned, there will be a time in your
+webapp's lifecycle when it's serving a large number of users. By the
+time things get to this point, it's ideal if you've architected your
+webapp to both *scale* gracefully to meet this load, and also be
+*resilient* to arbitrary failures of underlying compute resources.
 
 This article is about how you can use [Docker
 containers][docker-containers] and [Kubernetes][kubernetes] to help
 your [Django][django] webapp achieve these architectural goals. While
 it meanders a bit through theory and philosophy, it does work up to a
-concrete example to help solidify concepts.
+[concrete example][example] to help solidify concepts.
 
 ## Caveats
 
-Before we get too deep into the weeds, I’d like to note that the ideas
-expressed in this piece don’t have anything particular to do with
-Django. I’ve simply chosen it as an example because it is a framework
-I’m familiar with. It is straightforward to repurpose these principles
-for other software stacks.
+Before we get too deep into the weeds, I'd like to note that the ideas
+expressed in this piece don't have anything particular to do with
+Django. I've simply chosen it as an example because it is a popular
+framework that I'm familiar with. It is straightforward to repurpose
+these principles for other software stacks.
 
-I’d also like to point out that this article juggles many moving
-pieces -- some quite immature. If you can avoid this level of
-complexity at the current stage of your webapp’s lifecycle, you
-should. Instead, focus your efforts on better understanding your
-users’ problems and testing whether your app solves them. No one is
-going to know or complain that you’re running your app on a single
+I'd also like to point out that this article juggles many moving
+pieces --- some quite immature. If you can avoid this level of
+complexity at the current stage of your webapp's lifecycle, *you
+should*. Instead, focus your efforts on better understanding your
+users' problems and testing whether your app solves them. No one is
+going to know or complain that you're running your app on a single
 fragile server until enough people care to use your app regularly.
 
 *No one.*
 
-With that out of the way, let’s get started.
+With that out of the way, let's get started!
 
-## What are we trying to do?
+## There are some problems with traditional VM-based deployments
 
-A non-trivial webapp involving Django might look something like the
-following:
+Let's imagine that you're working on a Django webapp that's laid out
+in a fairly standard fashion: All your app's data resides in a
+PostgreSQL database. The app itself is written in Django-flavoured
+Python, and is served up using the Gunicorn application server. And in
+front of all this, you have the NGINX web server acting both as a
+reverse proxy and a static content server.
 
-{{< figure src="//placehold.it/1440x960" title="Layout of a non-trivial Django application." >}}
+{{< figure src="/images/writing/kubernetes-django/standard-django-application.svg" title="Layout of a non-trivial Django application." >}}
 
-It contains the following pieces
+When you're first starting out with your app and you only have a
+handful of users, it makes perfect sense to run all these pieces on a
+single server. So you run up to your [favourite cloud
+provider][digital-ocean-referral], fire up a VPS running Debian or
+whatever, and install all these individual bits of software on the
+same machine.
 
-(A) To achieve our twin goals of scalability and resiliency, we’re going
-to follow a simple pattern:
+{{< figure src="/images/writing/kubernetes-django/all-in-one-server.svg" title="All pieces making up the app on a single machine." >}}
 
-1. We break up our Django application into atomic units that can be
-easily built, tested and run anywhere.
+Then, as your app starts to get more popular, you begin to work on
+scaling. At first, you follow the straightforward approach and simply
+provision large and larger single machines to run your app on. This is
+called *vertical scaling* and works well until you reach a few
+thousand users.
 
-2. We run multiple copies each kind of unit behind a corresponding
-load balancer.
+And then your app gets *even more* popular.
 
-This becomes hard because what about load balancer ip discovery etc.,
-making sure your replicas are running etc.? Container techologies like
-Docker (or Rocket) offer a plan for the first point, while Kubernetes
-offers a plan for the second.
+Now you realise that if you were to split the components making up
+your app and put them on separate machines, you can scale the
+components independently. Meaning, for example, that you can run
+multiple instances of your app (called *horizontal scaling*) to handle
+your growing user base, while continuing to run your PostgreSQL server
+on only one (but increasingly powerful) machine.
 
-If this seems a bit abstract, let’s imagine what a non-trivial webapp
-involving Django might look like: (probably goes to (A)):
+{{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." >}}
 
-* A Postgresql database serving as the core persistence tier.
-* Memcached providing caching to prevent …
-* Django + uwsgi …
-* ```
-  database ←-\
-  search ←-> api ←-> webapps ←-> users
-  workers ←-> queue ←-/
-  ```
+This is actually a pretty good solution (and it's the basic idea
+underlying what we use today in practice at my [day job][edgefolio],
+using [Ansible][ansible] to setup the servers), but it comes with its
+own set of inconveniences:
 
-Now, it’s of course possible to run all this and more on a single
-Linux server, and it is … but how would you scale the pieces
-independently? E.g., how can you greatly increase the computational
-capacity provided by Celery without getting a larger and larger box
-(whose resources aren’t touched by the other components)? Furthermore,
-what happens when this one server goes down for whatever reason?
+1. Its annoying to provision, setup and keep up-to-date one server for
+each component. This is not the level at which you want to think about
+the system.
 
-… (That business from above that started this section gets moved here)
+2. You generally have poor resource utilisation because each component
+doesn't effectively use all that the server it's running on has to
+offer. This is primarily because you're often setup for peak load, not
+median load.
 
-To simplify this story, we have an app that looks like the following,
-or the classic Django app:
+3. If you try to resolve (2) by running both your app and database on
+the same machine, then there's nothing stopping one from clobbering
+the other. i.e. There is poor resource isolation within a given server.
 
-database <-> django (uwsgi) <-> nginx <-> users
+- - -
+
+What if we could shift our attention from managing servers to simply
+running the components of our app on a collection of computing
+resources? What if these components were well isolated from each other
+and efficiently used the resources they had at their disposal?
+
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." >}}
+
+This philosophical shift --- [from *managing servers* to *running
+services* ideally][borg-omega-kubernetes] --- is precisely the
+promise of container technology like Docker and cluster orchestration
+frameworks like Kubernetes.
+
+## So how exactly do Docker and Kubernetes help?
+
+You can think of ([Docker][docker]) containers as [fat static
+binaries][container-perspective] of your apps. They bundle your
+application code, the underlying libraries and all the necessary bits
+your app needs to run into a convenient bundle --- one that can be run
+on a thin layer directly over the Linux kernel. What this means in
+practice is that you can take this container and run it on different
+versions of Linux distributions, or entirely different Linux
+distributions and everything works seamlessly.
+
+By forming an atomic unit that can be built, tested and run anywhere,
+containers raise your level of concern above the specifics of the
+operating system, allowing you to focus on your app. Furthermore,
+containers also offer resource isolation, meaning that if two
+containers are running side by side, each can only see and do what
+they're supposed to.
+
+Once you've managed to build containers for different components of
+your app (as you'll see in the demo below), the only remaining step is
+to run them systematically on clusters and get them talking to each
+other.
+
+[Kubernetes][kubernetes] is an open source system for managing
+clusters and deploying "containerised" applications. Kubernetes
+abstracts the underlying hardware (of your cloud provider or
+on-premises cluster), and presents a simple API that puts you in
+control. You send this API some declarative state, e.g. "I'd like
+three copies of my Django app container running, please," and it
+ensures that the appropriate containers are scheduled on the nodes of
+your cluster. Furthermore, it monitors the situation and ensures that
+this state is maintained, allowing it to be robust to arbitrary
+changes in the system.
+
+Kubernetes works by having agents that sit on each node of your
+cluster, that allow for things like running Docker containers (*docker
+daemon*), making sure the desired state is maintained (*kubelet*) and
+that the containers can talk to each other (*kube-proxy*).
+
+{{< figure src="/images/writing/kubernetes-django/kubernetes-architecture.svg" title="The architecture of Kubernetes." >}}
+
+To get a better feeling for all this, let's look at a practical
+example.
+
+## Practical example on Google Container Engine
+
+This repository contains code and notes to get a sample Django
+application running on a Kubernetes cluster. It is meant to go along
+with a [related blog post][blog-post] that provides more context and
+explains some of the theory behind the steps that follow.
+
+### Preliminary steps
+
+1. [Install Docker][docker-installation].
+
+2. Take a look at and get a feel for the [example Django
+application][example-app] used in this repository. It is a simple blog
+that’s built following the excellent [Django Girls
+Tutorial][django-girls-tutorial].
+
+3. [Setup a cluster managed by Kubernetes][kubernetes]. The effort
+required to do this can be substantial, so one easy way to get started
+is to sign up (for free) on Google Cloud Platform and use a managed
+version of Kubernetes called [Google Container Engine][GKE] (GKE).
+
+   1. Create an account on Google Cloud Platform and update your
+      billing information.
+
+   2. Install the [command line interface][gcp-sdk].
+
+   3. Create a project (that we'll refer to henceforth as
+      `$GCP_PROJECT`) using the web interface.
+
+   4. Now, we're ready to set some basic configuration.
+      ````
+      gcloud config set project $GCP_PROJECT
+      gcloud config set compute/zone europe-west1-d
+      ````
+
+   5. Then we create the cluster itself.
+      ````
+      gcloud container clusters create demo
+      gcloud container clusters list
+      ````
+
+   6. Finally, we configure `kubectl` to talk to the cluster.
+      ````
+      gcloud container clusters get-credentials demo
+      kubectl get nodes
+      ````
+
+### Create and publish Docker containers
+
+For this example, we'll be using [Docker Hub](https://hub.docker.com/)
+to host and deliver our containers. And since we're not working with
+any sensitive information, we'll expose these containers to the
+public.
+
+#### PostgreSQL
+
+Build the container:
+
+````
+cd containers/database
+docker build -t hnarayanan/postgresql:9.5 .
+````
+
+You can check it out locally if you want:
+
+````
+docker run --name database -e POSTGRES_DB=app_db -e POSTGRES_PASSWORD=app_db_pw -e POSTGRES_USER=app_db_user -d hnarayanan/postgresql:9.5
+# Echoes $PROCESS_ID to the screen
+docker exec -i -t $PROCESS_ID bash
+````
+
+Push it to a repository:
+
+````
+docker login
+docker push hnarayanan/postgresql:9.5
+````
+
+#### Django app running within Gunicorn
+
+Build the container:
+
+````
+cd containers/app
+docker build -t hnarayanan/djangogirls-app:1.2-orange .
+````
+
+Push it to a repository:
+
+````
+docker push hnarayanan/djangogirls-app:1.2-orange
+````
+
+We're going to see how to perform rolling updates later in this
+example. For this, let's create an alternative version of our app that
+simply has a different header colour, build a new container app and
+push that too to the container repository.
+
+````
+cd containers/app
+emacs blog/templates/blog/base.html
+
+# Add the following just before the closing </head> tag
+    <style>
+      .page-header {
+        background-color: #ac4142;
+      }
+    </style>
+
+docker build -t hnarayanan/djangogirls-app:1.2-maroon .
+docker push hnarayanan/djangogirls-app:1.2-maroon
+````
+
+### Deploy these containers to the Kubernetes cluster
+
+#### PostgreSQL
+
+Even though our application only requires a single PostgreSQL instance
+running, we still run it under a (pod) replication controller. This
+way, we have a service that monitors our database pod and ensures that
+one instance is running even if something weird happens, such as the
+underlying node fails.
+
+````
+cd  kubernetes/database
+kubectl create -f replication-controller.yaml
+
+kubectl get rc
+kubectl get pods
+
+kubectl describe pod <pod-id>
+kubectl logs <pod-id>
+````
+
+Now we start a service to point to the pod.
+
+````
+cd  kubernetes/database
+kubectl create -f service.yaml
+
+kubectl get svc
+kubectl describe svc database
+````
+
+#### Django app running within Gunicorn
+
+We begin with three app pods (copies of the orange app container)
+talking to the single database.
+
+````
+cd kubernetes/app
+kubectl create -f replication-controller-orange.yaml
+kubectl get pods
+
+kubectl describe pod <pod-id>
+kubectl logs <pod-id>
+````
+
+Then we start a service to point to the pod. This is a load-balancer
+with an external IP so we can access the site.
+
+````
+cd kubernetes/app
+kubectl create -f service.yaml
+kubectl get svc
+````
+
+Before we access the website using the external IP presented by
+`kubectl get svc`, we need to do a few things:
+
+1. Perform initial migrations:
+   ````
+   kubectl exec <some-app-orange-pod-id> -- python /app/manage.py migrate
+   ````
+
+2. Create an intial user for the blog:
+   ````
+   kubectl exec -it <some-app-orange-pod-id> -- python /app/manage.py createsuperuser
+   ````
+
+3. Have a CDN host static files since we don't want to use Gunicorn
+   for this. This demo uses Google Cloud storage, but you're free to
+   use whatever you want. Just make sure `STATIC_URL` in
+   `containers/app/mysite/settings.py` reflects where the files are.
+   ````
+   gsutil mb gs://demo-assets
+   gsutil defacl set public-read gs://demo-assets
+   cd django-k8s/containers/app
+   ./manage.py collectstatic --noinput
+   gsutil -m cp -r static/* gs://demo-assets
+   ````
+
+At this point you should be able to load up the website by visiting
+the external IP for the app service (obtained by running `kubectl get
+svc`) in your browser.
+
+Go to `http://app-service-external-ip/admin/` to login using the
+credentials you setup earlier (while creating a super user), and
+return to the site to add some blog posts. Notice that as you refresh
+the site, the name of the app pod serving the site changes, while the
+content stays the same.
+
+### Play around to get a feeling for Kubernetes' API
+
+Now, suppose your site isn't getting much traffic, you can gracefully
+*scale* down the number of running application pods to one. (Similarly
+you can increase the number of pods if your traffic is starting to
+grow!)
+
+````
+kubectl scale rc app-orange --replicas=1
+kubectl get pods
+````
+
+You can check *resiliency* by deleting one or more app pods and see it
+respawn.
+
+````
+kubectl delete pod <pod-id>
+kubectl get pods
+````
+
+Notice Kubernetes will spin up the appropriate number of pods to match
+the last known state of the replication controller.
+
+Finally, to show how we can migrate from one version of the site to
+the next, we'll move from the existing orange version of the
+application to another version that's maroon.
+
+First we scale down the orange version to just one:
+
+````
+kubectl scale rc app-orange --replicas=1
+kubectl get pods
+````
+
+Then we spin up some copies of the new maroon version:
+
+````
+cd kubernetes/app
+kubectl create -f replication-controller-maroon.yaml
+kubectl get pods
+````
+
+Notice that because the app service is pointing simply to the label
+`name: app`, both the one orange and the three maroon apps respond to
+http requests to the external IP.
+
+When you're happy that the maroon version is working, you can spin
+down all remaining orange versions, and delete its replication
+controller.
+
+````
+kubectl scale rc app-orange --replicas=0
+kubectl delete rc app-orange
+````
+
+### Cleaning up
+
+After you're done playing around with this example, remember to
+cleanly discard the compute resources we spun up for it.
+
+````
+gcloud container clusters delete demo
+gsutil -m rm -r gs://demo-assets
+````
+
+## In conclusion
+
+Future iterations of this demo will have additional enhancements, such
+as using a Persistent Volume for PostgreSQL data and learning to use
+Kubernetes' Secrets API to handle secret passwords. Keep an eye on
+[the issues for this project][issues] to find out more. And you're
+free to help out too.
 
 Adding more pieces to this puzzle is left as an exercise for the
 reader. Please submit pull-requests to the original repo. if you work
 some of these out.
 
-Break your Django ++ app into pieces (and containerise them). Replace
-each individual piece with a load-balancer encompassing a collection
-that you can replication manage.
+## Selected references and further reading
 
-Why and when in an application’s lifecycle would you want to do this?
-
-A brief introduction to containerised Django + cohorts
-
-Orchestrating them together with Kubernetes
-
-Explaining some tricks with the sample code to show how the app can be
-(manually) scaled to meet known traffic demands. Hit with ab bench (or
-whatever it is called), knock a server out and see how it behaves.
-
-## A detour through containerization
-
-Container technology (such as Docker or Rocket) is a really big deal
-at the moment
-
-Split your system into components -> Make each component a container
-(an atomic unit that can run anywhere)
-
-> This changes how you think about the boundaries of your
-  application. Consider my case of hosting this static
-  website. Typically you’d think of this blog as the collection of
-  HTML, CSS, and images that make up the site.
-
-> What you think your application is affects how you deploy it. If
-  your application is a bundle of files then “deploying” means placing
-  these files inside a software system that understands HTTP and can
-  serve files, e.g. Apache or Nginx.
-
-> Compare this to how I’m using Docker for this blog. Instead of using
-  a global Nginx instance to serve my blog, I create a Docker image
-  with Nginx and my blog’s files. Which makes the resulting “blog
-  application” an atomic unit that I can build, test, and run anywhere
-  as many times as I want.
-
-Container technology (such as Docker or Rocket) is a really big deal
-these days. I wouldn't claim to understand completely, but here is a
-rough analogy.
-
-There is a lot of talk about containers (Docker, Rocket etc.) recently
-and I won’t claim to be an expert. But here is how I understand the
-situation. Think of a container as a process.
-
-You might traditionally think of a simple website as a collection of
-HTML and CSS files that you store on a server somewhere. On this
-server also runs a web server (such as Apache or NGINX) that serves
-your files to any incoming requester
-
-* Containerisation (and building containers)
-* Orchestration with Kubernetes
-* Practical example on GKE
-
-### PostgreSQL
-
-#### Persistence
-
-- Create a persistent disk
-- Attach to VM
-- ssh into VM
-- Format disk
-- Log out of VM
-- Detach from VM
-
-```
-gcloud compute disks create --size=500GB --zone=us-central1-a my-data-disk
-```
-
-http://kubernetes.io/v1.1/docs/user-guide/persistent-volumes.html#persistent-volumes-and-claims
-
-> A PersistentVolume (PV) is a piece of networked storage in the
-  cluster that has been provisioned by an administrator. It is a
-  resource in the cluster just like a node is a cluster resource. PVs
-  are volume plugins like Volumes, but have a lifecycle independent of
-  any individual pod that uses the PV. This API object captures the
-  details of the implementation of the storage, be that NFS, iSCSI, or
-  a cloud-provider-specific storage system.
-
-> A PersistentVolumeClaim (PVC) is a request for storage by a user. It
-  is similar to a pod. Pods consume node resources and PVCs consume PV
-  resources. Pods can request specific levels of resources (CPU and
-  Memory). Claims can request specific size and access modes (e.g, can
-  be mounted once read/write or many times read-only).
-
-## References and further reading
-
-1. [Building Scalable and Resilient Web Applications on Google Cloud
-Platform][gcp-scalable-webapps]
-2. [Linux Containers: Parallels, LXC, OpenVZ, Docker and
+1. [Linux Containers: Parallels, LXC, OpenVZ, Docker and
 More][linux-containers]
-3. Deploying a containerised Rails app to Google Container Engine with
-Kubernetes — [Part 1][kubernetes-rails-1], [Part
-2][kubernetes-rails-2], [Part 3][kubernetes-rails-3]
+2. [Borg, Omega, and Kubernetes][borg-omega-kubernetes]
+3. [Building Scalable and Resilient Web Applications on Google Cloud
+Platform][gcp-scalable-webapps]
 4. Understanding Kubernetes from the ground up — [Kubelet][kubernetes-kubelet],
 [API Server][kubernetes-api-server], [Scheduler][kubernetes-scheduler]
 5. [Packaging Django into containers][django-container]
-6. https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
+6. [Running Postgres Inside Kubernetes With Google Container Engine][kubernetes-postgres]
+7. Deploying Django with Kubernetes — [Talk][kubernetes-django-talk],
+[Example Code][kubernetes-django-repo]
+8. Deploying a containerised Rails app to Google Container Engine with
+Kubernetes — [Part 1][kubernetes-rails-1], [Part
+2][kubernetes-rails-2], [Part 3][kubernetes-rails-3]
 
-[linux-containers]: http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
+[example]: practical-example-on-google-container-engine:d4c663f7b7e5088d61b55e9f2c9602ed
+[linux-containers]:
+http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
+[docker]: https://www.docker.com/
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
 [django]: https://www.djangoproject.com
@@ -201,3 +467,18 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [kubernetes-api-server]: http://kamalmarhubi.com/blog/2015/09/06/kubernetes-from-the-ground-up-the-api-server/
 [kubernetes-scheduler]: http://kamalmarhubi.com/blog/2015/11/17/kubernetes-from-the-ground-up-the-scheduler/
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
+[digital-ocean-referral]: https://m.do.co/c/e3559ea013de
+[container-perspective]: http://bricolage.io/hosting-static-sites-with-docker-and-nginx/
+[borg-omega-kubernetes]: http://queue.acm.org/detail.cfm?id=2898444
+[edgefolio]: https://edgefolio.com/company/
+[ansible]: https://www.ansible.com
+[kubernetes-postgres]: https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
+[docker-installation]: https://docs.docker.com/engine/installation/
+[example-app]: https://github.com/hnarayanan/kubernetes-django/tree/master/containers/app
+[django-girls-tutorial]: http://tutorial.djangogirls.org
+[kubernetes]: http://kubernetes.io/
+[GKE]: https://cloud.google.com/container-engine/
+[gcp-sdk]: https://cloud.google.com/sdk/
+[issues]: https://github.com/hnarayanan/kubernetes-django/issues
+[kubernetes-django-talk]: https://www.youtube.com/watch?v=HKKUgWuIZro
+[kubernetes-django-repo]: https://github.com/waprin/kubernetes_django_postgres_redis
