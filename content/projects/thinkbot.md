@@ -7,4 +7,5 @@ description: Scientific computing, simplified.
 category: website
 exterior_link: http://thinkbot.net/
 start_date: 2013
+featured: yes
 ---
