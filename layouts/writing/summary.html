@@ -1,12 +1,12 @@
 <article class="post-summary">
   <header class="post-header">
-    <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <h2 class="post-title"><a href="{{ .RelPermalink }}#content">{{ .Title }}</a></h2>
     <section class="post-meta">
       <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "Jan 2006" }}</time> — {{ .PageMeta.ReadingTime }} min read
     </section>
   </header>
   <section class="post-excerpt">
     <p>{{ .Summary }}</p>
-    <p><a class="read-more" href="{{.RelPermalink}}">Read more &raquo;</a></p>
+    <p><a class="read-more" href="{{.RelPermalink}}#content">Read more &raquo;</a></p>
   </section>
 </article>
