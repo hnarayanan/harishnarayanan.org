@@ -1,5 +1,5 @@
 ---
-date: 2016-03-21T21:00:00+01:00
+date: 2016-03-31T21:00:00+01:00
 title: Scalable and resilient Django with Kubernetes
 category: devops
 tags:
@@ -157,13 +157,13 @@ deploying "containerised" applications. Kubernetes abstracts the
 underlying hardware (of your cloud provider or on-premises cluster),
 and presents a simple API that allows you to easily control it. You
 send this API some declarative state, e.g. "I'd like three copies of
-my Django app container running, please," and it ensures that the
-appropriate containers are scheduled on the nodes of your
-cluster. Furthermore, it monitors the situation and ensures that this
-state is maintained, allowing it to be robust to arbitrary changes in
-the system. This means, for example, that if a container is shut down
-prematurely because a node runs out of memory, Kubernetes will notice
-this and ensure another copy is restarted elsewhere.
+my Django app container running behind a load balancer, please," and
+it ensures that the appropriate containers are scheduled on the nodes
+of your cluster. Furthermore, it monitors the situation and ensures
+that this state is maintained, allowing it to be robust to arbitrary
+changes in the system. This means, for example, that if a container is
+shut down prematurely because a node runs out of memory, Kubernetes
+will notice this and ensure another copy is restarted elsewhere.
 
 Kubernetes works by having agents that sit on each node of your
 cluster. These allow for things like running Docker containers (the
@@ -469,7 +469,8 @@ gsutil -m rm -r gs://demo-assets
 
 TODO:
 
-* Philosophical shift from managing servers to running services ideally
+* Philosophical shift from managing servers to running services
+  ideally (machine oriented -> application oriented)
 
 * scale gracefully to meet this load, and also be resilient to arbitrary failures of underlying compute resources.
 
