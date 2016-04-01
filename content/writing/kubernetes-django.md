@@ -179,6 +179,14 @@ TODO: The way you communicate with it
 
 * rest API wrapped by `kubectl`
 * collection of resources: pods, labels, replication controllers, services
+Pods: Group multiple containers and shared volumes. Containers within
+a pod are tightly coupled and share namespaces (network, volumes) and
+talk via localhost. Unit of scheduling of k8s.
+Rc: Keeps pods running.
+Services: A logical grouping of pods that perform the same function
+Labels: Meta data with semantic meaning that allow identification of
+groups of resources (e.g. pods by a service)
+
 * some examples
 
 To get a better feeling for all this, let's look at a practical
