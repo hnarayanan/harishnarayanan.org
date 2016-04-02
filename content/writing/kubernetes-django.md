@@ -490,28 +490,46 @@ gsutil -m rm -r gs://demo-assets
 
 ## In conclusion
 
-TODO:
+This article covered a lot of ground. We first motivated the need for
+containers and cluster orchestration frameworks in general. We then
+saw how Docker and Kubernetes in particular help us deploy a Django
+application that can scale gracefully to meet loads, while
+simultaneously being resilient to arbitrary failures of underlying
+compute resources.
 
-* Philosophical shift from managing servers to running services
-  ideally (machine oriented -> application oriented)
+While this is a good introduction to concepts, there are a few details
+I glossed over which you will want to consider carefully before
+deciding if Kubernetes is right for you.
 
-* scale gracefully to meet this load, and also be resilient to arbitrary failures of underlying compute resources.
+The first is that setup of a Kubernetes cluster (when not using a
+hosted version like Google Container Engine, as in our example) is
+non-trivial. And while it attempts to abstract away the underlying
+hardware, the actual experience you have using Kubernetes is quite
+dependent on the actual infrastructure you're running on. So do play
+around with it in your environment to gauge if the complexity is worth
+it for you.
 
-* Setup of a Kubernetes cluster is non-trivial and the experience is heavily dependent on the capabilities of the underlying provider (GCP, AWS, Others)
+The second is that the example we worked through needs more work using
+additional Kubernetes primitives before it becomes useful in
+practice. These include using:
 
-* Do play around to gauge if complexity is worth it
+* *Persistent Volumes* (and *Persistent Volume Claims*) to ensure that
+  the PostgreSQL data is persistent beyond the life of its pod.
+* *Secrets* to handle database password and other sensitive
+  information.
+* *Daemon Sets* to help aggregate logging across nodes.
 
-* Try 1.2 (any day now!) for improved feature set, e.g. easier Secrets and Horizontal Auto-Scaling
+Keep an eye on [the issues list for the example project][issues] to
+find out more about progress on these fronts. And you're free to help
+out too. You can also add additional pieces to the puzzle (such as
+Redis or Elasticsearch)! And pull-requests are more than welcome if
+you work any of these out.
 
-Future iterations of this demo will have additional enhancements, such
-as using a Persistent Volume for PostgreSQL data and learning to use
-Kubernetes' Secrets API to handle secret passwords. Keep an eye on
-[the issues for the example project][issues] to find out more. And
-you're free to help out too.
-
-Adding more pieces to this puzzle is left as an exercise for the
-reader. Please submit pull-requests to the original repo. if you work
-some of these out.
+I'll leave you with the one thought that really excites me about all
+this. There is fascinating philosophical shift going on right now
+where we're turning our attention from *managing servers* to simply
+*running components of our app*. And this level of abstraction feels
+just right.
 
 ## Selected references and further reading
 
