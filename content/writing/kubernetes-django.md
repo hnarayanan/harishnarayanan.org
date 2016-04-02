@@ -212,7 +212,7 @@ bits work in practice to help us deploy our Django app.
 The example application we're going to be focusing on is a simple blog
 application.
 
-TODO: Screenshot
+{{< figure src="/images/writing/kubernetes-django/django-girls-blog-screenshot.png" title="Sample blog app following the Django Girls Tutorial." >}}
 
 While this is a very basic example, it contains all the necessary
 pieces we need to see the ideas we've discussed in practice. Over the
