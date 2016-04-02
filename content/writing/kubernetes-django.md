@@ -86,8 +86,8 @@ using [Ansible][ansible] to setup the servers), but it comes with its
 own set of inconveniences:
 
 1. Its annoying to provision, setup and keep up-to-date one server for
-each component. This is not the level at which you want to think about
-the system.
+each component. This is not the level at which you want to be thinking
+about the system.
 
 2. You generally have poor resource utilisation because each component
 doesn't effectively use all that the server it's running on has to
@@ -175,22 +175,37 @@ state.
 
 {{< figure src="/images/writing/kubernetes-django/kubernetes-architecture.svg" title="A simplified look at Kubernetes' architecture." >}}
 
-TODO: The way you communicate with it
+The Kubernetes API exposes a collection of cluster configuration
+resources that we can modify to express the state we want our cluster
+to be in. The API offers a standard REST interface, allowing us to
+interact with it in a multitude of ways. In the upcoming example,
+we're going to be using a thin command line client called `kubectl` to
+communicate with the server.
 
-* rest API wrapped by `kubectl`
-* collection of resources: pods, labels, replication controllers, services
-Pods: Group multiple containers and shared volumes. Containers within
-a pod are tightly coupled and share namespaces (network, volumes) and
-talk via localhost. Unit of scheduling of k8s.
-Rc: Keeps pods running.
-Services: A logical grouping of pods that perform the same function
-Labels: Meta data with semantic meaning that allow identification of
-groups of resources (e.g. pods by a service)
+While the API [offers numerous primitives][kubernetes-api] to work
+with, here are a few that are important for our example today:
 
-* some examples
+* **Pods**: Pods are a collection of closely coupled containers that
+  are scheduled together on the same node, allowing them to share
+  volumes and a local network. They are smallest units that can be
+  deployed within a Kubernetes cluster.
 
-To get a better feeling for all this, let's look at a practical
-example.
+* **Labels**: Labels are arbitrary key/value pairs (e.g. `name: app` or
+  `stage: production`) associated with Kubernetes resources. They
+  allow for an easy way to select and organise sets of resources.
+
+* **Replication Controllers**: Replication Controllers ensure that a
+  specified number of pods (of a specific kind) are running at any
+  given time. They group pods via labels.
+
+* **Services**: Services offer a logical grouping of a set of pods
+  that perform the same function. By providing a persistent name, IP
+  address or port for this set, they offer service discovery and load
+  balancing.
+
+If this all seems a bit too abstract at the moment, do not fret. We're
+now going to jump into a practical example that demonstrates how these
+bits work in practice to help us deploy our Django app.
 
 ## Practical example on Google Container Engine
 
@@ -522,6 +537,7 @@ http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-a
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
 [django]: https://www.djangoproject.com
+[kubernetes-api]: http://kubernetes.io/kubernetes/third_party/swagger-ui/
 [gcp-scalable-webapps]: https://cloud.google.com/solutions/scalable-and-resilient-apps
 [kubernetes-rails-1]: http://www.thagomizer.com/blog/2015/05/12/basic-docker-rails-app.html
 [kubernetes-rails-2]: http://www.thagomizer.com/blog/2015/07/01/kubernetes-and-deploying-to-google-container-engine.html
