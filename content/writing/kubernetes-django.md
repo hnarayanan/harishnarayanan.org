@@ -65,7 +65,7 @@ same machine.
 
 Then, as your app starts to get more popular, you begin to work on
 scaling. At first, you follow the straightforward approach and simply
-provision large and larger single machines to run your app on. This is
+provision larger and larger single machines to run your app on. This is
 called *vertical scaling* and works well until you reach a few
 thousand users.
 
@@ -185,27 +185,26 @@ communicate with the server.
 While the API [offers numerous primitives][kubernetes-api] to work
 with, here are a few that are important for our example today:
 
-* **Pods**: Pods are a collection of closely coupled containers that
-  are scheduled together on the same node, allowing them to share
-  volumes and a local network. They are smallest units that can be
+* **Pods** are a collection of closely coupled containers that are
+  scheduled together on the same node, allowing them to share volumes
+  and a local network. They are the smallest units that can be
   deployed within a Kubernetes cluster.
 
-* **Labels**: Labels are arbitrary key/value pairs (e.g. `name: app` or
+* **Labels** are arbitrary key/value pairs (e.g. `name: app` or
   `stage: production`) associated with Kubernetes resources. They
   allow for an easy way to select and organise sets of resources.
 
-* **Replication Controllers**: Replication Controllers ensure that a
-  specified number of pods (of a specific kind) are running at any
-  given time. They group pods via labels.
+* **Replication Controllers** ensure that a specified number of pods
+  (of a specific kind) are running at any given time. They group pods
+  via labels.
 
-* **Services**: Services offer a logical grouping of a set of pods
-  that perform the same function. By providing a persistent name, IP
-  address or port for this set, they offer service discovery and load
-  balancing.
+* **Services** offer a logical grouping of a set of pods that perform
+  the same function. By providing a persistent name, IP address or
+  port for this set, they offer service discovery and load balancing.
 
 If this all seems a bit too abstract at the moment, do not fret. We're
-now going to jump into a practical example that demonstrates how these
-bits work in practice to help us deploy our Django app.
+now going to jump into an example that demonstrates how these bits
+work in practice to help us deploy our Django app.
 
 ## Practical example on Google Container Engine
 
@@ -509,21 +508,21 @@ dependent on the actual infrastructure you're running on. So do play
 around with it in your environment to gauge if the complexity is worth
 it for you.
 
-The second is that the example we worked through needs more work using
+The second is that our example deployment needs more work using
 additional Kubernetes primitives before it becomes useful in
 practice. These include using:
 
 * *Persistent Volumes* (and *Persistent Volume Claims*) to ensure that
   the PostgreSQL data is persistent beyond the life of its pod.
-* *Secrets* to handle database password and other sensitive
+* *Secrets* to handle the database password and other sensitive
   information.
 * *Daemon Sets* to help aggregate logging across nodes.
 
 Keep an eye on [the issues list for the example project][issues] to
 find out more about progress on these fronts. And you're free to help
 out too. You can also add additional pieces to the puzzle (such as
-Redis or Elasticsearch)! And pull-requests are more than welcome if
-you work any of these out.
+Redis or Elasticsearch). Pull-requests are more than welcome if
+you work any of these out!
 
 I'll leave you with the one thought that really excites me about all
 this. There is fascinating philosophical shift going on right now
