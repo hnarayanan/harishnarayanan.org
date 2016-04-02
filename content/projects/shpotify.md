@@ -20,11 +20,12 @@ SSH).
 
 With it, we can now do this:
 
-<pre>megatr0n$ spotify
+````
+megatr0n$ spotify
 ------------------------------------
 A command-line interface for Spotify
 ------------------------------------
-Usage: spotify &#60;option&#62;
+Usage: spotify <option>
 
 Options:
  status   = Shows Spotify's status, current track details.
@@ -68,4 +69,5 @@ Album: Disreali Gears
 Track: Tales Of Brave Ulysses
 
 megatr0n$ spotify quit
-Quitting Spotify.</pre>
+Quitting Spotify.
+````
