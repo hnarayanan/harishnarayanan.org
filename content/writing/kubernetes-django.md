@@ -415,7 +415,6 @@ Before we access the website using the external IP presented by
    ````
    gsutil mb gs://demo-assets
    gsutil defacl set public-read gs://demo-assets
-
    cd django-k8s/containers/app
    virtualenv --distribute --no-site-packages venv
    source venv/bin/activate
