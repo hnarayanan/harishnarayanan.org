@@ -85,9 +85,9 @@ underlying what we use today in practice at my [day job][edgefolio],
 using [Ansible][ansible] to setup the servers), but it comes with its
 own set of inconveniences:
 
-1. Its annoying to provision, setup and keep up-to-date one server for
-each component. This is not the level at which you want to be thinking
-about the system.
+1. It's annoying to provision, setup and keep up-to-date one server
+for each component. This is not the level at which you want to be
+thinking about the system.
 
 2. You generally have poor resource utilisation because each component
 doesn't effectively use all that the server it's running on has to
@@ -143,14 +143,14 @@ app. Containers also offer resource isolation, meaning that if two of
 them are running side by side, each can only see and do what they're
 supposed to.
 
-This means our deployment journey can be broken down into two coarse
-steps. The first is to take the different components of our app and
-package them into containers. The second is to run these on our
-computing resources --- leveraging underlying computing primitives such
-as *load balancers*, and ensuring that the containers are properly
-networked.
+This means our deployment journey can now be broken down into two
+coarse steps. The first is to take the different components of our app
+and package them into containers. The second is to run these on our
+computing resources --- leveraging underlying computing primitives
+such as *load balancers*, and ensuring that the containers are
+properly networked.
 
-This second step is where [Kubernetes][kubernetes] comes in.
+This second step is where [Kubernetes][kubernetes-intro] comes in.
 
 Kubernetes is an open source system for managing clusters and
 deploying "containerised" applications. Kubernetes abstracts the
@@ -180,7 +180,7 @@ resources that we can modify to express the state we want our cluster
 to be in. The API offers a standard REST interface, allowing us to
 interact with it in a multitude of ways. In the upcoming example,
 we're going to be using a thin command line client called `kubectl` to
-communicate with the server.
+communicate with the API server.
 
 While the API [offers numerous primitives][kubernetes-api] to work
 with, here are a few that are important for our example today:
@@ -200,7 +200,8 @@ with, here are a few that are important for our example today:
 
 * **Services** offer a logical grouping of a set of pods that perform
   the same function. By providing a persistent name, IP address or
-  port for this set, they offer service discovery and load balancing.
+  port for this set of pods, they offer service discovery and load
+  balancing.
 
 If this all seems a bit too abstract at the moment, do not fret. We're
 now going to jump into an example that demonstrates how these bits
@@ -208,8 +209,8 @@ work in practice to help us deploy our Django app.
 
 ## Practical example on Google Container Engine
 
-The example application we're going to be focusing on is a simple blog
-application.
+The example application that we're going to be focusing on is a simple
+blog application.
 
 {{< figure src="/images/writing/kubernetes-django/django-girls-blog-screenshot.png" title="Sample blog app following the Django Girls Tutorial." >}}
 
@@ -229,17 +230,18 @@ version of your Django app to another with no downtime.
 
 ### Preliminary steps
 
-1. [Install Docker][docker-installation].
+1. [Install Docker][docker-install].
 
 2. Take a look at and get a feel for the [example Django
 application][example-app] used in this repository. It is a simple blog
 that’s built following the excellent [Django Girls
 Tutorial][django-girls-tutorial].
 
-3. [Setup a cluster managed by Kubernetes][kubernetes]. The effort
-required to do this can be substantial, so one easy way to get started
-is to sign up (for free) on Google Cloud Platform and use a managed
-version of Kubernetes called [Google Container Engine][GKE] (GKE).
+3. [Setup a cluster managed by Kubernetes][kubernetes-install]. The
+effort required to do this can be substantial, so one easy way to get
+started is to sign up (for free) on Google Cloud Platform and use a
+managed version of Kubernetes called [Google Container Engine][GKE]
+(GKE).
 
    1. Create an account on Google Cloud Platform and update your
       billing information.
@@ -276,7 +278,8 @@ public.
 
 #### PostgreSQL
 
-Build the container:
+Build the container, remembering to use your own username on Docker
+Hub instead of `hnarayanan`:
 
 ````
 cd containers/database
@@ -401,8 +404,8 @@ Before we access the website using the external IP presented by
    ````
 
 3. Have a CDN host static files since we don't want to use Gunicorn
-   for this. This demo uses Google Cloud storage, but you're free to
-   use whatever you want. Just make sure `STATIC_URL` in
+   for serving these. This demo uses Google Cloud storage, but you're
+   free to use whatever you want. Just make sure `STATIC_URL` in
    `containers/app/mysite/settings.py` reflects where the files are.
    ````
    gsutil mb gs://demo-assets
@@ -426,8 +429,7 @@ content stays the same.
 
 Now, suppose your site isn't getting much traffic, you can gracefully
 *scale* down the number of running application pods to one. (Similarly
-you can increase the number of pods if your traffic is starting to
-grow!)
+you can increase the number of pods if your traffic starts to grow!)
 
 ````
 kubectl scale rc app-orange --replicas=1
@@ -449,7 +451,7 @@ Finally, to show how we can migrate from one version of the site to
 the next, we'll move from the existing orange version of the
 application to another version that's maroon.
 
-First we scale down the orange version to just one:
+First we scale down the orange version to just one copy:
 
 ````
 kubectl scale rc app-orange --replicas=1
@@ -500,10 +502,10 @@ While this is a good introduction to concepts, there are a few details
 I glossed over which you will want to consider carefully before
 deciding if Kubernetes is right for you.
 
-The first is that setup of a Kubernetes cluster (when not using a
+The first is that the setup of a Kubernetes cluster (when not using a
 hosted version like Google Container Engine, as in our example) is
-non-trivial. And while it attempts to abstract away the underlying
-hardware, the actual experience you have using Kubernetes is quite
+non-trivial. And while Kubernetes attempts to abstract away the
+underlying hardware, the actual experience you have using it is quite
 dependent on the actual infrastructure you're running on. So do play
 around with it in your environment to gauge if the complexity is worth
 it for you.
@@ -516,6 +518,8 @@ practice. These include using:
   the PostgreSQL data is persistent beyond the life of its pod.
 * *Secrets* to handle the database password and other sensitive
   information.
+* *Horizontal Pod Autoscaling* to automatically adjust the number of
+  running pods based on observed CPU utilisation.
 * *Daemon Sets* to help aggregate logging across nodes.
 
 Keep an eye on [the issues list for the example project][issues] to
@@ -553,6 +557,7 @@ http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-a
 [docker]: https://www.docker.com/
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
+[kubernetes-intro]: http://kubernetes.io/docs/whatisk8s/
 [django]: https://www.djangoproject.com
 [kubernetes-api]: http://kubernetes.io/kubernetes/third_party/swagger-ui/
 [gcp-scalable-webapps]: https://cloud.google.com/solutions/scalable-and-resilient-apps
@@ -569,7 +574,8 @@ http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-a
 [edgefolio]: https://edgefolio.com/company/
 [ansible]: https://www.ansible.com
 [kubernetes-postgres]: https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
-[docker-installation]: https://docs.docker.com/engine/installation/
+[docker-install]: https://docs.docker.com/engine/installation/
+[kubernetes-install]: http://kubernetes.io/docs/getting-started-guides/
 [example-app]: https://github.com/hnarayanan/kubernetes-django/tree/master/containers/app
 [django-girls-tutorial]: http://tutorial.djangogirls.org
 [kubernetes]: http://kubernetes.io/
