@@ -230,14 +230,19 @@ version of your Django app to another with no downtime.
 
 ### Preliminary steps
 
-1. [Install Docker][docker-install].
+1. Fetch the source code for this example.
+   ````
+   git clone https://github.com/hnarayanan/kubernetes-django.git
+   ````
 
-2. Take a look at and get a feel for the [example Django
+2. [Install Docker][docker-install].
+
+3. Take a look at and get a feel for the [example Django
 application][example-app] used in this repository. It is a simple blog
 that’s built following the excellent [Django Girls
 Tutorial][django-girls-tutorial].
 
-3. [Setup a cluster managed by Kubernetes][kubernetes-install]. The
+4. [Setup a cluster managed by Kubernetes][kubernetes-install]. The
 effort required to do this can be substantial, so one easy way to get
 started is to sign up (for free) on Google Cloud Platform and use a
 managed version of Kubernetes called [Google Container Engine][GKE]
@@ -410,7 +415,12 @@ Before we access the website using the external IP presented by
    ````
    gsutil mb gs://demo-assets
    gsutil defacl set public-read gs://demo-assets
+
    cd django-k8s/containers/app
+   virtualenv --distribute --no-site-packages venv
+   source venv/bin/activate
+   pip install Django==1.9.5
+   export DATABASE_ENGINE='django.db.backends.sqlite3'
    ./manage.py collectstatic --noinput
    gsutil -m cp -r static/* gs://demo-assets
    ````
