@@ -2,15 +2,10 @@
 
 This repository contains the source code, assets and setup scripts for
 my personal website: [harishnarayanan.org](https://harishnarayanan.org).
-The site is generated using [Hugo](https://gohugo.io/) and its content
+The site is generated using [Hugo](https://gohugo.io/), and its content
 is mostly written in [Markdown](https://daringfireball.net/projects/markdown/).
-The Linux server that’s hosting the site is setup using
+The site is hosted using a Linux server that’s setup using
 [Ansible](http://www.ansible.com).
-
-Be wary of cloning this code any time soon since this is a rapidly
-evolving work in progress.
-
-(c) Harish Narayanan 2016 **All Rights Reserved**.
 
 ## How to use this repository
 
@@ -30,7 +25,7 @@ of things:
 
 1. Go to your favourite cloud provider (I use [Digital
    Ocean](https://m.do.co/c/e3559ea013de)) and provision a virtual
-   machine running [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/).
+   machine running [Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/).
 
 2. Make sure you can `ssh` to this virtual machine. Edit
    `config/servers/personal-site` to reflect the domain name (or IP)
@@ -90,3 +85,25 @@ links.
 ````
 wget --spider -o wget.log -e robots=off -w 1 -r -p https://harishnarayanan.org/
 ````
+
+## Copyright and license
+
+Copyright (c) 2016 [Harish Narayanan](https://harishnarayanan.org).
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
