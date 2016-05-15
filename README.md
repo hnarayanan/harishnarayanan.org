@@ -57,7 +57,6 @@ of things:
 
    ````
    make
-
    ````
 
 4. Copy the generated files to the web server.
