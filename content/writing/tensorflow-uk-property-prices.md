@@ -1,5 +1,6 @@
 ---
 date: 2016-06-30T21:00:00+01:00
+draft: true
 title: Using TensorFlow to predict U.K. property prices
 category: datascience
 tags:
