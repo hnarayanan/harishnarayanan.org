@@ -25,12 +25,14 @@ of things:
 
 1. Go to your favourite cloud provider (I use [Digital
    Ocean](https://m.do.co/c/e3559ea013de)) and provision a virtual
-   machine running [Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/).
+   machine running [Ubuntu 16.04
+   LTS](http://releases.ubuntu.com/16.04/) to act as your new server.
 
-2. Make sure you can `ssh` to this virtual machine. Edit
-   `config/servers/personal-site` to reflect the domain name (or IP)
-   and `ssh` user name. Also update `domain_name` in
-   `/config/site.yml` to point to your new server’s domain name.
+2. Make sure you can SSH to this server. Edit
+   `config/servers/personal-site` to reflect the domain name (or IP
+   address) of the server, as well as the SSH username you use to
+   access it. Also update `domain_name` in `/config/site.yml` to point
+   to your new server’s domain name.
 
 3. Install [Ansible](http://www.ansible.com) on your local development
    machine.
@@ -45,30 +47,31 @@ of things:
 
 ### Build and upload the site to the web server
 
-1. Install [hugo](https://gohugo.io) on your local development
-   machine. Let’s assume it lives somewhere in `$PATH`.
+1. Install [Hugo](https://gohugo.io) on your local development
+   machine.
 
-2. Generate the site.
+2. Update `Makefile` to reflect your local path to the `hugo`
+   executable, as well as your server’s SSH username and domain name.
+
+3. Generate the site.
 
    ````
-   $PATH/hugo
+   make
 
    ````
 
-3. Copy the generated files to the web server.
+4. Copy the generated files to the web server.
 
-    ````
-    rsync -aPvhe ssh --delete public/ ubuntu@harishnarayanan.org:/home/ubuntu/harishnarayanan.org
-    ````
-
-    Edit the domain name and virtual machine `ssh` user as needed.
+   ````
+   make publish
+   ````
 
 ## Everyday development
 
 For day-to-day development and content writing, you can run `hugo`
 locally to serve drafts of the site. This is an excellent way to work
-as Hugo refreshes in the browser as you save files.
-
+as Hugo refreshes in the browser as you save files. Just make sure
+`hugo` is in your path and run:
 
 ````
 $PATH/hugo server --watch
@@ -80,10 +83,11 @@ site just as before.
 ## Checking links
 
 This is just a command I find handy to reduce the instances of broken
-links.
+links. It spiders through the site and outputs the status of links to
+`wget.log`.
 
 ````
-wget --spider -o wget.log -e robots=off -w 1 -r -p https://harishnarayanan.org/
+make checklinks
 ````
 
 ## Copyright and license

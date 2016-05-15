@@ -2,3 +2,4 @@
 /config/roles/web/files/ssl
 /scratch
 /kubernetes
+wget.log
