@@ -1,0 +1,54 @@
+digraph Kubernetes {
+    bgcolor = "transparent";
+    rankdir = LR;
+    node [shape=box, style=filled, fillcolor="#d28b71"];
+
+    subgraph clusterClient {
+        style = invis;
+        browser [label="Browser", fillcolor="#a89bb9"];
+    };
+
+    subgraph clusterNode1 {
+        label = "Node 1";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+        database [label="Database\n(PostgreSQL)"];
+        persistentdisk [label="Persistent Disk", fillcolor="#7bbda4"]
+    }
+
+    subgraph clusterNode2 {
+        label = "Node 2";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+        app [label="App\n(Django Gunicorn)"];
+        app2 [label="App\n(Django Gunicorn)"];
+        color = "#b8afad";
+    };
+
+    subgraph clusterNode3 {
+        label = "Node 3";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+        app3 [label="App\n(Django Gunicorn)"];
+        color = "#b8afad";
+    };
+
+    loadbalancer [label="Load Balancer", fillcolor="#7bbda4"];
+    cdn [label="Content Delivery Network\n(Static Assets)", fillcolor="#7bbda4"];
+
+    database -> app [label="TCP", dir="both"];
+    app -> loadbalancer [label="HTTP", dir="both"];
+
+    database -> app2 [label="TCP", dir="both"];
+    app2 -> loadbalancer [label="HTTP", dir="both"];
+
+    database -> app3 [label="TCP", dir="both"];
+    app3 -> loadbalancer [label="HTTP", dir="both"];
+
+    loadbalancer -> browser [label="HTTP", dir="both"];
+
+    cdn -> browser [label="HTTP", dir="both"];
+}

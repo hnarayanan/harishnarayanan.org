@@ -1,5 +1,5 @@
 /*
-* Copyright 2015, Harish Narayanan
+* Copyright 2016, Harish Narayanan
 * https://harishnarayanan.org
 *
 * The following is mostly a Frankenstein merge of ideas and code from:
@@ -1471,7 +1471,7 @@ hr {
 
 .post-date {
     display: inline-block;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     white-space: nowrap;
 }
 

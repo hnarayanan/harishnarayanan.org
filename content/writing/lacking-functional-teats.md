@@ -1,5 +1,6 @@
 ---
 date: 2006-04-21
+draft: true
 title: Lacking functional teats
 category: personal
 ---

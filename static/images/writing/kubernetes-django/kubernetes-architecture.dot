@@ -1,0 +1,49 @@
+digraph KubernetesArchitecture {
+    bgcolor = "transparent";
+    rankdir = "LR";
+    node [shape=box, style=filled, fillcolor="#8ab3b5"];
+    compound=true;
+
+    graph [fontsize=11];
+    node [fontsize=11];
+    edge [fontname=11];
+        client [label="Client\n(kubectl)", fillcolor="#a89bb9"];
+
+    subgraph clusterMaster {
+        label = "Kubernetes Master";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+	scheduler [label="Scheduler"];
+	API [label="API Server"];
+	controller_manager [label="Controller Manager"];
+	etcd;
+        color = "#b8afad";
+    }
+
+    subgraph clusterNode1 {
+        label = "Kubernetes Node 1";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+	Docker;
+	kubelet;
+	Proxy [label="kube-proxy"];
+        color = "#b8afad";
+    };
+
+    subgraph clusterNode2 {
+        label = "Kubernetes Node 2";
+        fontcolor = "#b8afad";
+        color = "#b8afad";
+        bgcolor = "#f5eeeb";
+	Docker2 [label="Docker"];
+	kubelet2 [label="kubelet"];
+	Proxy2 [label="kube-proxy"];
+        color = "#b8afad";
+    };
+
+    client -> API [dir="both"];
+    API -> kubelet [dir="both"];
+    API -> kubelet2 [dir="both"];
+}

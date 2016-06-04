@@ -1,5 +1,5 @@
 ---
-date: 2015-09-12T15:25:19+01:00
+date: 2016-06-12T15:25:19+01:00
 draft: true
 title: Architecting a modern webapp with Django and AngularJS
 category: development

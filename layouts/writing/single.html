@@ -4,11 +4,20 @@
 <!-- TODO: Have the notion of first-published and last updated? -->
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
+    <!-- TODO: The following could be styled properly, allowing for social media sharing right up top -->
+      <!-- <a class="icon-twitter" href="https://twitter.com/intent/tweet?text={{ .Title }}&amp;url=" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"> -->
+      <!--   <span class="hidden">Twitter</span> -->
+      <!-- </a> -->
+      <!-- <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=" -->
+      <!--    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"> -->
+      <!--   <span class="hidden">Facebook</span> -->
+      <!-- </a> -->
+      <!-- <a class="icon-google-plus" href="https://plus.google.com/share?url=" -->
+      <!--    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"> -->
+      <!--   <span class="hidden">Google+</span> -->
+      <!-- </a> -->
     <section class="post-meta">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time>
-      <!-- TODO: Incorporate number of words and read count into the template -->
-      <!-- {{ .PageMeta.WordCount }} -->
-      <!-- {{ .PageMeta.ReadingTime }} -->
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">  {{ .Date.Format "2 Jan 2006" }}</time> — {{ .PageMeta.ReadingTime }} min read
     </section>
   </header>
 
@@ -20,18 +29,7 @@
   <footer class="post-footer">
     <section class="share">
       <h4>Enjoyed this article?</h4>
-      <p>Return to my article collection to find more. Follow me on twitter or subscribe to the RSS feed!</p>
-      <a class="icon-twitter" href="https://twitter.com/intent/tweet?text={{ .Title }}&amp;url=" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-      </a>
-      <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u="
-         onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-      </a>
-      <a class="icon-google-plus" href="https://plus.google.com/share?url="
-         onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-      </a>
+      <p>Return to my <a href="/writing/">article collection</a> to find more fun stuff to read. And <a href="https://twitter.com/copingbear">follow me on Twitter</a> or <a href="/index.xml">subscribe to the RSS feed</a> to keep up-to-date with new writing!</p>
     </section>
   </footer>
 
