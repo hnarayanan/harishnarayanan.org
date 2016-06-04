@@ -96,7 +96,7 @@ server {
 
   location / {
     expires max;
-    root /home/ubuntu/{{ domain_name }};
+    root /home/{{ remote_user_name }}/{{ domain_name }};
     error_page 404 /404.html;
     location /papers {
 	autoindex on;

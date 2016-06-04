@@ -3,7 +3,7 @@ date: 2004-06-01
 title: Understanding the physics of biology
 short_title: Tissue growth and development
 thumbnail: /images/research/continuum-biophysics/constricted-ecf-flow.png
-description: 
+description: A continuum theory of multiphase mixtures for modelling biological growth.
 category: primary
 featured: yes
 start_date: 2002
