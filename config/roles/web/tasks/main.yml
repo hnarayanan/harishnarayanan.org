@@ -57,7 +57,7 @@
 
 - name: Create a folder to house the site content
   file:
-    path: "/home/ubuntu/{{ domain_name }}"
+    path: "/home/{{ remote_user_name }}/{{ domain_name }}"
     state: directory
 
 - name: Setup this website as one of the available nginx sites
