@@ -1,0 +1,7 @@
+[webserver]
+192.168.33.15 ansible_ssh_private_key_file=.vagrant/machines/default/virtualbox/private_key
+
+[all:vars]
+remote_user_name = vagrant
+user_name = "Harish Narayanan"
+user_email = hnarayanan@gmail.com
