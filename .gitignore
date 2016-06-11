@@ -1,7 +1,7 @@
 /public
-/config/roles/web/files/ssl
-/config/.vagrant
-/config/site.retry
+/setup/roles/web/files/ssl
+/setup/.vagrant
+/setup/site.retry
 /scratch
 /kubernetes
 wget.log
