@@ -29,19 +29,20 @@ of things:
    LTS](http://releases.ubuntu.com/16.04/) to act as your new server.
 
 2. Make sure you can SSH to this server. Edit
-   `config/servers/personal-site` to reflect the domain name (or IP
+   `setup/servers/personal-site` to reflect the domain name (or IP
    address) of the server, as well as the SSH username you use to
-   access it. Also update `domain_name` in `/config/site.yml` to point
+   access it. Also update `domain_name` in `setup/site.yml` to point
    to your new server’s domain name.
 
 3. Install [Ansible](http://www.ansible.com) on your local development
    machine.
 
-4. Run the configuration script to setup the web server and other bits
-   and bobs (like the firewall) on the virtual machine.
+4. Run the setup script to install and configure the web server
+   (alongside other bits and bobs like the firewall) on the virtual
+   machine.
 
    ````
-   cd config
+   cd setup
    ansible-playbook site.yml -i servers/personal-site
    ````
 

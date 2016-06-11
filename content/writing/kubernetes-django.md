@@ -560,9 +560,9 @@ Platform][gcp-scalable-webapps]
 Kubernetes — [Part 1][kubernetes-rails-1], [Part
 2][kubernetes-rails-2], [Part 3][kubernetes-rails-3]
 
-[example]: #practical-example-on-google-container-engine:d4c663f7b7e5088d61b55e9f2c9602ed
+[example]: #practical-example-on-google-container-engine
 [linux-containers]:
-http://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
+https://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
 [docker]: https://www.docker.com/
 [docker-containers]: https://www.docker.com/what-docker
 [kubernetes]: http://kubernetes.io
