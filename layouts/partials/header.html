@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ if (index .Site.Data.TitleFixes .Title) }}{{ index .Site.Data.TitleFixes .Title }}{{ else }}{{ .Title }}{{ end }}{{ if ne .URLPath.URL "/" }} — {{ .Site.Title }}{{ end }}</title>
+    <title>{{ .Title }}{{ if ne .URLPath.URL "/" }} — {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsNode }}{{ if (index .Site.Data.Descriptions .Title) }}{{ index .Site.Data.Descriptions .Title }}{{ end }}{{ else }}{{ if .Description }}{{ .Description }}{{ else }}{{ if .Summary }}{{ .Summary }}{{ else }}A placeholder for the “{{ .Title }}” photo album{{ end }}{{ end }}{{ end }}">
     <meta name="author" content="Harish Narayanan">
 
