@@ -1477,13 +1477,6 @@ hr {
 
 /* TODO: Clean the following up
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-img.svg-icon {
-    width: 20px;
-    padding-right: 1.5rem;
-    padding-top: 2rem;
-    float: right;
-}
-
 figure {
     width: 100%;
     margin-left: 0;
