@@ -27,7 +27,7 @@ The primary aim of our research is the development of a robust
 computational framework for biomedical flow simulation and apply it to
 our current problem of interest: understanding how blood flow in an
 artery affects the formation and growth of
-[aneurysms](http://en.wikipedia.org/wiki/Aneurysm).
+[aneurysms](https://en.wikipedia.org/wiki/Aneurysm).
 
 {{< figure src="/images/research/biological-flow/aneurysms.png" title="Different forms of aneurysms." >}}
 
@@ -76,7 +76,7 @@ that the optimal mesh changes with the goal of our computation.
 Algorithmic and software design lessons learnt from this project have
 been incorporated into [CBC.Flow](https://launchpad.net/cbc.solve), a
 Python application written atop the [FEniCS
-Project](http://fenicsproject.org/) and distributed under the GNU
+Project](https://fenicsproject.org/) and distributed under the GNU
 GPL. It allows a user to easily pose and solve fluid flow problems
 with a syntax that is close to our automated hyperelasticity solver,
 [CBC.Twist](/research/automated-mechanics/). The
