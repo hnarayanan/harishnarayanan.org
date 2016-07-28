@@ -1,5 +1,5 @@
 all:
-	/Users/harish/Desktop/new-personal-site/hugo
+	${HOME}/Applications/hugo
 
 clean:
 	rm -fr public
