@@ -2,7 +2,7 @@
 date: 2016-06-30T21:00:00+01:00
 draft: true
 title: Using TensorFlow to predict U.K. property prices
-category: datascience
+category: data-science
 tags:
    - data-gathering
    - housing-market
@@ -45,3 +45,7 @@ feasible. Something suitable for a general audience.
 - TODO: Point to related source code repository for replicating and
   expanding upon this work. Suggest extensions, both to modelling and
   to visualisation.
+
+## Selected references and further reading
+
+- TODO: Link to 8--10 references and related sample project.
