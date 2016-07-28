@@ -27,15 +27,15 @@ The primary aim of our research is the development of a robust
 computational framework for biomedical flow simulation and apply it to
 our current problem of interest: understanding how blood flow in an
 artery affects the formation and growth of
-[aneurysms](http://en.wikipedia.org/wiki/Aneurysm).
+[aneurysms](https://en.wikipedia.org/wiki/Aneurysm).
 
 {{< figure src="/images/research/biological-flow/aneurysms.png" title="Different forms of aneurysms." >}}
 
 Such a problem motivates the need for accurate computation of
-quantities which are implicated in the growth of aneurysms (such as
+quantities that are implicated in the growth of aneurysms (such as
 the shear forces exerted by the blood flow on their vessel walls and
 the stretch of the arterial walls due to normal pressure). We term
-these quantities of interest, “goal quantities.” Central to computing
+these quantities of interest, "goal quantities." Central to computing
 these quantities accurately are adaptive mesh techniques based on _a
 posteriori_ error estimates, which rely on estimates of the errors in
 computed physical goal quantities to determine regions where the error
@@ -43,7 +43,8 @@ needs to be reduced. These estimates are calculated from the computed
 solution and the solution of an auxiliary (dual) problem containing
 information about the stability of the flow equations being solved and
 the goal quantity expressed as a functional. Briefly, we use the fact
-that the error in the specified goal functional,
+that the error in the specified goal functional is the residual of the
+dual solution:
 
 <p>
 \begin{align}
@@ -57,16 +58,16 @@ that the error in the specified goal functional,
 \end{align}
 </p>
 
-is the residual of the dual solution! If you are interested, you can
-<a href="">listen to a talk</a> I’ve given about this to better
-clarify concepts and see how we apply this general theory to equations
-modelling fluid flow.
+You can [watch a talk](https://www.youtube.com/watch?v=b0PDIbj6iyw)
+I've given about this to better clarify concepts and see how we apply
+this general theory to equations modelling fluid flow. Applying our
+adaptive scheme to a 2D representation of an aneurysm results first in
+a simulation of the blood flow through the diseased vessel.
 
 {{< video src="X0K37EQZ8f4" width="720" height="540" title="Simulated blood flow through the aneurysm." >}}
 
-Applying our adaptive scheme to a 2D representation of an aneurysm
-results in the construction of optimal computational meshes, which
-allow us to compute quantities related to aneurysm growth to a
+It also results in the construction of optimal computational meshes,
+which allow us to compute quantities related to aneurysm growth to a
 specified accuracy requirement with minimal computational work. Notice
 that the optimal mesh changes with the goal of our computation.
 
@@ -75,10 +76,10 @@ that the optimal mesh changes with the goal of our computation.
 Algorithmic and software design lessons learnt from this project have
 been incorporated into [CBC.Flow](https://launchpad.net/cbc.solve), a
 Python application written atop the [FEniCS
-Project](http://fenicsproject.org/) and distributed under the GNU
+Project](https://fenicsproject.org/) and distributed under the GNU
 GPL. It allows a user to easily pose and solve fluid flow problems
 with a syntax that is close to our automated hyperelasticity solver,
-[CBC.Twist](http://localhost/research/automated-mechanics/). The
+[CBC.Twist](/research/automated-mechanics/). The
 following is an example.
 
 ````
