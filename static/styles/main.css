@@ -1518,6 +1518,27 @@ figcaption {
     margin: 0;
 }
 
+@media (min-width: 375px) {
+    .mainfooter p {
+	font-size: 11px;
+	letter-spacing: .1rem;
+    }
+}
+
+@media (min-width: 480px) {
+    .mainfooter p {
+	font-size: 12px;
+	letter-spacing: .15rem;
+    }
+}
+
+@media (min-width: 620px) {
+    .mainfooter p {
+	font-size: 12px;
+	letter-spacing: .2rem;
+    }
+}
+
 code.hljs {
     padding: 2rem;
 }
