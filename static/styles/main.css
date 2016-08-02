@@ -1716,3 +1716,7 @@ h2 a:hover {
 .summary {
     margin-bottom: 1.2rem;
 }
+
+iframe {
+    border: 0;
+}
