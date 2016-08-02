@@ -9,8 +9,6 @@ start_date: 2008
 includes_video: yes
 ---
 
-{{< figure src="/images/research/phase-transfer/cahn-hilliard-art.png" title="Incorrect calculations can be pretty." >}}
-
 Lithium-ion batteries are one of the most popular types of
 rechargeable batteries found in consumer electronics. In such
 batteries, lithium ions move from the negative electrode to the
@@ -20,16 +18,16 @@ lithium crystallite (a compound that allows for the reversible
 inclusion of lithium atoms).
 
 In our research, we are interested in mechanical phenomena that arise
-in the crystallite due to the addition or removal of lithium
+in this crystallite due to the addition or removal of lithium
 atoms. This is especially interesting to study near regions of sharp
 interfaces between crystallite with and without lithium atoms, as the
 lack of coherency across the interface can cause the material to
 strain or even crack.
 
 By modelling the intercalation process through the evolution of a
-thermodynamic potential and allowing for different mechanical
-properties of the two phases, we can study the evolution of multiple
-phases:
+thermodynamic potential ([the Cahn–Hilliard equation][CahnHilliardEquation])
+and allowing for different mechanical properties of the two phases, we
+can study the evolution of multiple phases:
 
 {{< video src="1u1PSj8FEls" width="720" height="540" title="Time-dependent phase separation into Li-rich and Li-poor phases." >}}
 
@@ -37,4 +35,10 @@ as well as the mechanical strains this phase transfer induces:
 
 {{< figure src="/images/research/phase-transfer/chemical-potential.png" title="The chemical potential and deformation due to a LiFePO4 finger." >}}
 
+In addition to modelling the mechanics associated with ion transport,
+these sorts of simulations also lead to very many pretty pictures,
+especially when the calculations fail to converge! 😊
 
+{{< figure src="/images/research/phase-transfer/cahn-hilliard-art.png" title="Incorrect, but pretty, results." >}}
+
+[CahnHilliardEquation]: https://en.wikipedia.org/wiki/Cahn–Hilliard_equation
