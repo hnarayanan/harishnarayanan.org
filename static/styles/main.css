@@ -23,14 +23,15 @@
 ------------------------------------------------------------------------
 - Container
 - Grid
+- Spacing
 - Fonts
 - Base Styles
 - Typography
+- Figures
 - Links
 - Lists
 - Code
 - Tables
-- Spacing
 - Utilities
 - Misc
 - Navbar
@@ -1100,6 +1101,32 @@ this the same font stack that Normalize.css sets for the `body`.
     .pure-hidden-xl{display:none}
 }
 
+/* Spacing
+------------------------------------------------------------------------ */
+button,
+.button {
+    margin-bottom: 1rem;
+}
+
+input,
+textarea,
+select,
+fieldset {
+    margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+    margin-bottom: 2.5rem;
+}
+
 /* Fonts
 ------------------------------------------------------------------------ */
 @font-face {
@@ -1235,6 +1262,35 @@ html, button, input, select, textarea,
     font-family: "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif;
 }
 
+/* Figures
+------------------------------------------------------------------------ */
+
+figure {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* for Safari and iOS */
+    -ms-transform: translateX(-50%); /* for IE9 */
+    transform: translateX(-50%);
+}
+
+figure img {
+    margin: 0 auto;
+}
+
+figcaption {
+    font-size: 90%;
+    font-style: italic;
+    text-align: center;
+    margin-top: .5em;
+}
+
 /* Links
 ------------------------------------------------------------------------ */
 
@@ -1309,32 +1365,6 @@ td:first-child {
 th:last-child,
 td:last-child {
     padding-right: 0;
-}
-
-/* Spacing
------------------------------------------------------------------------- */
-button,
-.button {
-    margin-bottom: 1rem;
-}
-
-input,
-textarea,
-select,
-fieldset {
-    margin-bottom: 1.5rem;
-}
-
-pre,
-blockquote,
-dl,
-figure,
-table,
-p,
-ul,
-ol,
-form {
-    margin-bottom: 2.5rem;
 }
 
 /* Utilities
@@ -1471,38 +1501,11 @@ hr {
 
 .post-date {
     display: inline-block;
-    //text-transform: uppercase;
     white-space: nowrap;
 }
 
 /* TODO: Clean the following up
 ------------------------------------------------------------------------ */
-figure {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    display: inline-block;
-    max-width: 100%;
-    height: auto;
-    position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%); /* for Safari and iOS */
-    -ms-transform: translateX(-50%); /* for IE9 */
-    transform: translateX(-50%);
-}
-
-figure img {
-    margin: 0 auto;
-}
-
-figcaption {
-    font-size: 90%;
-    font-style: italic;
-    text-align: center;
-    margin-top: .5em;
-}
-
 .mainfooter {
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     text-transform: uppercase;
@@ -1516,6 +1519,15 @@ figcaption {
 
 .mainfooter p {
     margin: 0;
+}
+
+.mainfooter a {
+    color: #222;
+}
+
+.mainfooter a:hover {
+    color: #823711;
+    text-decoration: underline;
 }
 
 @media (min-width: 375px) {
