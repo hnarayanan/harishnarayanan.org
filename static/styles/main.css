@@ -1501,7 +1501,6 @@ hr {
 
 .post-date {
     display: inline-block;
-    //text-transform: uppercase;
     white-space: nowrap;
 }
 
@@ -1520,6 +1519,15 @@ hr {
 
 .mainfooter p {
     margin: 0;
+}
+
+.mainfooter a {
+    color: #222;
+}
+
+.mainfooter a:hover {
+    color: #823711;
+    text-decoration: underline;
 }
 
 @media (min-width: 375px) {
