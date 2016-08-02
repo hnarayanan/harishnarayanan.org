@@ -23,6 +23,7 @@
 ------------------------------------------------------------------------
 - Container
 - Grid
+- Spacing
 - Fonts
 - Base Styles
 - Typography
@@ -31,7 +32,6 @@
 - Lists
 - Code
 - Tables
-- Spacing
 - Utilities
 - Misc
 - Navbar
@@ -1101,6 +1101,32 @@ this the same font stack that Normalize.css sets for the `body`.
     .pure-hidden-xl{display:none}
 }
 
+/* Spacing
+------------------------------------------------------------------------ */
+button,
+.button {
+    margin-bottom: 1rem;
+}
+
+input,
+textarea,
+select,
+fieldset {
+    margin-bottom: 1.5rem;
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+    margin-bottom: 2.5rem;
+}
+
 /* Fonts
 ------------------------------------------------------------------------ */
 @font-face {
@@ -1339,32 +1365,6 @@ td:first-child {
 th:last-child,
 td:last-child {
     padding-right: 0;
-}
-
-/* Spacing
------------------------------------------------------------------------- */
-button,
-.button {
-    margin-bottom: 1rem;
-}
-
-input,
-textarea,
-select,
-fieldset {
-    margin-bottom: 1.5rem;
-}
-
-pre,
-blockquote,
-dl,
-figure,
-table,
-p,
-ul,
-ol,
-form {
-    margin-bottom: 2.5rem;
 }
 
 /* Utilities
