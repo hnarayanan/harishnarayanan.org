@@ -9,6 +9,9 @@ start_date: 2008
 includes_math: yes
 ---
 
+The following are some lessons learnt while implementing numerical
+methods for the Navier-Stokes equations.
+
 ## A tale of two formulations
 
 It is common in the literature to start with the _Laplacian
@@ -65,9 +68,9 @@ does not introduce the notion of a symmetric Cauchy stress).
 attention to how you implement boundary conditions. Otherwise you will
 (obviously) not see the flow you want.
 
-{{< figure src="http://localhost/files/images/research/navier-stokes/channel-flow-proper.png" title="Channel flow with proper boundary conditions." >}}
+{{< figure src="/images/research/navier-stokes/channel-flow-proper.png" title="Channel flow with proper boundary conditions." >}}
 
-{{< figure src="http://localhost/files/images/research/navier-stokes/channel-flow-improper.png" title="Divergence formulation with (improper) “do nothing” traction boundary conditions." >}}
+{{< figure src="/images/research/navier-stokes/channel-flow-improper.png" title="Divergence formulation with (improper) “do nothing” traction boundary conditions." >}}
 
 ## Some analytical solutions
 
@@ -75,6 +78,6 @@ The following are some analytical solutions for the Navier-Stokes
 equations, useful in [benchmarking](https://launchpad.net/nsbench)
 numerical algorithms.
 
-* [A 2D solution](http://localhost/files/projects/navier-stokes/analytical-ns-2d.pdf) generated in Mathematica.
-* [A 3D solution](http://localhost/files/projects/navier-stokes/analytical-ns-3d.pdf) generated in Mathematica.
-* A SymPy script used to [test analytical fluid-structure-interaction solutions](http://localhost/files/projects/navier-stokes/analytical_fsi.py).
+* [A 2D solution](/resources/research/navier-stokes/analytical-ns-2d.pdf) generated in Mathematica.
+* [A 3D solution](/resources/research/navier-stokes/analytical-ns-3d.pdf) generated in Mathematica.
+* A SymPy script used to [test analytical fluid-structure-interaction solutions](/resources/research/navier-stokes/analytical-fsi.py).
