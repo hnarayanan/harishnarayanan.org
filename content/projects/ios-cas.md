@@ -3,7 +3,7 @@ date: 2011-02-26
 title: A computer algebra system for iOS
 short_title: iOS Algebra System
 thumbnail: //placehold.it/1440x960/8ab3b5/ffffff
-description: An general-purpose computer algebra system for iOS.
+description: A general-purpose computer algebra system for iOS.
 category: software
 start_date: 2011
 end_date: 2012
