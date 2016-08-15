@@ -29,7 +29,7 @@ of things:
    LTS](http://releases.ubuntu.com/16.04/) to act as your new server.
 
 2. Make sure you can SSH to this server. Edit
-   `setup/servers/personal-site` to reflect the domain name (or IP
+   `setup/servers/production` to reflect the domain name (or IP
    address) of the server, as well as the SSH username you use to
    access it. Also update `domain_name` in `setup/site.yml` to point
    to your new server’s domain name.
@@ -43,7 +43,7 @@ of things:
 
    ````
    cd setup
-   ansible-playbook site.yml -i servers/personal-site
+   ansible-playbook site.yml -i servers/production
    ````
 
 ### Build and upload the site to the web server
