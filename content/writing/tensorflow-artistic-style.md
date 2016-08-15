@@ -9,17 +9,18 @@ tags:
    - kubernetes
 ---
 
-We're going to be looking at a branch of machine learning called
-convolutional neural networks (or convnets for short). And in order to
-motivate and focus our journey through the world of convnets from
-theory to practice, we're going to reproduce the code ideas underlying
-a really popular app at the moment called Prisma.
+There's an amazing app out right now called [Prisma][Prisma] that transforms
+your photos into works of art using the styles of famous artwork. The
+app performs this style transfer with the help of a branch of machine
+learning called _convolutional neural networks_. In this article we're
+going to take a journey through the world of convolutional neural
+networks from theory to practice, as we systematically reproduce the
+core visual effect as a webapp.
 
+## Introducing Prisma and motivating the problem
 
 TODO: What we're going to do (attempt to reproduce Prisma) and why
 it's cool. Mention the corresponding project functioning on GitHub.
-
-## Introducing Prisma and motivating the problem
 
 So what is Prisma? Prisma is an iPhone app (which will likely soon be
 ported to other platforms) that allows you transfer the style of one
@@ -103,3 +104,6 @@ we look for extensions of this algorithm.
 - TODO: Explain how to setup the project (+ serving).
 - TODO: Explain how to get TensorFlow working with GPU support on
   macOS.
+
+
+[Prisma]: http://prisma-ai.com
