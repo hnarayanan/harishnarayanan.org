@@ -60,6 +60,8 @@ bit about (convolutional) neural networks in general.
 - TODO: Historical and from-first-principles mathematical context from
   Stanford CS231n tying back to why convolutions might work.
 
+{{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="An example neural network image." >}}
+
 ## Theory behind particular algorithm we're going to use
 
 - TODO: Summarise the Gatys, et al. paper for the core idea.

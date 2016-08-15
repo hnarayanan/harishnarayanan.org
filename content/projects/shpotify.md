@@ -1,5 +1,5 @@
 ---
-date: 2012-03-05
+date: 2014-01-01
 title: A command-line interface for Spotify on a Mac
 short_title: Shpotify
 thumbnail: /images/projects/shpotify.png
