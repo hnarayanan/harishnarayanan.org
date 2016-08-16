@@ -22,7 +22,7 @@ effect as a webapp.
 
 ## So what is Prisma and how might it work?
 
-Prisma is a phone app (iPhone and Android at the time this piece was
+Prisma is a mobile app (iPhone and Android at the time this piece was
 written) that allows you to transfer the style of one image, say a
 renaissance painting, onto the content of another, say a picture of
 your baby. Here's a demo of the kind of images it generates.
@@ -35,48 +35,61 @@ outset you can imagine that it's somehow extracting low level
 features --- things like the colour and texture of the brush strokes
 --- from one image (that we'll call the *style image*) and applying it to
 more semantic, higher level features --- things like a baby's face ---
-on another image (that we'll call the *content image*).
+on another image (the *content image*).
 
 How would one even begin to do something like this? You can imagine
 doing some pixel-level image analysis on the style image to get things
 like spatially-averaged colours or maybe even aspects of its texture,
 but how would you *apply* these in a selective fashion that still
 retains the essential aspects of the content image? And what about the
-existing style of the content image?  How do we first *subtract* that
+existing style of the content image?  How do we first *subtract* this
 before we apply the new style?
 
-I was stumped by many of these questions really early on, and as every
-one of you would do, turned to Google for help.
-
-The first crucial piece of insight I gathered was that it's hard to
-write a program with a fixed set of rules that work well in solving
-general problems like these. (So it's not a good idea to try
-hard-coding specifics, e.g. aspects of a baby's face, when attempting
-to selective apply the style.) What is instead preferable is that you
-create an abstract system, feed it with a bunch of raw example data
-and have it automatically discover the representations needed to solve
-the general problem.
-
-As luck would have it, my searches also pointed me to really popular
-paper ([Gatys et al., 2015][neural-style-gatys-etal]) that explains
-exactly how all this is achieved. And at the heart of this paper is an
-optimisation problem:
+I was stumped by many of these questions really early on, and as one
+does, turned to Google for help. My searches soon pointed me to a
+really popular paper ([Gatys et al., 2015][neural-style-gatys-etal])
+that explains exactly how all this is achieved. In particular, the
+paper expresses the goal we're trying to reach in clear terms as the
+following optimisation problem:
 
 Let $\mathbf{c}$ be the content image and $\mathbf{s}$ be the style
-image. We're trying to find an image $\mathbf{x}$ that minimises the
-following *loss function*:
+image. We're trying to generate an image $\mathbf{x}$ that minimises
+the following *loss function*:
 
-<p>
-\begin{align}
-\mathcal{L}_{\mathrm{total}}(\mathbf{c}, \mathbf{s}, \mathbf{x}) =
-\alpha \mathcal{L}_{\mathrm{content}}(\mathbf{c}, \mathbf{x}) +
-\beta \mathcal{L}_{\mathrm{style}}(\mathbf{s}, \mathbf{x})
-\end{align}
-</p>
+$$
+\mathcal{L}(\mathbf{c}, \mathbf{s}, \mathbf{x}) =
+\alpha \mathcal{L}(\mathbf{c}, \mathbf{x}) +
+\beta \mathcal{L}(\mathbf{s}, \mathbf{x})
+$$
 
-TODO: Mention the corresponding project functioning on GitHub.
+where $\mathcal{L}(\mathbf{c}, \mathbf{x})$ is the *content loss* (a
+function that grows as the generated image $\mathbf{x}$ "deviates in
+content" from $\mathbf{c}$), and $\mathcal{L}(\mathbf{s}, \mathbf{x})$
+is the *style loss* (a function that grows when the generated image
+$\mathbf{x}$ "deviates in style" from $\mathbf{s}$). $\alpha$ and
+$\beta$ are weighting factors that control how much we want to
+emphasise the content relative to the style.
 
-## General theory behind Convolutional Neural Networks
+One crucial bit of insight in the paper is that the definitions of
+these style and content losses *are not based on per-pixel
+differences* between images, but instead in terms of higher level,
+more *perceptual differences* between them. But then how
+does one go about writing a program that understands enough about the
+meaning of images to do something like this?
+
+This line of questioning leads to the next crucial bit of insight.
+*It's nearly impossible to solve a general problem like this well with
+an a priori fixed set of rules.* So what we instead need is an
+abstract learning machine that, when fed with a bunch of raw example
+data, can automatically discover the representations needed to solve
+problems like ours. As luck would have it, a class of abstract
+learning machines that are particularly well suited to dealing with
+images already exist, and they're called *Convolutional Neural
+Networks* (convnets).
+
+Over the rest of the article, ...
+
+## Convolutional Neural Networks from the ground up
 
 The paper essentially describes the use of a class of deep neural
 networks called Convolutional Neural Networks (convnets) that are
@@ -102,6 +115,7 @@ bit about (convolutional) neural networks in general.
 - TODO: Talk about how hyperparameters are tuned to improve aesthetic
   quality of the output. Show examples of things that work and things
   that do not.
+- TODO: Mention the corresponding project functioning on GitHub.
 
 But we want to make a near real time web service out of this, and so
 we look for extensions of this algorithm.
