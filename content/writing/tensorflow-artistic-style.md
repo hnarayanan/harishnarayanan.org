@@ -42,7 +42,7 @@ do some pixel-level image analysis on the style image to get things
 like spatially-averaged colours or maybe even aspects of its texture,
 but how would you then *apply* these in a selective fashion that still
 retains the essential aspects of the content image? And what about the
-existing style of the content image?  How do we first *subtract* this
+existing style of the content image?  How do we first *discard* this
 before we apply the new style?
 
 I was stumped by many of these questions really early on, and as one
@@ -58,13 +58,13 @@ the following *loss function*:
 
 $$
 \mathcal{L}(\mathbf{c}, \mathbf{s}, \mathbf{x}) =
-\alpha \mathcal{L}(\mathbf{c}, \mathbf{x}) +
-\beta \mathcal{L}(\mathbf{s}, \mathbf{x})
+\alpha \mathcal{L}_c(\mathbf{c}, \mathbf{x}) +
+\beta \mathcal{L}_s(\mathbf{s}, \mathbf{x})
 $$
 
-where $\mathcal{L}(\mathbf{c}, \mathbf{x})$ is the *content loss* (a
+where $\mathcal{L}_c(\mathbf{c}, \mathbf{x})$ is the *content loss* (a
 function that grows as the generated image $\mathbf{x}$ "deviates in
-content" from $\mathbf{c}$), and $\mathcal{L}(\mathbf{s}, \mathbf{x})$
+content" from $\mathbf{c}$), and $\mathcal{L}_s(\mathbf{s}, \mathbf{x})$
 is the *style loss* (a function that grows when the generated image
 $\mathbf{x}$ "deviates in style" from $\mathbf{s}$). $\alpha$ and
 $\beta$ are weighting factors that control how much we want to
