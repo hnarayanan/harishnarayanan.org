@@ -150,7 +150,7 @@ things more concrete by taking a look at one of the simplest learning
 image classifiers: A [*Softmax classifier* with a *cross-entropy*
 loss][cs231n-softmax-classifier] function.
 
-### A Softmax classifier that learns
+### A first learning image classifier
 
 Recall the classification problem we're trying to solve. We have an
 image $\mathbf{x}$ that's represented as a $D = W \times H \times 3$
@@ -179,17 +179,26 @@ tuned to minimise this loss --- another optimisation problem.
 
 ### Moving to neural networks
 
+- TODO: Then, we move to a more complex, nonlinear version of the
+  score function. But the rest of the ideas (loss, optimisation
+  problem) stay the same.
+
 {{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="An example neural network image." >}}
 
 ### And finally, convolutional neural networks
 
-## Theory behind particular algorithm we're going to use
+- TODO: Turns out we can get much better performance with far fewer
+  parameters by exploiting the fact that we have a 2D image.
+- TODO: Summarise the Simonyan, et al. paper to motivate transfer
+  learning.
 
-- TODO: Summarise the Gatys, et al. paper for the core idea.
-- TODO: Summarise the Simonyan, et al. paper for the technicalities of
-  image recognition.
+## Returning to the style transfer optimisation problem
 
-## Implementation of the model in TensorFlow
+- TODO: Summarise the Gatys, et al. paper for the core ideas, problem
+  statement and solution methodology. Point out that the loss function
+  can be a CNN iteself!
+
+## Implementation of the model in Keras and TensorFlow
 
 - TODO: Step through the more crucial portions of the implementation
   on GitHub.
@@ -198,29 +207,29 @@ tuned to minimise this loss --- another optimisation problem.
   that do not.
 - TODO: Mention the corresponding project functioning on GitHub.
 
+## Serving the trained model as part of a webapp
+
 But we want to make a near real time web service out of this, and so
 we look for extensions of this algorithm.
 
-## Make into a web service with TensorFlow Serving and Kubernetes
-
-- TODO: Introduce the Johnson paper.
-- TODO: Step through important aspects of the implementation.
+- TODO: Introduce the Johnson paper for huge optimisation.
 - TODO: Optimisation of and shortcuts to the implementation above to
   make it suitable for a user-facing app.
-- TODO: Explain the theory behind serving a learnt model.
+- TODO: Explain the theory behind serving a learnt model; TensorFlow
+  serving?
+- TODO: Step through important aspects of the implementation.
 
 ## Conclusion
 
+- TODO: Repeat what we saw with some examples relating back to first
+  motivating examples from Prisma.
 - TODO: Reiterate some insights.
   - Maybe a giant array of pixels is not the best way of representing
     an image if we wish to understand it better.
   - Some classes of problems are hard to solve with a priori known
     rules, and require learning machines. -> Have them automatically
     discover the representations needed to solve arbitrary problems.
-- TODO: Repeat what we saw with some examples relating back to first
-  motivating examples from Prisma.
 - TODO: Talk about ideas for extension and improvement.
-
 
 ## Selected references and further reading
 
