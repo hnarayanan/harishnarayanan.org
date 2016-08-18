@@ -18,7 +18,7 @@ of a branch of machine learning called [convolutional neural
 networks][cnn-wikipedia]. In this article we're going to take a
 journey through the world of convolutional neural networks from theory
 to practice, as we systematically reproduce Prisma's core visual
-effect as a webapp.
+effect as a [webapp][neural-style-implementation].
 
 ## So what is Prisma and how might it work?
 
@@ -90,23 +90,92 @@ Over the course of this article, we're going to learn a ton. For those
 who are new to all of this, we begin with a [deep dive into the world
 of CNNs][cnn-primer]. We then learn how to use [CNNs to solve the
 problem posed by Gatys et al.][neural-style-algorithm] and reproduce
-the visual effects of Prisma. As a bonus, we conclude with a [concrete
+the visual effect of Prisma. As a bonus, we conclude with a [concrete
 implementation of the solution][neural-style-implementation] (in Keras
 and TensorFlow, and wrapped in a Django webapp!) that you can play
 with and extend.
 
 ## Convolutional Neural Networks from the ground up
 
-The paper essentially describes the use of a class of deep neural
-networks called Convolutional Neural Networks (convnets) that are
-particularly well suited to processing images. Before we get to the
-specifics of the algorithm described in the paper, let’s first learn a
-bit about (convolutional) neural networks in general.
+This section offers a brief summary of parts of [CS231n: Convolutional
+Neural Networks for Visual Recognition][cs231n] that are relevant to
+our problem. If you’re even vaguely interested in what you're reading
+here, you should probably take this Stanford class. *It is
+outstanding*.
 
-- TODO: Historical and from-first-principles mathematical context from
-  Stanford CS231n tying back to why convolutions might work.
+### The image classification problem
+
+We begin our journey with a look at the *image classification*
+problem. This is a deceptively simple problem to state: Given an input
+image, have a computer automatically classify it into one of a fixed
+set of categories, say "baby", "dog", "car" or "toothbrush". The
+reason we're starting with this problem is that it's at the core of
+many seemingly unrelated tasks in computer vision, including our quest
+to reproduce Prisma's visual effect.
+
+In more precise terms, imagine a three channel colour image (RGB)
+that's $W$ pixels wide and $H$ pixels tall. This image can be
+represented in a computer as a multi-dimensional array ($W \times H
+\times 3$) of floats, each going between $0$ (minimum brightness) to
+$1$ (maximum brightness). Let's further assume that we have $K$
+categories of things that we'd like to classify the image as being one
+of.
+
+{{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image visualising the problem (from handwritten notes)." >}}
+
+The task then is to turn this large array of numbers ($W \times H
+\times 3$) into a single label from the set of length $K$, e.g.
+"baby". This is the sort of thing that humans can do intuitively but
+computers find really hard. This is because any slight change in the
+situation (illumination, viewpoint, background clutter, ...)  greatly
+affects this pixel representation. And a good classifier should be
+able to handle these sorts of superfluous differences while still
+being able to distinguish between a "baby" and a "small child".
+
+How might we write a program to do this? One naïve approach is to
+hardcode some characteristics of babies (large heads, snotty noses,
+rounded cheeks, ...) into our program. But even if you knew how to do
+this, what if you then wanted to look for cars? What about different
+kinds of cars? What about worms? What if our set of $K$ categories
+became arbitrarily large and nuanced?
+
+Since this is starting to look hopeless, we turn to another approach
+that's more *data driven*. We first gather a bunch of pre-classified
+images as examples and then feed them into a *learning
+algorithm*. This algorithm uses the examples to learn about the visual
+appearance of each class, and then automatically functions as the
+classifier we want.
+
+To make this abstract idea more concrete, let's take a look at one of
+the simplest learning image classifiers: A linear classifier with a
+*Softmax* loss function.
+
+### A linear classifier that learns
+
+Recall the classification problem we're trying to solve. We have an
+image $\mathbf{x}$ that's represented as a $D = W \times H \times 3$
+array of numbers, and we want to find out which category (in a set of
+$K$ categories) that it belongs to. One way to convey this information
+is to get a confidence *score* for each category (and the largest
+score amongst these being the main category we're looking for).
+
+In essence, what we're looking for is a function $f: \mathbb{R}^D
+\mapsto \mathbb{R}^{K}$ that maps image data to class scores. The
+simplest possible example for such a function is a linear map:
+
+$$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}$$
+
+Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
+$\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
+function. The algorithm *learns* these with the help of the *training*
+data that we have. (Which is a fancy way of saying that we fit them to
+the pre-classified example data.)
+
+### Moving to neural networks
 
 {{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="An example neural network image." >}}
+
+### And finally, convolutional neural networks
 
 ## Theory behind particular algorithm we're going to use
 
@@ -136,6 +205,12 @@ we look for extensions of this algorithm.
 
 ## Conclusion
 
+- TODO: Reiterate some insights.
+  - Maybe a giant array of pixels is not the best way of representing
+    an image if we wish to understand it better.
+  - Some classes of problems are hard to solve with a priori known
+    rules, and require learning machines. -> Have them automatically
+    discover the representations needed to solve arbitrary problems.
 - TODO: Repeat what we saw with some examples relating back to first
   motivating examples from Prisma.
 - TODO: Talk about ideas for extension and improvement.
@@ -143,19 +218,12 @@ we look for extensions of this algorithm.
 
 ## Selected references and further reading
 
-- TODO: Link to 8--10 references and related sample project.
-- Gatys paper
-- Johnson paper
-- Deep learning review
-- Tensorflow (+serving) tutorial
-- CS231n
-
-## Appendix
-
-- TODO: Explain how to setup the project (+ serving).
-- TODO: Explain how to get TensorFlow working with GPU support on
-  macOS.
-
+1. Gatys paper, Johnson paper
+2. CS231n:
+3. Deep learning review
+4. Link to sample project with a README that explains how to set it up
+5. TensorFlow: CNN, GPU support on macOS, Serving
+6. Keras:
 
 [prisma]: http://prisma-ai.com
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
@@ -163,3 +231,4 @@ we look for extensions of this algorithm.
 [neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
 [neural-style-implementation]: https://TODO
 [neural-style-algorithm]: #theory-behind-particular-algorithm-we-re-going-to-use
+[cs231n]: http://cs231n.stanford.edu
