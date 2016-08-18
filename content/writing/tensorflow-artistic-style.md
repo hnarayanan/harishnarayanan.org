@@ -147,10 +147,10 @@ classifier we want.
 
 While this does sound cool, it's all rather abstract. Let's make
 things more concrete by taking a look at one of the simplest learning
-image classifiers: A *linear classifier* with a *Softmax* loss
-function.
+image classifiers: A [*Softmax classifier* with a *cross-entropy*
+loss][cs231n-softmax-classifier] function.
 
-### A linear classifier that learns
+### A Softmax classifier that learns
 
 Recall the classification problem we're trying to solve. We have an
 image $\mathbf{x}$ that's represented as a $D = W \times H \times 3$
@@ -169,7 +169,13 @@ Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
 $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
 function. The algorithm will *learn* these with the help of the
 *training* data that we have. (Which is a fancy way of saying that we
-will fit them to the pre-classified example data.)
+will fit them to the pre-classified example data.) For this, we
+introduce a *loss* function $\mathcal{L}$ that quantifies the
+disagreement between what our classifier suggests for the scores and
+what our training data provides as the known truth. Thus, this loss
+function goes up if the classifier is doing a poor job and goes down
+if it's doing great. The parameters $\mathbf{W}$ and $\mathbf{b}$ are
+tuned to minimise this loss --- another optimisation problem.
 
 ### Moving to neural networks
 
@@ -232,3 +238,4 @@ we look for extensions of this algorithm.
 [neural-style-implementation]: https://TODO
 [neural-style-algorithm]: #theory-behind-particular-algorithm-we-re-going-to-use
 [cs231n]: http://cs231n.stanford.edu
+[cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
