@@ -97,10 +97,10 @@ with and extend.
 
 ## Convolutional Neural Networks from the ground up
 
-This section offers a brief summary of parts of [CS231n: Convolutional
-Neural Networks for Visual Recognition][cs231n] that are relevant to
-our problem. If you’re even vaguely interested in what you're reading
-here, you should probably take this Stanford class. *It is
+This section offers a brief summary of parts of the Stanford course
+[Convolutional Neural Networks for Visual Recognition (CS231n)][cs231n]
+that are relevant to our problem. If you’re even vaguely interested in
+what you're reading here, you should probably take this course. *It is
 outstanding*.
 
 ### The image classification problem
@@ -115,11 +115,10 @@ to reproduce Prisma's visual effect.
 
 In more precise terms, imagine a three channel colour image (RGB)
 that's $W$ pixels wide and $H$ pixels tall. This image can be
-represented in a computer as a multi-dimensional array ($W \times H
-\times 3$) of floats, each going between $0$ (minimum brightness) to
-$1$ (maximum brightness). Let's further assume that we have $K$
-categories of things that we'd like to classify the image as being one
-of.
+represented in a computer as an array of $W \times H \times 3$ floats,
+each going between $0$ (minimum brightness) to $1$ (maximum
+brightness). Let's further assume that we have $K$ categories of
+things that we'd like to classify the image as being one of.
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image visualising the problem (from handwritten notes)." >}}
 
@@ -132,8 +131,8 @@ affects this pixel representation. And a good classifier should be
 able to handle these sorts of superfluous differences while still
 being able to distinguish between a "baby" and a "small child".
 
-How might we write a program to do this? One naïve approach is to
-hardcode some characteristics of babies (large heads, snotty noses,
+How might we write a program to do this? One naïve approach would be
+to hardcode some characteristics of babies (large heads, snotty noses,
 rounded cheeks, ...) into our program. But even if you knew how to do
 this, what if you then wanted to look for cars? What about different
 kinds of cars? What about worms? What if our set of $K$ categories
@@ -146,9 +145,10 @@ algorithm*. This algorithm uses the examples to learn about the visual
 appearance of each class, and then automatically functions as the
 classifier we want.
 
-To make this abstract idea more concrete, let's take a look at one of
-the simplest learning image classifiers: A linear classifier with a
-*Softmax* loss function.
+While this does sound cool, it's all rather abstract. Let's make
+things more concrete by taking a look at one of the simplest learning
+image classifiers: A *linear classifier* with a *Softmax* loss
+function.
 
 ### A linear classifier that learns
 
@@ -156,8 +156,8 @@ Recall the classification problem we're trying to solve. We have an
 image $\mathbf{x}$ that's represented as a $D = W \times H \times 3$
 array of numbers, and we want to find out which category (in a set of
 $K$ categories) that it belongs to. One way to convey this information
-is to get a confidence *score* for each category (and the largest
-score amongst these being the main category we're looking for).
+is to get a *confidence score* for each category (and the largest
+score amongst these will be the main category we're looking for).
 
 In essence, what we're looking for is a function $f: \mathbb{R}^D
 \mapsto \mathbb{R}^{K}$ that maps image data to class scores. The
@@ -167,9 +167,9 @@ $$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}$$
 
 Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
 $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
-function. The algorithm *learns* these with the help of the *training*
-data that we have. (Which is a fancy way of saying that we fit them to
-the pre-classified example data.)
+function. The algorithm will *learn* these with the help of the
+*training* data that we have. (Which is a fancy way of saying that we
+will fit them to the pre-classified example data.)
 
 ### Moving to neural networks
 
