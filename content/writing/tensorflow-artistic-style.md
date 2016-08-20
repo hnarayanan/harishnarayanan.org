@@ -219,7 +219,8 @@ we look for extensions of this algorithm.
 - TODO: Introduce the Johnson paper for huge optimisation.
 - TODO: Optimisation of and shortcuts to the implementation above to
   make it suitable for a user-facing app.
-- TODO: Explain the theory behind serving a learnt model; TensorFlow
+- TODO: Explain the theory behind exporting a learnt model from Keras
+  (as TensorFlow data structures) and serving it; with TensorFlow
   serving?
 - TODO: Step through important aspects of the implementation.
 
