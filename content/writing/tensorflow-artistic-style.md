@@ -98,10 +98,10 @@ with and extend.
 ## Convolutional Neural Networks from the ground up
 
 This section offers a brief summary of parts of the Stanford course
-[Convolutional Neural Networks for Visual Recognition (CS231n)][cs231n]
-that are relevant to our problem. If you’re even vaguely interested in
-what you're reading here, you should probably take this course. *It is
-outstanding*.
+[Convolutional Neural Networks for Visual Recognition
+(CS231n)][cs231n] that are relevant to our style transfer problem. If
+you’re even vaguely interested in what you're reading here, you should
+probably take this course. *It is outstanding*.
 
 ### The image classification problem
 
@@ -115,37 +115,38 @@ to reproduce Prisma's visual effect.
 
 In more precise terms, imagine a three channel colour image (RGB)
 that's $W$ pixels wide and $H$ pixels tall. This image can be
-represented in a computer as an array of $W \times H \times 3$ floats,
-each going between $0$ (minimum brightness) to $1$ (maximum
-brightness). Let's further assume that we have $K$ categories of
-things that we'd like to classify the image as being one of.
+represented in a computer as an array of $W \times H \times 3$
+integers, each going between $0$ (minimum brightness) and $255$
+(maximum brightness). Let's further assume that we have $K$ categories
+of things that we'd like to classify the image as being one of. The
+task then is to come up with a function that takes as input one of
+these large arrays of numbers, and outputs the correct label from our
+set of categories, e.g. "baby".
 
-{{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image visualising the problem (from handwritten notes)." >}}
+{{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: The image classification problem." >}}
 
-The task then is to turn this large array of numbers ($W \times H
-\times 3$) into a single label from the set of length $K$, e.g.
-"baby". This is the sort of thing that humans can do intuitively but
-computers find really hard. This is because any slight change in the
-situation (illumination, viewpoint, background clutter, ...)  greatly
-affects this pixel representation. And a good classifier should be
-able to handle these sorts of superfluous differences while still
-being able to distinguish between a "baby" and a "small child".
+How might we write such a classification function? One naïve approach
+would be to hardcode some characteristics of babies (such as large
+heads, snotty noses, rounded cheeks, ...) into our function. But even
+if you knew how to do this, what if you then wanted to look for cars?
+What about different kinds of cars? What about worms? What if our set
+of $K$ categories became arbitrarily large and nuanced?
 
-How might we write a program to do this? One naïve approach would be
-to hardcode some characteristics of babies (large heads, snotty noses,
-rounded cheeks, ...) into our program. But even if you knew how to do
-this, what if you then wanted to look for cars? What about different
-kinds of cars? What about worms? What if our set of $K$ categories
-became arbitrarily large and nuanced?
+To further complicate the problem, note that any slight change in the
+situation under which the image was captured (illumination, viewpoint,
+background clutter, ...) greatly affects the array of integers being
+passed as input to our function. And a good classification function
+should be able to handle these sorts of superfluous differences while
+still being able to distinguish between a "baby" and a "small child".
 
-Since this is starting to look hopeless, we turn to another approach
-that's more *data driven*. We first gather a bunch of pre-classified
-images as examples and then feed them into a *learning
-algorithm*. This algorithm uses the examples to learn about the visual
-appearance of each class, and then automatically functions as the
-classifier we want.
+Since this is starting to look hopeless on multiple fronts, we turn to
+a completely different approach --- one that's more *data driven*. We
+first gather a bunch of pre-classified images as examples and then
+feed them into a *learning algorithm*. This algorithm uses the
+examples to learn about the visual appearance of each class, allowing
+it to automatically function as the classifier we want!
 
-While this does sound cool, it's all rather abstract. Let's make
+While this does sound amazing, it's also very hand-wavy. Let's make
 things more concrete by taking a look at one of the simplest learning
 image classifiers: A [*Softmax classifier* with a *cross-entropy*
 loss][cs231n-softmax-classifier] function.
@@ -177,13 +178,15 @@ function goes up if the classifier is doing a poor job and goes down
 if it's doing great. The parameters $\mathbf{W}$ and $\mathbf{b}$ are
 tuned to minimise this loss --- another optimisation problem.
 
+{{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image classifier showing the score function and the loss function" >}}
+
 ### Moving to neural networks
 
 - TODO: Then, we move to a more complex, nonlinear version of the
   score function. But the rest of the ideas (loss, optimisation
   problem) stay the same.
 
-{{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="An example neural network image." >}}
+{{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="TODO: An example neural network image." >}}
 
 ### And finally, convolutional neural networks
 
