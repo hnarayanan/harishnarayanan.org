@@ -135,9 +135,10 @@ of $K$ categories became arbitrarily large and nuanced?
 To further complicate the problem, note that any slight change in the
 situation under which the image was captured (illumination, viewpoint,
 background clutter, ...) greatly affects the array of integers being
-passed as input to our function. And a good classification function
-should be able to handle these sorts of superfluous differences while
-still being able to distinguish between a "baby" and a "small child".
+passed as input to our function. How do we write our classification
+function to ignore these sorts of superfluous differences while still
+giving it the ability to distinguish between a "baby" and a "small
+child"?
 
 Since this is starting to look hopeless on multiple fronts, we turn to
 a completely different approach --- one that's more *data driven*. We
