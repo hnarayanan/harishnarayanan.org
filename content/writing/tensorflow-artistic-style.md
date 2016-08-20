@@ -243,8 +243,8 @@ we look for extensions of this algorithm.
 2. [Very Deep Convolutional Networks for Large-Scale Image
    Recognition][vgg-simonyan-etal]
 3. [Perceptual Real-Time Style
-   Transfer][fast-neural-style-johnson-etal] and related
-   [supplementary material][fast-neural-style-johnson-etal-supp]
+   Transfer][fast-neural-style-johnson-etal] and [supplementary
+   material][fast-neural-style-johnson-etal-supp]
 4. [Deep learning][deep-learning-review], a review in Nature
 5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
 6. [The Stanford course on Convolutional Neural Networks][cs231n] and
@@ -252,8 +252,7 @@ we look for extensions of this algorithm.
 7. [Our sample implementation on GitHub][neural-style-demo-project]
 8. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
    macOS][tensorflow-gpu-macos], [Serving][tensorflow-serving]
-9. [Keras as a simple interface to TensorFlow][keras-tensorflow]
-
+9. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
 [neural-style-implementation]: #serving-the-trained-model-as-part-of-a-webapp
