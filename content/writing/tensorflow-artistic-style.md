@@ -238,18 +238,39 @@ we look for extensions of this algorithm.
 
 ## Selected references and further reading
 
-1. Gatys paper, Johnson paper
-2. CS231n:
-3. Deep learning review
-4. Link to sample project with a README that explains how to set it up
-5. TensorFlow: CNN, GPU support on macOS, Serving
-6. Keras:
+1. [A Neural Algorithm of Artistic Style][neural-style-gatys-etal],
+   the seminal article
+2. [Very Deep Convolutional Networks for Large-Scale Image
+   Recognition][vgg-simonyan-etal]
+3. [Perceptual Real-Time Style
+   Transfer][fast-neural-style-johnson-etal] and related
+   [supplementary material][fast-neural-style-johnson-etal-supp]
+4. [Deep learning][deep-learning-review], a review in Nature
+5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
+6. [The Stanford course on Convolutional Neural Networks][cs231n] and
+   [accompanying notes][cs231n-notes]
+7. [Our sample implementation on GitHub][neural-style-demo-project]
+8. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
+   macOS][tensorflow-gpu-macos], [Serving][tensorflow-serving]
+9. [Keras as a simple interface to TensorFlow][keras-tensorflow]
 
-[prisma]: http://prisma-ai.com
-[cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
+
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
-[neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
 [neural-style-implementation]: #serving-the-trained-model-as-part-of-a-webapp
 [neural-style-algorithm]: #returning-to-the-style-transfer-optimisation-problem
+[neural-style-demo-project]: https://github.com/hnarayanan/stylist
+[prisma]: http://prisma-ai.com
+[cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
+[neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
+[fast-neural-style-johnson-etal]: https://arxiv.org/abs/1603.08155
+[fast-neural-style-johnson-etal-supp]: https://cs.stanford.edu/people/jcjohns/papers/fast-style/fast-style-supp.pdf
+[vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
+[deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
+[backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
 [cs231n]: http://cs231n.stanford.edu
+[cs231n-notes]: http://cs231n.github.io
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
+[tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
+[tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
+[tensorflow-serving]: https://tensorflow.github.io/serving/
+[keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
