@@ -5,4 +5,5 @@ title: Harish Narayanan
 metaDataFormat: yml
 layoutdir: layout
 pluralizeListTitles: false
+disableHugoGeneratorInject: true
 ...
