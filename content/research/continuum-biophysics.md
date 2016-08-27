@@ -116,80 +116,39 @@ immersed into a nutrient-rich bath, nutrient-rich fluid is transported
 into the tissue, and growth occurs due to the formation of additional
 collagen.
 
-![Final distribution of
- collagen](/images/research/continuum-biophysics/swell-after-growth.png
- "Distribution of collagen after growth")
+{{< figure src="/images/research/continuum-biophysics/swell-after-growth.png" title="Distribution of collagen after growth." >}}
 
-Distribution of collagen after growth.
-
-<div class="comment">[![Video
-icon](/layout/images/icons/darkgrey/video-x-generic.png
-"View the video (DivX
-AVI)")](/video/research/continuum-biophysics/swell_cont5.avi) The
-infusing nutrient-rich fluid causes the tendon to grow. Watch the
-[collagen concentration
-increase](/video/research/continuum-biophysics/swell_cont5.avi) over
-half-an-hour.</div>
+{{< video src="J9bB_R0KIew" width="720" height="540" title="The collagen concentration increases over half-an-hour as the infusing nutrient-rich fluid causes the tendon to grow." >}}
 
 There is a rapid, fluid transport-dominated swelling of the tendon
 initially as it is immersed into the fluid bath. This is followed by a
 slower, reaction-driven growth phase.
 
-![Volume
- evolution](/images/research/continuum-biophysics/swell-volume-evolution.png
- "Rapid swelling of a tendon immersed in a bath")
+{{< figure src="/images/research/continuum-biophysics/swell-volume-evolution.png" title="Rapid swelling of a tendon immersed in a bath." >}}
 
-Rapid swelling of a tendon immersed in a bath.
-
-<div class="comment">[![Video
-icon](/layout/images/icons/darkgrey/video-x-generic.png
-"View the video
-(MPG)")](/video/research/continuum-biophysics/swell_cont4.mpg) Pay
-close attention to observe the initial, [fluid transport-dominated
-swelling of the
-tissue](/video/research/continuum-biophysics/swell_cont4.mpg),
-followed by much slower reaction-driven growth.</div>
+{{< video src="3VMCupM3BCk" width="720" height="540" title="Pay close attention to observe the initial, fluid transport-dominated swelling of the tissue, followed by much slower reaction-driven growth." >}}
 
 On performing a uniaxial tension test on the tendon before and after
 growth, it is observed that the grown tissue—having a higher
 concentration of collagen—is stiffer and stronger; which is in
 accordance with experiment.
 
-![Uniaxial stress-strain
- curves](/images/research/continuum-biophysics/swell-growth-mechanics.png
- "The grown tissue is stiffer and stronger")
-
-The grown tissue is stiffer and stronger.
+{{< figure src="/images/research/continuum-biophysics/swell-growth-mechanics.png" title="The grown tissue is stiffer and stronger." >}}
 
 Upon subjecting the tendon to a load-unload cycle, a stress-strain
 curve characteristic of viscoelastic tissue is observed. Here, the
 area between the loading and unloading paths is the hysteretic energy
 loss due to viscous dissipation.
 
-![Viscoelastic
- effects](/images/research/continuum-biophysics/tendon-viscoelasticity.png
- "Viscoelastic effects observed in the model")
+{{< figure src="/images/research/continuum-biophysics/tendon-viscoelasticity.png" title="Viscoelastic effects observed in the model." >}}
 
-Viscoelastic effects observed in the model.
-
-<div class="comment">[![Video
-icon](/layout/images/icons/darkgrey/video-x-generic.png
-"View the video (FFMPEG
-AVI)")](/video/research/continuum-biophysics/cyclic-sin.ffmpeg.avi)
-Observe the [induced fluid
-flow](/video/research/continuum-biophysics/cyclic-sin.ffmpeg.avi) as
-the tendon is subjected to a cyclically varying load. Friction between
-the solid and fluid phases results in energy dissipation.</div>
+{{< video src="uyo_AAP70kY" width="720" height="540" title="Observe the induced fluid flow as the tendon is subjected to a cyclically varying load. Friction between the solid and fluid phases results in energy dissipation." >}}
 
 Qualitatively, this viscoelastic behaviour compares favourably with
 our corresponding experimental tests on two-week-old tibialis anterior
 tendons in the laboratory.
 
-![Hysteresis in
- tendon](/images/research/continuum-biophysics/hysteresis-experiment.png
- "Hysteresis observed in experiments on TA tendons")
-
-Hysteresis observed in experiments on tibialis anterior tendons.
+{{< figure src="/images/research/continuum-biophysics/hysteresis-experiment.png" title="Hysteresis observed in experiments on tibialis anterior tendons." >}}
 
 Application of a constrictive radial load—where the maximum strain in
 the radial direction is experienced half-way through the height of the
@@ -197,11 +156,7 @@ tendon—to a tendon immersed in a fluid-filled bath results in a
 stress-gradient induced fluid flux. This drives fluid away from the
 central plane.
 
-![Vertical fluid flux in a constricted
- tendon](/images/research/continuum-biophysics/constrict-vertical-flux.png
- "Vertical fluid flux in a constricted tendon")
-
-Vertical fluid flux in a constricted tendon.
+{{< figure src="/images/research/continuum-biophysics/constrict-vertical-flux.png" title="Vertical fluid flux in a constricted tendon." >}}
 
 <div class="comment">[![Video
 icon](/layout/images/icons/darkgrey/video-x-generic.png
@@ -216,11 +171,7 @@ This pressure wave set up in the fluid travels toward the top and
 bottom faces, and as the fluid leaves these surfaces, we observe that
 the tendon relaxes.
 
-![Displacement of the top
- face](/images/research/continuum-biophysics/constrict-top-face-displacement.png
- "Relaxation of the top face of a constricted tendon")
-
-Relaxation of the top face of a constricted tendon.
+{{< figure src="/images/research/continuum-biophysics/constrict-top-face-displacement.png" title="Relaxation of the top face of a constricted tendon." >}}
 
 <div class="comment">[![Video
 icon](/layout/images/icons/darkgrey/video-x-generic.png
@@ -247,11 +198,7 @@ the formulation in studying the efficacy of drug delivery
 mechanisms. Michaelis-Menten enzyme kinetics is used to determine the
 rates of solute consumption and, consequently, collagen production.
 
-![Michaelis-Menten enzyme
- kinetics](/images/research/continuum-biophysics/michaelis-menten.png
- "Michaelis-Menten enzyme kinetics")
-
-Michaelis-Menten enzyme kinetics.
+{{< figure src="/images/research/continuum-biophysics/michaelis-menten.png" title="Michaelis-Menten enzyme kinetics." >}}
 
 In addition to subjecting the tendon immersed in the bath to the
 constrictive radial load described earlier, a solute-rich bulb with
@@ -264,11 +211,7 @@ primarily diffuses locally, and as the solute concentration in a
 region increases, the enzyme-kinetics model predicts a small source
 term for collagen, and we observe nominal growth.
 
-![Collagen concentration at an early
- time](/images/research/continuum-biophysics/medicate-solute-concentration.png
- "Collagen growth localised to regions of medication")
-
-Collagen growth localised to regions of medication.
+{{< figure src="/images/research/continuum-biophysics/medicate-solute-concentration.png" title="Collagen growth localised to regions of medication." >}}
 
 The following computation demonstrates the capability of the
 formulation in studying the self-healing of damaged
@@ -276,21 +219,13 @@ tissue. Incorporating a cell-signalling parameter into the chemical
 kinetics, the formation of collagen is spatially biased toward damaged
 regions of the tissue.
 
-![Chemical kinetics with damage
- healing](/images/research/continuum-biophysics/damage-healing-source.png
- "Chemical kinetics with a damage-healing parameter")
-
-Chemical kinetics with a damage-healing parameter.
+{{< figure src="/images/research/continuum-biophysics/damage-healing-source.png" title="Chemical kinetics with a damage-healing parameter." >}}
 
 Turning to damaged skin as our tissue of interest, we begin by
 delineating the damaged regions—characterised by a sudden reduction in
 the concentration of collagen—from the rest of the tissue.
 
-![Damaged region of
- skin](/images/research/continuum-biophysics/damaged-region.png
- "Damaged region of skin demarcated by green")
-
-Damaged region of skin demarcated by green.
+{{< figure src="/images/research/continuum-biophysics/damaged-region.png" title="Damaged region of skin demarcated by green." >}}
 
 This damaged tissue is introduced to a nutrient-rich environment, and
 the cell-signalling parameter induces preferential growth in these
@@ -316,11 +251,7 @@ than the undamaged tissue along the originally-stiff direction of the
 tissue. Thus, upon being subjected to a load, these compliant healed
 regions experience a reduced stress.
 
-![Vertical stress in
- skin](/images/research/continuum-biophysics/damaged-vertical-stress.png
- "Vertical stress in skin recovering from damage")
-
-Vertical stress in skin recovering from damage.
+{{< figure src="/images/research/continuum-biophysics/damaged-vertical-stress.png" title="Vertical stress in skin recovering from damage." >}}
 
 This result is analogous to the experimentally observed hypertrophic
 scarring of skin as it recovers from damage under no applied load.
