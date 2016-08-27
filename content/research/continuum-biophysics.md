@@ -8,6 +8,7 @@ category: primary
 featured: yes
 start_date: 2002
 end_date: 2007
+includes_video: yes
 ---
 
 This piece summarises aspects of the work that went into my
@@ -51,24 +52,14 @@ irreversible thermodynamics, the model incorporates the physics of
 multi-phase reacting systems, and deduces balance laws and a
 constitutive framework obeying the Second Law of Thermodynamics.
 
-![The balance of mass and momenta for all
- species](/images/research/continuum-biophysics/balance-laws.png "The
- balance of mass and momenta for all species")
-
-Reference configuration statements of the balance of mass and momenta
-for all species.
+{{< figure src="/images/research/continuum-biophysics/balance-laws.png" title="Reference configuration statements of the balance of mass and momenta for all species." >}}
 
 Notably, the transport of the extracellular fluid relative to the
 matrix is shown to be driven by the gradients of stress, concentration
 and chemical potential—a coupling of mass transport and mechanics that
 emerges directly.
 
-![Driving
- forces](/images/research/continuum-biophysics/driving-force.png
- "Constitutive relationship for fluid flux")
-
-A constitutive relationship relating the fluid flux to various driving
-forces.
+{{< figure src="/images/research/continuum-biophysics/driving-force.png" title="A constitutive relationship relating the fluid flux to various driving forces." >}}
 
 Assumptions central to existing mechanics theories, such as the nature
 of the split of deformation maps across the different species
@@ -83,10 +74,7 @@ incorporating non-linear projection methods to treat
 incompressibility, energy-momentum conserving algorithms for dynamics,
 and mixed methods for stress gradient-driven fluxes.
 
-![FEM Mesh](/images/research/continuum-biophysics/mesh.png "A
- representative mesh used in the finite element calculations")
-
-A representative mesh used in the finite element calculations.
+{{< figure src="/images/research/continuum-biophysics/mesh.png" title="A representative mesh used in the finite element calculations." >}}
 
 One highlight of the numerical methods is a rigorous treatment of
 numerical stability issues that arise with any operator-splitting
@@ -98,19 +86,11 @@ incompressibility constraint on the fluid phase, enabling a
 straightforward implementation of numerical stabilisation in the
 advection-dominated limit.
 
-![Stabilisable form of the solute transport
- equation](/images/research/continuum-biophysics/stabilisable-form.png
- "The solute transport equation in classical, stabilisable form")
+{{< figure src="/images/research/continuum-biophysics/stabilisable-form.png" title="The solute transport equation in classical, stabilisable form." >}}
 
-The solute transport equation in classical, stabilisable form.
+## Mechanics of growing tissue
 
-## <a id="mechanics">Mechanics of growing tissue</a>
-
-![Kinematics of
- growth](/images/research/continuum-biophysics/growth-kinematics.png
- "The kinematics of growth")
-
-The kinematics of growth.
+{{< figure src="/images/research/continuum-biophysics/growth-kinematics.png" title="The kinematics of growth." >}}
 
 Using model geometries and imposing classes of initial and boundary
 conditions approximating experiments in our laboratory, the
@@ -129,39 +109,7 @@ physics of fluid-tissue interactions, and the imposition of relevant
 boundary conditions, is best understood and represented in the current
 configuration.
 
-<div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
-"View the video
-(MPG)")](/video/research/continuum-biophysics/pinch_cont4.mpg) Watch
-the [unbounded build-up of
-fluid](/video/research/continuum-biophysics/pinch_cont4.mpg) due to
-the (unphysical) specification of constant reference fluid
-concentration boundary conditions, while attempting to simulate a
-loaded tendon immersed in a bath.</div>
-
-<div class="comment">
-
-### Having difficulty viewing a video?
-
-[![Help
-icon](http://localhost/layout/images/icons/darkgrey/help-browser.png
-"Download the required codecs for
-Windows")](http://sourceforge.net/projects/ffdshow/) In order to make
-their sizes more palatable for download, the videos on this page have
-been compressed using different algorithms. If you are having
-difficulty viewing any of them, please follow the following
-instructions on acquiring the necessary
-[codecs](http://en.wikipedia.org/wiki/Codec):
-
-» Windows users need to download and install the [ffdshow codec
-pack](http://sourceforge.net/projects/ffdshow/). Upon installation,
-you should be able to play the videos using any installed video
-player, including Windows Media Player.
-
-» GNU/Linux and Mac OS X users need to download and install either
-[VLC Media Player](http://www.videolan.org/vlc/) or
-[MPlayer](http://www.mplayerhq.hu/design7/news.html) (with a complete
-set of codecs) to play the videos.</div>
+{{< video src="OzXqCeOc2qM" width="720" height="540" title="Unbounded build-up of fluid due to the (unphysical) specification of constant reference fluid concentration boundary conditions, while attempting to simulate a loaded tendon immersed in a bath." >}}
 
 When a tendon having an initially-uniform distribution of collagen is
 immersed into a nutrient-rich bath, nutrient-rich fluid is transported
@@ -175,7 +123,7 @@ collagen.
 Distribution of collagen after growth.
 
 <div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
+icon](/layout/images/icons/darkgrey/video-x-generic.png
 "View the video (DivX
 AVI)")](/video/research/continuum-biophysics/swell_cont5.avi) The
 infusing nutrient-rich fluid causes the tendon to grow. Watch the
@@ -194,7 +142,7 @@ slower, reaction-driven growth phase.
 Rapid swelling of a tendon immersed in a bath.
 
 <div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
+icon](/layout/images/icons/darkgrey/video-x-generic.png
 "View the video
 (MPG)")](/video/research/continuum-biophysics/swell_cont4.mpg) Pay
 close attention to observe the initial, [fluid transport-dominated
@@ -225,7 +173,7 @@ loss due to viscous dissipation.
 Viscoelastic effects observed in the model.
 
 <div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
+icon](/layout/images/icons/darkgrey/video-x-generic.png
 "View the video (FFMPEG
 AVI)")](/video/research/continuum-biophysics/cyclic-sin.ffmpeg.avi)
 Observe the [induced fluid
@@ -256,7 +204,7 @@ central plane.
 Vertical fluid flux in a constricted tendon.
 
 <div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
+icon](/layout/images/icons/darkgrey/video-x-generic.png
 "View the video (DivX
 AVI)")](/video/research/continuum-biophysics/constrict_total_flux_3_4.avi)
 The constrictive radial load sets up a [fluid flux in the vertical
@@ -275,7 +223,7 @@ the tendon relaxes.
 Relaxation of the top face of a constricted tendon.
 
 <div class="comment">[![Video
-icon](http://localhost/layout/images/icons/darkgrey/video-x-generic.png
+icon](/layout/images/icons/darkgrey/video-x-generic.png
 "View the video (DivX
 AVI)")](/video/research/continuum-biophysics/constrict_ref_conc_3.avi)
 The stress gradient-driven fluid flux causes a [decrease in the
@@ -284,7 +232,7 @@ concentration](/video/research/continuum-biophysics/constrict_ref_conc_3.avi)
 near the central plane. Pay close attention to observe the relaxation
 of the top face as the fluid leaves the surface.</div>
 
-## <a id="applications">Drug delivery and wound healing</a>
+## Drug delivery and wound healing
 
 Having established the fundamental behaviour of the formulation, we
 now turn to more sophisticated applications.
