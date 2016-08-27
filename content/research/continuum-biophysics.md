@@ -10,40 +10,28 @@ start_date: 2002
 end_date: 2007
 ---
 
-Prompted by compelling clinical reports evidencing the pervasive role
-of mechanical factors influencing biological growth, our modelling
-work is aimed at gaining a deeper understanding of the biophysical
-bases underlying these influences.
+This piece summarises aspects of the work that went into my
+Ph.D. dissertation. If you're interested in more details, head on over
+to my more [formal research writing](/research/#writing).
 
-<div class="showcase">“All science is either physics or stamp
-collecting.”  — [Ernest
-Rutherford](http://en.wikiquote.org/wiki/Ernest_Rutherford "Need more
-quotations?") (1871 – 1937)</div>
+## Introduction
+
+There is a lot of compelling clinical evidence that suggests the
+pervasive influence of mechanical factors in biological growth. The
+central goal of this modelling work is to gain a deeper understanding
+of the biophysical bases underlying these influences.
 
 The utility of the resulting mathematical and computational framework
 extends across disciplines by helping steer and interpret experimental
 work, both under physiological and pathological cases of
-interest. Currently, our focus is directed toward a better
-understanding of the mechanics of growing soft tissue, specifically
-tendon.
+interest. Our initial focus is directed toward a better understanding
+of the mechanics of growing soft tissue, specifically tendon.
 
-![Engineerd
- construct](/images/research/continuum-biophysics/one-construct.jpg
- "One of Sarah’s engineered tendon constructs")
+{{< figure src="/images/research/continuum-biophysics/one-construct.jpg" title="Our biological model: My colleague Sarah’s engineered tendon constructs." >}}
 
-Our biological model: Sarah’s engineered tendon constructs.
+## General formulation for growth in tissues
 
-This web page contains some highlights of our modelling effort. For
-more detailed expositions, the interested reader is directed toward
-more [formal articles](http://localhost/writing/).
-
-## <a id="formulation">General formulation for growth in tissues</a>
-
-![Continuum
- potatoes](/images/research/continuum-biophysics/tissue-continuum.png
- "The tissue as a continuum potato")
-
-The tissue as a continuum potato.
+{{< figure src="/images/research/continuum-biophysics/tissue-continuum.png" title="The tissue as a continuum potato." >}}
 
 _Growth_ in biological tissue is a direct outcome of cascades of
 complex, intracellular, biochemical reactions involving numerous
@@ -56,11 +44,7 @@ incorporating different modelling assumptions—such as the use of an
 enzyme kinetics-based growth law—to better represent cases of
 interest.
 
-![Enzyme
- kinetics](/images/research/continuum-biophysics/enzyme-kinetics.png
- "Enzyme kinetics-based growth law")
-
-Enzyme kinetics-based growth law.
+{{< figure src="/images/research/continuum-biophysics/enzyme-kinetics.png" title="Enzyme kinetics-based growth law." >}}
 
 Recognising that a growing tissue is an open system undergoing
 irreversible thermodynamics, the model incorporates the physics of
