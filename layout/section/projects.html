@@ -24,7 +24,7 @@
   </div>
 
   <h2 id="research-tools">Scientific research tools</h2>
-  <p>Much of my <a href="/research/">academic research work</a> has revolved around mathematically modelling biological systems. And in most cases, the resulting equations are too complicated to be solved by hand, requiring specialised research software. The tools you see below are offshoots of such software. The code is (mostly) human-readable Python.</p>
+  <p>Most of my <a href="/research/">academic research work</a> has revolved around mathematically modelling biological systems. Since these systems are complex, the resulting equations describing them are often too complicated to be solved by hand. This means I’ve had to build a lot of specialised research software to help. And the tools you see below are offshoots of such software.</p>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "research-tool" }}
     {{ .Render "summary" }}
