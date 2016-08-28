@@ -24,9 +24,9 @@ of the biophysical bases underlying these influences.
 
 The utility of the resulting mathematical and computational framework
 extends across disciplines by helping steer and interpret experimental
-work, both under physiological and pathological cases of
-interest. Our initial focus is directed toward a better understanding
-of the mechanics of growing soft tissue, specifically tendon.
+work, both under physiological and pathological cases of interest. Our
+initial focus is directed toward a better understanding of the
+mechanics of growing soft tissue, specifically tendon.
 
 {{< figure src="/images/research/continuum-biophysics/one-construct.jpg" title="Our biological model: My colleague Sarah’s engineered tendon constructs." >}}
 
@@ -41,8 +41,8 @@ the extra-cellular matrix. Both reaction and diffusion/transport are
 influenced by mechanics in a number of ways. Our modelling effort
 proposes a general continuum field formulation for growth capable of
 simulating this rich observed behaviour, and proceeds to specialise it
-incorporating different modelling assumptions—such as the use of an
-enzyme kinetics-based growth law—to better represent cases of
+incorporating different modelling assumptions---such as the use of an
+enzyme kinetics-based growth law---to better represent cases of
 interest.
 
 {{< figure src="/images/research/continuum-biophysics/enzyme-kinetics.png" title="Enzyme kinetics-based growth law." >}}
@@ -56,8 +56,8 @@ constitutive framework obeying the Second Law of Thermodynamics.
 
 Notably, the transport of the extracellular fluid relative to the
 matrix is shown to be driven by the gradients of stress, concentration
-and chemical potential—a coupling of mass transport and mechanics that
-emerges directly.
+and chemical potential---a coupling of mass transport and mechanics
+that emerges directly.
 
 {{< figure src="/images/research/continuum-biophysics/driving-force.png" title="A constitutive relationship relating the fluid flux to various driving forces." >}}
 
@@ -96,7 +96,7 @@ Using model geometries and imposing classes of initial and boundary
 conditions approximating experiments in our laboratory, the
 computational framework developed is used to demonstrate aspects of
 the coupled phenomena as the tissue grows. In these foundational
-calculations, only two phases—fluid and collagen—are included. The
+calculations, only two phases---fluid and collagen---are included. The
 collagen phase is modelled by the anisotropic worm-like chain model,
 and the fluid phase is modelled as ideal and nearly
 incompressible. The interconversion between these two phases is
@@ -129,8 +129,8 @@ slower, reaction-driven growth phase.
 {{< video src="3VMCupM3BCk" width="720" height="540" title="Pay close attention to observe the initial, fluid transport-dominated swelling of the tissue, followed by much slower reaction-driven growth." >}}
 
 On performing a uniaxial tension test on the tendon before and after
-growth, it is observed that the grown tissue—having a higher
-concentration of collagen—is stiffer and stronger; which is in
+growth, it is observed that the grown tissue---having a higher
+concentration of collagen---is stiffer and stronger; which is in
 accordance with experiment.
 
 {{< figure src="/images/research/continuum-biophysics/swell-growth-mechanics.png" title="The grown tissue is stiffer and stronger." >}}
@@ -150,9 +150,9 @@ tendons in the laboratory.
 
 {{< figure src="/images/research/continuum-biophysics/hysteresis-experiment.png" title="Hysteresis observed in experiments on tibialis anterior tendons." >}}
 
-Application of a constrictive radial load—where the maximum strain in
-the radial direction is experienced half-way through the height of the
-tendon—to a tendon immersed in a fluid-filled bath results in a
+Application of a constrictive radial load---where the maximum strain
+in the radial direction is experienced half-way through the height of
+the tendon---to a tendon immersed in a fluid-filled bath results in a
 stress-gradient induced fluid flux. This drives fluid away from the
 central plane.
 
@@ -188,8 +188,8 @@ rates of solute consumption and, consequently, collagen production.
 In addition to subjecting the tendon immersed in the bath to the
 constrictive radial load described earlier, a solute-rich bulb with
 its centre on the axis of the tendon is introduced. The relatively
-small magnitude of the fluid mobility—with respect to the diffusion
-coefficient for the solute through the fluid—results in a relatively
+small magnitude of the fluid mobility---with respect to the diffusion
+coefficient for the solute through the fluid---results in a relatively
 small stress gradient-driven flux, and the transport of the solute is
 diffusion dominated. Consequently, as time progresses, the solute
 primarily diffuses locally, and as the solute concentration in a
@@ -207,16 +207,16 @@ regions of the tissue.
 {{< figure src="/images/research/continuum-biophysics/damage-healing-source.png" title="Chemical kinetics with a damage-healing parameter." >}}
 
 Turning to damaged skin as our tissue of interest, we begin by
-delineating the damaged regions—characterised by a sudden reduction in
-the concentration of collagen—from the rest of the tissue.
+delineating the damaged regions---characterised by a sudden reduction
+in the concentration of collagen---from the rest of the tissue.
 
 {{< figure src="/images/research/continuum-biophysics/damaged-region.png" title="Damaged region of skin demarcated by green." >}}
 
 This damaged tissue is introduced to a nutrient-rich environment, and
 the cell-signalling parameter induces preferential growth in these
 damaged regions. We allow this healing process to evolve under two
-different conditions—under no load and under uniaxial stress—to study
-the influence of mechanics on the properties of healed tissue.
+different conditions---under no load and under uniaxial stress---to
+study the influence of mechanics on the properties of healed tissue.
 
 The anisotropic nature of these tissues arises from the
 microstructural alignment of their constituent collagen fibers, and
