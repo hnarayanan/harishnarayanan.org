@@ -3,29 +3,33 @@
   <!-- TODO: Highlight some things I'm particularly interested in? e.g. ML -->
   <!-- TODO: Move nearly everything out to GitHub and link to READMEs? -->
   <h1 id="main-description">Things I’ve made</h1>
-  <p>Much of my time over the years has been spent merrily making and improving the sorts of <a href="#websites">websites</a>, <a href="#utilities">software utilities</a> and <a href="#research">research tools</a> you see on this page. If you&#8217;re interested in learning more about any of these projects, I&#8217;d be delighted to hear from you!</p>
+  <p>Much of my time over the years has been spent merrily making and improving the sorts of <a href="#websites">websites</a>, <a href="#software-utilities">software utilities</a> and <a href="#research-tools">research tools</a> you see on this page. If you’d like to learn more about any of these projects, <a href="mailto:mail@harishnarayanan.org">just ask</a>!</p>
   <!-- TODO: Featured stuff goes here: shpotify, femtable -->
   <!-- TODO: Also, when e.g., thinkbot/pde-zen-garden etc. are in better shape, demo them prominently here. -->
 
   <h2 id="websites">Websites and webapps</h2>
+  <p>I built these for fun for about a dozen years. Then they started paying the bills.</p>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "website" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
 
-  <h2 id="utilities">Simple software utilities</h2>
-  <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
+  <h2 id="software-utilities">Simple software utilities</h2>
+  <p>The following utilities were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "software" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
 
-  <h2 id="research">Scientific research tools</h2>
-  <!-- TODO: Catalogue research software as part of the projects page -->
-  <!--     <h2 id="software">Related software projects</h2> -->
-    <!-- <p>Much of the research code distributed below is human-readable Python sitting atop the <a href="http://fenicsproject.org/">FEniCS Project</a>. FEniCS is a collaborative project for the automation of computational mathematical modelling based on the finite element method. In order to play with the code, you need to have <a href="http://fenicsproject.org/download/">a working installation of FEniCS</a>. Please <a href="mailto:harish at simula dot no">write to me</a> if you need help getting the code to work or are interested in collaborating on future extensions.</p> -->
+  <h2 id="research-tools">Scientific research tools</h2>
+  <p>Much of my <a href="/research/">academic research work</a> has revolved around mathematically modelling biological systems. And in most cases, the resulting equations are too complicated to be solved by hand, requiring specialised research software. The tools you see below are offshoots of such software. The code is (mostly) human-readable Python.</p>
+  <div class="pure-g l-box-container">
+    {{ range where .Data.Pages "Params.category" "==" "research-tool" }}
+    {{ .Render "summary" }}
+    {{ end }}
+  </div>
     <!-- <div class="row"> -->
     <!--   <div class="one-third column"> -->
     <!--        <a href="http://localhost/files/projects/chondrocyte-model/chondrocyte-model.zip"><img class="gallery-item-image" src="http://localhost/files/images/research/gallery/chondrocyte-model.png" alt="An electrophysiological model for the chondrocyte" title="An electrophysiological model for the chondrocyte"></a> -->
