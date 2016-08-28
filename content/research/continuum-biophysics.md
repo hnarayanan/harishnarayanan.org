@@ -158,14 +158,7 @@ central plane.
 
 {{< figure src="/images/research/continuum-biophysics/constrict-vertical-flux.png" title="Vertical fluid flux in a constricted tendon." >}}
 
-<div class="comment">[![Video
-icon](/layout/images/icons/darkgrey/video-x-generic.png
-"View the video (DivX
-AVI)")](/video/research/continuum-biophysics/constrict_total_flux_3_4.avi)
-The constrictive radial load sets up a [fluid flux in the vertical
-direction](/video/research/continuum-biophysics/constrict_total_flux_3_4.avi),
-driving fluid away from the central plane toward the top and bottom
-faces of the tendon.</div>
+{{< video src="RRT20euEX58" width="720" height="540" title="The constrictive radial load sets up a fluid flux in the vertical direction, driving fluid away from the central plane toward the top and bottom faces of the tendon." >}}
 
 This pressure wave set up in the fluid travels toward the top and
 bottom faces, and as the fluid leaves these surfaces, we observe that
@@ -173,15 +166,7 @@ the tendon relaxes.
 
 {{< figure src="/images/research/continuum-biophysics/constrict-top-face-displacement.png" title="Relaxation of the top face of a constricted tendon." >}}
 
-<div class="comment">[![Video
-icon](/layout/images/icons/darkgrey/video-x-generic.png
-"View the video (DivX
-AVI)")](/video/research/continuum-biophysics/constrict_ref_conc_3.avi)
-The stress gradient-driven fluid flux causes a [decrease in the
-reference fluid
-concentration](/video/research/continuum-biophysics/constrict_ref_conc_3.avi)
-near the central plane. Pay close attention to observe the relaxation
-of the top face as the fluid leaves the surface.</div>
+{{< video src="jN0t7GBcvnc" width="720" height="540" title="The stress gradient-driven fluid flux causes a decrease in the reference fluid concentration near the central plane. Pay close attention to observe the relaxation of the top face as the fluid leaves the surface." >}}
 
 ## Drug delivery and wound healing
 
