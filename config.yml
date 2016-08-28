@@ -6,4 +6,5 @@ metaDataFormat: yml
 layoutdir: layout
 pluralizeListTitles: false
 disableHugoGeneratorInject: true
+taxonomies: false
 ...
