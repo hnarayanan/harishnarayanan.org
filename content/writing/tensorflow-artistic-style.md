@@ -155,6 +155,8 @@ learning image classifiers: A [*Softmax classifier* with a
 
 ### A first learning image classifier
 
+#### A linear score function
+
 Recall the classification problem we're trying to solve. We have an
 image $\mathbf{x}$ that's represented as an array of integers of
 length $D = W \times H \times 3$, and we want to find out which
@@ -180,7 +182,9 @@ pre-classified examples. And once we've learnt the parameters on this
 *training data*, we hopefully have a function that *generalises* well
 enough to classify arbitrary image input.
 
-The first step in this learning process is to introduce a *loss*
+#### Softmax activation and cross entropy loss
+
+The first step in the learning process is to introduce a *loss*
 function, $\mathcal{L}$. This is a function that quantifies the
 *disagreement* between what our classifier suggests for the scores and
 what our training data provides as the known truth. Thus, this loss
@@ -221,38 +225,68 @@ $\infty$.
 $(\mathbf{W}, \mathbf{b})$. We'll soon see why this is a useful
 property to have.
 
-To go from the loss on a single training data point to the entire set,
-we simply average over all our examples:
+To go from the loss on a single training example to the entire set, we
+simply average over all our examples:
 
 $$
 \mathcal{L} = \frac{1}{N}\sum_{i=1}^N \mathcal{L}_i
 $$
 
+TODO: Regularisation term.
+
+#### An iterative optimisation process
+
 Now that we have a loss function that measures the quality of our
 classification, all we have left to do is to find parameters that
 minimise this loss. This is an optimisation problem.
 
-One good way to solve this problem is by *iterative refinement*. This
-is where we start with random values for our parameters $(\mathbf{W},
-\mathbf{b})$, and successively improve them step-by-step until the
-loss is minimised.
+There are a lot of bad ways to solve this problem (e.g. guessing
+parameters until we get lucky), but one good way to solve this
+problem is by *iterative refinement*. This is where we start with
+random values for our parameters $(\mathbf{W}, \mathbf{b})$, and
+successively improve them step-by-step until the loss is
+minimised.
 
-If you imagine the loss function 
+If you imagine the loss function to be a bowl-like surface (albeit in
+multiple dimensions), what we're trying to do is to find the lowest
+point in this bowl. How would you do this if you couldn't see the
+entire bowl? You'd start somewhere and feel around in your local
+neighbourhood, and move toward whatever direction you find the
+steepest downward slope. You stop when you can't go any lower (or the
+slope goes to 0). The technical term for this approach is called
+[gradient descent][gradient-descent]. (In fact, there is a [whole
+family of related methods][gradient-descent-family] that improve on
+this basic idea, but we'll start with the basic version first.)
 
-TODO: Regularisation term.
+TODO: Describe the math behind (minibatch) SGD
 
+*Finally*, we have our first complete learning image classifier. Given
+some image as a raw array of numbers, we have a parameterised (score)
+function that takes us to category scores. We have a way of
+evaluating its performance (loss function). We also have an algorithm
+to learn and improve the classifier's parameters with example data
+(optimisation via stochastic gradient descent).
 
-We have quite a bit more theory to go, so if you're itching for some
-practical exercises, you now have enough background to appreciate the
-first [TensorFlow tutorial][tensorflow-tutorial-mnist] aimed at
-beginners to machine learning
-
+We have quite a bit more theory to go before we understand all the
+bits we need to [solve Gatys et al.'s optimisation
+problem][neural-style-algorithm] and reproduce Prisma's visual
+effect. But if you're itching for some practical exercises, now is a
+good time to pause reading and try the [first TensorFlow
+tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
+learning. You now have enough background to appreciate the choices
+they've made in the tutorial.
 
 ### Moving to neural networks
 
-- TODO: Then, we move to a more complex, nonlinear version of the
-  score function. But the rest of the ideas (loss, optimisation
-  problem) stay the same.
+The reason we spent *so much time* on our first (linear) image
+classifier is that it was a way to introduce the parameterised score
+function, the loss function, and the iterative optimisation process
+without being bogged down by too many other technical details. Now
+that we understand what these are and how they allow us to build a
+learning image classifier, we will soon extend the score function to
+more complex, nonlinear versions (first neural networks in general,
+then convolutional neural networks). But the rest of the ideas (loss
+function, optimisation process) stay the same.
 
 {{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="TODO: An example neural network image." >}}
 
@@ -343,5 +377,6 @@ we look for extensions of this algorithm.
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
 [softmax]: https://en.wikipedia.org/wiki/Softmax_function
+[gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
 [gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
 [todo]: todo
