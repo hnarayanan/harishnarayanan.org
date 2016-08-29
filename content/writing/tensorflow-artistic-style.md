@@ -1,5 +1,5 @@
 ---
-date: 2016-08-31T21:00:00+01:00
+date: 2016-09-30T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
@@ -64,11 +64,12 @@ $$
 
 where $\mathcal{L}_c(\mathbf{c}, \mathbf{x})$ is the *content loss* (a
 function that grows as the generated image $\mathbf{x}$ "deviates in
-content" from $\mathbf{c}$), and $\mathcal{L}_s(\mathbf{s}, \mathbf{x})$
-is the *style loss* (a function that grows when the generated image
-$\mathbf{x}$ "deviates in style" from $\mathbf{s}$). $\alpha$ and
-$\beta$ are weighting factors that control how much we want to
-emphasise the content relative to the style.
+content" from $\mathbf{c}$), and $\mathcal{L}_s(\mathbf{s},
+\mathbf{x})$ is the *style loss* (a function that grows when the
+generated image $\mathbf{x}$ "deviates in style" from
+$\mathbf{s}$). $\alpha$ and $\beta$ are scalar weighting factors that
+control how much we want to emphasise the content relative to the
+style.
 
 One crucial bit of insight in this paper is that the definitions of
 these style and content losses *are not based on per-pixel
@@ -147,10 +148,10 @@ feed them into a *learning algorithm*. This algorithm uses the
 examples to learn about the visual appearance of each class, allowing
 it to automatically function as the classifier we want!
 
-While this does sound amazing, it's also very hand-wavy. Let's make
-things more concrete by taking a look at one of the simplest learning
-image classifiers: A [*Softmax classifier* with a *cross-entropy*
-loss][cs231n-softmax-classifier] function.
+While this does sound rather amazing, it's also very hand-wavy. Let's
+make things more concrete by taking a look at one of the simplest
+learning image classifiers: A [*Softmax classifier* with a
+*cross-entropy* loss][cs231n-softmax-classifier] function.
 
 ### A first learning image classifier
 
