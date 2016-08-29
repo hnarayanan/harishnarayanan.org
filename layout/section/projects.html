@@ -18,7 +18,7 @@
   <h2 id="software-utilities">Simple software utilities</h2>
   <p>The following utilities were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
   <div class="pure-g l-box-container">
-    {{ range where .Data.Pages "Params.category" "==" "software-utility" }}
+    {{ range where .Data.Pages "Params.category" "==" "software" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
