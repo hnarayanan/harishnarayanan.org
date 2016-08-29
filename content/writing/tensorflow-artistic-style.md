@@ -170,34 +170,58 @@ scores. The simplest possible example of such a function is a linear
 map:
 
 $$
-f(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
-\mathbf{W}\mathbf{x} + \mathbf{b}
+f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}
 $$
 
 Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
 $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
-function. The algorithm will *learn* these with the help of the
-*training* data (our pre-classified examples) that we have. And once
-we've learnt the *parameters* on our training data, we hopefully have
-a function that *generalises* well enough to classify arbitrary image
-input.
+function. The algorithm will *learn* these with the help of the our
+pre-classified examples. And once we've learnt the parameters on this
+*training data*, we hopefully have a function that *generalises* well
+enough to classify arbitrary image input.
 
 The first step in this learning process is to introduce *loss*
-function, $\mathcal{L}$. This is a function that quantifies
-the disagreement between what our classifier suggests for the scores
-and what our training data provides as the known truth. Thus, this
-loss function goes up if the classifier is doing a poor job and goes
-down if it's doing great. One good functional form for our loss
-function is ... . While this is a seemingly arbitrary choice, there is
-a [lot of research][todo] out there that suggests it is a good choice for
-quantifying classification errors. I encourage you to go
-down the rabbit hole if you're curious.
+function, $\mathcal{L}$. This is a function that quantifies the
+*disagreement* between what our classifier suggests for the scores and
+what our training data provides as the known truth. Thus, this loss
+function goes up if the classifier is doing a poor job and goes down
+if it's doing great. And the goal of the learning process is determine
+parameters that give us the best (lowest) loss.
+
+Suppose our training data is a set of pre-classified examples
+$\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
+1, \ldots, K$. A good functional form to determine the loss for one of
+these examples is:
+
+$$
+\mathcal{L}_i = -\log\(\frac{e^{f_y}}{\sum_j e^{f_j}}\)
+$$
+
+where $f_j$ is the $j$<sup>th</sup> element of the vector $f$. This is
+called the [cross entropy][cross-entropy] loss of the
+[softmax][softmax] of the class scores determined by $f$. As weird as
+this form looks, if you stare at it long enough you'll convince
+yourself of a few things:
+
+1. The stuff in parenthesis (called the [softmax function][softmax])
+takes the output of $f$, which is a vector of $K$ real values, and
+returns a single number in the range $(0, 1)$. This allows us to
+interpret this output as the probability our score function believes
+the correct class is $y_i$.
+
+2. The negative log of $(0, 1) \mapsto (\infty, 0)$. Meaning that if
+our score function identifies the correct answer with high
+probability, the loss function tends to $0$. And if it identifies the
+correct answer with low probability, the loss function tends to
+$\infty$.
+
+3. This form is smoothly differentiable relative to our parameters
+$(\mathbf{W}, \mathbf{b})$. We'll soon see why this is very helpful.
 
 TODO: Regularisation term.
 
 And now that we have a loss function that measures the quality of our
-classification, all we need to do is determine parameters that give us
-the best (lowest) loss.
+classification, all we need to do...
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image classifier showing the score function and the loss function" >}}
 
@@ -293,4 +317,6 @@ we look for extensions of this algorithm.
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
 [tensorflow-serving]: https://tensorflow.github.io/serving/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
+[cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
+[softmax]: https://en.wikipedia.org/wiki/Softmax_function
 [todo]: todo
