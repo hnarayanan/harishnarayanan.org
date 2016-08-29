@@ -156,29 +156,48 @@ learning image classifiers: A [*Softmax classifier* with a
 ### A first learning image classifier
 
 Recall the classification problem we're trying to solve. We have an
-image $\mathbf{x}$ that's represented as a $D = W \times H \times 3$
-array of numbers, and we want to find out which category (in a set of
-$K$ categories) that it belongs to. One way to convey this information
-is to get a *confidence score* for each category (and the largest
-score amongst these will be the main category we're looking for).
+image $\mathbf{x}$ that's represented as an array of integers of
+length $D = W \times H \times 3$, and we want to find out which
+category (in a set of $K$ categories) it belongs to. In fact, instead
+of just reporting one category name, it would be more helpful to get a
+*confidence score* for each category. This way, we'll not only get the
+primary category we're looking for (the largest score), but we'll also
+have a sense of how confident we are with our classification.
 
-In essence, what we're looking for is a function $f: \mathbb{R}^D
-\mapsto \mathbb{R}^{K}$ that maps image data to class scores. The
-simplest possible example for such a function is a linear map:
+So in essence, what we're looking for is a *score* function $f:
+\mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
+scores. The simplest possible example of such a function is a linear
+map:
 
-$$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}$$
+$$
+f(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
+\mathbf{W}\mathbf{x} + \mathbf{b}
+$$
 
 Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
 $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
 function. The algorithm will *learn* these with the help of the
-*training* data that we have. (Which is a fancy way of saying that we
-will fit them to the pre-classified example data.) For this, we
-introduce a *loss* function $\mathcal{L}$ that quantifies the
-disagreement between what our classifier suggests for the scores and
-what our training data provides as the known truth. Thus, this loss
-function goes up if the classifier is doing a poor job and goes down
-if it's doing great. The parameters $\mathbf{W}$ and $\mathbf{b}$ are
-tuned to minimise this loss --- another optimisation problem.
+*training* data (our pre-classified examples) that we have. And once
+we've learnt the *parameters* on our training data, we hopefully have
+a function that *generalises* well enough to classify arbitrary image
+input.
+
+The first step in this learning process is to introduce *loss*
+function, $\mathcal{L}$. This is a function that quantifies
+the disagreement between what our classifier suggests for the scores
+and what our training data provides as the known truth. Thus, this
+loss function goes up if the classifier is doing a poor job and goes
+down if it's doing great. One good functional form for our loss
+function is ... . While this is a seemingly arbitrary choice, there is
+a [lot of research][todo] out there that suggests it is a good choice for
+quantifying classification errors. I encourage you to go
+down the rabbit hole if you're curious.
+
+TODO: Regularisation term.
+
+And now that we have a loss function that measures the quality of our
+classification, all we need to do is determine parameters that give us
+the best (lowest) loss.
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image classifier showing the score function and the loss function" >}}
 
@@ -274,3 +293,4 @@ we look for extensions of this algorithm.
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
 [tensorflow-serving]: https://tensorflow.github.io/serving/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
+[todo]: todo
