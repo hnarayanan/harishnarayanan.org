@@ -3,30 +3,21 @@
   <!-- TODO: Highlight some things I'm particularly interested in? e.g. ML -->
   <!-- TODO: Move nearly everything out to GitHub and link to READMEs? -->
   <h1 id="main-description">Things I’ve made</h1>
-  <p>Much of my time over the years has been spent merrily making and improving the sorts of <a href="#websites">websites</a>, <a href="#software-utilities">software utilities</a> and <a href="#research-tools">research tools</a> you see on this page. If you’d like to learn more about any of these projects, <a href="mailto:mail@harishnarayanan.org">just ask</a>!</p>
+  <p>Much of my time over the years has been spent merrily making and improving the sorts of <a href="#websites">websites</a> and <a href="#software">software utilities</a> you see on this page. I used to build these for fun alongside my <a href="/research/">research work</a> for many years, until one day they started paying the bills! If you’d like to learn more about or collaborate on any of these projects, <a href="mailto:mail@harishnarayanan.org">I’d love to hear from you</a>.</p>
   <!-- TODO: Featured stuff goes here: shpotify, femtable -->
   <!-- TODO: Also, when e.g., thinkbot/pde-zen-garden etc. are in better shape, demo them prominently here. -->
 
-  <h2 id="websites">Websites and webapps</h2>
-  <p>I built these for fun for about a dozen years. Then they started paying the bills.</p>
+  <h2 id="websites">Sites around the web</h2>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "website" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
 
-  <h2 id="software-utilities">Simple software utilities</h2>
-  <p>The following utilities were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
+  <h2 id="software">Simple software utilities</h2>
+  <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "software" }}
-    {{ .Render "summary" }}
-    {{ end }}
-  </div>
-
-  <h2 id="research-tools">Scientific research tools</h2>
-  <p>Most of my <a href="/research/">academic research work</a> has revolved around mathematically modelling biological systems. Since these systems are complex, the resulting equations describing them are often too complicated to be solved by hand. This means I’ve had to build a lot of specialised research software to help. And the tools you see below are offshoots of such software.</p>
-  <div class="pure-g l-box-container">
-    {{ range where .Data.Pages "Params.category" "==" "research-tool" }}
     {{ .Render "summary" }}
     {{ end }}
   </div>
