@@ -194,28 +194,28 @@ parameters that give us the best (lowest) loss.
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: An image classifier showing the score function and the loss function" >}}
 
-Suppose our training data is a set of pre-classified examples
+Suppose our training data is a set of $N$ pre-classified examples
 $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
 1, \ldots, K$. A good functional form to determine the loss for one of
 these examples is:
 
 $$
-\mathcal{L}_i = -\log\left(\frac{\exp(f_y)}{\sum_j \exp(f_j)}\right)
+\mathcal{L}_i =
+-\log\left(\frac{\exp(f\_{y\_i}(\mathbf{x}_i))}
+{\sum\_{j=1}^K\exp(f_j(\mathbf{x}_i))}\right)
 $$
 
-TODO: `f_y` in the equation above should `f_{y_i}`.
+where $f_j(\mathbf{x}_i)$ is the $j$<sup>th</sup> element of the
+vector $f(\mathbf{x}_i)$. This is called the [cross
+entropy][cross-entropy] loss of the [softmax][softmax] of the class
+scores determined by $f$. As weird as this form looks, if you stare at
+it long enough you'll convince yourself of a few things:
 
-where $f_j$ is the $j$<sup>th</sup> element of the vector $f$. This is
-called the [cross entropy][cross-entropy] loss of the
-[softmax][softmax] of the class scores determined by $f$. As weird as
-this form looks, if you stare at it long enough you'll convince
-yourself of a few things:
-
-1. The stuff in parenthesis takes the output of $f$, which is a vector
-of $K$ real values, plucks the value at the correct class' position
-($y_i$), and transforms it into a single number in the range $(0,
-1)$. This allows us to interpret this output as the probability our
-score function believes $y_i$ is the correct class.
+1. The stuff in parenthesis takes the output of $f(\mathbf{x}_i)$,
+which is a vector of $K$ real values, plucks the value at the correct
+class' position ($y_i$), and transforms it into a single number in the
+range $(0, 1)$. This allows us to interpret this output as the
+probability our score function believes $y_i$ is the correct class.
 
 2. The negative $\log$ of $(0, 1) \mapsto (\infty, 0)$. Meaning that
 if our score function identifies the correct answer with high
