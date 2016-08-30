@@ -200,8 +200,10 @@ $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
 these examples is:
 
 $$
-\mathcal{L}_i = -\log\left(\frac{e^{f_y}}{\sum_j e^{f_j}}\right)
+\mathcal{L}_i = -\log\left(\frac{\exp(f_y)}{\sum_j \exp(f_j)}\right)
 $$
+
+TODO: `f_y` in the equation above should `f_{y_i}`.
 
 where $f_j$ is the $j$<sup>th</sup> element of the vector $f$. This is
 called the [cross entropy][cross-entropy] loss of the
