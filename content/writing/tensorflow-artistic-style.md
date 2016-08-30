@@ -23,7 +23,7 @@ effect as a [webapp][neural-style-implementation].
 ## So what is Prisma and how might it work?
 
 Prisma is a mobile app (iPhone and Android at the time this piece was
-written) that allows you to transfer the style of one image, say a
+written) that allows you to transfer the style of one image, say an
 impressionist painting, onto the content of another, say a picture of
 your baby. Here's a demo of the kind of images that it generates.
 
@@ -264,9 +264,9 @@ TODO: Describe the math behind (minibatch) SGD
 
 *Finally*, we have our first complete learning image classifier. Given
 some image as a raw array of numbers, we have a parameterised (score)
-function that takes us to category scores. We have a way of
-evaluating its performance (loss function). We also have an algorithm
-to learn and improve the classifier's parameters with example data
+function that takes us to category scores. We have a way of evaluating
+its performance (the loss function). We also have an algorithm to
+learn and improve the classifier's parameters with example data
 (optimisation via stochastic gradient descent).
 
 We have quite a bit more theory to go before we understand all the
