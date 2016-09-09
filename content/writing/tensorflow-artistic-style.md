@@ -178,9 +178,9 @@ $$
 Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
 $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
 function. The algorithm will *learn* these with the help of our
-pre-classified examples. And once we've learnt the parameters on this
-*training data*, we hopefully have a function that *generalises* well
-enough to classify arbitrary image input.
+pre-classified examples. And once we've learnt (fit) the parameters on
+this *training data*, we hopefully have a function that *generalises*
+well enough to classify arbitrary image input.
 
 #### Softmax activation and cross entropy loss
 
@@ -200,7 +200,7 @@ $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
 these examples is:
 
 $$
-\mathcal{L}_i =
+\mathcal{L}\_{\mathrm{data}\_i} =
 -\log\left(\frac{\exp(f\_{y\_i}(\mathbf{x}_i))}
 {\sum\_{j=1}^K\exp(f_j(\mathbf{x}_i))}\right)
 $$
@@ -231,7 +231,8 @@ To go from the loss on a single training example to the entire set, we
 simply average over all our examples:
 
 $$
-\mathcal{L} = \frac{1}{N}\sum_{i=1}^N \mathcal{L}_i
+\mathcal{L}\_\mathrm{data} = \frac{1}{N}\sum_{i=1}^N
+\mathcal{L}\_{\mathrm{data}\_i}
 $$
 
 TODO: Regularisation term.
@@ -260,7 +261,8 @@ slope goes to 0). The technical term for this approach is called
 family of related methods][gradient-descent-family] that improve on
 this basic idea, but we'll start with the basic version first.)
 
-TODO: Describe the math behind (minibatch) SGD
+TODO: Describe the math behind (minibatch) SGD; decay learning rate
+over the period of the training
 
 *Finally*, we have our first complete learning image classifier. Given
 some image as a raw array of numbers, we have a parameterised (score)
@@ -275,68 +277,202 @@ problem][neural-style-algorithm] and reproduce Prisma's visual
 effect. But if you're itching for some practical exercises, now is a
 good time to pause reading and try the [first TensorFlow
 tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning. You now have enough background to appreciate the choices
+learning. You now have enough background to appreciate the choicen
 they've made in the tutorial.
 
 ### Moving to neural networks
 
-The reason we spent *so much time* on our first (linear) image
+The linear image classifier we just introduced doesn't work very well
+in general. What it's attempting to do is to draw a bunch of lines
+($n-1$ dimensional hyperplanes, really) in a plane ($n$ dimensional
+space, really) of images, hoping to carve it out into categories. And
+if you think about it, you'll see that this approach can only succeed
+if the image data we're working with is conveniently linearly
+separable in our chosen space of images.
+
+{{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
+
+Even so, the reason we spent *so much time* on this first image
 classifier is that it was a way to introduce the parameterised score
-function, the loss function, and the iterative optimisation process
-without being bogged down by too many other technical details. Now
-that we understand what these are and how they allow us to build a
+function, the loss function, and the iterative optimisation process,
+all without being bogged down by too many other technical details.
+Now that we understand what these are and how they allow us to build a
 learning image classifier, we will soon extend the score function to
-more complex, nonlinear versions (first neural networks in general,
-then convolutional neural networks). But the rest of the ideas (loss
-function, optimisation process) stay the same.
+more complex, nonlinear forms. We'll begin first with neural networks
+in general, and then move on to convolutional neural networks. But the
+rest of the ideas (loss function, optimisation process) stay the same.
+
+#### A first nonlinearity
+
+TODO: Introduce ReLU as a first nonlinear extension, serving as our
+first model of a *neuron*. There are many other [functional
+forms][todo] one could use, but this one form is really popular today
+and will suffice for our needs.
+
+#### Layer-wise organisation into a network
+
+TODO: Talk about organising collections of neurons into (acyclic)
+graphs. This introduces the fully-connected (FC) layer. More layers
+allow for more nonlinearity, even though each neuron is barely
+nonlinear.
 
 {{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="TODO: An example neural network image." >}}
 
+TODO: Note that this allows for a now classic architecture that
+employs matrix multiplications interwoven with nonlinear *activation*
+functions.
+
+#### Some technicalities
+
+TODO: Introduce batchnorm(?) and regularisation to prevent
+over-fitting of such dense networks.
+
+TODO: Offer some conclusions on NNs in general and setup a simple
+exercise in TensorFlow. The point is to try to improve upon the linear
+image classifier we had earlier, and motivate Keras as a means to
+eliminate boilerplate code.
+
 ### And finally, convolutional neural networks
 
-- TODO: Turns out we can get much better performance with far fewer
-  parameters by exploiting the fact that we have a 2D image.
-- TODO: Summarise the Simonyan, et al. paper to motivate transfer
-  learning.
+- TODO: FC NNs quickly balloon to too many parameters. Turns out we
+  can get much better performance with far fewer parameters by
+  exploiting the fact that we have a 2D image.
 
-## Returning to the style transfer optimisation problem
+#### Architecture of CNNs in general
 
-- TODO: Summarise the Gatys, et al. paper for the core ideas, problem
-  statement and solution methodology. Point out that the loss function
-  can be a CNN iteself!
+- TODO: Introduce *Convolutional Layers*, *Pooling Layers* and recall
+  Fully-Connected Layers and Softmax. Parameter sharing greatly
+  reduces the number of parameters we're dealing with.
+- TODO: Convolutional Neural Networks consist of layers of small
+  computational units that process visual information hierarchically
+  in a *feed-forward* manner. Each layer of units can be
+  understood as a collection of image filters, each of which extracts
+  a certain feature from the input image. Thus, the output of a given
+  layer consists of so-called feature maps: differently filtered
+  versions of the input image.
 
-## Implementation of the model in Keras and TensorFlow
+#### A powerful CNN image classifier
 
-- TODO: Step through the more crucial portions of the implementation
-  on GitHub.
+- TODO: Summarise the Simonyan, et al. paper (VGG19)
+- TODO: Note that they've shared their learnt weights, so we can
+  *transfer* this knowledge over for our purposes.
+- TODO: Setup an exercise to duplicate this classifier in Keras. Turns
+  out this can be done trivially in recent Keras, and this is what
+  we're going to employ henceforth.
+
+## Returning to the style transfer problem
+
+If you've made it this far, you're probably starting to realise that
+the whole *quest to reproduce Prisma's visual effect* was simply a
+ruse to get you to trudge through all this background on neural
+networks. But congratulations, you're now not only ready to solve this
+original style transfer problem, you're also in a position to read,
+understand and reproduce state-of-the-art research articles in the
+field of convolutional neural networks! This is a pretty big deal, so
+spend some time celebrating this fact. And when you're done, let's
+return to the style transfer problem.
+
+### A neural algorithm of artistic style
+
+- TODO: Summarise the Gatys, et al. paper for the core ideas (and a
+  sketch of the solution methodology):
+  - CNNs pre-trained for image classification (in particular the VGG
+  introduced above) have already learnt to encode perceptual and
+  semantic information that we need to measure our losses. The
+  explanation could be that when learning object recognition, the
+  network has to become invariant to all image variation that
+  preserves object identity.
+  - Higher layers in the network capture the high-level content in
+  terms of objects and their arrangement in the input image but do not
+  constrain the exact pixel values of the reconstruction. To obtain a
+  representation of the style of an input image, we employ
+  correlations between the different filter responses over the spatial
+  extent of the feature maps.
+  - The representations of style and content in CNNs are separable.
+  - The images are synthesised by finding an image that simultaneously
+  matches the content representation of the photograph and the style
+  representation of the respective piece of art.
+- TODO: Recall the Gatys problem, which now seems a lot less
+  intimidating. We're going to simply reuse a trained VGG to solve
+  it.
+  - TODO: Based on VGG19 - 3 FC layers. Normal VGG takes an image and
+  returns a category score, but Gatys instead take the outputs at
+  intermediate layers and construct L_content and L_style.
+  - TODO: A figure showing off the algorithm.
+  - TODO: Introduce L-BFGS as a valid quasi-Newton approach to solve
+  the optimisation problem.
+
+### Concrete implementation of the Gatys optimisation problem
+
+- TODO: Since this is a very popular paper, there are many existing
+  implementations of it online. Point to two of the better ones on
+  GitHub. Step through some crucial portions of these.
+
 - TODO: Talk about how hyperparameters are tuned to improve aesthetic
   quality of the output. Show examples of things that work and things
   that do not.
-- TODO: Mention the corresponding project functioning on GitHub.
 
-## Serving the trained model as part of a webapp
+- TODO: Conclude with an exercise to re-implement this in Keras. Now
+  relatively easy to do since VGG itself is trivial to reproduce.
 
-But we want to make a near real time web service out of this, and so
-we look for extensions of this algorithm.
+## Incorporating this model into a webapp
 
-- TODO: Introduce the Johnson paper for huge optimisation.
-- TODO: Optimisation of and shortcuts to the implementation above to
-  make it suitable for a user-facing app.
+- TODO: Explain the general architecture of the webapp, with a
+  figure.
+
+- TODO: Point out that solving the entire optimisation problem is not
+  feasible as part of the request-response cycle.
+
+### A faster approach to neural style transfer
+
+- TODO: Introduce the Johnson paper and discuss its core idea:
+  Replacing the optimisation problem with an *image transformation*
+  CNN, which in turn uses the VGG as before to measure losses. When
+  this transformation network is trained on many images given a fixed
+  style image, we end up with a fully feed-forward CNN that we can
+  apply for style transfer. This gives us a 1000x speed up over Gatys'
+  implementation, which makes it suitable for a webapp.
+
+- TODO: Architecture notes, introducing a new residual block.
+
+| Layer                       | Activation Size |
+| ----------------------------|---------------- |
+| Input                       | 3 × 256 × 256   |
+| 32×9×9 conv, stride 1       | 32 × 256 × 256  |
+| 64×3×3 conv, stride 2       | ...             |
+| 128×3×3 conv, stride 2      |                 |
+| Residual block, 128 filters |                 |
+| ...                         |                 |
+
+
+- TODO: A figure showing off the algorithm, and how it differs from
+  Gatys.
+
+- TODO: Point to our (Keras) implementation of this paper on
+  GitHub. This is one significant contribution of this work.
+
+### Serving a learnt model
+
 - TODO: Explain the theory behind exporting a learnt model from Keras
-  (as TensorFlow data structures) and serving it; with TensorFlow
-  serving?
-- TODO: Step through important aspects of the implementation.
+  (as TensorFlow data structures?) and serving it (with TensorFlow
+  serving?)
+- TODO: Step through important aspects of the implementation of the
+  Django webapp. Key models, using generic views.
+- TODO: Point to the project source for the complete webapp.
 
 ## Conclusion
 
-- TODO: Repeat what we saw with some examples relating back to first
-  motivating examples from Prisma.
+- TODO: Show many beautiful examples for our program in action, and
+  point to it online. Refer back to first motivating examples from
+  Prisma.
 - TODO: Reiterate some insights.
   - Maybe a giant array of pixels is not the best way of representing
     an image if we wish to understand it better.
   - Some classes of problems are hard to solve with a priori known
     rules, and require learning machines. -> Have them automatically
     discover the representations needed to solve arbitrary problems.
+- TODO: Point out that you're now ready to do much more than just this
+  problem.
 - TODO: Talk about ideas for extension and improvement.
 
 ## Selected references and further reading
@@ -358,8 +494,8 @@ we look for extensions of this algorithm.
 9. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
-[neural-style-implementation]: #serving-the-trained-model-as-part-of-a-webapp
-[neural-style-algorithm]: #returning-to-the-style-transfer-optimisation-problem
+[neural-style-implementation]: #incorporating-this-model-into-a-webapp
+[neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
 [prisma]: http://prisma-ai.com
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
