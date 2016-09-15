@@ -2,7 +2,7 @@
 date: 2013-03-15
 title: thinkbot
 short_title: thinkbot
-thumbnail: //placehold.it/1440x960/8ab3b5/ffffff
+thumbnail: /images/projects/thinkbot/thinkbot.svg
 description: A modern platform for computational science.
 category: website
 start_date: 2013
