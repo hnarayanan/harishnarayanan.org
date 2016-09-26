@@ -18,7 +18,7 @@ of a branch of machine learning called [convolutional neural
 networks][cnn-wikipedia]. In this article we're going to take a
 journey through the world of convolutional neural networks from theory
 to practice, as we systematically reproduce Prisma's core visual
-effect as a [webapp][neural-style-implementation].
+effect.
 
 ## So what is Prisma and how might it work?
 
@@ -93,8 +93,7 @@ of CNNs][cnn-primer]. We then learn how to use [CNNs to solve the
 problem posed by Gatys et al.][neural-style-algorithm] and reproduce
 the visual effect of Prisma. As a bonus, we conclude with a [concrete
 implementation of the solution][neural-style-implementation] (in Keras
-and TensorFlow, and wrapped in a Django webapp!) that you can play
-with and extend.
+and TensorFlow) you can play with and extend.
 
 ## Convolutional Neural Networks from the ground up
 
@@ -463,51 +462,6 @@ return to the style transfer problem.
     <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
 </div>
-
-## Incorporating this model into a webapp
-
-- TODO: Explain the general architecture of the webapp, with a
-  figure.
-
-- TODO: Point out that solving the entire optimisation problem is not
-  feasible as part of the request-response cycle.
-
-### A faster approach to neural style transfer
-
-- TODO: Introduce the Johnson paper and discuss its core idea:
-  Replacing the optimisation problem with an *image transformation*
-  CNN, which in turn uses the VGG as before to measure losses. When
-  this transformation network is trained on many images given a fixed
-  style image, we end up with a fully feed-forward CNN that we can
-  apply for style transfer. This gives us a 1000x speed up over Gatys'
-  implementation, which makes it suitable for a webapp.
-
-- TODO: Architecture notes, introducing a new residual block.
-
-| Layer                       | Activation Size |
-| ----------------------------|---------------- |
-| Input                       | 3 × 256 × 256   |
-| 32×9×9 conv, stride 1       | 32 × 256 × 256  |
-| 64×3×3 conv, stride 2       | ...             |
-| 128×3×3 conv, stride 2      |                 |
-| Residual block, 128 filters |                 |
-| ...                         |                 |
-
-
-- TODO: A figure showing off the algorithm, and how it differs from
-  Gatys.
-
-- TODO: Point to our (Keras) implementation of this paper on
-  GitHub. This is one significant contribution of this work.
-
-### Serving a learnt model
-
-- TODO: Explain the theory behind exporting a learnt model from Keras
-  (as TensorFlow data structures?) and serving it (with TensorFlow
-  serving?)
-- TODO: Step through important aspects of the implementation of the
-  Django webapp. Key models, using generic views.
-- TODO: Point to the project source for the complete webapp.
 
 ## Conclusion
 
