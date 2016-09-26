@@ -288,21 +288,40 @@ in general. What it's attempting to do is to draw a bunch of lines
 space, really) of images, hoping to carve it out into categories. And
 if you think about it, you'll see that this approach can only succeed
 if the image data we're working with is conveniently linearly
-separable in our chosen space of images.
+separable in our chosen space of images. (Not at all true in general.)
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
 
-Even so, the reason we spent *so much time* on this first image
-classifier is that it was a way to introduce the parameterised score
-function, the loss function, and the iterative optimisation process,
-all without being bogged down by too many other technical details.
-Now that we understand what these are and how they allow us to build a
-learning image classifier, we will soon extend the score function to
-more complex, nonlinear forms. We'll begin first with neural networks
-in general, and then move on to convolutional neural networks. But the
-rest of the ideas (loss function, optimisation process) stay the same.
+Even so, the reason we spent so much time on this first image
+classifier is that it was a way to introduce the *parameterised score
+function*, the *loss function*, and the *iterative optimisation
+process*, all without being bogged down by too many other technical
+details.  Now that we understand what these are and how they work
+together to build a learning image classifier, we are going to improve
+the performance of the classifier by extending the score function to
+more complex (nonlinear) forms. The first of these extensions will be
+to (fully-connected) [neural networks][todo], and we'll then move on
+to [convolutional neural networks][todo].
+
+The cool thing is that as we're working through these generalisations
+of the score function, the rest of the ideas (the loss function and
+optimisation process) stay the same!
 
 #### A first nonlinearity
+
+
+The simplest nonlinear function I can think of is $f(x) = \max(0,
+x)$. In fact, that's so barely nonlinear (it's piecewise linear), one
+could get into arguments as to whether it is nonlinear at all!
+
+o that's how I am going to
+extend our score function.
+
+The score function we started this story with was the simplest
+possible we could imagine: f(x) = Wx (not explicitly writing out the
+bias term, b). Following that same philosophy, one of the simplest
+ways to extend this to a nonlinear function is to define f(x) = max(0, W1x)
+
 
 TODO: Introduce ReLU as a first nonlinear extension, serving as our
 first model of a *neuron*. There are many other [functional
