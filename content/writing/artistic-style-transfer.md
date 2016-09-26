@@ -308,20 +308,6 @@ optimisation process) stay the same!
 
 #### A first nonlinearity
 
-
-The simplest nonlinear function I can think of is $f(x) = \max(0,
-x)$. In fact, that's so barely nonlinear (it's piecewise linear), one
-could get into arguments as to whether it is nonlinear at all!
-
-o that's how I am going to
-extend our score function.
-
-The score function we started this story with was the simplest
-possible we could imagine: f(x) = Wx (not explicitly writing out the
-bias term, b). Following that same philosophy, one of the simplest
-ways to extend this to a nonlinear function is to define f(x) = max(0, W1x)
-
-
 TODO: Introduce ReLU as a first nonlinear extension, serving as our
 first model of a *neuron*. There are many other [functional
 forms][todo] one could use, but this one form is really popular today
