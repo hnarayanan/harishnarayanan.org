@@ -58,3 +58,14 @@ includes_math: yes
 - TODO: Step through important aspects of the implementation of the
   Django webapp. Key models, using generic views.
 - TODO: Point to the project source for the complete webapp.
+
+## Selected references and further reading
+
+1. [Perceptual Real-Time Style
+   Transfer][fast-neural-style-johnson-etal] and [supplementary
+   material][fast-neural-style-johnson-etal-supp]
+2. TensorFlow: [Serving][tensorflow-serving]
+
+[fast-neural-style-johnson-etal]: https://arxiv.org/abs/1603.08155
+[fast-neural-style-johnson-etal-supp]: https://cs.stanford.edu/people/jcjohns/papers/fast-style/fast-style-supp.pdf
+[tensorflow-serving]: https://tensorflow.github.io/serving/

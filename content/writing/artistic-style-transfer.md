@@ -93,7 +93,7 @@ of CNNs][cnn-primer]. We then learn how to use [CNNs to solve the
 problem posed by Gatys et al.][neural-style-algorithm] and reproduce
 the visual effect of Prisma. As a bonus, we conclude with a [concrete
 implementation of the solution][neural-style-implementation] (in Keras
-and TensorFlow) you can play with and extend.
+and TensorFlow) that you can play with and extend.
 
 ## Convolutional Neural Networks from the ground up
 
@@ -484,27 +484,22 @@ return to the style transfer problem.
    the seminal article
 2. [Very Deep Convolutional Networks for Large-Scale Image
    Recognition][vgg-simonyan-etal]
-3. [Perceptual Real-Time Style
-   Transfer][fast-neural-style-johnson-etal] and [supplementary
-   material][fast-neural-style-johnson-etal-supp]
-4. [Deep learning][deep-learning-review], a review in Nature
-5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
-6. [The Stanford course on Convolutional Neural Networks][cs231n] and
+3. [Deep learning][deep-learning-review], a review in Nature
+4. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
+5. [The Stanford course on Convolutional Neural Networks][cs231n] and
    [accompanying notes][cs231n-notes]
-7. [Our sample implementation on GitHub][neural-style-demo-project]
-8. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
-   macOS][tensorflow-gpu-macos], [Serving][tensorflow-serving]
-9. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
+6. [Our sample implementation on GitHub][neural-style-demo-project]
+7. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
+   macOS][tensorflow-gpu-macos]
+8. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
-[neural-style-implementation]: #incorporating-this-model-into-a-webapp
+[neural-style-implementation]: #concrete-implementation-of-the-gatys-optimisation-problem
 [neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
 [prisma]: http://prisma-ai.com
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
 [neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
-[fast-neural-style-johnson-etal]: https://arxiv.org/abs/1603.08155
-[fast-neural-style-johnson-etal-supp]: https://cs.stanford.edu/people/jcjohns/papers/fast-style/fast-style-supp.pdf
 [vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
 [deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
 [backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
@@ -513,7 +508,6 @@ return to the style transfer problem.
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
 [tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
-[tensorflow-serving]: https://tensorflow.github.io/serving/
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
