@@ -415,6 +415,36 @@ return to the style transfer problem.
 - TODO: Conclude with an exercise to re-implement this in Keras. Now
   relatively easy to do since VGG itself is trivial to reproduce.
 
+<div class="pure-g">
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/gothic.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/scream.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/wave.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2407.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2408.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2406.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_gothic_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_scream_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+</div>
+
 ## Incorporating this model into a webapp
 
 - TODO: Explain the general architecture of the webapp, with a
