@@ -2,8 +2,8 @@
 date: 2001-07-22
 title: My personal website
 short_title: My personal website
-thumbnail: //placehold.it/1440x960/83AF9B/ffffff
-description: The evolution of this site since its inception.
+thumbnail: /images/projects/personal-website/harish-sleeping.jpg
+description: The evolution of this website since its inception.
 category: website
 start_date: 2000
 ---
