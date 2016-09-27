@@ -7,7 +7,6 @@ description: A command-line interface for Spotify on a Mac.
 category: software
 exterior_link: https://github.com/hnarayanan/shpotify/
 start_date: 2012
-end_date:
 featured: true
 ---
 
