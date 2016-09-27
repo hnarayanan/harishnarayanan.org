@@ -1,11 +1,11 @@
 # Harish Narayanan’s website
 
 This repository contains the source code, assets and setup scripts for
-my personal website: [harishnarayanan.org](https://harishnarayanan.org).
+my personal website: [harishnarayanan.org](https://harishnarayanan.org/).
 The site is generated using [Hugo](https://gohugo.io/), and its content
 is mostly written in [Markdown](https://daringfireball.net/projects/markdown/).
 The site is hosted using a Linux server that’s setup using
-[Ansible](http://www.ansible.com).
+[Ansible](https://www.ansible.com/).
 
 ## How to use this repository
 
@@ -34,8 +34,8 @@ of things:
    access it. Also update `domain_name` in `setup/site.yml` to point
    to your new server’s domain name.
 
-3. Install [Ansible](http://www.ansible.com) on your local development
-   machine.
+3. Install [Ansible](https://www.ansible.com/) on your local
+   development machine.
 
 4. Run the setup script to install and configure the web server
    (alongside other bits and bobs like the firewall) on the virtual
@@ -48,7 +48,7 @@ of things:
 
 ### Build and upload the site to the web server
 
-1. Install [Hugo](https://gohugo.io) on your local development
+1. Install [Hugo](https://gohugo.io/) on your local development
    machine.
 
 2. Update `Makefile` to reflect your local path to the `hugo`
@@ -69,15 +69,15 @@ of things:
 ## Everyday development
 
 For day-to-day development and content writing, you can run `hugo`
-locally to serve drafts of the site. This is an excellent way to work
-as Hugo refreshes in the browser as you save files. Just make sure
-`hugo` is in your path and run:
+locally to serve drafts of the site. This is an excellent way to work,
+as Hugo automatically refreshes the browser when it detects changes
+you make to files. Just make sure `hugo` is in your path and run:
 
 ````
-$PATH/hugo server --watch
+hugo server --watch
 ````
 
-When you’re happy with your progess, you can build and publish the
+When you’re happy with your progress, you can build and publish the
 site just as before.
 
 ## Checking links
