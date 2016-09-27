@@ -151,18 +151,19 @@ start to make things more concrete by taking a look at one of the
 simplest learning image classifiers: A [*Softmax classifier* with a
 *cross-entropy* loss][cs231n-softmax-classifier] function.
 
-### A first learning image classifier
+### Our first learning image classifier
 
 #### A linear score function
 
-Recall the classification problem we're trying to solve. We have an
-image $\mathbf{x}$ that's represented as an array of integers of
+Recall the classification problem that we're trying to solve. We have
+an image $\mathbf{x}$ that's represented as an array of integers of
 length $D = W \times H \times 3$, and we want to find out which
-category (in a set of $K$ categories) it belongs to. In fact, instead
-of just reporting one category name, it would be more helpful to get a
-*confidence score* for each category. This way, we'll not only get the
-primary category we're looking for (the largest score), but we'll also
-have a sense of how confident we are with our classification.
+category (in a set of $K$ categories) that it belongs to. In fact,
+instead of just reporting one category name, it would be more helpful
+to get a *confidence score* for each category. This way, we'll not
+only get the primary category we're looking for (the largest score),
+but we'll also have a sense of how confident we are with our
+classification.
 
 So in essence, what we're looking for is a *score* function $f:
 \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
@@ -178,13 +179,13 @@ $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
 function. The algorithm will *learn* these with the help of our
 pre-classified examples. And once we've learnt (fit) the parameters on
 this *training data*, we hopefully have a function that *generalises*
-well enough to classify arbitrary image input.
+well enough to classify arbitrary image input (called *test data*).
 
 #### Softmax activation and cross entropy loss
 
 The first step in the learning process is to introduce a *loss*
-function, $\mathcal{L}$. This is a function that quantifies the
-*disagreement* between what our classifier suggests for the scores and
+function, $\mathcal{L}$. This is a function that *quantifies the
+disagreement* between what our classifier suggests for the scores and
 what our training data provides as the known truth. Thus, this loss
 function goes up if the classifier is doing a poor job and goes down
 if it's doing great. And the goal of the learning process is determine
@@ -194,8 +195,8 @@ parameters that give us the best (lowest) loss.
 
 Suppose our training data is a set of $N$ pre-classified examples
 $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
-1, \ldots, K$. A good functional form to determine the loss for one of
-these examples is:
+1, \ldots, K$. A [good functional form][cross-entropy-reason] to
+determine the loss for one of these examples is:
 
 $$
 \mathcal{L}\_{\mathrm{data}\_i} =
@@ -209,11 +210,12 @@ entropy][cross-entropy] loss of the [softmax][softmax] of the class
 scores determined by $f$. As weird as this form looks, if you stare at
 it long enough you'll convince yourself of a few things:
 
-1. The stuff in parenthesis takes the output of $f(\mathbf{x}_i)$,
-which is a vector of $K$ real values, plucks the value at the correct
-class' position ($y_i$), and transforms it into a single number in the
-range $(0, 1)$. This allows us to interpret this output as the
-probability our score function believes $y_i$ is the correct class.
+1. The stuff in the big parenthesis takes the output of
+$f(\mathbf{x}_i)$, which is a vector of $K$ real values, plucks the
+value at the correct class' position ($y_i$), and transforms it into a
+single number in the range $(0, 1)$. This allows us to interpret this
+output as the probability our score function believes $y_i$ is the
+correct class.
 
 2. The negative $\log$ of $(0, 1) \mapsto (\infty, 0)$. Meaning that
 if our score function identifies the correct answer with high
@@ -226,14 +228,18 @@ $(\mathbf{W}, \mathbf{b})$. We'll soon see why this is a useful
 property to have.
 
 To go from the loss on a single training example to the entire set, we
-simply average over all our examples:
+simply average over all our $N$ examples:
 
 $$
 \mathcal{L}\_\mathrm{data} = \frac{1}{N}\sum_{i=1}^N
 \mathcal{L}\_{\mathrm{data}\_i}
 $$
 
-TODO: Regularisation term.
+TODO: Note here that the optimisation problem is not well posed, so we
+need a *regularisation term* to constrain the parameters search
+space.
+
+TODO: Conclude with the full loss function.
 
 #### An iterative optimisation process
 
@@ -259,10 +265,17 @@ slope goes to 0). The technical term for this approach is called
 family of related methods][gradient-descent-family] that improve on
 this basic idea, but we'll start with the basic version first.)
 
+TODO: An explanatory figure goes here.
+
 TODO: Describe the math behind (minibatch) SGD; decay learning rate
 over the period of the training
 
-*Finally*, we have our first complete learning image classifier. Given
+TODO: Need to introduce L-BFGS at some point since this is the
+optimisation algorithm used in Gatys et al.
+
+---
+
+Finally we have our first complete learning image classifier! Given
 some image as a raw array of numbers, we have a parameterised (score)
 function that takes us to category scores. We have a way of evaluating
 its performance (the loss function). We also have an algorithm to
@@ -275,7 +288,7 @@ problem][neural-style-algorithm] and reproduce Prisma's visual
 effect. But if you're itching for some practical exercises, now is a
 good time to pause reading and try the [first TensorFlow
 tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning. You now have enough background to appreciate the choicen
+learning. You now have enough background to appreciate the choices
 they've made in the tutorial.
 
 ### Moving to neural networks
@@ -496,6 +509,7 @@ return to the style transfer problem.
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
+[cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [softmax]: https://en.wikipedia.org/wiki/Softmax_function
 [gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
 [gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
