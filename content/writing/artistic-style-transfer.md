@@ -32,25 +32,24 @@ your baby. Here's a demo of the kind of images that it generates.
 Like many people, I find much of the output of this app very pleasing,
 and I got curious as to how it achieves its visual effect. At the
 outset you can imagine that it's somehow extracting low level features
-like the colour and texture of the brush strokes from one image (that
-we'll call the *style image*) and applying it to more semantic, higher
-level features like a baby's face on the other image (the *content
-image*).
+like the colour and texture from one image (that we'll call the *style
+image*) and applying it to more semantic, higher level features like a
+baby's face on the other image (the *content image*).
 
-How would one even begin to do something like this? You could perhaps
-do some pixel-level image analysis on the style image to get things
-like spatially-averaged colours or maybe even aspects of its texture,
-but how would you then *apply* these in a selective fashion that still
-retains the essential aspects of the content image? And what about the
-existing style of the content image?  How do we first *discard* this
-before we apply the new style?
+How would one even begin to achieve something like this? You could
+perhaps do some pixel-level image analysis on the style image to get
+things like spatially-averaged colours or maybe even aspects of its
+texture, but how would you then *apply* these in a selective fashion
+that still retains the essential aspects of the content image? And
+what about the existing style of the content image?  How do we first
+*discard* this before we apply the new style?
 
 I was stumped by many of these questions really early on, and as one
 does, turned to Google for help. My searches soon pointed me to a
 really popular paper ([Gatys et al., 2015][neural-style-gatys-etal])
 that explains exactly how all this is achieved. In particular, the
-paper poses what we're trying to do in mathematical terms as an
-*optimisation problem*:
+paper poses what we're trying to do in mathematical terms as the
+following *optimisation problem*:
 
 Let $\mathbf{c}$ be the content image and $\mathbf{s}$ be the style
 image. We're trying to generate an image $\mathbf{x}$ that minimises
@@ -108,7 +107,7 @@ probably take this course. *It is outstanding*.
 We begin our journey with a look at the *image classification*
 problem. This is a deceptively simple problem to state: Given an input
 image, have a computer automatically classify it into one of a fixed
-set of categories, say "baby", "dog", "car" or "toothbrush". The
+set of categories, say "baby", "dog", "car" or "toothbrush". And the
 reason we're starting with this problem is that it's at the core of
 many seemingly unrelated tasks in computer vision, including our quest
 to reproduce Prisma's visual effect.
@@ -148,8 +147,8 @@ examples to learn about the visual appearance of each class, allowing
 it to automatically function as the classifier we want!
 
 While this does sound rather amazing, it's also very hand-wavy. Let's
-make things more concrete by taking a look at one of the simplest
-learning image classifiers: A [*Softmax classifier* with a
+start to make things more concrete by taking a look at one of the
+simplest learning image classifiers: A [*Softmax classifier* with a
 *cross-entropy* loss][cs231n-softmax-classifier] function.
 
 ### A first learning image classifier
