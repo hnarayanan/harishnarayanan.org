@@ -5,7 +5,7 @@ my personal website: [harishnarayanan.org](https://harishnarayanan.org).
 The site is generated using [Hugo](https://gohugo.io/), and its content
 is mostly written in [Markdown](https://daringfireball.net/projects/markdown/).
 The site is hosted using a Linux server that’s setup using
-[Ansible](http://www.ansible.com).
+[Ansible](https://www.ansible.com).
 
 ## How to use this repository
 
@@ -34,7 +34,7 @@ of things:
    access it. Also update `domain_name` in `setup/site.yml` to point
    to your new server’s domain name.
 
-3. Install [Ansible](http://www.ansible.com) on your local development
+3. Install [Ansible](https://www.ansible.com) on your local development
    machine.
 
 4. Run the setup script to install and configure the web server
