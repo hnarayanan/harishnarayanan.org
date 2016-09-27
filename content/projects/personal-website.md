@@ -12,6 +12,14 @@ This website has existed in some form or another for over fifteen
 years. It has evolved quite a bit in this period, and the following
 attempts to catalogue this evolution.
 
+You can find the [complete source
+code](https://github.com/hnarayanan/archive.harishnarayanan.org) for
+the previous two versions of the site on GitHub. You can also find the
+styles for [Version 2](https://github.com/hnarayanan/simplicity-2) and
+[Version 3](https://github.com/hnarayanan/simplicity-3) on
+GitHub. These were very popular in their day, powering many a [similar
+looking website](http://jmirc.sourceforge.net)!
+
 <div class="pure-g l-box-container">
 
   <div class="pure-u-1 pure-u-md-1-2">
