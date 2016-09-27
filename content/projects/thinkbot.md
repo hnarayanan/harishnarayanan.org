@@ -6,7 +6,6 @@ thumbnail: /images/projects/thinkbot/thinkbot.svg
 description: A modern platform for computational science.
 category: website
 start_date: 2013
-featured: yes
 includes_video: yes
 ---
 
