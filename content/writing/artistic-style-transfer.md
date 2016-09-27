@@ -18,7 +18,7 @@ of a branch of machine learning called [convolutional neural
 networks][cnn-wikipedia]. In this article we're going to take a
 journey through the world of convolutional neural networks from theory
 to practice, as we systematically reproduce Prisma's core visual
-effect as a [webapp][neural-style-implementation].
+effect.
 
 ## So what is Prisma and how might it work?
 
@@ -32,25 +32,24 @@ your baby. Here's a demo of the kind of images that it generates.
 Like many people, I find much of the output of this app very pleasing,
 and I got curious as to how it achieves its visual effect. At the
 outset you can imagine that it's somehow extracting low level features
-like the colour and texture of the brush strokes from one image (that
-we'll call the *style image*) and applying it to more semantic, higher
-level features like a baby's face on the other image (the *content
-image*).
+like the colour and texture from one image (that we'll call the *style
+image*) and applying it to more semantic, higher level features like a
+baby's face on the other image (the *content image*).
 
-How would one even begin to do something like this? You could perhaps
-do some pixel-level image analysis on the style image to get things
-like spatially-averaged colours or maybe even aspects of its texture,
-but how would you then *apply* these in a selective fashion that still
-retains the essential aspects of the content image? And what about the
-existing style of the content image?  How do we first *discard* this
-before we apply the new style?
+How would one even begin to achieve something like this? You could
+perhaps do some pixel-level image analysis on the style image to get
+things like spatially-averaged colours or maybe even aspects of its
+texture, but how would you then *apply* these in a selective fashion
+that still retains the essential aspects of the content image? And
+what about the existing style of the content image?  How do we first
+*discard* this before we apply the new style?
 
 I was stumped by many of these questions really early on, and as one
 does, turned to Google for help. My searches soon pointed me to a
 really popular paper ([Gatys et al., 2015][neural-style-gatys-etal])
 that explains exactly how all this is achieved. In particular, the
-paper poses what we're trying to do in mathematical terms as an
-*optimisation problem*:
+paper poses what we're trying to do in mathematical terms as the
+following *optimisation problem*:
 
 Let $\mathbf{c}$ be the content image and $\mathbf{s}$ be the style
 image. We're trying to generate an image $\mathbf{x}$ that minimises
@@ -93,8 +92,7 @@ of CNNs][cnn-primer]. We then learn how to use [CNNs to solve the
 problem posed by Gatys et al.][neural-style-algorithm] and reproduce
 the visual effect of Prisma. As a bonus, we conclude with a [concrete
 implementation of the solution][neural-style-implementation] (in Keras
-and TensorFlow, and wrapped in a Django webapp!) that you can play
-with and extend.
+and TensorFlow) that you can play with and extend.
 
 ## Convolutional Neural Networks from the ground up
 
@@ -109,7 +107,7 @@ probably take this course. *It is outstanding*.
 We begin our journey with a look at the *image classification*
 problem. This is a deceptively simple problem to state: Given an input
 image, have a computer automatically classify it into one of a fixed
-set of categories, say "baby", "dog", "car" or "toothbrush". The
+set of categories, say "baby", "dog", "car" or "toothbrush". And the
 reason we're starting with this problem is that it's at the core of
 many seemingly unrelated tasks in computer vision, including our quest
 to reproduce Prisma's visual effect.
@@ -149,22 +147,23 @@ examples to learn about the visual appearance of each class, allowing
 it to automatically function as the classifier we want!
 
 While this does sound rather amazing, it's also very hand-wavy. Let's
-make things more concrete by taking a look at one of the simplest
-learning image classifiers: A [*Softmax classifier* with a
+start to make things more concrete by taking a look at one of the
+simplest learning image classifiers: A [*Softmax classifier* with a
 *cross-entropy* loss][cs231n-softmax-classifier] function.
 
-### A first learning image classifier
+### Our first learning image classifier
 
 #### A linear score function
 
-Recall the classification problem we're trying to solve. We have an
-image $\mathbf{x}$ that's represented as an array of integers of
+Recall the classification problem that we're trying to solve. We have
+an image $\mathbf{x}$ that's represented as an array of integers of
 length $D = W \times H \times 3$, and we want to find out which
-category (in a set of $K$ categories) it belongs to. In fact, instead
-of just reporting one category name, it would be more helpful to get a
-*confidence score* for each category. This way, we'll not only get the
-primary category we're looking for (the largest score), but we'll also
-have a sense of how confident we are with our classification.
+category (in a set of $K$ categories) that it belongs to. In fact,
+instead of just reporting one category name, it would be more helpful
+to get a *confidence score* for each category. This way, we'll not
+only get the primary category we're looking for (the largest score),
+but we'll also have a sense of how confident we are with our
+classification.
 
 So in essence, what we're looking for is a *score* function $f:
 \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
@@ -180,13 +179,13 @@ $\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
 function. The algorithm will *learn* these with the help of our
 pre-classified examples. And once we've learnt (fit) the parameters on
 this *training data*, we hopefully have a function that *generalises*
-well enough to classify arbitrary image input.
+well enough to classify arbitrary image input (called *test data*).
 
 #### Softmax activation and cross entropy loss
 
 The first step in the learning process is to introduce a *loss*
-function, $\mathcal{L}$. This is a function that quantifies the
-*disagreement* between what our classifier suggests for the scores and
+function, $\mathcal{L}$. This is a function that *quantifies the
+disagreement* between what our classifier suggests for the scores and
 what our training data provides as the known truth. Thus, this loss
 function goes up if the classifier is doing a poor job and goes down
 if it's doing great. And the goal of the learning process is determine
@@ -196,8 +195,8 @@ parameters that give us the best (lowest) loss.
 
 Suppose our training data is a set of $N$ pre-classified examples
 $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
-1, \ldots, K$. A good functional form to determine the loss for one of
-these examples is:
+1, \ldots, K$. A [good functional form][cross-entropy-reason] to
+determine the loss for one of these examples is:
 
 $$
 \mathcal{L}\_{\mathrm{data}\_i} =
@@ -211,11 +210,12 @@ entropy][cross-entropy] loss of the [softmax][softmax] of the class
 scores determined by $f$. As weird as this form looks, if you stare at
 it long enough you'll convince yourself of a few things:
 
-1. The stuff in parenthesis takes the output of $f(\mathbf{x}_i)$,
-which is a vector of $K$ real values, plucks the value at the correct
-class' position ($y_i$), and transforms it into a single number in the
-range $(0, 1)$. This allows us to interpret this output as the
-probability our score function believes $y_i$ is the correct class.
+1. The stuff in the big parenthesis takes the output of
+$f(\mathbf{x}_i)$, which is a vector of $K$ real values, plucks the
+value at the correct class' position ($y_i$), and transforms it into a
+single number in the range $(0, 1)$. This allows us to interpret this
+output as the probability our score function believes $y_i$ is the
+correct class.
 
 2. The negative $\log$ of $(0, 1) \mapsto (\infty, 0)$. Meaning that
 if our score function identifies the correct answer with high
@@ -228,14 +228,18 @@ $(\mathbf{W}, \mathbf{b})$. We'll soon see why this is a useful
 property to have.
 
 To go from the loss on a single training example to the entire set, we
-simply average over all our examples:
+simply average over all our $N$ examples:
 
 $$
 \mathcal{L}\_\mathrm{data} = \frac{1}{N}\sum_{i=1}^N
 \mathcal{L}\_{\mathrm{data}\_i}
 $$
 
-TODO: Regularisation term.
+TODO: Note here that the optimisation problem is not well posed, so we
+need a *regularisation term* to constrain the parameters search
+space.
+
+TODO: Conclude with the full loss function.
 
 #### An iterative optimisation process
 
@@ -261,10 +265,17 @@ slope goes to 0). The technical term for this approach is called
 family of related methods][gradient-descent-family] that improve on
 this basic idea, but we'll start with the basic version first.)
 
+TODO: An explanatory figure goes here.
+
 TODO: Describe the math behind (minibatch) SGD; decay learning rate
 over the period of the training
 
-*Finally*, we have our first complete learning image classifier. Given
+TODO: Need to introduce L-BFGS at some point since this is the
+optimisation algorithm used in Gatys et al.
+
+---
+
+Finally we have our first complete learning image classifier! Given
 some image as a raw array of numbers, we have a parameterised (score)
 function that takes us to category scores. We have a way of evaluating
 its performance (the loss function). We also have an algorithm to
@@ -274,39 +285,82 @@ learn and improve the classifier's parameters with example data
 We have quite a bit more theory to go before we understand all the
 bits we need to [solve Gatys et al.'s optimisation
 problem][neural-style-algorithm] and reproduce Prisma's visual
-effect. But if you're itching for some practical exercises, now is a
-good time to pause reading and try the [first TensorFlow
+effect. But now is a good time to pause on theory and work through
+your first exercise: [the TensorFlow MNIST classification
 tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning. You now have enough background to appreciate the choicen
-they've made in the tutorial.
+learning. Working through this tutorial will ensure that you have
+TensorFlow properly running on your machine, and allows you to
+experience coding up an image classifier to see all the pieces we
+talked about in action. The background material we've covered will
+allow you to appreciate the choices they've made in the tutorial.
+
+Have fun practising, and I'll see you when you're done!
 
 ### Moving to neural networks
 
-The linear image classifier we just introduced doesn't work very well
-in general. What it's attempting to do is to draw a bunch of lines
-($n-1$ dimensional hyperplanes, really) in a plane ($n$ dimensional
-space, really) of images, hoping to carve it out into categories. And
-if you think about it, you'll see that this approach can only succeed
-if the image data we're working with is conveniently linearly
-separable in our chosen space of images.
+The linear image classifier you just built following the tutorial
+above works surprisingly well for the [MNIST digit
+dataset][mnist-dataset] (around 92% accurate). But if you attempted to
+extend the tutorial to more general images, you'd have realised that
+it performs rather poorly. This is because what the linear classifier
+is attempting to do is to draw a bunch of lines ($n-1$ dimensional
+hyperplanes, really) in a plane ($n$ dimensional space, really) of
+images, hoping to carve it out into categories. And if you think about
+it, you'll see that this approach can only succeed if the image data
+we're working with is conveniently linearly separable in our chosen
+space of images. (Somewhat true for the MNIST dataset, and not at all
+true in general.)
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
 
-Even so, the reason we spent *so much time* on this first image
-classifier is that it was a way to introduce the parameterised score
-function, the loss function, and the iterative optimisation process,
-all without being bogged down by too many other technical details.
-Now that we understand what these are and how they allow us to build a
-learning image classifier, we will soon extend the score function to
-more complex, nonlinear forms. We'll begin first with neural networks
-in general, and then move on to convolutional neural networks. But the
-rest of the ideas (loss function, optimisation process) stay the same.
+Even so, the reason we spent so much time on the linear image
+classifier is that it was a way to introduce the *parameterised score
+function*, the *loss function*, and the *iterative optimisation
+process*, all without being bogged down by too many other technical
+details.  Now that we understand what these are and how they work
+together to build a learning image classifier, we are going to improve
+the performance of the classifier by extending the score function to
+more complex (nonlinear) forms. The first of these extensions will be
+to (fully-connected) [neural networks][todo], and we'll then move on
+to [convolutional neural networks][todo].
 
-#### A first nonlinearity
+The cool thing is that as we're working through these generalisations
+of the score function, the rest of the ideas (the loss function and
+optimisation process) stay the same!
+
+#### Making the score function nonlinear
+
+The score function we started this story with was the simplest
+possible we could imagine:
+
+$$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
+\mathbf{W}\mathbf{x} + \mathbf{b}$$
+
+TODO: Introduce bias trick much earlier
+
+$$f(\mathbf{x}; \mathbf{W}) =
+\mathbf{W}\mathbf{x}$$
+
+To extend this to a nonlinear regime, we're going to pass the output
+of this function (elementwise) through a simple nonlinear function
+called the *rectified linear unit* (or *ReLU*) $g(x) = \max(0, x)$.
+
+TODO: Figure of the ReLU
+
+$$
+f(x; W_1, W_2) = W_2 \max(0, W_1 x)
+$$
+
+To increase the nonlinearity of the score function, we repeat this
+process, e.g.
+
+$$
+f(x; W_1, W_2, W_3) = W_3 \max(0, W_2 \max(0, W_1 x))
+$$
 
 TODO: Introduce ReLU as a first nonlinear extension, serving as our
 first model of a *neuron*. There are many other [functional
-forms][todo] one could use, but this one form is really popular today
+forms][activation-functions] one could use, but this one form is really popular today
 and will suffice for our needs.
 
 #### Layer-wise organisation into a network
@@ -330,7 +384,14 @@ over-fitting of such dense networks.
 TODO: Offer some conclusions on NNs in general and setup a simple
 exercise in TensorFlow. The point is to try to improve upon the linear
 image classifier we had earlier, and motivate Keras as a means to
-eliminate boilerplate code.
+eliminate boilerplate
+code. e.g. https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb
+?
+https://www.youtube.com/watch?v=lTFOw8-P02Y
+
+You now know enough to extend the one step MNIST tensorflow tutorial
+into multi-layer and try it out. Note that your accuracy on MNIST goes
+from ca 89 to 97.
 
 ### And finally, convolutional neural networks
 
@@ -415,50 +476,35 @@ return to the style transfer problem.
 - TODO: Conclude with an exercise to re-implement this in Keras. Now
   relatively easy to do since VGG itself is trivial to reproduce.
 
-## Incorporating this model into a webapp
-
-- TODO: Explain the general architecture of the webapp, with a
-  figure.
-
-- TODO: Point out that solving the entire optimisation problem is not
-  feasible as part of the request-response cycle.
-
-### A faster approach to neural style transfer
-
-- TODO: Introduce the Johnson paper and discuss its core idea:
-  Replacing the optimisation problem with an *image transformation*
-  CNN, which in turn uses the VGG as before to measure losses. When
-  this transformation network is trained on many images given a fixed
-  style image, we end up with a fully feed-forward CNN that we can
-  apply for style transfer. This gives us a 1000x speed up over Gatys'
-  implementation, which makes it suitable for a webapp.
-
-- TODO: Architecture notes, introducing a new residual block.
-
-| Layer                       | Activation Size |
-| ----------------------------|---------------- |
-| Input                       | 3 × 256 × 256   |
-| 32×9×9 conv, stride 1       | 32 × 256 × 256  |
-| 64×3×3 conv, stride 2       | ...             |
-| 128×3×3 conv, stride 2      |                 |
-| Residual block, 128 filters |                 |
-| ...                         |                 |
-
-
-- TODO: A figure showing off the algorithm, and how it differs from
-  Gatys.
-
-- TODO: Point to our (Keras) implementation of this paper on
-  GitHub. This is one significant contribution of this work.
-
-### Serving a learnt model
-
-- TODO: Explain the theory behind exporting a learnt model from Keras
-  (as TensorFlow data structures?) and serving it (with TensorFlow
-  serving?)
-- TODO: Step through important aspects of the implementation of the
-  Django webapp. Key models, using generic views.
-- TODO: Point to the project source for the complete webapp.
+<div class="pure-g">
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/gothic.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/scream.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/wave.jpg" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2407.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2408.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2406.JPG" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_gothic_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_scream_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-3">
+    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+</div>
 
 ## Conclusion
 
@@ -481,27 +527,22 @@ return to the style transfer problem.
    the seminal article
 2. [Very Deep Convolutional Networks for Large-Scale Image
    Recognition][vgg-simonyan-etal]
-3. [Perceptual Real-Time Style
-   Transfer][fast-neural-style-johnson-etal] and [supplementary
-   material][fast-neural-style-johnson-etal-supp]
-4. [Deep learning][deep-learning-review], a review in Nature
-5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
-6. [The Stanford course on Convolutional Neural Networks][cs231n] and
+3. [Deep learning][deep-learning-review], a review in Nature
+4. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
+5. [The Stanford course on Convolutional Neural Networks][cs231n] and
    [accompanying notes][cs231n-notes]
-7. [Our sample implementation on GitHub][neural-style-demo-project]
-8. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
-   macOS][tensorflow-gpu-macos], [Serving][tensorflow-serving]
-9. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
+6. [Our sample implementation on GitHub][neural-style-demo-project]
+7. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
+   macOS][tensorflow-gpu-macos]
+8. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
-[neural-style-implementation]: #incorporating-this-model-into-a-webapp
+[neural-style-implementation]: #concrete-implementation-of-the-gatys-optimisation-problem
 [neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
 [prisma]: http://prisma-ai.com
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
 [neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
-[fast-neural-style-johnson-etal]: https://arxiv.org/abs/1603.08155
-[fast-neural-style-johnson-etal-supp]: https://cs.stanford.edu/people/jcjohns/papers/fast-style/fast-style-supp.pdf
 [vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
 [deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
 [backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
@@ -510,11 +551,13 @@ return to the style transfer problem.
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
 [tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
-[tensorflow-serving]: https://tensorflow.github.io/serving/
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html
+[mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
+[cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [softmax]: https://en.wikipedia.org/wiki/Softmax_function
 [gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
 [gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
+[activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
 [todo]: todo
