@@ -285,25 +285,35 @@ learn and improve the classifier's parameters with example data
 We have quite a bit more theory to go before we understand all the
 bits we need to [solve Gatys et al.'s optimisation
 problem][neural-style-algorithm] and reproduce Prisma's visual
-effect. But if you're itching for some practical exercises, now is a
-good time to pause reading and try the [first TensorFlow
+effect. But now is a good time to pause on theory and work through
+your first exercise: [the TensorFlow MNIST classification
 tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning. You now have enough background to appreciate the choices
-they've made in the tutorial.
+learning. Working through this tutorial will ensure that you have
+TensorFlow properly running on your machine, and allows you to
+experience coding up an image classifier to see all the pieces we
+talked about in action. The background material we've covered will
+allow you to appreciate the choices they've made in the tutorial.
+
+Have fun practising, and I'll see you when you're done!
 
 ### Moving to neural networks
 
-The linear image classifier we just introduced doesn't work very well
-in general. What it's attempting to do is to draw a bunch of lines
-($n-1$ dimensional hyperplanes, really) in a plane ($n$ dimensional
-space, really) of images, hoping to carve it out into categories. And
-if you think about it, you'll see that this approach can only succeed
-if the image data we're working with is conveniently linearly
-separable in our chosen space of images. (Not at all true in general.)
+The linear image classifier you just built following the tutorial
+above works surprisingly well for the [MNIST digit
+dataset][mnist-dataset] (around 92% accurate). But if you attempted to
+extend the tutorial to more general images, you'd have realised that
+it performs rather poorly. This is because what the linear classifier
+is attempting to do is to draw a bunch of lines ($n-1$ dimensional
+hyperplanes, really) in a plane ($n$ dimensional space, really) of
+images, hoping to carve it out into categories. And if you think about
+it, you'll see that this approach can only succeed if the image data
+we're working with is conveniently linearly separable in our chosen
+space of images. (Somewhat true for the MNIST dataset, and not at all
+true in general.)
 
 {{< figure src="//placehold.it/1440x960/f4bc87/ffffff" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
 
-Even so, the reason we spent so much time on this first image
+Even so, the reason we spent so much time on the linear image
 classifier is that it was a way to introduce the *parameterised score
 function*, the *loss function*, and the *iterative optimisation
 process*, all without being bogged down by too many other technical
@@ -318,11 +328,39 @@ The cool thing is that as we're working through these generalisations
 of the score function, the rest of the ideas (the loss function and
 optimisation process) stay the same!
 
-#### A first nonlinearity
+#### Making the score function nonlinear
+
+The score function we started this story with was the simplest
+possible we could imagine:
+
+$$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
+\mathbf{W}\mathbf{x} + \mathbf{b}$$
+
+TODO: Introduce bias trick much earlier
+
+$$f(\mathbf{x}; \mathbf{W}) =
+\mathbf{W}\mathbf{x}$$
+
+To extend this to a nonlinear regime, we're going to pass the output
+of this function (elementwise) through a simple nonlinear function
+called the *rectified linear unit* (or *ReLU*) $g(x) = \max(0, x)$.
+
+TODO: Figure of the ReLU
+
+$$
+f(x; W_1, W_2) = W_2 \max(0, W_1 x)
+$$
+
+To increase the nonlinearity of the score function, we repeat this
+process, e.g.
+
+$$
+f(x; W_1, W_2, W_3) = W_3 \max(0, W_2 \max(0, W_1 x))
+$$
 
 TODO: Introduce ReLU as a first nonlinear extension, serving as our
 first model of a *neuron*. There are many other [functional
-forms][todo] one could use, but this one form is really popular today
+forms][activation-functions] one could use, but this one form is really popular today
 and will suffice for our needs.
 
 #### Layer-wise organisation into a network
@@ -346,7 +384,14 @@ over-fitting of such dense networks.
 TODO: Offer some conclusions on NNs in general and setup a simple
 exercise in TensorFlow. The point is to try to improve upon the linear
 image classifier we had earlier, and motivate Keras as a means to
-eliminate boilerplate code.
+eliminate boilerplate
+code. e.g. https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb
+?
+https://www.youtube.com/watch?v=lTFOw8-P02Y
+
+You now know enough to extend the one step MNIST tensorflow tutorial
+into multi-layer and try it out. Note that your accuracy on MNIST goes
+from ca 89 to 97.
 
 ### And finally, convolutional neural networks
 
@@ -507,10 +552,12 @@ return to the style transfer problem.
 [tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html
+[mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [softmax]: https://en.wikipedia.org/wiki/Softmax_function
 [gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
 [gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
+[activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
 [todo]: todo
