@@ -1351,6 +1351,12 @@ pre > code {
 
 /* Tables
 ------------------------------------------------------------------------ */
+/* table { */
+/*     /\* width: 100%; *\/ */
+/*     /\* box-sizing: border-box; *\/ */
+/*     margin-left: auto; */
+/*     margin-right: auto; */
+/* } */
 th,
 td {
     padding: 12px 15px;
