@@ -74,7 +74,7 @@ as Hugo automatically refreshes the browser when it detects changes
 you make to files. Just make sure `hugo` is in your path and run:
 
 ````
-$PATH/hugo server --watch
+hugo server --watch
 ````
 
 When you’re happy with your progress, you can build and publish the
