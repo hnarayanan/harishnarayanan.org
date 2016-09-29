@@ -9,3 +9,7 @@ exterior_link: http://fenicsproject.org/
 start_date: 2010
 end_date: 2016
 ---
+
+The source code for the [FEniCS Project
+website](https://fenicsproject.org) can be found [in a repository on
+Bitbucket](https://bitbucket.org/fenics-project/fenics-web).
