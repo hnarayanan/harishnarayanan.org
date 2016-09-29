@@ -16,7 +16,7 @@ with children in nature, and housed a collection of fictional stories
 featuring cute characters encouraging children to explore and learn
 about their environment.
 
-{{< figure src="/images/projects/wilderness-embassy/post.jpg" title="Cat-jo at her mailbox." >}}
+{{< figure src="/images/projects/wilderness-embassy/mail.jpg" title="Cat-jo at her mailbox." >}}
 
 {{< figure src="/images/projects/wilderness-embassy/night-sky.jpg"  title="Inhabitants of the embassy gazing at the stars." >}}
 
