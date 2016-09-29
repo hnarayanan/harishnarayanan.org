@@ -5,7 +5,7 @@ short_title: Cardiac Modelling Group
 thumbnail: //placehold.it/1440x960/f4bc87/ffffff
 description: The wiki for one of my groups at Simula Research Laboratory.
 category: website
-exterior_link: 
+exterior_link: https://www.simula.no/research/scientific-computing/cardiac-modeling
 start_date: 2011
 end_date: 2012
 ---
