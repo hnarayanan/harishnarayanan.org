@@ -370,7 +370,7 @@ graphs. This introduces the fully-connected (FC) layer. More layers
 allow for more nonlinearity, even though each neuron is barely
 nonlinear.
 
-{{< figure src="/images/writing/tensorflow-artistic-style/neural-network.svg" title="TODO: An example neural network image." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network.svg" title="TODO: An example neural network image." >}}
 
 TODO: Note that this allows for a now classic architecture that
 employs matrix multiplications interwoven with nonlinear *activation*
@@ -481,6 +481,9 @@ Linear: Input -> FC -> Loss
 NN: Input -> FC -> ReLU -> FC -> Loss
 ```
 
+TODO: A simple CNN-based image classifier for CIFAR10 goes here? Need
+to shift to Keras at some point to reduce boilerplate code.
+
 #### A powerful CNN-based image classifier
 
 Now that we have the vocabulary to talk about CNNs in general, we turn
@@ -497,10 +500,7 @@ perform so well at a range of computer vision tasks.
 
 {{< figure src="/images/projects/placeholder.svg" title="TODO: The architecture of the VGGNet family." >}}
 
-TODO 
-
-The architecture of the VGGNet family is reproduced in the figure 
-
+Note that the last FC layer has 1000 neurons.
 
 - TODO: Note that they've shared their learnt weights, so we can
   *transfer* this knowledge over for our purposes.
@@ -550,54 +550,492 @@ return to the style transfer problem.
   - TODO: Introduce L-BFGS as a valid quasi-Newton approach to solve
   the optimisation problem.
 
-### Concrete implementation of the Gatys optimisation problem
+### Concrete implementation of the artistic style transfer algorithm
 
-- TODO: Since this is a very popular paper, there are many existing
-  implementations of it online. Point to two of the better ones on
-  GitHub. Step through some crucial portions of these.
+Since Gatys et al. is a very exciting paper, there exist many
+open source implementations of the algorithm online. One of the most
+popular and general purpose ones is by [Justin Johnson and implemented
+in Torch](https://github.com/jcjohnson/neural-style). I've instead
+followed a [simple example in Keras](todo) and expanded into [a
+fully-fledged notebook][todo] that explains many details step by
+step. I've reproduced it below.
 
-- TODO: Talk about how hyperparameters are tuned to improve aesthetic
-  quality of the output. Show examples of things that work and things
-  that do not.
+```
+from __future__ import print_function
 
-- TODO: Conclude with an exercise to re-implement this in Keras. Now
-  relatively easy to do since VGG itself is trivial to reproduce.
+import time
+from PIL import Image
+import numpy as np
+
+from keras import backend
+from keras.models import Model
+from keras.applications.vgg16 import VGG16
+
+from scipy.optimize import fmin_l_bfgs_b
+from scipy.misc import imsave
+```
+
+#### Load and preprocess the content and style images
+
+Our first task is to load the content and style images. Note that the
+content image we're working with is not particularly high quality, but
+the output we'll arrive at the end of this process still looks really
+good.
+
+```
+height = 512
+width = 512
+
+content_image_path = 'images/hugo.jpg'
+content_image = Image.open(content_image_path)
+content_image = content_image.resize((height, width))
+content_image
+```
+
+TODO: Image output
+
+```
+style_image_path = 'images/wave.jpg'
+style_image = Image.open(style_image_path)
+style_image = style_image.resize((height, width))
+style_image
+```
+
+TODO: Image output
+
+Then, we convert these images into a form suitable for numerical
+processing. In particular, we add another dimension (beyond the
+classic height x width x 3 dimensions) so that we can later
+concatenate the representations of these two images into a common data
+structure.
+
+```
+content_array = np.asarray(content_image, dtype='float32')
+content_array = np.expand_dims(content_array, axis=0)
+print(content_array.shape)
+
+style_array = np.asarray(style_image, dtype='float32')
+style_array = np.expand_dims(style_array, axis=0)
+print(style_array.shape)
+```
+
+```
+(1, 512, 512, 3)
+(1, 512, 512, 3)
+```
+
+Before we proceed much further, we need to massage this input data to
+match what was done in [Simonyan and Zisserman
+(2015)][vgg-simonyan-etal], the paper that introduces the *VGG
+Network* model that we're going to use shortly.
+
+For this, we need to perform two transformations:
+
+1. Subtract the mean RGB value (computed previously on the [ImageNet
+training set][imagenet] and easily obtainable from Google searches)
+from each pixel.
+2. Flip the ordering of the multi-dimensional array from *RGB* to
+*BGR* (the ordering used in the paper).
+
+```
+content_array[:, :, :, 0] -= 103.939
+content_array[:, :, :, 1] -= 116.779
+content_array[:, :, :, 2] -= 123.68
+content_array = content_array[:, :, :, ::-1]
+
+style_array[:, :, :, 0] -= 103.939
+style_array[:, :, :, 1] -= 116.779
+style_array[:, :, :, 2] -= 123.68
+style_array = style_array[:, :, :, ::-1]
+```
+
+Now we're ready to use these arrays to define variables in Keras'
+backend (the TensorFlow graph). We also introduce a placeholder
+variable to store the combination image that retains the content of
+the content image while incorporating the style of the style image.
+
+```
+content_image = backend.variable(content_array)
+style_image = backend.variable(style_array)
+combination_image = backend.placeholder((1, height, width, 3))
+```
+
+Finally, we concatenate all this image data into a single tensor
+that's suitable for processing by Keras' VGG16 model.
+
+```
+input_tensor = backend.concatenate([content_image,
+                                    style_image,
+                                    combination_image], axis=0)
+```
+
+#### Reuse a model pre-trained for image classification to define loss functions
+
+The core idea introduced by [Gatys et
+al. (2015)](https://arxiv.org/abs/1508.06576) is that convolutional
+neural networks (CNNs) pre-trained for image classification already
+know how to encode perceptual and semantic information about
+images. We're going to follow their idea, and use the *feature spaces*
+provided by one such model to independently work with content and
+style of images.
+
+The original paper uses the 19 layer VGG network model from [Simonyan
+and Zisserman (2015)](https://arxiv.org/abs/1409.1556), but we're
+going to instead follow [Johnson et
+al. (2016)](https://arxiv.org/abs/1603.08155) and use the 16 layer
+model (VGG16). There is no noticeable qualitative difference in making
+this choice, and we gain a tiny bit in speed.
+
+Also, since we're not interested in the classification problem, we
+don't need the fully connected layers or the final softmax
+classifier. We only need the part of the model marked in green in the
+table below.
+
+{{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." >}}
+
+It is trivial for us to get access to this truncated model because
+Keras comes with a set of pretrained models, including the VGG16 model
+we're interested in. Note that by setting `include_top=False` in the
+code below, we don't include any of the fully connected layers.
+
+```
+model = VGG16(input_tensor=input_tensor, weights='imagenet',
+              include_top=False)
+```
+
+As is clear from the table above, the model we're working with has a
+lot of layers. Keras has its own names for these layers. Let's make a
+list of these names so that we can easily refer to individual layers
+later.
+
+```
+layers = dict([(layer.name, layer.output) for layer in model.layers])
+print layers
+```
+
+```
+{'block1_conv1': <tf.Tensor 'Relu:0' shape=(3, 512, 512, 64) dtype=float32>,
+ 'block1_conv2': <tf.Tensor 'Relu_1:0' shape=(3, 512, 512, 64) dtype=float32>,
+ 'block1_pool': <tf.Tensor 'MaxPool:0' shape=(3, 256, 256, 64) dtype=float32>,
+ 'block2_conv1': <tf.Tensor 'Relu_2:0' shape=(3, 256, 256, 128) dtype=float32>,
+ 'block2_conv2': <tf.Tensor 'Relu_3:0' shape=(3, 256, 256, 128) dtype=float32>,
+ 'block2_pool': <tf.Tensor 'MaxPool_1:0' shape=(3, 128, 128, 128) dtype=float32>,
+ 'block3_conv1': <tf.Tensor 'Relu_4:0' shape=(3, 128, 128, 256) dtype=float32>,
+ 'block3_conv2': <tf.Tensor 'Relu_5:0' shape=(3, 128, 128, 256) dtype=float32>,
+ 'block3_conv3': <tf.Tensor 'Relu_6:0' shape=(3, 128, 128, 256) dtype=float32>,
+ 'block3_pool': <tf.Tensor 'MaxPool_2:0' shape=(3, 64, 64, 256) dtype=float32>,
+ 'block4_conv1': <tf.Tensor 'Relu_7:0' shape=(3, 64, 64, 512) dtype=float32>,
+ 'block4_conv2': <tf.Tensor 'Relu_8:0' shape=(3, 64, 64, 512) dtype=float32>,
+ 'block4_conv3': <tf.Tensor 'Relu_9:0' shape=(3, 64, 64, 512) dtype=float32>,
+ 'block4_pool': <tf.Tensor 'MaxPool_3:0' shape=(3, 32, 32, 512) dtype=float32>,
+ 'block5_conv1': <tf.Tensor 'Relu_10:0' shape=(3, 32, 32, 512) dtype=float32>,
+ 'block5_conv2': <tf.Tensor 'Relu_11:0' shape=(3, 32, 32, 512) dtype=float32>,
+ 'block5_conv3': <tf.Tensor 'Relu_12:0' shape=(3, 32, 32, 512) dtype=float32>,
+ 'block5_pool': <tf.Tensor 'MaxPool_4:0' shape=(3, 16, 16, 512) dtype=float32>,
+ 'input_1': <tf.Tensor 'concat:0' shape=(3, 512, 512, 3) dtype=float32>}
+```
+
+If you stare at the list above, you'll convince yourself that we
+covered all items we wanted in the table (the cells marked in
+green). Notice also that because we provided Keras with a concrete
+input tensor, the various TensorFlow tensors get well-defined shapes.
+
+---
+
+The crux of the paper we're trying to reproduce is that the [style
+transfer problem can be posed as an optimisation
+problem](https://harishnarayanan.org/writing/artistic-style-transfer/),
+where the loss function we want to minimise can be decomposed into
+three distinct parts: the *content loss*, the *style loss* and the
+*total variation loss*.
+
+The relative importance of these terms are determined by a set of
+scalar weights. These are  arbitrary, but the following set have been
+chosen after quite a bit of experimentation to find a set that
+generates output that's aesthetically pleasing to me.
+
+```
+content_weight = 0.025
+style_weight = 5.0
+total_variation_weight = 1.0
+```
+
+We'll now use the feature spaces provided by specific layers of our
+model to define these three loss functions. We begin by initialising
+the total loss to 0 and adding to it in stages.
+
+```
+loss = backend.variable(0.)
+```
+
+##### The content loss
+
+For the content loss, we follow Johnson et al. (2016) and draw the
+content feature from `block2_conv2`, because the original choice in
+Gatys et al. (2015) (`block4_conv2`) loses too much structural
+detail. And at least for faces, I find it more aesthetically pleasing
+to closely retain the structure of the original content image.
+
+This variation across layers is shown for a couple of examples in the
+images below (just mentally replace `reluX_Y` with our Keras notation
+`blockX_convY`).
+
+{{< figure src="/images/writing/artistic-style-transfer/content-feature.png" title="Content feature reconstruction." >}}
+
+The content loss is the (scaled, squared) Euclidean distance between
+feature representations of the content and combination images.
+
+```
+def content_loss(content, combination):
+    return backend.sum(backend.square(combination - content))
+
+layer_features = layers['block2_conv2']
+content_image_features = layer_features[0, :, :, :]
+combination_features = layer_features[2, :, :, :]
+
+loss += content_weight * content_loss(content_image_features,
+                                      combination_features)
+```
+
+##### The style loss
+
+This is where things start to get a bit intricate.
+
+For the style loss, we first define something called a *Gram
+matrix*. The terms of this matrix are proportional to the covariances
+of corresponding sets of features, and thus captures information about
+which features tend to activate together. By only capturing these
+aggregate statistics across the image, they are blind to the specific
+arrangement of objects inside the image. This is what allows them to
+capture information about style independent of content. (This is not
+trivial at all, and I refer you to [a paper that attempts to explain
+the idea](https://arxiv.org/abs/1606.01286).)
+
+The Gram matrix can be computed efficiently by reshaping the feature
+spaces suitably and taking an outer product.
+
+```
+def gram_matrix(x):
+    features = backend.batch_flatten(backend.permute_dimensions(x, (2, 0, 1)))
+    gram = backend.dot(features, backend.transpose(features))
+    return gram
+```
+
+The style loss is then the (scaled, squared) Frobenius norm of the difference between the Gram matrices of the style and combination images.
+
+Again, in the following code, I've chosen to go with the style
+features from layers defined in Johnson et al. (2016) rather than
+Gatys et al. (2015) because I find the end results more aesthetically
+pleasing. I encourage you to experiment with these choices to see
+varying results.
+
+```
+def style_loss(style, combination):
+    S = gram_matrix(style)
+    C = gram_matrix(combination)
+    channels = 3
+    size = height * width
+    return backend.sum(backend.square(S - C)) / (4. * (channels ** 2) * (size ** 2))
+
+feature_layers = ['block1_conv2', 'block2_conv2',
+                  'block3_conv3', 'block4_conv3',
+                  'block5_conv3']
+for layer_name in feature_layers:
+    layer_features = layers[layer_name]
+    style_features = layer_features[1, :, :, :]
+    combination_features = layer_features[2, :, :, :]
+    sl = style_loss(style_features, combination_features)
+    loss += (style_weight / len(feature_layers)) * sl
+```
+
+##### The total variation loss
+
+Now we're back on simpler ground.
+
+If you were to solve the optimisation problem with only the two loss
+terms we've introduced so far (style and content), you'll find that
+the output is quite noisy. We thus add another term, called the [total
+variation loss](http://arxiv.org/abs/1412.0035) (a regularisation
+term) that encourages spatial smoothness.
+
+You can experiment with reducing the `total_variation_weight` and play
+with the noise-level of the generated image.
+
+```
+def total_variation_loss(x):
+    a = backend.square(x[:, :height-1, :width-1, :] - x[:, 1:, :width-1, :])
+    b = backend.square(x[:, :height-1, :width-1, :] - x[:, :height-1, 1:, :])
+    return backend.sum(backend.pow(a + b, 1.25))
+
+loss += total_variation_weight * total_variation_loss(combination_image)
+```
+
+## Define needed gradients and solve the optimisation problem
+
+The goal of this journey was to setup an optimisation problem that
+aims to solve for a *combination image* that contains the content of
+the content image, while having the style of the style image. Now that
+we have our input images massaged and our loss function calculators in
+place, all we have left to do is define gradients of the total loss
+relative to the combination image, and use these gradients to
+iteratively improve upon our combination image to minimise the loss.
+
+TODO: Figure out if we can do this at a much higher level by replacing
+the `Evaluator` class, "manual" gradient calls and raw calls to
+`scipy` with `tensorflow.contrib.opt.ScipyOptimizerInterface`.
+
+We start by defining the gradients.
+
+```
+grads = backend.gradients(loss, combination_image)
+
+outputs = [loss]
+if type(grads) in {list, tuple}:
+    outputs += grads
+else:
+    outputs.append(grads)
+
+f_outputs = backend.function([combination_image], outputs)
+```
+
+We then introduce an `Evaluator` class that computes loss and
+gradients in one pass while retrieving them via two separate
+functions, `loss` and `grads`. This is done because `scipy.optimize`
+requires separate functions for loss and gradients, but computing them
+separately would be inefficient.
+
+```
+def eval_loss_and_grads(x):
+    x = x.reshape((1, height, width, 3))
+    outs = f_outputs([x])
+    loss_value = outs[0]
+    if len(outs[1:]) == 1:
+        grad_values = outs[1].flatten().astype('float64')
+    else:
+        grad_values = np.array(outs[1:]).flatten().astype('float64')
+    return loss_value, grad_values
+
+class Evaluator(object):
+
+    def __init__(self):
+        self.loss_value = None
+        self.grads_values = None
+
+    def loss(self, x):
+        assert self.loss_value is None
+        loss_value, grad_values = eval_loss_and_grads(x)
+        self.loss_value = loss_value
+        self.grad_values = grad_values
+        return self.loss_value
+
+    def grads(self, x):
+        assert self.loss_value is not None
+        grad_values = np.copy(self.grad_values)
+        self.loss_value = None
+        self.grad_values = None
+        return grad_values
+
+evaluator = Evaluator()
+```
+
+Now we're finally ready to solve our optimisation problem. This
+combination image begins its life as a random collection of (valid)
+pixels, and we use the
+[L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS) algorithm
+(a quasi-Newton algorithm that's significantly quicker to converge
+than standard gradient descent) to iteratively improve upon it.
+
+We stop after 10 iterations because the output looks good to me and
+the loss stops reducing significantly.
+
+```
+x = np.random.uniform(0, 255, (1, height, width, 3)) - 128.
+
+iterations = 10
+
+for i in range(iterations):
+    print('Start of iteration', i)
+    start_time = time.time()
+    x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(),
+                                     fprime=evaluator.grads, maxfun=20)
+    print('Current loss value:', min_val)
+    end_time = time.time()
+    print('Iteration %d completed in %ds' % (i, end_time - start_time))
+```
+
+```
+Start of iteration 0
+Current loss value: 7.97936e+10
+Iteration 0 completed in 365s
+Start of iteration 1
+Current loss value: 5.56155e+10
+Iteration 1 completed in 361s
+Start of iteration 2
+Current loss value: 4.4483e+10
+Iteration 2 completed in 360s
+...
+Start of iteration 9
+Current loss value: 3.56783e+10
+Iteration 9 completed in 365s
+```
+
+This took a while on my piddly laptop (that isn't GPU-accelerated),
+but here is the beautiful output from the last iteration! (Notice that
+we need to subject our output image to the inverse of the
+transformation we did to our input images before it makes sense.)
+
+```
+x = x.reshape((height, width, 3))
+x = x[:, :, ::-1]
+x[:, :, 0] += 103.939
+x[:, :, 1] += 116.779
+x[:, :, 2] += 123.68
+x = np.clip(x, 0, 255).astype('uint8')
+
+Image.fromarray(x)
+```
+
+{{< figure src="/images/writing/artistic-style-transfer/animation.gif" title="Iteratively improving upon the combination image." >}}
+
+
+## Conclusion
 
 <div class="pure-g">
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/gothic.jpg" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/gothic.jpg" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/scream.jpg" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/scream.jpg" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/wave.jpg" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/wave.jpg" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2407.JPG" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/IMG_2407.JPG" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2408.JPG" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/IMG_2408.JPG" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/IMG_2406.JPG" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/IMG_2406.JPG" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_gothic_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_gothic_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_scream_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_scream_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
   <div class="pure-u-1-3">
-    <img class="pure-img" src="/images/writing/tensorflow-artistic-style/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
 </div>
-
-## Conclusion
 
 - TODO: Show many beautiful examples for our program in action, and
   point to it online. Refer back to first motivating examples from
   Prisma.
+- TODO: Talk about how hyperparameters are tuned to improve aesthetic
+  quality of the output. Show examples of things that work and things
+  that do not.
 - TODO: Reiterate some insights.
   - Maybe a giant array of pixels is not the best way of representing
     an image if we wish to understand it better.
@@ -606,7 +1044,8 @@ return to the style transfer problem.
     discover the representations needed to solve arbitrary problems.
 - TODO: Point out that you're now ready to do much more than just this
   problem.
-- TODO: Talk about ideas for extension and improvement.
+- TODO: Talk about ideas for extension and improvement. Plug the
+  subsequent fast style transfer article and *Stylist*.
 
 ## Selected references and further reading
 
@@ -625,12 +1064,14 @@ return to the style transfer problem.
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
 [neural-style-implementation]: #concrete-implementation-of-the-gatys-optimisation-problem
+[neural-style-notebook]: https://github.com/hnarayanan/stylist/blob/master/core/neural_style_transfer.ipynb
 [neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
 [prisma]: http://prisma-ai.com
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
 [neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
 [vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
+[imagenet]: http://image-net.org
 [deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
 [backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
 [cs231n]: http://cs231n.stanford.edu
