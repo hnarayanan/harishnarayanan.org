@@ -1063,7 +1063,7 @@ Image.fromarray(x)
 8. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [cnn-primer]: #convolutional-neural-networks-from-the-ground-up
-[neural-style-implementation]: #concrete-implementation-of-the-gatys-optimisation-problem
+[neural-style-implementation]: #concrete-implementation-of-the-artistic-style-transfer-algorithm
 [neural-style-notebook]: https://github.com/hnarayanan/stylist/blob/master/core/neural_style_transfer.ipynb
 [neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
