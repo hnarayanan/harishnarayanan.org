@@ -1,5 +1,5 @@
 ---
-date: 2016-09-30T21:00:00+01:00
+date: 2016-10-08T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
@@ -385,9 +385,9 @@ TODO: Offer some conclusions on NNs in general and setup a simple
 exercise in TensorFlow. The point is to try to improve upon the linear
 image classifier we had earlier, and motivate Keras as a means to
 eliminate boilerplate
-code. e.g. https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb
-?
-https://www.youtube.com/watch?v=lTFOw8-P02Y
+code. e.g. [1](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb),
+[2](http://cs231n.github.io/neural-networks-case-study/),
+[3](https://www.youtube.com/watch?v=lTFOw8-P02Y)?
 
 You now know enough to extend the one step MNIST tensorflow tutorial
 into multi-layer and try it out. Note that your accuracy on MNIST goes
@@ -395,9 +395,33 @@ from ca 89 to 97.
 
 ### And finally, convolutional neural networks
 
-- TODO: FC NNs quickly balloon to too many parameters. Turns out we
-  can get much better performance with far fewer parameters by
-  exploiting the fact that we have a 2D image.
+We're in a really good place right now in terms of our understanding
+and capability. We've managed to build a (two-layer) neural network
+that does an excellent job of classifying images. (Over 97% on the
+MNIST data.) You would've realised through the exercise that this
+extension didn't take too much more code than the linear classifier we
+built in the first exercise.
+
+If I were to ask you now how we could further improve the accuracy of
+our classifier, you'd probably point out that this is easy to do by
+adding more layers to our score function (making our model
+*deeper*). This is indeed true, but if you were to take a step back
+and look at our model, you'll see two problems:
+
+1. We began the classification process by representing the image as an
+array that's $W \times H \times 3$ long. By thinking of the input as a
+line of data, we've already lost information about the structure of
+the original image. (You can imagine that pixels that are nearby share
+context.)
+
+2. The number of parameters we would need to train quickly becomes
+unwieldy as the input image dimensions or number of layers
+grow. E.g. for our two-layer model, it is TODO. Extending this to a
+three-layer model with TODO.
+
+Convolutional neural networks (CNNs) are architected to solve both
+these issues. And we'll soon see how we can use them to build a deep
+image classifier that's state of the art.
 
 #### Architecture of CNNs in general
 
