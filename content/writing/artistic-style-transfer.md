@@ -391,7 +391,7 @@ code. e.g. [1](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/
 
 You now know enough to extend the one step MNIST tensorflow tutorial
 into multi-layer and try it out. Note that your accuracy on MNIST goes
-from ca 89 to 97.
+from ca 92 to 97.
 
 ### And finally, convolutional neural networks
 
@@ -424,6 +424,33 @@ these issues. And we'll soon see how we can use them to build a deep
 image classifier that's state of the art.
 
 #### Architecture of CNNs in general
+
+In many ways, CNNs are much the same as the ordinary (fully-connected)
+neural networks that we've seen so far. They're a collection neurons
+arranged into layers that each perform a linear map followed
+(potentially) by a nonlinear activation. As the input goes through
+these layers, it is sequentially transformed into a representation
+that makes it suitable to the problem at hand (image
+classification). As before, the whole network still represents a
+single score function that's passed to a loss function to evaluate how
+well it's doing.
+
+The things that make CNNs special:
+
+1. Instead of dealing with the input data (and arranging intermediate
+layers of neurons) as lines, they arrange neurons in a 3D fashion
+(width, height, depth).
+
+2. Neurons in one layer only connect to a small portion of the
+previous layer (as opposed to *every* neuron in the previous layer).
+
+3. Neurons in a given layer *share their weights*.
+
+Such an architecture allows them to retain a lot of the structure
+that's inherent to image data (the spatial arrangement of pixels, the
+fact that pixels nearby share context) and prevents the number of
+model parameters from growing too unwieldy even as we introduce more
+layers.
 
 - TODO: Introduce *Convolutional Layers*, *Pooling Layers* and recall
   Fully-Connected Layers and Softmax. Parameter sharing greatly
