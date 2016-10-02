@@ -62,5 +62,5 @@ understanding of the underlying behavior of the cell.
  quality of life.
 
 [Osteoarthritis]: https://en.wikipedia.org/wiki/Osteoarthritis
-[RMP]: http://en.wikipedia.org/wiki/Resting_potential
+[RMP]: https://en.wikipedia.org/wiki/Resting_potential
 [Source]: https://github.com/hnarayanan/chondrocyte-electrophysiology

@@ -14,7 +14,7 @@ As someone who's new to finance, it might be difficult to ... Summarises wikiped
 
 ## Sharpe Ratio
 
-The [Sharpe Ratio](http://en.wikipedia.org/wiki/Sharpe_ratio) is a way of examining the performance of an investment by adjusting for its risk. It measures the excess return of your asset with respect to some benchmark per unit deviation of your asset (usually called *risk*).
+The [Sharpe Ratio](https://en.wikipedia.org/wiki/Sharpe_ratio) is a way of examining the performance of an investment by adjusting for its risk. It measures the excess return of your asset with respect to some benchmark per unit deviation of your asset (usually called *risk*).
 
 Its definition has historically undergone a few changes, but the
 current form is:
