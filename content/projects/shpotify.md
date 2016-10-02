@@ -1,6 +1,6 @@
 ---
 date: 2014-01-01
-title: A command-line interface for Spotify on a Mac
+title: Shpotify, a command-line interface to Spotify
 short_title: Shpotify
 thumbnail: /images/projects/shpotify.png
 description: A command-line interface for Spotify on a Mac.
