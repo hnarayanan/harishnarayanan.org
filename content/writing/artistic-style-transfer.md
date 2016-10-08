@@ -1,5 +1,5 @@
 ---
-date: 2016-10-08T21:00:00+01:00
+date: 2016-10-15T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
@@ -1027,6 +1027,33 @@ Image.fromarray(x)
   </div>
   <div class="pure-u-1-3">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+</div>
+
+<div class="pure-g">
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_block_cw_0.025_sw_5_tvw_5_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_forest_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_gothic_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_marilyn_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_picasso_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_scream_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_starry_night_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
 </div>
 
