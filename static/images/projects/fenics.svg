@@ -1,0 +1,527 @@
+<?xml version="1.0"?>
+<svg width="720" height="480" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_17">
+    <polygon stroke="null" fill="#758291" points="338.417 96.4244 318.112 119.629 357.273 98.3551" id="svg_1"/>
+    <polygon stroke="null" fill="#758291" points="379.528 106.091 388.715 79.5017 357.273 98.3551" id="svg_2"/>
+    <polygon stroke="null" fill="#758291" points="293.758 222.131 277.238 200.39 250.695 202.567" id="svg_3"/>
+    <polygon stroke="null" fill="#758291" points="232.16 233.493 220.265 257.781 262.432 238.651" id="svg_4"/>
+    <polygon stroke="null" fill="#758291" points="262.432 238.651 248.394 273.24 275.495 258.105" id="svg_5"/>
+    <polygon stroke="null" fill="#758291" points="248.394 303.509 248.394 273.24 209.393 299.949" id="svg_6"/>
+    <polygon stroke="null" fill="#758291" points="300.706 161.201 306.028 179.574 327.321 164.584" id="svg_7"/>
+    <polygon stroke="null" fill="#758291" points="315.908 291.255 307.651 265.168 275.476 288.374" id="svg_8"/>
+    <polygon stroke="null" fill="#758291" points="340.466 311.527 339.248 284.028 315.908 291.255" id="svg_9"/>
+    <polygon stroke="null" fill="#758291" points="350.502 181.024 348.569 214.379 379.046 187.792" id="svg_10"/>
+    <polygon stroke="null" fill="#758291" points="342.286 251.12 348.569 214.379 329.665 227.838" id="svg_11"/>
+    <polygon stroke="null" fill="#758291" points="373.721 258.105 374.21 227.915 342.286 251.12" id="svg_12"/>
+    <polygon stroke="null" fill="#758291" points="396.428 147.664 410.951 182.44 421.1 173.287" id="svg_13"/>
+    <polygon stroke="null" fill="#758291" points="378.544 154.436 379.025 187.792 410.951 182.442" id="svg_14"/>
+    <polygon stroke="null" fill="#758291" points="410.951 182.44 414.316 207.132 441.892 195.041" id="svg_15"/>
+    <polygon stroke="null" fill="#758291" points="407.134 339.896 402.337 308.867 388.21 332.822" id="svg_16"/>
+   </g>
+   <g stroke="null" id="svg_31">
+    <polygon stroke="null" fill="#605E5C" points="327.321 164.584 329.682 137.042 300.706 161.201" id="svg_18"/>
+    <polygon stroke="null" fill="#605E5C" points="388.715 79.5017 382.83 54.8185 364.039 72.2545" id="svg_19"/>
+    <polygon stroke="null" fill="#605E5C" points="357.273 98.3551 354.512 115.717 379.528 106.091" id="svg_20"/>
+    <polygon stroke="null" fill="#605E5C" points="378.562 154.436 380.011 127.848 357.753 134.13" id="svg_21"/>
+    <polygon stroke="null" fill="#605E5C" points="262.869 182.568 250.695 202.567 277.238 200.39" id="svg_22"/>
+    <polygon stroke="null" fill="#605E5C" points="248.394 273.24 248.394 303.509 275.495 288.374" id="svg_23"/>
+    <polygon stroke="null" fill="#605E5C" points="350.502 181.024 357.753 134.13 327.299 164.584" id="svg_24"/>
+    <polygon stroke="null" fill="#605E5C" points="379.046 187.792 378.562 154.436 350.502 181.024" id="svg_25"/>
+    <polygon stroke="null" fill="#605E5C" points="348.569 214.379 350.502 181.024 317.147 203.744" id="svg_26"/>
+    <polygon stroke="null" fill="#605E5C" points="342.286 251.12 356.303 275.773 373.721 258.105" id="svg_27"/>
+    <polygon stroke="null" fill="#605E5C" points="379.025 187.792 374.193 227.915 414.316 207.132" id="svg_28"/>
+    <polygon stroke="null" fill="#605E5C" points="440.443 245.324 447.208 221.631 408.032 237.584" id="svg_29"/>
+    <polygon stroke="null" fill="#605E5C" points="475.421 266.887 476.679 236.617 440.421 245.324" id="svg_30"/>
+   </g>
+   <g stroke="null" id="svg_40">
+    <polygon stroke="null" fill="#650000" points="248.394 273.24 262.432 238.651 220.265 257.781" id="svg_32"/>
+    <polygon stroke="null" fill="#650000" points="284.603 370.384 291.563 391.251 329.82 374.292" id="svg_33"/>
+    <polygon stroke="null" fill="#650000" points="340.446 311.527 339.386 333.865 358.488 315.008" id="svg_34"/>
+    <polygon stroke="null" fill="#650000" points="372.279 430.473 374.76 406.629 342.769 418.393" id="svg_35"/>
+    <polygon stroke="null" fill="#650000" points="348.569 440.14 342.769 418.393 318.112 448.356" id="svg_36"/>
+    <polygon stroke="null" fill="#650000" points="443.893 283.849 440.443 245.324 410.951 273.24" id="svg_37"/>
+    <polygon stroke="null" fill="#650000" points="438.236 373.087 436.406 342.69 402.714 365.209" id="svg_38"/>
+    <polygon stroke="null" fill="#650000" points="475.421 293.116 465.5 334.98 494.903 318.934" id="svg_39"/>
+   </g>
+   <g stroke="null" id="svg_48">
+    <polygon stroke="null" fill="#FF339A" points="246.349 342.121 248.394 303.509 213.308 323.865" id="svg_41"/>
+    <polygon stroke="null" fill="#FF339A" points="282.867 346.904 284.603 370.384 316.343 353.864" id="svg_42"/>
+    <polygon stroke="null" fill="#FF339A" points="408.032 237.584 410.951 273.24 440.443 245.324" id="svg_43"/>
+    <polygon stroke="null" fill="#FF339A" points="436.406 342.69 436.574 311.549 407.134 339.896" id="svg_44"/>
+    <polygon stroke="null" fill="#FF339A" points="441.875 195.041 447.187 221.631 460.724 216.797" id="svg_45"/>
+    <polygon stroke="null" fill="#FF339A" points="503.289 282.061 492.24 258.105 475.421 266.887" id="svg_46"/>
+    <polygon stroke="null" fill="#FF339A" points="501.529 348.014 494.903 318.934 465.5 334.98" id="svg_47"/>
+   </g>
+   <g stroke="null" id="svg_61">
+    <polygon stroke="null" fill="#FF7E00" points="248.394 364.038 246.349 342.121 226.784 345.599" id="svg_49"/>
+    <polygon stroke="null" fill="#FF7E00" points="275.476 288.374 278.084 315.602 315.908 291.255" id="svg_50"/>
+    <polygon stroke="null" fill="#FF7E00" points="315.908 291.255 318.081 329.081 340.466 311.527" id="svg_51"/>
+    <polygon stroke="null" fill="#FF7E00" points="356.303 275.773 374.676 305.75 388.273 292.344" id="svg_52"/>
+    <polygon stroke="null" fill="#FF7E00" points="361.142 395.178 342.769 418.393 374.76 406.629" id="svg_53"/>
+    <polygon stroke="null" fill="#FF7E00" points="374.193 227.915 373.695 258.105 408.032 237.584" id="svg_54"/>
+    <polygon stroke="null" fill="#FF7E00" points="410.951 273.24 402.337 308.867 443.893 283.849" id="svg_55"/>
+    <polygon stroke="null" fill="#FF7E00" points="402.714 365.209 407.134 339.896 389.177 351.671" id="svg_56"/>
+    <polygon stroke="null" fill="#FF7E00" points="430.291 402.919 438.236 373.087 410.951 394.308" id="svg_57"/>
+    <polygon stroke="null" fill="#FF7E00" points="475.421 293.116 475.421 266.887 443.874 283.849" id="svg_58"/>
+    <polygon stroke="null" fill="#FF7E00" points="436.556 311.549 436.384 342.69 465.5 334.98" id="svg_59"/>
+    <polygon stroke="null" fill="#FF7E00" points="465.5 334.98 471.585 357.604 501.529 348.014" id="svg_60"/>
+   </g>
+   <g stroke="null" id="svg_92">
+    <polygon stroke="null" fill="#ED0000" points="275.495 288.374 275.495 258.105 248.394 273.24" id="svg_62"/>
+    <polygon stroke="null" fill="#ED0000" points="209.393 299.949 213.308 323.865 248.394 303.509" id="svg_63"/>
+    <polygon stroke="null" fill="#ED0000" points="278.108 315.602 275.495 288.374 248.394 303.509" id="svg_64"/>
+    <polygon stroke="null" fill="#ED0000" points="213.308 323.865 226.784 345.599 246.349 342.121" id="svg_65"/>
+    <polygon stroke="null" fill="#ED0000" points="282.888 346.904 278.108 315.602 246.349 342.121" id="svg_66"/>
+    <polygon stroke="null" fill="#ED0000" points="284.627 370.384 282.888 346.904 248.394 364.038" id="svg_67"/>
+    <polygon stroke="null" fill="#ED0000" points="291.583 391.251 284.627 370.384 269.39 379.076" id="svg_68"/>
+    <polygon stroke="null" fill="#ED0000" points="339.248 284.028 323.32 261.691 307.651 265.168" id="svg_69"/>
+    <polygon stroke="null" fill="#ED0000" points="318.081 329.081 315.908 291.255 278.084 315.602" id="svg_70"/>
+    <polygon stroke="null" fill="#ED0000" points="339.407 333.865 340.466 311.527 318.081 329.081" id="svg_71"/>
+    <polygon stroke="null" fill="#ED0000" points="316.343 353.864 318.081 329.081 282.867 346.904" id="svg_72"/>
+    <polygon stroke="null" fill="#ED0000" points="350.277 349.076 339.407 333.865 316.343 353.864" id="svg_73"/>
+    <polygon stroke="null" fill="#ED0000" points="329.82 374.292 316.343 353.864 284.603 370.384" id="svg_74"/>
+    <polygon stroke="null" fill="#ED0000" points="307.651 398.638 329.82 374.292 291.563 391.251" id="svg_75"/>
+    <polygon stroke="null" fill="#ED0000" points="358.488 315.008 340.446 311.527 340.466 311.527 339.248 284.028" id="svg_76"/>
+    <polygon stroke="null" fill="#ED0000" points="360.692 332.121 358.488 315.008 339.386 333.865" id="svg_77"/>
+    <polygon stroke="null" fill="#ED0000" points="342.769 418.393 348.569 440.14 372.279 430.473" id="svg_78"/>
+    <polygon stroke="null" fill="#ED0000" points="373.695 258.105 388.252 292.344 410.951 273.24" id="svg_79"/>
+    <polygon stroke="null" fill="#ED0000" points="388.252 292.344 388.21 332.822 402.337 308.867" id="svg_80"/>
+    <polygon stroke="null" fill="#ED0000" points="436.574 311.549 443.893 283.849 402.337 308.867" id="svg_81"/>
+    <polygon stroke="null" fill="#ED0000" points="407.134 339.896 402.714 365.209 436.406 342.69" id="svg_82"/>
+    <polygon stroke="null" fill="#ED0000" points="389.177 351.671 377.575 374.395 402.714 365.209" id="svg_83"/>
+    <polygon stroke="null" fill="#ED0000" points="402.714 365.209 410.951 394.308 438.236 373.087" id="svg_84"/>
+    <polygon stroke="null" fill="#ED0000" points="377.575 374.395 374.733 406.629 410.951 394.308" id="svg_85"/>
+    <polygon stroke="null" fill="#ED0000" points="374.733 406.629 372.258 430.473 402.231 417.9" id="svg_86"/>
+    <polygon stroke="null" fill="#ED0000" points="494.903 318.934 503.289 282.061 475.421 293.116" id="svg_87"/>
+    <polygon stroke="null" fill="#ED0000" points="465.5 334.98 475.421 293.116 436.556 311.549" id="svg_88"/>
+    <polygon stroke="null" fill="#ED0000" points="471.585 357.604 465.5 334.98 436.384 342.69" id="svg_89"/>
+    <polygon stroke="null" fill="#ED0000" points="485.4 365.209 501.529 348.014 471.585 357.604" id="svg_90"/>
+    <polygon stroke="null" fill="#ED0000" points="438.218 373.087 430.27 402.919 464.111 381.167" id="svg_91"/>
+   </g>
+   <g stroke="null" id="svg_108">
+    <polygon stroke="null" fill="#AEB0B2" points="329.682 137.042 318.13 119.629 300.706 142.831" id="svg_93"/>
+    <polygon stroke="null" fill="#AEB0B2" points="357.273 98.3551 364.039 72.2545 338.417 96.4244" id="svg_94"/>
+    <polygon stroke="null" fill="#AEB0B2" points="354.512 115.717 357.273 98.3551 318.112 119.629" id="svg_95"/>
+    <polygon stroke="null" fill="#AEB0B2" points="380.011 127.848 379.528 106.091 354.512 115.717" id="svg_96"/>
+    <polygon stroke="null" fill="#AEB0B2" points="379.99 127.848 378.544 154.433 396.428 147.664" id="svg_97"/>
+    <polygon stroke="null" fill="#AEB0B2" points="250.695 202.567 262.432 238.651 293.758 222.131" id="svg_98"/>
+    <polygon stroke="null" fill="#AEB0B2" points="220.265 257.781 209.393 299.949 248.394 273.24" id="svg_99"/>
+    <polygon stroke="null" fill="#AEB0B2" points="248.394 303.509 246.349 342.121 278.108 315.602" id="svg_100"/>
+    <polygon stroke="null" fill="#AEB0B2" points="317.166 203.744 327.321 164.584 306.028 179.574" id="svg_101"/>
+    <polygon stroke="null" fill="#AEB0B2" points="275.476 258.105 275.476 288.374 307.651 265.168" id="svg_102"/>
+    <polygon stroke="null" fill="#AEB0B2" points="374.21 227.915 379.046 187.792 348.569 214.379" id="svg_103"/>
+    <polygon stroke="null" fill="#AEB0B2" points="388.273 292.344 373.721 258.105 356.303 275.773" id="svg_104"/>
+    <polygon stroke="null" fill="#AEB0B2" points="447.208 221.631 441.892 195.041 414.316 207.132" id="svg_105"/>
+    <polygon stroke="null" fill="#AEB0B2" points="476.679 236.617 460.724 216.797 447.187 221.631" id="svg_106"/>
+    <polygon stroke="null" fill="#AEB0B2" points="503.268 282.061 494.884 318.934 510.519 304.781" id="svg_107"/>
+   </g>
+   <g stroke="null" id="svg_119">
+    <polygon stroke="null" fill="#BD0000" points="248.394 364.038 269.39 379.076 284.627 370.384" id="svg_109"/>
+    <polygon stroke="null" fill="#BD0000" points="307.651 265.168 315.908 291.255 339.248 284.028" id="svg_110"/>
+    <polygon stroke="null" fill="#BD0000" points="278.084 315.602 282.867 346.904 318.081 329.081" id="svg_111"/>
+    <polygon stroke="null" fill="#BD0000" points="318.081 329.081 316.343 353.864 339.407 333.865" id="svg_112"/>
+    <polygon stroke="null" fill="#BD0000" points="388.231 332.822 388.273 292.344 374.676 305.75" id="svg_113"/>
+    <polygon stroke="null" fill="#BD0000" points="414.316 207.132 408.032 237.584 447.208 221.631" id="svg_114"/>
+    <polygon stroke="null" fill="#BD0000" points="402.337 308.867 407.134 339.896 436.574 311.549" id="svg_115"/>
+    <polygon stroke="null" fill="#BD0000" points="402.231 417.9 410.951 394.308 374.733 406.629" id="svg_116"/>
+    <polygon stroke="null" fill="#BD0000" points="436.384 342.69 438.218 373.087 471.585 357.604" id="svg_117"/>
+    <polygon stroke="null" fill="#BD0000" points="510.607 327.504 510.519 304.781 494.884 318.934" id="svg_118"/>
+   </g>
+   <g stroke="null" id="svg_127">
+    <polygon stroke="null" fill="#FFCF00" points="246.349 342.121 248.394 364.038 282.888 346.904" id="svg_120"/>
+    <polygon stroke="null" fill="#FFCF00" points="307.651 265.168 307.651 240.825 275.476 258.105" id="svg_121"/>
+    <polygon stroke="null" fill="#FFCF00" points="316.343 353.864 329.82 374.292 350.277 349.076" id="svg_122"/>
+    <polygon stroke="null" fill="#FFCF00" points="374.76 406.629 377.597 374.395 361.142 395.178" id="svg_123"/>
+    <polygon stroke="null" fill="#FFCF00" points="443.874 283.849 436.556 311.549 475.421 293.116" id="svg_124"/>
+    <polygon stroke="null" fill="#FFCF00" points="464.111 381.167 471.585 357.604 438.218 373.087" id="svg_125"/>
+    <polygon stroke="null" fill="#FFCF00" points="494.884 318.934 501.512 348.014 510.607 327.504" id="svg_126"/>
+   </g>
+   <g stroke="null" id="svg_148">
+    <polygon stroke="null" fill="#464749" points="300.706 142.831 300.706 161.201 329.682 137.042" id="svg_128"/>
+    <polygon stroke="null" fill="#464749" points="364.039 72.2545 357.273 98.3551 388.715 79.5017" id="svg_129"/>
+    <polygon stroke="null" fill="#464749" points="318.112 119.629 329.665 137.042 354.512 115.717" id="svg_130"/>
+    <polygon stroke="null" fill="#464749" points="262.432 238.651 250.695 202.567 232.16 233.493" id="svg_131"/>
+    <polygon stroke="null" fill="#464749" points="275.495 258.105 293.758 222.131 262.432 238.651" id="svg_132"/>
+    <polygon stroke="null" fill="#464749" points="307.651 240.825 307.651 265.168 323.32 261.691" id="svg_133"/>
+    <polygon stroke="null" fill="#464749" points="357.753 134.13 350.502 181.024 378.562 154.436" id="svg_134"/>
+    <polygon stroke="null" fill="#464749" points="327.299 164.584 317.147 203.744 350.502 181.024" id="svg_135"/>
+    <polygon stroke="null" fill="#464749" points="317.147 203.744 329.665 227.838 348.569 214.379" id="svg_136"/>
+    <polygon stroke="null" fill="#464749" points="348.569 214.379 342.286 251.12 374.21 227.915" id="svg_137"/>
+    <polygon stroke="null" fill="#464749" points="339.386 333.865 350.257 349.076 360.692 332.121" id="svg_138"/>
+    <polygon stroke="null" fill="#464749" points="441.892 195.041 421.1 173.287 410.951 182.442" id="svg_139"/>
+    <polygon stroke="null" fill="#464749" points="414.316 207.132 410.951 182.44 379.025 187.792" id="svg_140"/>
+    <polygon stroke="null" fill="#464749" points="410.951 273.24 408.032 237.584 373.695 258.105" id="svg_141"/>
+    <polygon stroke="null" fill="#464749" points="410.951 394.308 402.714 365.209 377.575 374.395" id="svg_142"/>
+    <polygon stroke="null" fill="#464749" points="447.187 221.631 440.421 245.324 476.679 236.617" id="svg_143"/>
+    <polygon stroke="null" fill="#464749" points="440.421 245.324 443.874 283.849 475.421 266.887" id="svg_144"/>
+    <polygon stroke="null" fill="#464749" points="475.421 266.887 475.421 293.116 503.289 282.061" id="svg_145"/>
+    <polygon stroke="null" fill="#464749" points="471.585 357.604 464.111 381.167 485.4 365.209" id="svg_146"/>
+    <polygon stroke="null" fill="#464749" points="382.809 54.8185 388.692 79.5017 398.361 59.2009" id="svg_147"/>
+   </g>
+   <g stroke="null" id="svg_159">
+    <polygon stroke="null" points="354.512 115.717 357.753 134.13 380.011 127.848" id="svg_149"/>
+    <polygon stroke="null" points="398.361 59.2009 409.962 31.6438 382.809 54.8185" id="svg_150"/>
+    <polygon stroke="null" points="293.741 222.131 275.476 258.105 307.651 240.825" id="svg_151"/>
+    <polygon stroke="null" points="410.951 182.442 396.428 147.664 378.544 154.436" id="svg_152"/>
+    <polygon stroke="null" points="408.032 237.584 414.316 207.132 374.193 227.915" id="svg_153"/>
+    <polygon stroke="null" points="402.337 308.867 410.951 273.24 388.252 292.344" id="svg_154"/>
+    <polygon stroke="null" points="388.21 332.822 389.177 351.671 407.134 339.896" id="svg_155"/>
+    <polygon stroke="null" points="410.951 394.308 402.231 417.9 430.291 402.919" id="svg_156"/>
+    <polygon stroke="null" points="476.679 236.617 475.421 266.887 492.24 258.105" id="svg_157"/>
+    <polygon stroke="null" points="329.665 137.042 327.299 164.584 357.753 134.13" id="svg_158"/>
+   </g>
+   <g stroke="null" id="svg_161">
+    <polygon stroke="null" fill="#FFFF00" points="329.665 137.042 357.753 134.13 354.512 115.717" id="svg_160"/>
+   </g>
+   <g stroke="null" id="svg_178">
+    <polygon stroke="null" fill="#758291" points="338.417 96.4244 318.112 119.629 357.273 98.3551" id="svg_162"/>
+    <polygon stroke="null" fill="#758291" points="379.528 106.091 388.715 79.5017 357.273 98.3551" id="svg_163"/>
+    <polygon stroke="null" fill="#758291" points="293.758 222.131 277.238 200.39 250.695 202.567" id="svg_164"/>
+    <polygon stroke="null" fill="#758291" points="232.16 233.493 220.265 257.781 262.432 238.651" id="svg_165"/>
+    <polygon stroke="null" fill="#758291" points="262.432 238.651 248.394 273.24 275.495 258.105" id="svg_166"/>
+    <polygon stroke="null" fill="#758291" points="248.394 303.509 248.394 273.24 209.393 299.949" id="svg_167"/>
+    <polygon stroke="null" fill="#758291" points="300.706 161.201 306.028 179.574 327.321 164.584" id="svg_168"/>
+    <polygon stroke="null" fill="#758291" points="315.908 291.255 307.651 265.168 275.476 288.374" id="svg_169"/>
+    <polygon stroke="null" fill="#758291" points="340.466 311.527 339.248 284.028 315.908 291.255" id="svg_170"/>
+    <polygon stroke="null" fill="#758291" points="350.502 181.024 348.569 214.379 379.046 187.792" id="svg_171"/>
+    <polygon stroke="null" fill="#758291" points="342.286 251.12 348.569 214.379 329.665 227.838" id="svg_172"/>
+    <polygon stroke="null" fill="#758291" points="373.721 258.105 374.21 227.915 342.286 251.12" id="svg_173"/>
+    <polygon stroke="null" fill="#758291" points="396.428 147.664 410.951 182.44 421.1 173.287" id="svg_174"/>
+    <polygon stroke="null" fill="#758291" points="378.544 154.436 379.025 187.792 410.951 182.442" id="svg_175"/>
+    <polygon stroke="null" fill="#758291" points="410.951 182.44 414.316 207.132 441.892 195.041" id="svg_176"/>
+    <polygon stroke="null" fill="#758291" points="407.134 339.896 402.337 308.867 388.21 332.822" id="svg_177"/>
+   </g>
+   <g stroke="null" id="svg_192">
+    <polygon stroke="null" fill="#605E5C" points="327.321 164.584 329.682 137.042 300.706 161.201" id="svg_179"/>
+    <polygon stroke="null" fill="#605E5C" points="388.715 79.5017 382.83 54.8185 364.039 72.2545" id="svg_180"/>
+    <polygon stroke="null" fill="#605E5C" points="357.273 98.3551 354.512 115.717 379.528 106.091" id="svg_181"/>
+    <polygon stroke="null" fill="#605E5C" points="378.562 154.436 380.011 127.848 357.753 134.13" id="svg_182"/>
+    <polygon stroke="null" fill="#605E5C" points="262.869 182.568 250.695 202.567 277.238 200.39" id="svg_183"/>
+    <polygon stroke="null" fill="#605E5C" points="248.394 273.24 248.394 303.509 275.495 288.374" id="svg_184"/>
+    <polygon stroke="null" fill="#605E5C" points="350.502 181.024 357.753 134.13 327.299 164.584" id="svg_185"/>
+    <polygon stroke="null" fill="#605E5C" points="379.046 187.792 378.562 154.436 350.502 181.024" id="svg_186"/>
+    <polygon stroke="null" fill="#605E5C" points="348.569 214.379 350.502 181.024 317.147 203.744" id="svg_187"/>
+    <polygon stroke="null" fill="#605E5C" points="342.286 251.12 356.303 275.773 373.721 258.105" id="svg_188"/>
+    <polygon stroke="null" fill="#605E5C" points="379.025 187.792 374.193 227.915 414.316 207.132" id="svg_189"/>
+    <polygon stroke="null" fill="#605E5C" points="440.443 245.324 447.208 221.631 408.032 237.584" id="svg_190"/>
+    <polygon stroke="null" fill="#605E5C" points="475.421 266.887 476.679 236.617 440.421 245.324" id="svg_191"/>
+   </g>
+   <g stroke="null" id="svg_201">
+    <polygon stroke="null" fill="#650000" points="248.394 273.24 262.432 238.651 220.265 257.781" id="svg_193"/>
+    <polygon stroke="null" fill="#650000" points="284.603 370.384 291.563 391.251 329.82 374.292" id="svg_194"/>
+    <polygon stroke="null" fill="#650000" points="340.446 311.527 339.386 333.865 358.488 315.008" id="svg_195"/>
+    <polygon stroke="null" fill="#650000" points="372.279 430.473 374.76 406.629 342.769 418.393" id="svg_196"/>
+    <polygon stroke="null" fill="#650000" points="348.569 440.14 342.769 418.393 318.112 448.356" id="svg_197"/>
+    <polygon stroke="null" fill="#650000" points="443.893 283.849 440.443 245.324 410.951 273.24" id="svg_198"/>
+    <polygon stroke="null" fill="#650000" points="438.236 373.087 436.406 342.69 402.714 365.209" id="svg_199"/>
+    <polygon stroke="null" fill="#650000" points="475.421 293.116 465.5 334.98 494.903 318.934" id="svg_200"/>
+   </g>
+   <g stroke="null" id="svg_209">
+    <polygon stroke="null" fill="#FF339A" points="246.349 342.121 248.394 303.509 213.308 323.865" id="svg_202"/>
+    <polygon stroke="null" fill="#FF339A" points="282.867 346.904 284.603 370.384 316.343 353.864" id="svg_203"/>
+    <polygon stroke="null" fill="#FF339A" points="408.032 237.584 410.951 273.24 440.443 245.324" id="svg_204"/>
+    <polygon stroke="null" fill="#FF339A" points="436.406 342.69 436.574 311.549 407.134 339.896" id="svg_205"/>
+    <polygon stroke="null" fill="#FF339A" points="441.875 195.041 447.187 221.631 460.724 216.797" id="svg_206"/>
+    <polygon stroke="null" fill="#FF339A" points="503.289 282.061 492.24 258.105 475.421 266.887" id="svg_207"/>
+    <polygon stroke="null" fill="#FF339A" points="501.529 348.014 494.903 318.934 465.5 334.98" id="svg_208"/>
+   </g>
+   <g stroke="null" id="svg_222">
+    <polygon stroke="null" fill="#FF7E00" points="248.394 364.038 246.349 342.121 226.784 345.599" id="svg_210"/>
+    <polygon stroke="null" fill="#FF7E00" points="275.476 288.374 278.084 315.602 315.908 291.255" id="svg_211"/>
+    <polygon stroke="null" fill="#FF7E00" points="315.908 291.255 318.081 329.081 340.466 311.527" id="svg_212"/>
+    <polygon stroke="null" fill="#FF7E00" points="356.303 275.773 374.676 305.75 388.273 292.344" id="svg_213"/>
+    <polygon stroke="null" fill="#FF7E00" points="361.142 395.178 342.769 418.393 374.76 406.629" id="svg_214"/>
+    <polygon stroke="null" fill="#FF7E00" points="374.193 227.915 373.695 258.105 408.032 237.584" id="svg_215"/>
+    <polygon stroke="null" fill="#FF7E00" points="410.951 273.24 402.337 308.867 443.893 283.849" id="svg_216"/>
+    <polygon stroke="null" fill="#FF7E00" points="402.714 365.209 407.134 339.896 389.177 351.671" id="svg_217"/>
+    <polygon stroke="null" fill="#FF7E00" points="430.291 402.919 438.236 373.087 410.951 394.308" id="svg_218"/>
+    <polygon stroke="null" fill="#FF7E00" points="475.421 293.116 475.421 266.887 443.874 283.849" id="svg_219"/>
+    <polygon stroke="null" fill="#FF7E00" points="436.556 311.549 436.384 342.69 465.5 334.98" id="svg_220"/>
+    <polygon stroke="null" fill="#FF7E00" points="465.5 334.98 471.585 357.604 501.529 348.014" id="svg_221"/>
+   </g>
+   <g stroke="null" id="svg_253">
+    <polygon stroke="null" fill="#ED0000" points="275.495 288.374 275.495 258.105 248.394 273.24" id="svg_223"/>
+    <polygon stroke="null" fill="#ED0000" points="209.393 299.949 213.308 323.865 248.394 303.509" id="svg_224"/>
+    <polygon stroke="null" fill="#ED0000" points="278.108 315.602 275.495 288.374 248.394 303.509" id="svg_225"/>
+    <polygon stroke="null" fill="#ED0000" points="213.308 323.865 226.784 345.599 246.349 342.121" id="svg_226"/>
+    <polygon stroke="null" fill="#ED0000" points="282.888 346.904 278.108 315.602 246.349 342.121" id="svg_227"/>
+    <polygon stroke="null" fill="#ED0000" points="284.627 370.384 282.888 346.904 248.394 364.038" id="svg_228"/>
+    <polygon stroke="null" fill="#ED0000" points="291.583 391.251 284.627 370.384 269.39 379.076" id="svg_229"/>
+    <polygon stroke="null" fill="#ED0000" points="339.248 284.028 323.32 261.691 307.651 265.168" id="svg_230"/>
+    <polygon stroke="null" fill="#ED0000" points="318.081 329.081 315.908 291.255 278.084 315.602" id="svg_231"/>
+    <polygon stroke="null" fill="#ED0000" points="339.407 333.865 340.466 311.527 318.081 329.081" id="svg_232"/>
+    <polygon stroke="null" fill="#ED0000" points="316.343 353.864 318.081 329.081 282.867 346.904" id="svg_233"/>
+    <polygon stroke="null" fill="#ED0000" points="350.277 349.076 339.407 333.865 316.343 353.864" id="svg_234"/>
+    <polygon stroke="null" fill="#ED0000" points="329.82 374.292 316.343 353.864 284.603 370.384" id="svg_235"/>
+    <polygon stroke="null" fill="#ED0000" points="307.651 398.638 329.82 374.292 291.563 391.251" id="svg_236"/>
+    <polygon stroke="null" fill="#ED0000" points="358.488 315.008 340.446 311.527 340.466 311.527 339.248 284.028" id="svg_237"/>
+    <polygon stroke="null" fill="#ED0000" points="360.692 332.121 358.488 315.008 339.386 333.865" id="svg_238"/>
+    <polygon stroke="null" fill="#ED0000" points="342.769 418.393 348.569 440.14 372.279 430.473" id="svg_239"/>
+    <polygon stroke="null" fill="#ED0000" points="373.695 258.105 388.252 292.344 410.951 273.24" id="svg_240"/>
+    <polygon stroke="null" fill="#ED0000" points="388.252 292.344 388.21 332.822 402.337 308.867" id="svg_241"/>
+    <polygon stroke="null" fill="#ED0000" points="436.574 311.549 443.893 283.849 402.337 308.867" id="svg_242"/>
+    <polygon stroke="null" fill="#ED0000" points="407.134 339.896 402.714 365.209 436.406 342.69" id="svg_243"/>
+    <polygon stroke="null" fill="#ED0000" points="389.177 351.671 377.575 374.395 402.714 365.209" id="svg_244"/>
+    <polygon stroke="null" fill="#ED0000" points="402.714 365.209 410.951 394.308 438.236 373.087" id="svg_245"/>
+    <polygon stroke="null" fill="#ED0000" points="377.575 374.395 374.733 406.629 410.951 394.308" id="svg_246"/>
+    <polygon stroke="null" fill="#ED0000" points="374.733 406.629 372.258 430.473 402.231 417.9" id="svg_247"/>
+    <polygon stroke="null" fill="#ED0000" points="494.903 318.934 503.289 282.061 475.421 293.116" id="svg_248"/>
+    <polygon stroke="null" fill="#ED0000" points="465.5 334.98 475.421 293.116 436.556 311.549" id="svg_249"/>
+    <polygon stroke="null" fill="#ED0000" points="471.585 357.604 465.5 334.98 436.384 342.69" id="svg_250"/>
+    <polygon stroke="null" fill="#ED0000" points="485.4 365.209 501.529 348.014 471.585 357.604" id="svg_251"/>
+    <polygon stroke="null" fill="#ED0000" points="438.218 373.087 430.27 402.919 464.111 381.167" id="svg_252"/>
+   </g>
+   <g stroke="null" id="svg_269">
+    <polygon stroke="null" fill="#AEB0B2" points="329.682 137.042 318.13 119.629 300.706 142.831" id="svg_254"/>
+    <polygon stroke="null" fill="#AEB0B2" points="357.273 98.3551 364.039 72.2545 338.417 96.4244" id="svg_255"/>
+    <polygon stroke="null" fill="#AEB0B2" points="354.512 115.717 357.273 98.3551 318.112 119.629" id="svg_256"/>
+    <polygon stroke="null" fill="#AEB0B2" points="380.011 127.848 379.528 106.091 354.512 115.717" id="svg_257"/>
+    <polygon stroke="null" fill="#AEB0B2" points="379.99 127.848 378.544 154.433 396.428 147.664" id="svg_258"/>
+    <polygon stroke="null" fill="#AEB0B2" points="250.695 202.567 262.432 238.651 293.758 222.131" id="svg_259"/>
+    <polygon stroke="null" fill="#AEB0B2" points="220.265 257.781 209.393 299.949 248.394 273.24" id="svg_260"/>
+    <polygon stroke="null" fill="#AEB0B2" points="248.394 303.509 246.349 342.121 278.108 315.602" id="svg_261"/>
+    <polygon stroke="null" fill="#AEB0B2" points="317.166 203.744 327.321 164.584 306.028 179.574" id="svg_262"/>
+    <polygon stroke="null" fill="#AEB0B2" points="275.476 258.105 275.476 288.374 307.651 265.168" id="svg_263"/>
+    <polygon stroke="null" fill="#AEB0B2" points="374.21 227.915 379.046 187.792 348.569 214.379" id="svg_264"/>
+    <polygon stroke="null" fill="#AEB0B2" points="388.273 292.344 373.721 258.105 356.303 275.773" id="svg_265"/>
+    <polygon stroke="null" fill="#AEB0B2" points="447.208 221.631 441.892 195.041 414.316 207.132" id="svg_266"/>
+    <polygon stroke="null" fill="#AEB0B2" points="476.679 236.617 460.724 216.797 447.187 221.631" id="svg_267"/>
+    <polygon stroke="null" fill="#AEB0B2" points="503.268 282.061 494.884 318.934 510.519 304.781" id="svg_268"/>
+   </g>
+   <g stroke="null" id="svg_280">
+    <polygon stroke="null" fill="#BD0000" points="248.394 364.038 269.39 379.076 284.627 370.384" id="svg_270"/>
+    <polygon stroke="null" fill="#BD0000" points="307.651 265.168 315.908 291.255 339.248 284.028" id="svg_271"/>
+    <polygon stroke="null" fill="#BD0000" points="278.084 315.602 282.867 346.904 318.081 329.081" id="svg_272"/>
+    <polygon stroke="null" fill="#BD0000" points="318.081 329.081 316.343 353.864 339.407 333.865" id="svg_273"/>
+    <polygon stroke="null" fill="#BD0000" points="388.231 332.822 388.273 292.344 374.676 305.75" id="svg_274"/>
+    <polygon stroke="null" fill="#BD0000" points="414.316 207.132 408.032 237.584 447.208 221.631" id="svg_275"/>
+    <polygon stroke="null" fill="#BD0000" points="402.337 308.867 407.134 339.896 436.574 311.549" id="svg_276"/>
+    <polygon stroke="null" fill="#BD0000" points="402.231 417.9 410.951 394.308 374.733 406.629" id="svg_277"/>
+    <polygon stroke="null" fill="#BD0000" points="436.384 342.69 438.218 373.087 471.585 357.604" id="svg_278"/>
+    <polygon stroke="null" fill="#BD0000" points="510.607 327.504 510.519 304.781 494.884 318.934" id="svg_279"/>
+   </g>
+   <g stroke="null" id="svg_288">
+    <polygon stroke="null" fill="#FFCF00" points="246.349 342.121 248.394 364.038 282.888 346.904" id="svg_281"/>
+    <polygon stroke="null" fill="#FFCF00" points="307.651 265.168 307.651 240.825 275.476 258.105" id="svg_282"/>
+    <polygon stroke="null" fill="#FFCF00" points="316.343 353.864 329.82 374.292 350.277 349.076" id="svg_283"/>
+    <polygon stroke="null" fill="#FFCF00" points="374.76 406.629 377.597 374.395 361.142 395.178" id="svg_284"/>
+    <polygon stroke="null" fill="#FFCF00" points="443.874 283.849 436.556 311.549 475.421 293.116" id="svg_285"/>
+    <polygon stroke="null" fill="#FFCF00" points="464.111 381.167 471.585 357.604 438.218 373.087" id="svg_286"/>
+    <polygon stroke="null" fill="#FFCF00" points="494.884 318.934 501.512 348.014 510.607 327.504" id="svg_287"/>
+   </g>
+   <g stroke="null" id="svg_309">
+    <polygon stroke="null" fill="#464749" points="300.706 142.831 300.706 161.201 329.682 137.042" id="svg_289"/>
+    <polygon stroke="null" fill="#464749" points="364.039 72.2545 357.273 98.3551 388.715 79.5017" id="svg_290"/>
+    <polygon stroke="null" fill="#464749" points="318.112 119.629 329.665 137.042 354.512 115.717" id="svg_291"/>
+    <polygon stroke="null" fill="#464749" points="262.432 238.651 250.695 202.567 232.16 233.493" id="svg_292"/>
+    <polygon stroke="null" fill="#464749" points="275.495 258.105 293.758 222.131 262.432 238.651" id="svg_293"/>
+    <polygon stroke="null" fill="#464749" points="307.651 240.825 307.651 265.168 323.32 261.691" id="svg_294"/>
+    <polygon stroke="null" fill="#464749" points="357.753 134.13 350.502 181.024 378.562 154.436" id="svg_295"/>
+    <polygon stroke="null" fill="#464749" points="327.299 164.584 317.147 203.744 350.502 181.024" id="svg_296"/>
+    <polygon stroke="null" fill="#464749" points="317.147 203.744 329.665 227.838 348.569 214.379" id="svg_297"/>
+    <polygon stroke="null" fill="#464749" points="348.569 214.379 342.286 251.12 374.21 227.915" id="svg_298"/>
+    <polygon stroke="null" fill="#464749" points="339.386 333.865 350.257 349.076 360.692 332.121" id="svg_299"/>
+    <polygon stroke="null" fill="#464749" points="441.892 195.041 421.1 173.287 410.951 182.442" id="svg_300"/>
+    <polygon stroke="null" fill="#464749" points="414.316 207.132 410.951 182.44 379.025 187.792" id="svg_301"/>
+    <polygon stroke="null" fill="#464749" points="410.951 273.24 408.032 237.584 373.695 258.105" id="svg_302"/>
+    <polygon stroke="null" fill="#464749" points="410.951 394.308 402.714 365.209 377.575 374.395" id="svg_303"/>
+    <polygon stroke="null" fill="#464749" points="447.187 221.631 440.421 245.324 476.679 236.617" id="svg_304"/>
+    <polygon stroke="null" fill="#464749" points="440.421 245.324 443.874 283.849 475.421 266.887" id="svg_305"/>
+    <polygon stroke="null" fill="#464749" points="475.421 266.887 475.421 293.116 503.289 282.061" id="svg_306"/>
+    <polygon stroke="null" fill="#464749" points="471.585 357.604 464.111 381.167 485.4 365.209" id="svg_307"/>
+    <polygon stroke="null" fill="#464749" points="382.809 54.8185 388.692 79.5017 398.361 59.2009" id="svg_308"/>
+   </g>
+   <g stroke="null" id="svg_320">
+    <polygon stroke="null" points="354.512 115.717 357.753 134.13 380.011 127.848" id="svg_310"/>
+    <polygon stroke="null" points="398.361 59.2009 409.962 31.6438 382.809 54.8185" id="svg_311"/>
+    <polygon stroke="null" points="293.741 222.131 275.476 258.105 307.651 240.825" id="svg_312"/>
+    <polygon stroke="null" points="410.951 182.442 396.428 147.664 378.544 154.436" id="svg_313"/>
+    <polygon stroke="null" points="408.032 237.584 414.316 207.132 374.193 227.915" id="svg_314"/>
+    <polygon stroke="null" points="402.337 308.867 410.951 273.24 388.252 292.344" id="svg_315"/>
+    <polygon stroke="null" points="388.21 332.822 389.177 351.671 407.134 339.896" id="svg_316"/>
+    <polygon stroke="null" points="410.951 394.308 402.231 417.9 430.291 402.919" id="svg_317"/>
+    <polygon stroke="null" points="476.679 236.617 475.421 266.887 492.24 258.105" id="svg_318"/>
+    <polygon stroke="null" points="329.665 137.042 327.299 164.584 357.753 134.13" id="svg_319"/>
+   </g>
+   <g stroke="null" id="svg_322">
+    <polygon stroke="null" fill="#FFFF00" points="329.665 137.042 357.753 134.13 354.512 115.717" id="svg_321"/>
+   </g>
+   <g stroke="null" id="svg_339">
+    <polygon stroke="null" fill="#758291" points="338.417 96.4244 318.112 119.629 357.273 98.3551" id="svg_323"/>
+    <polygon stroke="null" fill="#758291" points="379.528 106.091 388.715 79.5017 357.273 98.3551" id="svg_324"/>
+    <polygon stroke="null" fill="#758291" points="293.758 222.131 277.238 200.39 250.695 202.567" id="svg_325"/>
+    <polygon stroke="null" fill="#758291" points="232.16 233.493 220.265 257.781 262.432 238.651" id="svg_326"/>
+    <polygon stroke="null" fill="#758291" points="262.432 238.651 248.394 273.24 275.495 258.105" id="svg_327"/>
+    <polygon stroke="null" fill="#758291" points="248.394 303.509 248.394 273.24 209.393 299.949" id="svg_328"/>
+    <polygon stroke="null" fill="#758291" points="300.706 161.201 306.028 179.574 327.321 164.584" id="svg_329"/>
+    <polygon stroke="null" fill="#758291" points="315.908 291.255 307.651 265.168 275.476 288.374" id="svg_330"/>
+    <polygon stroke="null" fill="#758291" points="340.466 311.527 339.248 284.028 315.908 291.255" id="svg_331"/>
+    <polygon stroke="null" fill="#758291" points="350.502 181.024 348.569 214.379 379.046 187.792" id="svg_332"/>
+    <polygon stroke="null" fill="#758291" points="342.286 251.12 348.569 214.379 329.665 227.838" id="svg_333"/>
+    <polygon stroke="null" fill="#758291" points="373.721 258.105 374.21 227.915 342.286 251.12" id="svg_334"/>
+    <polygon stroke="null" fill="#758291" points="396.428 147.664 410.951 182.44 421.1 173.287" id="svg_335"/>
+    <polygon stroke="null" fill="#758291" points="378.544 154.436 379.025 187.792 410.951 182.442" id="svg_336"/>
+    <polygon stroke="null" fill="#758291" points="410.951 182.44 414.316 207.132 441.892 195.041" id="svg_337"/>
+    <polygon stroke="null" fill="#758291" points="407.134 339.896 402.337 308.867 388.21 332.822" id="svg_338"/>
+   </g>
+   <g stroke="null" id="svg_353">
+    <polygon stroke="null" fill="#605E5C" points="327.321 164.584 329.682 137.042 300.706 161.201" id="svg_340"/>
+    <polygon stroke="null" fill="#605E5C" points="388.715 79.5017 382.83 54.8185 364.039 72.2545" id="svg_341"/>
+    <polygon stroke="null" fill="#605E5C" points="357.273 98.3551 354.512 115.717 379.528 106.091" id="svg_342"/>
+    <polygon stroke="null" fill="#605E5C" points="378.562 154.436 380.011 127.848 357.753 134.13" id="svg_343"/>
+    <polygon stroke="null" fill="#605E5C" points="262.869 182.568 250.695 202.567 277.238 200.39" id="svg_344"/>
+    <polygon stroke="null" fill="#605E5C" points="248.394 273.24 248.394 303.509 275.495 288.374" id="svg_345"/>
+    <polygon stroke="null" fill="#605E5C" points="350.502 181.024 357.753 134.13 327.299 164.584" id="svg_346"/>
+    <polygon stroke="null" fill="#605E5C" points="379.046 187.792 378.562 154.436 350.502 181.024" id="svg_347"/>
+    <polygon stroke="null" fill="#605E5C" points="348.569 214.379 350.502 181.024 317.147 203.744" id="svg_348"/>
+    <polygon stroke="null" fill="#605E5C" points="342.286 251.12 356.303 275.773 373.721 258.105" id="svg_349"/>
+    <polygon stroke="null" fill="#605E5C" points="379.025 187.792 374.193 227.915 414.316 207.132" id="svg_350"/>
+    <polygon stroke="null" fill="#605E5C" points="440.443 245.324 447.208 221.631 408.032 237.584" id="svg_351"/>
+    <polygon stroke="null" fill="#605E5C" points="475.421 266.887 476.679 236.617 440.421 245.324" id="svg_352"/>
+   </g>
+   <g stroke="null" id="svg_362">
+    <polygon stroke="null" fill="#650000" points="248.394 273.24 262.432 238.651 220.265 257.781" id="svg_354"/>
+    <polygon stroke="null" fill="#650000" points="284.603 370.384 291.563 391.251 329.82 374.292" id="svg_355"/>
+    <polygon stroke="null" fill="#BD0000" points="340.446 311.527 339.386 333.865 358.488 315.008" id="svg_356"/>
+    <polygon stroke="null" fill="#650000" points="372.279 430.473 374.76 406.629 342.769 418.393" id="svg_357"/>
+    <polygon stroke="null" fill="#650000" points="348.569 440.14 342.769 418.393 318.112 448.356" id="svg_358"/>
+    <polygon stroke="null" fill="#650000" points="443.893 283.849 440.443 245.324 410.951 273.24" id="svg_359"/>
+    <polygon stroke="null" fill="#650000" points="438.236 373.087 436.406 342.69 402.714 365.209" id="svg_360"/>
+    <polygon stroke="null" fill="#650000" points="475.421 293.116 465.5 334.98 494.903 318.934" id="svg_361"/>
+   </g>
+   <g stroke="null" id="svg_370">
+    <polygon stroke="null" fill="#FF339A" points="246.349 342.121 248.394 303.509 213.308 323.865" id="svg_363"/>
+    <polygon stroke="null" fill="#FF339A" points="282.867 346.904 284.603 370.384 316.343 353.864" id="svg_364"/>
+    <polygon stroke="null" fill="#FF339A" points="408.032 237.584 410.951 273.24 440.443 245.324" id="svg_365"/>
+    <polygon stroke="null" fill="#FF339A" points="436.406 342.69 436.574 311.549 407.134 339.896" id="svg_366"/>
+    <polygon stroke="null" fill="#FF339A" points="441.875 195.041 447.187 221.631 460.724 216.797" id="svg_367"/>
+    <polygon stroke="null" fill="#FF339A" points="503.289 282.061 492.24 258.105 475.421 266.887" id="svg_368"/>
+    <polygon stroke="null" fill="#FF339A" points="501.529 348.014 494.903 318.934 465.5 334.98" id="svg_369"/>
+   </g>
+   <g stroke="null" id="svg_383">
+    <polygon stroke="null" fill="#FF7E00" points="248.394 364.038 246.349 342.121 226.784 345.599" id="svg_371"/>
+    <polygon stroke="null" fill="#FF7E00" points="275.476 288.374 278.084 315.602 315.908 291.255" id="svg_372"/>
+    <polygon stroke="null" fill="#FFCF00" points="315.908 291.255 318.081 329.081 340.466 311.527" id="svg_373"/>
+    <polygon stroke="null" fill="#FF7E00" points="356.303 275.773 374.676 305.75 388.273 292.344" id="svg_374"/>
+    <polygon stroke="null" fill="#FF7E00" points="361.142 395.178 342.769 418.393 374.76 406.629" id="svg_375"/>
+    <polygon stroke="null" fill="#FF7E00" points="374.193 227.915 373.695 258.105 408.032 237.584" id="svg_376"/>
+    <polygon stroke="null" fill="#FF7E00" points="410.951 273.24 402.337 308.867 443.893 283.849" id="svg_377"/>
+    <polygon stroke="null" fill="#FF7E00" points="402.714 365.209 407.134 339.896 389.177 351.671" id="svg_378"/>
+    <polygon stroke="null" fill="#FF7E00" points="430.291 402.919 438.236 373.087 410.951 394.308" id="svg_379"/>
+    <polygon stroke="null" fill="#FF7E00" points="475.421 293.116 475.421 266.887 443.874 283.849" id="svg_380"/>
+    <polygon stroke="null" fill="#FF7E00" points="436.556 311.549 436.384 342.69 465.5 334.98" id="svg_381"/>
+    <polygon stroke="null" fill="#FF7E00" points="465.5 334.98 471.585 357.604 501.529 348.014" id="svg_382"/>
+   </g>
+   <g stroke="null" id="svg_414">
+    <polygon stroke="null" fill="#ED0000" points="275.495 288.374 275.495 258.105 248.394 273.24" id="svg_384"/>
+    <polygon stroke="null" fill="#ED0000" points="209.393 299.949 213.308 323.865 248.394 303.509" id="svg_385"/>
+    <polygon stroke="null" fill="#ED0000" points="278.108 315.602 275.495 288.374 248.394 303.509" id="svg_386"/>
+    <polygon stroke="null" fill="#ED0000" points="213.308 323.865 226.784 345.599 246.349 342.121" id="svg_387"/>
+    <polygon stroke="null" fill="#ED0000" points="282.888 346.904 278.108 315.602 246.349 342.121" id="svg_388"/>
+    <polygon stroke="null" fill="#ED0000" points="284.627 370.384 282.888 346.904 248.394 364.038" id="svg_389"/>
+    <polygon stroke="null" fill="#ED0000" points="291.583 391.251 284.627 370.384 269.39 379.076" id="svg_390"/>
+    <polygon stroke="null" fill="#ED0000" points="339.248 284.028 323.32 261.691 307.651 265.168" id="svg_391"/>
+    <polygon stroke="null" fill="#ED0000" points="318.081 329.081 315.908 291.255 278.084 315.602" id="svg_392"/>
+    <polygon stroke="null" fill="#ED0000" points="339.407 333.865 340.466 311.527 318.081 329.081" id="svg_393"/>
+    <polygon stroke="null" fill="#ED0000" points="316.343 353.864 318.081 329.081 282.867 346.904" id="svg_394"/>
+    <polygon stroke="null" fill="#ED0000" points="350.277 349.076 339.407 333.865 316.343 353.864" id="svg_395"/>
+    <polygon stroke="null" fill="#ED0000" points="329.82 374.292 316.343 353.864 284.603 370.384" id="svg_396"/>
+    <polygon stroke="null" fill="#ED0000" points="307.651 398.638 329.82 374.292 291.563 391.251" id="svg_397"/>
+    <polygon stroke="null" fill="#FF7E00" points="358.488 315.008 340.446 311.527 340.466 311.527 339.248 284.028" id="svg_398"/>
+    <polygon stroke="null" fill="#ED0000" points="360.692 332.121 358.488 315.008 339.386 333.865" id="svg_399"/>
+    <polygon stroke="null" fill="#ED0000" points="342.769 418.393 348.569 440.14 372.279 430.473" id="svg_400"/>
+    <polygon stroke="null" fill="#ED0000" points="373.695 258.105 388.252 292.344 410.951 273.24" id="svg_401"/>
+    <polygon stroke="null" fill="#ED0000" points="388.252 292.344 388.21 332.822 402.337 308.867" id="svg_402"/>
+    <polygon stroke="null" fill="#ED0000" points="436.574 311.549 443.893 283.849 402.337 308.867" id="svg_403"/>
+    <polygon stroke="null" fill="#ED0000" points="407.134 339.896 402.714 365.209 436.406 342.69" id="svg_404"/>
+    <polygon stroke="null" fill="#ED0000" points="389.177 351.671 377.575 374.395 402.714 365.209" id="svg_405"/>
+    <polygon stroke="null" fill="#ED0000" points="402.714 365.209 410.951 394.308 438.236 373.087" id="svg_406"/>
+    <polygon stroke="null" fill="#ED0000" points="377.575 374.395 374.733 406.629 410.951 394.308" id="svg_407"/>
+    <polygon stroke="null" fill="#ED0000" points="374.733 406.629 372.258 430.473 402.231 417.9" id="svg_408"/>
+    <polygon stroke="null" fill="#ED0000" points="494.903 318.934 503.289 282.061 475.421 293.116" id="svg_409"/>
+    <polygon stroke="null" fill="#ED0000" points="465.5 334.98 475.421 293.116 436.556 311.549" id="svg_410"/>
+    <polygon stroke="null" fill="#ED0000" points="471.585 357.604 465.5 334.98 436.384 342.69" id="svg_411"/>
+    <polygon stroke="null" fill="#ED0000" points="485.4 365.209 501.529 348.014 471.585 357.604" id="svg_412"/>
+    <polygon stroke="null" fill="#ED0000" points="438.218 373.087 430.27 402.919 464.111 381.167" id="svg_413"/>
+   </g>
+   <g stroke="null" id="svg_430">
+    <polygon stroke="null" fill="#AEB0B2" points="329.682 137.042 318.13 119.629 300.706 142.831" id="svg_415"/>
+    <polygon stroke="null" fill="#AEB0B2" points="357.273 98.3551 364.039 72.2545 338.417 96.4244" id="svg_416"/>
+    <polygon stroke="null" fill="#AEB0B2" points="354.512 115.717 357.273 98.3551 318.112 119.629" id="svg_417"/>
+    <polygon stroke="null" fill="#AEB0B2" points="380.011 127.848 379.528 106.091 354.512 115.717" id="svg_418"/>
+    <polygon stroke="null" fill="#AEB0B2" points="379.99 127.848 378.544 154.433 396.428 147.664" id="svg_419"/>
+    <polygon stroke="null" fill="#AEB0B2" points="250.695 202.567 262.432 238.651 293.758 222.131" id="svg_420"/>
+    <polygon stroke="null" fill="#AEB0B2" points="220.265 257.781 209.393 299.949 248.394 273.24" id="svg_421"/>
+    <polygon stroke="null" fill="#AEB0B2" points="248.394 303.509 246.349 342.121 278.108 315.602" id="svg_422"/>
+    <polygon stroke="null" fill="#AEB0B2" points="317.166 203.744 327.321 164.584 306.028 179.574" id="svg_423"/>
+    <polygon stroke="null" fill="#AEB0B2" points="275.476 258.105 275.476 288.374 307.651 265.168" id="svg_424"/>
+    <polygon stroke="null" fill="#AEB0B2" points="374.21 227.915 379.046 187.792 348.569 214.379" id="svg_425"/>
+    <polygon stroke="null" fill="#AEB0B2" points="388.273 292.344 373.721 258.105 356.303 275.773" id="svg_426"/>
+    <polygon stroke="null" fill="#AEB0B2" points="447.208 221.631 441.892 195.041 414.316 207.132" id="svg_427"/>
+    <polygon stroke="null" fill="#AEB0B2" points="476.679 236.617 460.724 216.797 447.187 221.631" id="svg_428"/>
+    <polygon stroke="null" fill="#AEB0B2" points="503.268 282.061 494.884 318.934 510.519 304.781" id="svg_429"/>
+   </g>
+   <g stroke="null" id="svg_441">
+    <polygon stroke="null" fill="#BD0000" points="248.394 364.038 269.39 379.076 284.627 370.384" id="svg_431"/>
+    <polygon stroke="null" fill="#BD0000" points="307.651 265.168 315.908 291.255 339.248 284.028" id="svg_432"/>
+    <polygon stroke="null" fill="#650000" points="278.084 315.602 282.867 346.904 318.081 329.081" id="svg_433"/>
+    <polygon stroke="null" points="318.081 329.081 316.343 353.864 339.407 333.865" id="svg_434"/>
+    <polygon stroke="null" fill="#BD0000" points="388.231 332.822 388.273 292.344 374.676 305.75" id="svg_435"/>
+    <polygon stroke="null" fill="#BD0000" points="414.316 207.132 408.032 237.584 447.208 221.631" id="svg_436"/>
+    <polygon stroke="null" fill="#BD0000" points="402.337 308.867 407.134 339.896 436.574 311.549" id="svg_437"/>
+    <polygon stroke="null" fill="#BD0000" points="402.231 417.9 410.951 394.308 374.733 406.629" id="svg_438"/>
+    <polygon stroke="null" fill="#BD0000" points="436.384 342.69 438.218 373.087 471.585 357.604" id="svg_439"/>
+    <polygon stroke="null" fill="#BD0000" points="510.607 327.504 510.519 304.781 494.884 318.934" id="svg_440"/>
+   </g>
+   <g stroke="null" id="svg_449">
+    <polygon stroke="null" fill="#FFCF00" points="246.349 342.121 248.394 364.038 282.888 346.904" id="svg_442"/>
+    <polygon stroke="null" fill="#FFCF00" points="307.651 265.168 307.651 240.825 275.476 258.105" id="svg_443"/>
+    <polygon stroke="null" fill="#BD0000" points="316.343 353.864 329.82 374.292 350.277 349.076" id="svg_444"/>
+    <polygon stroke="null" fill="#FFCF00" points="374.76 406.629 377.597 374.395 361.142 395.178" id="svg_445"/>
+    <polygon stroke="null" fill="#FFCF00" points="443.874 283.849 436.556 311.549 475.421 293.116" id="svg_446"/>
+    <polygon stroke="null" fill="#FFCF00" points="464.111 381.167 471.585 357.604 438.218 373.087" id="svg_447"/>
+    <polygon stroke="null" fill="#FFCF00" points="494.884 318.934 501.512 348.014 510.607 327.504" id="svg_448"/>
+   </g>
+   <g stroke="null" id="svg_470">
+    <polygon stroke="null" fill="#464749" points="300.706 142.831 300.706 161.201 329.682 137.042" id="svg_450"/>
+    <polygon stroke="null" fill="#464749" points="364.039 72.2545 357.273 98.3551 388.715 79.5017" id="svg_451"/>
+    <polygon stroke="null" fill="#464749" points="318.112 119.629 329.665 137.042 354.512 115.717" id="svg_452"/>
+    <polygon stroke="null" fill="#464749" points="262.432 238.651 250.695 202.567 232.16 233.493" id="svg_453"/>
+    <polygon stroke="null" fill="#464749" points="275.495 258.105 293.758 222.131 262.432 238.651" id="svg_454"/>
+    <polygon stroke="null" fill="#464749" points="307.651 240.825 307.651 265.168 323.32 261.691" id="svg_455"/>
+    <polygon stroke="null" fill="#464749" points="357.753 134.13 350.502 181.024 378.562 154.436" id="svg_456"/>
+    <polygon stroke="null" fill="#464749" points="327.299 164.584 317.147 203.744 350.502 181.024" id="svg_457"/>
+    <polygon stroke="null" fill="#464749" points="317.147 203.744 329.665 227.838 348.569 214.379" id="svg_458"/>
+    <polygon stroke="null" fill="#464749" points="348.569 214.379 342.286 251.12 374.21 227.915" id="svg_459"/>
+    <polygon stroke="null" fill="#464749" points="339.386 333.865 350.257 349.076 360.692 332.121" id="svg_460"/>
+    <polygon stroke="null" fill="#464749" points="441.892 195.041 421.1 173.287 410.951 182.442" id="svg_461"/>
+    <polygon stroke="null" fill="#464749" points="414.316 207.132 410.951 182.44 379.025 187.792" id="svg_462"/>
+    <polygon stroke="null" fill="#464749" points="410.951 273.24 408.032 237.584 373.695 258.105" id="svg_463"/>
+    <polygon stroke="null" fill="#464749" points="410.951 394.308 402.714 365.209 377.575 374.395" id="svg_464"/>
+    <polygon stroke="null" fill="#464749" points="447.187 221.631 440.421 245.324 476.679 236.617" id="svg_465"/>
+    <polygon stroke="null" fill="#464749" points="440.421 245.324 443.874 283.849 475.421 266.887" id="svg_466"/>
+    <polygon stroke="null" fill="#464749" points="475.421 266.887 475.421 293.116 503.289 282.061" id="svg_467"/>
+    <polygon stroke="null" fill="#464749" points="471.585 357.604 464.111 381.167 485.4 365.209" id="svg_468"/>
+    <polygon stroke="null" fill="#464749" points="382.809 54.8185 388.692 79.5017 398.361 59.2009" id="svg_469"/>
+   </g>
+   <g stroke="null" id="svg_481">
+    <polygon stroke="null" points="354.512 115.717 357.753 134.13 380.011 127.848" id="svg_471"/>
+    <polygon stroke="null" points="398.361 59.2009 409.962 31.6438 382.809 54.8185" id="svg_472"/>
+    <polygon stroke="null" points="293.741 222.131 275.476 258.105 307.651 240.825" id="svg_473"/>
+    <polygon stroke="null" points="410.951 182.442 396.428 147.664 378.544 154.436" id="svg_474"/>
+    <polygon stroke="null" points="408.032 237.584 414.316 207.132 374.193 227.915" id="svg_475"/>
+    <polygon stroke="null" points="402.337 308.867 410.951 273.24 388.252 292.344" id="svg_476"/>
+    <polygon stroke="null" points="388.21 332.822 389.177 351.671 407.134 339.896" id="svg_477"/>
+    <polygon stroke="null" points="410.951 394.308 402.231 417.9 430.291 402.919" id="svg_478"/>
+    <polygon stroke="null" points="476.679 236.617 475.421 266.887 492.24 258.105" id="svg_479"/>
+    <polygon stroke="null" points="329.665 137.042 327.299 164.584 357.753 134.13" id="svg_480"/>
+   </g>
+   <g stroke="null" id="svg_483">
+    <polygon stroke="null" fill="#FFFF00" points="329.665 137.042 357.753 134.13 354.512 115.717" id="svg_482"/>
+   </g>
+  </g>
+ </g>
+</svg>

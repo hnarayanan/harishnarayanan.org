@@ -10,9 +10,10 @@
   </header>
 
   <section class="post-content">
-    {{ .Content }}
+    {{ if .Content }}{{ .Content }}{{ else }}<p>You can find out more about this work on <a href="{{ .Params.exterior_link }}">its own page</a>.</p>{{ end }}
   </section>
 
+  {{ if .Content }}
   <footer class="post-footer">
     <section class="share">
       <h4>Want to learn more?</h4>
@@ -20,6 +21,7 @@
       <!-- TODO: Bring back some sharing options here, as a partial to be reused with the article template -->
     </section>
   </footer>
+  {{ end }}
 
 </article>
 </div>
