@@ -1044,7 +1044,7 @@ Image.fromarray(x)
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_marilyn_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
   </div>
   <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_picasso_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_picasso_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
   <div class="pure-u-1-4">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_scream_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
