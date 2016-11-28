@@ -1,5 +1,5 @@
 ---
-date: 2016-10-31T21:00:00+01:00
+date: 2016-11-30T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
@@ -18,7 +18,7 @@ of a branch of machine learning called [convolutional neural
 networks][cnn-wikipedia]. In this article we're going to take a
 journey through the world of convolutional neural networks from theory
 to practice, as we systematically reproduce Prisma's core visual
-effect.
+effect as an iPython notebook.
 
 ## So what is Prisma and how might it work?
 
@@ -75,7 +75,7 @@ these style and content losses *are not based on per-pixel
 differences* between images, but instead in terms of higher level,
 more *perceptual differences* between them. But then how does one go
 about writing a program that understands enough about the *meaning* of
-images to do something like this?
+images to perceive such a difference?
 
 This question leads to the next crucial bit of insight.  *It's nearly
 impossible to solve a general problem like this well with an a priori
@@ -100,7 +100,7 @@ This section offers a brief summary of parts of the Stanford course
 [Convolutional Neural Networks for Visual Recognition
 (CS231n)][cs231n] that are relevant to our style transfer problem. If
 you’re even vaguely interested in what you're reading here, you should
-probably take this course. *It is outstanding*.
+go take this course. *It is outstanding*.
 
 ### The image classification problem
 
@@ -189,7 +189,7 @@ disagreement* between what our classifier suggests for the scores and
 what our training data provides as the known truth. Thus, this loss
 function goes up if the classifier is doing a poor job and goes down
 if it's doing great. And the goal of the learning process is determine
-parameters that give us the best (lowest) loss.
+parameters that give us the best (i.e. lowest) loss.
 
 {{< figure src="/images/projects/placeholder.svg" title="TODO: An image classifier showing the score function and the loss function" >}}
 
@@ -245,7 +245,7 @@ TODO: Conclude with the full loss function.
 
 Now that we have a loss function that measures the quality of our
 classification, all we have left to do is to find parameters that
-minimise this loss. This is an optimisation problem.
+minimise this loss. This is a classic optimisation problem.
 
 There are a lot of bad ways to solve this problem (e.g. guessing
 parameters until we get lucky), but one good way to solve this
@@ -275,12 +275,12 @@ optimisation algorithm used in Gatys et al.
 
 ---
 
-Finally we have our first complete learning image classifier! Given
-some image as a raw array of numbers, we have a parameterised (score)
-function that takes us to category scores. We have a way of evaluating
-its performance (the loss function). We also have an algorithm to
-learn and improve the classifier's parameters with example data
-(optimisation via stochastic gradient descent).
+Finally we have all the pieces to make our first complete learning
+image classifier! Given some image as a raw array of numbers, we have
+a parameterised (score) function that takes us to category scores. We
+have a way of evaluating its performance (the loss function). We also
+have an algorithm to learn and improve the classifier's parameters
+with example data (optimisation via stochastic gradient descent).
 
 We have quite a bit more theory to go before we understand all the
 bits we need to [solve Gatys et al.'s optimisation
@@ -420,8 +420,9 @@ grow. E.g. for our two-layer model, it is TODO. Extending this to a
 three-layer model with TODO.
 
 Convolutional neural networks (CNNs) are architected to solve both
-these issues. And we'll soon see how we can use them to build a deep
-image classifier that's state of the art.
+these issues, making them particularly powerful for dealing with image
+data. And we'll soon see how we can use them to build a deep image
+classifier that's state of the art.
 
 #### Architecture of CNNs in general
 
