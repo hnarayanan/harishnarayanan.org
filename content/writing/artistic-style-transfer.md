@@ -305,17 +305,18 @@ Have fun practising, and I'll see you when you're done!
 The linear image classifier you just built following the tutorial
 above works surprisingly well for the [MNIST digit
 dataset][mnist-dataset] (around 92% accurate). But if you attempted to
-extend the tutorial to more general images, you'd have realised that
-it performs rather poorly. This is because what the linear classifier
-is attempting to do is to draw a bunch of lines ($n-1$ dimensional
-hyperplanes, really) in a plane ($n$ dimensional space, really) of
-images, hoping to carve it out into categories. And if you think about
-it, you'll see that this approach can only succeed if the image data
-we're working with is conveniently linearly separable in our chosen
-space of images. (Somewhat true for the MNIST dataset, and not at all
-true in general.)
+extend the tutorial to the more general [CIFAR10
+dataset][cifar10-dataset], you'd have realised that it performs rather
+poorly (around TODO% accurate). This is because what the linear
+classifier is attempting to do is to draw a bunch of lines ($n-1$
+dimensional hyperplanes, really) in a plane ($n$ dimensional space,
+really) of images, hoping to carve it out into categories. And if you
+think about it, you'll see that this approach can only succeed if the
+image data we're working with is conveniently linearly separable in
+our chosen space of images. (Somewhat true for the MNIST dataset, and
+not at all true in general.)
 
-{{< figure src="/images/projects/placeholder.svg" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-interpretation.png" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
 
 Even so, the reason we spent so much time on the linear image
 classifier is that it was a way to introduce the *parameterised score
@@ -1113,6 +1114,7 @@ Image.fromarray(x)
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/master/tutorials/mnist/beginners/index.html
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
+[cifar10-dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
