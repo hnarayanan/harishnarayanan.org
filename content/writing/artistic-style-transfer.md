@@ -123,14 +123,14 @@ task then is to come up with a function that takes as input one of
 these large arrays of numbers, and outputs the correct label from our
 set of categories, e.g. "baby".
 
-{{< figure src="/images/projects/placeholder.svg" title="TODO: The image classification problem." >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="TODO: The image classification problem." >}}
 
 How might we write such a classification function? One naïve approach
 would be to hardcode some characteristics of babies (such as large
 heads, snotty noses, rounded cheeks, ...) into our function. But even
 if you knew how to do this, what if you then wanted to look for cars?
-What about different kinds of cars? What about worms? What if our set
-of $K$ categories became arbitrarily large and nuanced?
+What about different kinds of cars? What about toothbrushes? What if
+our set of $K$ categories became arbitrarily large and nuanced?
 
 To further complicate the problem, note that any slight change in the
 situation under which the image was captured (illumination, viewpoint,
@@ -176,7 +176,7 @@ f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}
 $$
 
 Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
-$\mathbf{b}$ (of size $K \times 1$) are *parameters* of the
+$\mathbf{b}$ (of size $K \times 1$) are what we call *parameters* of the
 function. The algorithm will *learn* these with the help of our
 pre-classified examples. And once we've learnt (fit) the parameters on
 this *training data*, we hopefully have a function that *generalises*
@@ -192,7 +192,7 @@ function goes up if the classifier is doing a poor job and goes down
 if it's doing great. And the goal of the learning process is determine
 parameters that give us the best (i.e. lowest) loss.
 
-{{< figure src="/images/projects/placeholder.svg" title="TODO: An image classifier showing the score function and the loss function" >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-score-loss.png" title="TODO: An image classifier showing the score function and the loss function" >}}
 
 Suppose our training data is a set of $N$ pre-classified examples
 $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
@@ -240,19 +240,20 @@ TODO: Note here that the optimisation problem is not well posed, so we
 need a *regularisation term* to constrain the parameters search
 space.
 
-TODO: Conclude with the full loss function.
+TODO: Conclude with the full loss function (specifically arriving at
+the form used in the basic TensorFlow MNIST tutorial).
 
 #### An iterative optimisation process
 
 Now that we have a loss function that measures the quality of our
-classification, all we have left to do is to find parameters that
-minimise this loss. This is a classic optimisation problem.
+classifier, all we have left to do is to find parameters that minimise
+this loss. This is a classic optimisation problem.
 
 There are a lot of bad ways to solve this problem (e.g. guessing
 parameters until we get lucky), but one good way to solve this
 problem is by *iterative refinement*. This is where we start with
 random values for our parameters $(\mathbf{W}, \mathbf{b})$, and
-successively improve them step-by-step until the loss is
+systematically improve them step-by-step until the loss is
 minimised.
 
 If you imagine the loss function to be a bowl-like surface (albeit in
@@ -266,13 +267,10 @@ slope goes to 0). The technical term for this approach is called
 family of related methods][gradient-descent-family] that improve on
 this basic idea, but we'll start with the basic version first.)
 
-TODO: An explanatory figure goes here.
+{{< figure src="/images/writing/artistic-style-transfer/gradient-descent.svg" title="TODO: A figure illustrating gradient descent in two dimensions." >}}
 
 TODO: Describe the math behind (minibatch) SGD; decay learning rate
-over the period of the training
-
-TODO: Need to introduce L-BFGS at some point since this is the
-optimisation algorithm used in Gatys et al.
+over the period of the training.
 
 ---
 
@@ -294,6 +292,11 @@ TensorFlow properly running on your machine, and allows you to
 experience coding up an image classifier to see all the pieces we
 talked about in action. The background material we've covered will
 allow you to appreciate the choices they've made in the tutorial.
+
+TODO: Introduce the CIFAR10 exercise as a natural extension to the
+TensorFlow tutorial. This gives a feeling for the ImageNet dataset and
+teaches how to feed a different kind of dataset to the classifier.
+
 
 Have fun practising, and I'll see you when you're done!
 
@@ -1108,7 +1111,7 @@ Image.fromarray(x)
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
 [tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
-[tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html
+[tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/master/tutorials/mnist/beginners/index.html
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
