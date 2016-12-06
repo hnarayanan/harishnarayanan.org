@@ -1041,6 +1041,12 @@ iterations put into a GIF.
 
 ## Conclusion
 
+- TODO: Show many beautiful examples for our program in action, and
+  point to it online. Refer back to first motivating examples from
+  Prisma.
+
+  - Comparison with Prisma:
+
 <div class="pure-g">
   <div class="pure-u-1-3">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/gothic.jpg" alt="">
@@ -1071,6 +1077,8 @@ iterations put into a GIF.
   </div>
 </div>
 
+  - A range of styles:
+
 <div class="pure-g">
   <div class="pure-u-1-4">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_block_cw_0.025_sw_5_tvw_5_i_9.png" alt="">
@@ -1098,9 +1106,6 @@ iterations put into a GIF.
   </div>
 </div>
 
-- TODO: Show many beautiful examples for our program in action, and
-  point to it online. Refer back to first motivating examples from
-  Prisma.
 - TODO: Talk about how hyperparameters are tuned to improve aesthetic
   quality of the output. Show examples of things that work and things
   that do not.
