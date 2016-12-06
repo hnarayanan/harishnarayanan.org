@@ -346,9 +346,12 @@ TODO: Introduce bias trick much earlier
 $$f(\mathbf{x}; \mathbf{W}) =
 \mathbf{W}\mathbf{x}$$
 
+TODO: Reiterate here that the way we wish to improve the performance
+of our classifier is to make it nonlinear.
+
 To extend this to a nonlinear regime, we're going to pass the output
 of this function (elementwise) through a simple nonlinear function
-called the *rectified linear unit* (or *ReLU*) $g(x) = \max(0, x)$.
+called the [*rectified linear unit*][relu-wikipedia] (or *ReLU*) $g(x) = \max(0, x)$.
 
 TODO: Figure of the ReLU
 
@@ -375,7 +378,7 @@ graphs. This introduces the fully-connected (FC) layer. More layers
 allow for more nonlinearity, even though each neuron is barely
 nonlinear.
 
-{{< figure src="/images/writing/artistic-style-transfer/neural-network.svg" title="TODO: An example neural network image." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network.svg" title="TODO: Some example neural networks." >}}
 
 TODO: Note that this allows for a now classic architecture that
 employs matrix multiplications interwoven with nonlinear *activation*
@@ -383,20 +386,25 @@ functions.
 
 #### Some technicalities
 
-TODO: Introduce batchnorm(?) and regularisation to prevent
-over-fitting of such dense networks.
+TODO: Explain how to initialise such networks.
 
-TODO: Offer some conclusions on NNs in general and setup a simple
-exercise in TensorFlow. The point is to try to improve upon the linear
-image classifier we had earlier, and motivate Keras as a means to
-eliminate boilerplate
-code. e.g. [1](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb),
+TODO: Explain how to clean input data (subtracting average of
+channels).
+
+---
+
+TODO: Offer some conclusions on NNs in general.
+
+TODO: Setup a simple exercise in TensorFlow. The point is to try to
+improve upon the linear image classifier we had earlier (2-Layer fully
+connected network +
+softmax on CIFAR10/MNIST). e.g. [1](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb),
 [2](http://cs231n.github.io/neural-networks-case-study/),
 [3](https://www.youtube.com/watch?v=lTFOw8-P02Y)?
 
-You now know enough to extend the one step MNIST tensorflow tutorial
-into multi-layer and try it out. Note that your accuracy on MNIST goes
-from ca 92 to 97.
+TODO: You now know enough to extend the one step MNIST tensorflow
+tutorial into multi-layer and try it out. Note that your accuracy on
+MNIST goes from ca 92 to 97.
 
 ### And finally, convolutional neural networks
 
@@ -444,15 +452,16 @@ well it's doing.
 The things that make CNNs special are:
 
 1. Instead of dealing with the input data (and arranging intermediate
-layers of neurons) as lines, they arrange neurons in a 3D fashion
-(width, height, depth).
+layers of neurons) as linear arrays, they deal with information as 3D
+volumes (with width, height and depth).
 
 2. Neurons in one layer only connect to a small portion of the
-previous layer (as opposed to *every* neuron in the previous layer).
+previous layer (as opposed to *every* neuron in the previous layer as
+in the case of fully connected networks).
 
 3. Neurons in a given layer *share their weights*.
 
-Such an architecture allows them to retain a lot of the structure
+Such an architecture allows CNN to retain a lot of the structure
 that's inherent to image data (the spatial arrangement of pixels, the
 fact that pixels nearby share context) and prevents the number of
 model parameters from growing too unwieldy, even as we introduce
@@ -471,14 +480,21 @@ from the input image.
 
 ##### Convolutional (Conv) layer
 
+TODO: Write this section introducing spatial intuition and parameters
+(depth, stride and zero-padding).
+
 TODO: Parameter sharing greatly reduces the number of parameters we're
 dealing with.
+
+TODO: Work in animation GIF from 231n notes.
 
 ##### Pooling (Pool) layer
 
 TODO: Has no parameters or hyperparameters, simply reduce the
 computational complexity of the problem at hand. Also reduces
 over-fitting.
+
+TODO: Depict a pool layer in a figure.
 
 TODO: Recall that with this notation, the models we've seen so far
 look like the following:
@@ -504,15 +520,21 @@ how a family of models  essentially composed of simple ($3 \times 3$)
 convolutional filters with increasing depth (11--19 layers) managed to
 perform so well at a range of computer vision tasks.
 
+TODO: Needs more writing to better describe VGGNet.
+
 {{< figure src="/images/projects/placeholder.svg" title="TODO: The architecture of the VGGNet family." >}}
 
 Note that the last FC layer has 1000 neurons.
 
-- TODO: Note that they've shared their learnt weights, so we can
-  *transfer* this knowledge over for our purposes.
-- TODO: Setup an exercise to duplicate this classifier in Keras. Turns
-  out this can be done trivially in recent Keras, and this is what
-  we're going to employ henceforth.
+TODO: Note that they've shared their learnt weights, so we can
+*transfer* this knowledge over for our purposes.
+
+---
+
+TODO: Replicate CNN tutorial from tensorflow.org. Modify to add many
+other layers to the network (get feeling for types). Get annoyed by
+boilerplate code. Redo the exercise in Keras to see how much simpler
+it is. This is what we're going to employ henceforth.
 
 ## Returning to the style transfer problem
 
@@ -1101,6 +1123,7 @@ Image.fromarray(x)
 [neural-style-algorithm]: #returning-to-the-style-transfer-problem
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
 [prisma]: http://prisma-ai.com
+[relu-wikipedia]: https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 [cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
 [neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
 [vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
