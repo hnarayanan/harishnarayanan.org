@@ -524,9 +524,8 @@ TODO: Needs more writing to better describe VGGNet.
 
 {{< figure src="/images/projects/placeholder.svg" title="TODO: The architecture of the VGGNet family." >}}
 
-Note that the last FC layer has 1000 neurons.
-
-TODO: Note that they've shared their learnt weights, so we can
+TODO: Note that this model has very many parameters, so it will take a
+long time to train, but they've shared their learnt weights, so we can
 *transfer* this knowledge over for our purposes.
 
 ---
@@ -539,7 +538,7 @@ it is. This is what we're going to employ henceforth.
 ## Returning to the style transfer problem
 
 If you've made it this far, you're probably starting to realise that
-the whole *quest to reproduce Prisma's visual effect* was simply a
+the whole "quest to reproduce Prisma's visual effect" was simply a
 ruse to get you to trudge through all this background on neural
 networks. But congratulations, you're now not only ready to solve this
 original style transfer problem, you're also in a position to read,
@@ -552,6 +551,9 @@ return to the style transfer problem.
 
 - TODO: Summarise the Gatys, et al. paper for the core ideas (and a
   sketch of the solution methodology):
+  - Recall the Gatys problem, which now seems a lot less
+  intimidating. We're going to simply reuse a trained VGG to solve
+  the this optimisation problem.
   - CNNs pre-trained for image classification (in particular the VGG
   introduced above) have already learnt to encode perceptual and
   semantic information that we need to measure our losses. The
@@ -568,14 +570,14 @@ return to the style transfer problem.
   - The images are synthesised by finding an image that simultaneously
   matches the content representation of the photograph and the style
   representation of the respective piece of art.
-- TODO: Recall the Gatys problem, which now seems a lot less
-  intimidating. We're going to simply reuse a trained VGG to solve
-  it.
   - TODO: Based on VGG19 - 3 FC layers. Normal VGG takes an image and
   returns a category score, but Gatys instead take the outputs at
   intermediate layers and construct L_content and L_style.
   - TODO: A figure showing off the algorithm.
-  - TODO: Introduce L-BFGS as a valid quasi-Newton approach to solve
+
+#### Some technicalities
+
+- TODO: Introduce L-BFGS as a valid quasi-Newton approach to solve
   the optimisation problem.
 
 ### Concrete implementation of the artistic style transfer algorithm
@@ -587,6 +589,9 @@ in Torch](https://github.com/jcjohnson/neural-style). I've instead
 followed a [simple example in Keras](todo) and expanded into [a
 fully-fledged notebook][todo] that explains many details step by
 step. I've reproduced it below.
+
+TODO: Start with some initial comments on why the following are
+needed. Notice it doesn't require a lot of packages.
 
 ```
 from __future__ import print_function
@@ -839,6 +844,10 @@ capture information about style independent of content. (This is not
 trivial at all, and I refer you to [a paper that attempts to explain
 the idea](https://arxiv.org/abs/1606.01286).)
 
+TODO: Make some sort of note here about the fact that the Gram matrix
+is a special case of a more general object. What we really want is
+some measure (of local-ish statistics) that's spatially invariant.
+
 The Gram matrix can be computed efficiently by reshaping the feature
 spaces suitably and taking an outer product.
 
@@ -898,7 +907,7 @@ def total_variation_loss(x):
 loss += total_variation_weight * total_variation_loss(combination_image)
 ```
 
-## Define needed gradients and solve the optimisation problem
+#### Define needed gradients and solve the optimisation problem
 
 The goal of this journey was to setup an optimisation problem that
 aims to solve for a *combination image* that contains the content of
@@ -1007,10 +1016,11 @@ Current loss value: 3.56783e+10
 Iteration 9 completed in 365s
 ```
 
-This took a while on my piddly laptop (that isn't GPU-accelerated),
-but here is the beautiful output from the last iteration! (Notice that
-we need to subject our output image to the inverse of the
-transformation we did to our input images before it makes sense.)
+This took a while on my piddly laptop (that isn't discrete
+GPU-accelerated), but here is the beautiful output from the last
+iteration! (Notice that we need to subject our output image to the
+inverse of the transformation we did to our input images before it
+makes sense.)
 
 ```
 x = x.reshape((height, width, 3))
@@ -1022,6 +1032,9 @@ x = np.clip(x, 0, 255).astype('uint8')
 
 Image.fromarray(x)
 ```
+
+TODO: The following is not really the last iteration, but all
+iterations put into a GIF.
 
 {{< figure src="/images/writing/artistic-style-transfer/animation.gif" title="Iteratively improving upon the combination image." >}}
 
