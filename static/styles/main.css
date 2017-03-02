@@ -1589,3 +1589,9 @@ h2 a:hover {
 iframe {
     border: 0;
 }
+
+.pure-img-half-width {
+    max-width: 50%;
+    height: auto;
+    display: block;
+}
