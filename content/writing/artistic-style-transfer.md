@@ -58,7 +58,7 @@ in is at the scale of the brush strokes, not so much the overall
 shapes in the painting.
 
 But let's say we managed to do this anyway. How do we then
-*selectively apply* this style over the content? We can't just copy and
+selectively *apply* this style over the content? We can't just copy and
 paste it without losing essential aspects of the content's structure. And how
 do we cleanly *discard* the existing style of the content image?
 
@@ -107,7 +107,7 @@ see some effects of playing with these weighting factors later.
 
 The crucial bit of insight in [this paper by Gatys et
 al.][neural-style-gatys-etal] is that the definitions of these content
-and style losses are *not based on per-pixel differences* between
+and style losses are not based on *per-pixel differences* between
 images, but instead in terms of higher level, more *perceptual
 differences* between them.
 
@@ -119,19 +119,19 @@ Well, it turns out we don't. At least not in the classic sense of a
 program with a fixed set of rules. We instead turn to *machine
 learning*, which is a great tool to solve general problems like these
 that seem intuitive to state, but where it's hard to explicitly write
-down all the steps you need to follow to solve it.
+down all the steps you need to follow to solve it. And over the course
+of this article, we're going to learn just how to do this.
 
-And over the course of this article, we're going to learn just how to
-do this. We start from a relatively classic place: [the image
-classification problem][image-classification-problem]. We're going to
-slowly step through solutions of this problem until we're familiar
-with a branch of machine learning that's great for dealing with images
-called [*Convolutional Neural Networks*][convnets] (or
-*convnets*). We’re then going to see how convnets can be used to
-define these perceptual loss functions to [solve our style-transfer
-optimisation problem][neural-style-algorithm].  As a bonus, we
-conclude with a [concrete implementation of the
-solution][neural-style-implementation] (in Keras and TensorFlow) that
+We start from a relatively classic place: [the image classification
+problem][image-classification-problem]. We're going to slowly step
+through solutions of this problem until we're familiar with a branch
+of machine learning that's great for dealing with images called
+[*Convolutional Neural Networks*][convnets] (or *convnets*). We're
+then going to see how [convnets can be used to define these perceptual
+loss functions][neural-style-algorithm] to central to our style-transfer optimisation
+problem. We conclude with a
+[concrete implementation of the solution of the
+problem][neural-style-implementation] (in Keras and TensorFlow) that
 you can play with and extend.
 
 It is my hope that by starting our journey at a fairly basic place and
@@ -144,7 +144,7 @@ learn something interesting no matter what your level of expertise.
 This section offers a brief summary of parts of the Stanford course
 [Convolutional Neural Networks for Visual Recognition
 (CS231n)][cs231n] that are relevant to our style transfer problem. If
-you’re even vaguely interested in what you're reading here, you should
+you're even vaguely interested in what you're reading here, you should
 go take this course. *It is outstanding*.
 
 ### The image classification problem
@@ -159,42 +159,85 @@ to reproduce Prisma's visual effect.
 
 In more precise terms, imagine a three channel colour image (RGB)
 that's $W$ pixels wide and $H$ pixels tall. This image can be
-represented in a computer as an array of $W \times H \times 3$
-integers, each going between $0$ (minimum brightness) and $255$
+represented in a computer as an array of $D = W \times H \times 3$
+numbers, each going between $0$ (minimum brightness) and $1$
 (maximum brightness). Let's further assume that we have $K$ categories
 of things that we'd like to classify the image as being one of. The
 task then is to come up with a function that takes as input one of
 these large arrays of numbers, and outputs the correct label from our
 set of categories, e.g. "baby".
 
-{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="TODO: The image classification problem." >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="-three-fourths-width">}}
 
-How might we write such a classification function? One naïve approach
-would be to hardcode some characteristics of babies (such as large
-heads, snotty noses, rounded cheeks, ...) into our function. But even
-if you knew how to do this, what if you then wanted to look for cars?
-What about different kinds of cars? What about toothbrushes? What if
-our set of $K$ categories became arbitrarily large and nuanced?
+In fact, instead of just reporting one category name, it would be more
+helpful to get a *confidence score* for each category. This way, we'll
+not only get the primary category we're looking for (the largest
+score), but we'll also have a sense of how confident we are with our
+classification. So in essence, what we're looking for is a *score
+function* $f: \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image
+data to class scores.
+
+How might we write such a function? One naïve approach would be to
+hardcode some characteristics of babies (such as large heads, snotty
+noses, rounded cheeks, ...) into our function. But even if you knew
+how to do this, what if you then wanted to look for cars?  What about
+different kinds of cars? What about toothbrushes? What if our set of
+$K$ categories became arbitrarily large and nuanced?
+
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-challenges.jpg" title="TODO: Some of the challenges in getting a computer to classify images. (Reproduced from CS231n notes.)" >}}
 
 To further complicate the problem, note that any slight change in the
 situation under which the image was captured (illumination, viewpoint,
-background clutter, ...) greatly affects the array of integers being
+background clutter, ...) greatly affects the array of numbers being
 passed as input to our function. How do we write our classification
 function to ignore these sorts of superfluous differences while still
-giving it the ability to distinguish between a "baby" and a "small
-child"?
+giving it the ability to distinguish between a "baby" and a "toddler"?
 
-Since this is starting to look hopeless on multiple fronts, we turn to
-a completely different approach --- one that's more *data driven*. We
-first gather a bunch of pre-classified images as examples and then
-feed them into a *learning algorithm*. This algorithm uses the
-examples to learn about the visual appearance of each class, allowing
-it to automatically function as the classifier we want!
+TODO: Improve the following paragraph, pointing out that it is the
+crux of this article.
 
-While this does sound rather amazing, it's also very hand-wavy. Let's
-start to make things more concrete by taking a look at one of the
-simplest learning image classifiers: A [*Softmax classifier* with a
-*cross-entropy* loss][cs231n-softmax-classifier] function.
+We're starting to feel the same flavour of difficulty as the style
+transfer problem we saw earlier. And the reason for this is that there
+is a *semantic gap* between the input representation for images (an
+array of numbers) and what we're looking for (a category
+classification). So we give up on trying to write this function
+ourselves, and instead turn to *machine learning* to *automatically
+discover the appropriate representations* needed to solve this
+problem for us.
+
+### [todo] Some sort of supervised learning title
+
+TODO: Something about supervised learning being the only branch of ML
+that's caused any amazing impact in the last 5 years.
+
+In particular we turn to a subset of machine learning called
+*supervised learning*. In fact, when you hear most people talking
+about machine learning today (deep learning or otherwise), what
+they're probably referring to is supervised learning, which is now the
+classic procedure for learning from data described below:
+
+1. We start with a set of pre-classified example images, which means we
+have a set of images with known labels. This is called the *training
+data*, and these serve as the ground truth that our system is going
+learn from.
+
+2. The function we're trying to find is called the *score function*,
+which maps a given image to category scores. To define what we're
+looking for, we first make a guess for its functional form and have it
+depend on a bunch of parameters $\mathbf{\theta}$ that we need to
+find.
+
+3. We have something called a loss function, shown as this funky L,
+that is a measure of how poorly the score function does given an input
+image with a known label.
+
+4. And finally, we have a learning or optimisation algorithm, which is
+a mechanism to feed our system a bunch of training examples, and have
+it iteratively improve the score function by tweaking its parameters
+θ.
+
+In what follows we're going to make specific choices for these
+different pieces in order to make things more concrete.
 
 ### Our first learning image classifier
 
@@ -203,16 +246,9 @@ simplest learning image classifiers: A [*Softmax classifier* with a
 Recall the classification problem that we're trying to solve. We have
 an image $\mathbf{x}$ that's represented as an array of integers of
 length $D = W \times H \times 3$, and we want to find out which
-category (in a set of $K$ categories) that it belongs to. In fact,
-instead of just reporting one category name, it would be more helpful
-to get a *confidence score* for each category. This way, we'll not
-only get the primary category we're looking for (the largest score),
-but we'll also have a sense of how confident we are with our
-classification.
+category (in a set of $K$ categories) that it belongs to.
 
-So in essence, what we're looking for is a *score* function $f:
-\mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
-scores. The simplest possible example of such a function is a linear
+The simplest possible example of such a function is a linear
 map:
 
 $$

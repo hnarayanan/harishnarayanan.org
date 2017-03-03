@@ -1595,3 +1595,9 @@ iframe {
     height: auto;
     display: block;
 }
+
+.pure-img-three-fourths-width {
+    max-width: 75%;
+    height: auto;
+    display: block;
+}
