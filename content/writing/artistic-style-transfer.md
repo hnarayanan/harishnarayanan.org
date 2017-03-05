@@ -675,6 +675,32 @@ NN: Input -> FC -> ReLU -> FC -> Loss
 TODO: A simple CNN-based image classifier for CIFAR10 goes here? Need
 to shift to Keras at some point to reduce boilerplate code.
 
+Cool, now that our training is finished we see that our convnet
+classifier performs excellently. And that website we looked at while
+it was training, the one that helped us visualise the layers, gave us
+some hints as to why this might be the case.
+
+It turns out that convolutional neural networks (and deep learning in
+general — and we call these models deep as we start to stack on more
+layers) are all about representation learning.
+
+⭐ As you go from layer to layer down a deep convolutional neural
+network, the system essentially transforms representations of the
+input into forms that are more suitable to the task at
+hand. Classification in our case.
+
+So if you look at visualisations like these, you’ll see that given
+pixel input, the first layers get excited by simple features like
+edges, the next layer perhaps things like contours, the next maybe
+simple shapes and part of objects. And the deeper you go, the more
+they start to grasp the entire input field, not just a narrow region,
+but more importantly, the closer they’re moving toward a
+representation that makes it easy for them to classify on.
+
+And this is generally true of all forms of deep learning, but images
+and convnets are disproportionately used as teaching examples because
+each layer does something at least vaguely recognisable to humans.
+
 #### A powerful CNN-based image classifier
 
 Now that we have the vocabulary to talk about CNNs in general, we turn
@@ -1279,11 +1305,17 @@ iterations put into a GIF.
   quality of the output. Show examples of things that work and things
   that do not.
 - TODO: Reiterate some insights.
-  - Maybe a giant array of pixels is not the best way of representing
-    an image if we wish to understand it better.
-  - Some classes of problems are hard to solve with a priori known
-    rules, and require learning machines. -> Have them automatically
-    discover the representations needed to solve arbitrary problems.
+  - Turn to machine learning when you have general problems that seem intuitive to state, but where it’s hard to explicitly write down all the solution steps 
+  - Note that this difficulty often stems from a semantic gap between the input representation and the task at hand
+  - Just because a function can fit something doesn’t mean the learning algorithm will always find that fit
+  - Deep learning is all about representation learning. They can learn
+  features we’d otherwise need to hand-engineer with domain knowledge.
+  - In studying the problem of cat vs. baby deeply, you’ve learnt how to see. You can repurpose this knowledge!
+  - Convnets are really good at computer vision tasks, but they’re not infallible
+    TensorFlow is great, but Keras is what you likely want to be using
+  to experiment quickly
+   - Instead of solving an optimisation problem, train a network to
+  approximate solutions to it for 1000x speedup
 - TODO: Point out that you're now ready to do much more than just this
   problem.
 - TODO: Talk about ideas for extension and improvement. Plug the
