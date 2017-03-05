@@ -1240,7 +1240,7 @@ iterations put into a GIF.
   point to it online. Refer back to first motivating examples from
   Prisma.
 
-  - Let's look at some examples over a range of styles:
+- Let's look at some examples over a range of styles:
 
 <div class="pure-g">
   <div class="pure-u-1-4">
@@ -1296,7 +1296,15 @@ iterations put into a GIF.
   </div>
 </div>
 
-  - Comparison with Prisma:
+- And over a range of hyperparameters:
+
+{{< figure src="/images/writing/artistic-style-transfer/hyperparameter-search.gif" title="Searching over a range of hyperparameters.">}}
+
+- TODO: Talk about how hyperparameters are tuned to improve aesthetic
+  quality of the output. Show examples of things that work and things
+  that do not.
+
+- Comparison with Prisma:
 
 <div class="pure-g">
   <div class="pure-u-1-3">
@@ -1328,9 +1336,6 @@ iterations put into a GIF.
   </div>
 </div>
 
-- TODO: Talk about how hyperparameters are tuned to improve aesthetic
-  quality of the output. Show examples of things that work and things
-  that do not.
 - TODO: Reiterate some insights.
   - Turn to machine learning when you have general problems that seem intuitive to state, but where it’s hard to explicitly write down all the solution steps 
   - Note that this difficulty often stems from a semantic gap between the input representation and the task at hand
