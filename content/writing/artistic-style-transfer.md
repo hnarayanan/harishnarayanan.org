@@ -1240,6 +1240,62 @@ iterations put into a GIF.
   point to it online. Refer back to first motivating examples from
   Prisma.
 
+  - Let's look at some examples over a range of styles:
+
+<div class="pure-g">
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/marilyn.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/block.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/edtaonisl.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/wave.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_marilyn_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_block_cw_0.025_sw_5_tvw_5_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_gothic_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+</div>
+
+<div class="pure-g">
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/forest.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/starry-night.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/picasso.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/scream.jpg" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_forest_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_starry_night_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_picasso_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
+  </div>
+  <div class="pure-u-1-4">
+    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_scream_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
+  </div>
+</div>
+
   - Comparison with Prisma:
 
 <div class="pure-g">
@@ -1269,35 +1325,6 @@ iterations put into a GIF.
   </div>
   <div class="pure-u-1-3">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
-  </div>
-</div>
-
-  - A range of styles:
-
-<div class="pure-g">
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_block_cw_0.025_sw_5_tvw_5_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_forest_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_gothic_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_marilyn_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_picasso_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_scream_cw_0.025_sw_5_tvw_0.5_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_starry_night_cw_0.025_sw_5_tvw_0.1_i_9.png" alt="">
-  </div>
-  <div class="pure-u-1-4">
-    <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_bath_s_wave_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
   </div>
 </div>
 
