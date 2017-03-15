@@ -1,5 +1,5 @@
 ---
-date: 2017-03-15T21:00:00+01:00
+date: 2017-03-31T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
