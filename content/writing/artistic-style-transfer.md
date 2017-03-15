@@ -47,7 +47,7 @@ level features like the colour and texture from one image (that we'll
 call the *style image*, $\mathbf{s}$) and applying it to more
 semantic, higher level features like a toddler's face on another image
 (that we'll call the *content image*, $\mathbf{c}$) to arrive at the
-*style-transferred* image, $\mathbf{x}$.
+*style-transferred image*, $\mathbf{x}$.
 
 Now, how would we even begin to achieve something like this? We could
 perhaps do some pixel-level image analysis on the style image to get
@@ -105,15 +105,13 @@ Here, $\alpha$ and $\beta$ are simply numbers that allow us to control
 how much we want to emphasise the content relative to the style. We'll
 see some effects of playing with these weighting factors later.
 
-The crucial bit of insight in [this paper by Gatys et
+Now the crucial bit of insight in [this paper by Gatys et
 al.][neural-style-gatys-etal] is that the definitions of these content
 and style losses are not based on *per-pixel differences* between
 images, but instead in terms of higher level, more *perceptual
-differences* between them.
-
-But then how does one go about writing a program that understands
-enough about the *meaning* of images to perceive such semantic
-differences?
+differences* between them. Interesting, but then how does one go about
+writing a program that understands enough about the *meaning* of
+images to perceive such semantic differences?
 
 Well, it turns out we don't. At least not in the classic sense of a
 program with a fixed set of rules. We instead turn to *machine
@@ -1355,14 +1353,14 @@ iterations put into a GIF.
 
 ## Selected references and further reading
 
-1. [A Neural Algorithm of Artistic Style][neural-style-gatys-etal],
-   the seminal article
-2. [Very Deep Convolutional Networks for Large-Scale Image
-   Recognition][vgg-simonyan-etal]
-3. [Deep learning][deep-learning-review], a review in Nature
-4. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
-5. [The Stanford course on Convolutional Neural Networks][cs231n] and
+1. [Deep learning][deep-learning-review], a review in Nature
+2. [The Stanford course on Convolutional Neural Networks][cs231n] and
    [accompanying notes][cs231n-notes]
+3. [A Neural Algorithm of Artistic Style][neural-style-gatys-etal],
+   the seminal article
+4. [Very Deep Convolutional Networks for Large-Scale Image
+   Recognition][vgg-simonyan-etal]
+5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
 6. [Our sample implementation on GitHub][neural-style-demo-project]
 7. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
    macOS][tensorflow-gpu-macos]
