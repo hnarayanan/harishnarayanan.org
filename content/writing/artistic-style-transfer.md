@@ -200,16 +200,16 @@ for us.
 
 This concept is the intellectual core of this article.
 
-### Our first learning image classifier
+### A supervised learning approach to the image classification problem
 
 The branch of machine learning we turn to solve the image
 classification problem is called *supervised learning*. In fact, when
 you hear most people talking about machine learning today (deep
 learning or otherwise), what they're probably referring to is
-supervised learning, as it is the subset of machine learning that's
-demonstrated the most success in recent years. Supervised learning has
-now become a classic procedure for *learning from data*, and it is
-outlined below in the context of the image classification problem:
+supervised learning, as it is the subset of machine learning that has
+demonstrated the most success in recent years. Supervised learning is
+now the classic procedure for *learning from data*, and it is outlined
+below in the context of the image classification problem:
 
 {{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." >}}
 
@@ -221,21 +221,29 @@ learn from.
 2. The function we're trying to find is called the *score function*,
 which maps a given image to category scores. To define what we're
 looking for, we first make a guess for its functional form and have it
-depend on a bunch of parameters $\mathbf{\theta}$ that we need to
+depend on a bunch of *parameters* $\mathbf{\theta}$ that we need to
 find.
 
-3. We have something called a loss function, denoted as a funky $\mathcal{L}$,
-that is a measure of how poorly the score function does given an input
-image with a known label.
+3. We have something called a *loss function*, denoted as a funky
+$\mathcal{L}$, that is a measure of how poorly the score function does
+given an input image with a known label.
 
-4. And finally, we have a learning or optimisation algorithm, which is
-a mechanism to feed our system a bunch of training examples, and have
+4. And finally, we have a *learning* or *optimisation algorithm*. This
+is a mechanism to feed our system a bunch of training data, and have
 it iteratively improve the score function by tweaking its parameters
-θ.
+$\mathbf{\theta}$.
 
-In what follows we're going to make specific choices for these
-different pieces in order to make things more concrete.
+Once we've completed this process and learnt a suitable score
+function, we hope that it *generalises* well. That is, the function
+works well for general input that it hasn't seen before as part of the
+training data.
 
+Much of the excitement around machine learning today stems from making
+specific choices for these different pieces, allowing us to build
+powerful functions that map a diverse set of inputs and outputs. In
+what follows, we're going to make increasingly sophisticated choices
+for these pieces aimed at incrementally better solutions to the image
+classification problem.
 
 #### A linear score function
 
