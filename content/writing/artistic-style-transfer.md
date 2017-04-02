@@ -170,8 +170,8 @@ helpful to get a *confidence score* for each category. This way, we'll
 not only get the primary category we're looking for (the largest
 score), but we'll also have a sense of how confident we are with our
 classification. So in essence, what we're looking for is a *score
-function* $f: \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image
-data to class scores.
+function* $\mathbf{f}: \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps
+image data to class scores.
 
 How might we write such a function? One naïve approach would be to
 hardcode some characteristics of babies (such as large heads, snotty
@@ -224,141 +224,113 @@ looking for, we first make a guess for its functional form and have it
 depend on a bunch of *parameters* $\mathbf{\theta}$ that we need to
 find.
 
-3. We have something called a *loss function*, denoted as a funky
-$\mathcal{L}$, that is a measure of how poorly the score function does
-given an input image with a known label.
+3. We introduce a *loss* function, $\mathcal{L}$, which quantifies
+the disagreement between what our score function suggests for the
+category scores and what our training data provides as the known
+truth. Thus, this loss function goes up if the score function is doing
+a poor job and goes down if it's doing great.
 
 4. And finally, we have a *learning* or *optimisation algorithm*. This
 is a mechanism to feed our system a bunch of training data, and have
 it iteratively improve the score function by tweaking its parameters
-$\mathbf{\theta}$.
+$\mathbf{\theta}$. The goal of the learning process is determine
+parameters that give us the best (i.e. lowest) loss.
 
 Once we've completed this process and learnt a suitable score
 function, we hope that it *generalises* well. That is, the function
-works well for general input that it hasn't seen before as part of the
-training data.
+works well for general input (called *test data*) that it hasn't seen
+before.
 
 Much of the excitement around machine learning today stems from making
-specific choices for these different pieces, allowing us to build
-powerful functions that map a diverse set of inputs and outputs. In
-what follows, we're going to make increasingly sophisticated choices
-for these pieces aimed at incrementally better solutions to the image
-classification problem.
+specific choices for these different pieces, allowing us to learn
+powerful functions that map a diverse set of inputs and outputs. And
+in what follows, we're going to make increasingly sophisticated
+choices for these pieces aimed at incrementally better solutions to
+the image classification problem.
 
-#### A linear score function
+### The linear image classifier
 
-Recall the classification problem that we're trying to solve. We have
-an image $\mathbf{x}$ that's represented as an array of integers of
-length $D = W \times H \times 3$, and we want to find out which
-category (in a set of $K$ categories) that it belongs to. We're
-looking for is a *score function* $f: \mathbb{R}^D \mapsto
-\mathbb{R}^{K}$ that maps image data to class scores.
+Recall the classification problem we're trying to solve. We have an
+image $\mathbf{x}$ that's represented as an array of numbers of length
+$D$ ($= W \times H \times d$, where $d$, the *colour depth*, is $1$ for a
+greyscale image and $3$ for an RGB colour image). We want to find out
+which category (in a set of $K$ categories) that it belongs to. So
+what we're really looking for is a *score function* $\mathbf{f}:
+\mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
+scores.
 
 The simplest possible example of such a function is a linear
 map:
 
 $$
-f(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x} + \mathbf{b}
+\mathbf{f}(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x}
++ \mathbf{b},
 $$
 
-Here, the matrix $\mathbf{W}$ (of size $K \times D$) and the vector
-$\mathbf{b}$ (of size $K \times 1$) are what we call *parameters* of the
-function. The algorithm will *learn* these with the help of our
-pre-classified examples. And once we've learnt (fit) the parameters on
-this *training data*, we hopefully have a function that *generalises*
-well enough to classify arbitrary image input (called *test data*).
+which introduces two parameters we need to learn: a matrix
+$\mathbf{W}$ (of size $K \times D$, called the *weights*) and a vector
+$\mathbf{b}$ (of size $K \times 1$, called the *biases*).
 
-#### Softmax activation and cross entropy loss
-
-The first step in the learning process is to introduce a *loss*
-function, $\mathcal{L}$. This is a function that *quantifies the
-disagreement* between what our classifier suggests for the scores and
-what our training data provides as the known truth. Thus, this loss
-function goes up if the classifier is doing a poor job and goes down
-if it's doing great. And the goal of the learning process is determine
-parameters that give us the best (i.e. lowest) loss.
-
-{{< figure src="/images/writing/artistic-style-transfer/image-classification-score-loss.png" title="TODO: An image classifier showing the score function and the loss function" >}}
-
-Suppose our training data is a set of $N$ pre-classified examples
-$\mathbf{x_i} \in \mathbb{R}^D$, each with correct category $y_i \in
-1, \ldots, K$. A [good functional form][cross-entropy-reason] to
-determine the loss for one of these examples is:
+Since we want to interpret the output vector of this linear map as the
+probability for each category, we pass this output through something
+called a *[softmax][softmax] function* $\sigma$ that squashes the
+scores to a set of numbers between 0 and 1 that add up to 1.
 
 $$
-\mathcal{L}\_{\mathrm{data}\_i} =
--\log\left(\frac{\exp(f\_{y\_i}(\mathbf{x}_i))}
-{\sum\_{j=1}^K\exp(f_j(\mathbf{x}_i))}\right)
+s\_j = \sigma(\mathbf{f})\_j = \frac{e^{f\_j}}{\sum\_{k=1}^K e^{f\_k}}
 $$
 
-where $f_j(\mathbf{x}_i)$ is the $j$<sup>th</sup> element of the
-vector $f(\mathbf{x}_i)$. This is called the [cross
-entropy][cross-entropy] loss of the [softmax][softmax] of the class
-scores determined by $f$. As weird as this form looks, if you stare at
-it long enough you'll convince yourself of a few things:
-
-1. The stuff in the big parenthesis takes the output of
-$f(\mathbf{x}_i)$, which is a vector of $K$ real values, plucks the
-value at the correct class' position ($y_i$), and transforms it into a
-single number in the range $(0, 1)$. This allows us to interpret this
-output as the probability our score function believes $y_i$ is the
-correct class.
-
-2. The negative $\log$ of $(0, 1) \mapsto (\infty, 0)$. Meaning that
-if our score function identifies the correct answer with high
-probability, the loss function tends to $0$. And if it identifies the
-correct answer with low probability, the loss function tends to
-$\infty$.
-
-3. This form is smoothly differentiable relative to our parameters
-$(\mathbf{W}, \mathbf{b})$. We'll soon see why this is a useful
-property to have.
-
-To go from the loss on a single training example to the entire set, we
-simply average over all our $N$ examples:
+Let's suppose our training data is a set of $N$ pre-classified
+examples $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category
+$y_i \in 1, \ldots, K$. A [good functional form][cross-entropy-reason]
+to determine the total loss across all these examples is the *[cross
+entropy][cross-entropy] loss*:
 
 $$
-\mathcal{L}\_\mathrm{data} = \frac{1}{N}\sum_{i=1}^N
-\mathcal{L}\_{\mathrm{data}\_i}
+\mathcal{L}(\mathbf{s}) = - \sum\_i log(s\_{y\_i})
 $$
 
-TODO: Note here that the optimisation problem is not well posed, so we
-need a *regularisation term* to constrain the parameters search
-space.
-
-TODO: Conclude with the full loss function (specifically arriving at
-the form used in the basic TensorFlow MNIST tutorial).
-
-#### An iterative optimisation process
+For each example, this function simply plucks the class score's value
+at the known correct class and takes the negative log of it. So the
+closer this score is to 1 (as in it's correct), the closer the loss is
+to 0, and the closer the score is to 0 (it's wrong), the larger the
+loss. The cross entropy loss thus serves as a function that quantifies
+how badly the score function behaves on known data.
 
 Now that we have a loss function that measures the quality of our
-classifier, all we have left to do is to find parameters that minimise
-this loss. This is a classic optimisation problem.
+classifier, all we have left to do is to find parameters (weights and
+biases) that minimise this loss. This is a classic *optimisation
+problem* and in the practical example we're going to see soon, we use
+a method called [stochastic gradient
+descent][stochastic-gradient-descent] for this.
 
-There are a lot of bad ways to solve this problem (e.g. guessing
-parameters until we get lucky), but one good way to solve this
-problem is by *iterative refinement*. This is where we start with
-random values for our parameters $(\mathbf{W}, \mathbf{b})$, and
-systematically improve them step-by-step until the loss is
-minimised.
-
-If you imagine the loss function to be a bowl-like surface (albeit in
-multiple dimensions), what we're trying to do is to find the lowest
-point in this bowl. How would you do this if you couldn't see the
-entire bowl? You'd start somewhere and feel around in your local
-neighbourhood, and move toward whatever direction you find the
-steepest downward slope. You stop when you can't go any lower (or the
-slope goes to 0). The technical term for this approach is called
-[gradient descent][gradient-descent]. (In fact, there is a [whole
-family of related methods][gradient-descent-family] that improve on
-this basic idea, but we'll start with the basic version first.)
+To get a feeling for the method, let's consider a simpler loss
+function that has only one parameter, $w$. It looks something like the
+bowl in the figure below, and we're trying to find this
+$w_{\mathrm{optimal}}$ where the loss $\mathcal{L}(w)$ is at the
+bottom of the bowl.
 
 {{< figure src="/images/writing/artistic-style-transfer/gradient-descent.png" title="A simplified look at gradient descent." >}}
 
-TODO: Describe the math behind (minibatch) SGD; decay learning rate
-over the period of the training.
+Since we don't know where this is to begin with, we start with a guess
+at any point $w\_0$. And then we feel around our local neighbourhood
+and head in the downward direction of the slope. This gets us to the
+point $w\_1$. Where we do this again, arriving at $w\_2$. And again and
+again, until we reach a point where we can't go any lower or the slope
+is 0. This is when we've found $w\_{\mathrm{optimal}}$.
 
----
+This is shown in the equations alongside the figure, where we've now
+introduced a parameter called the learning rate, $\eta$. This is a
+measure of how fast we modify our weights and is something that we
+need to carefully tune in practice.
+
+The actual mechanism for finding these slopes (or gradients when we
+have multiple parameters) comes out of the box in TensorFlow as we're
+soon going to see. But if you're interested in the details of how this
+is done, you should go read about something called [*backward mode
+automatic differentiation*][automatic-differentiation].
+
+#### Notebook 1: The linear image classifier in TensorFlow
 
 Finally we have all the pieces to make our first complete learning
 image classifier! Given some image as a raw array of numbers, we have
@@ -1403,5 +1375,7 @@ iterations put into a GIF.
 [softmax]: https://en.wikipedia.org/wiki/Softmax_function
 [gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
 [gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
+[stochastic-gradient-descent]: https://en.wikipedia.org/wiki/Stochastic_gradient_descent
 [activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
+[automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [todo]: todo
