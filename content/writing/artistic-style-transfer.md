@@ -330,7 +330,10 @@ soon going to see. But if you're interested in the details of how this
 is done, you should go read about something called [*backward mode
 automatic differentiation*][automatic-differentiation].
 
-#### Notebook 1: The linear image classifier in TensorFlow
+#### Notebook 1: A linear classifier for the MNIST handwritten digit dataset in TensorFlow
+
+TODO: Introduce the GitHub repo for the notebooks and the interplay
+with the blog post
 
 Finally we have all the pieces to make our first complete learning
 image classifier! Given some image as a raw array of numbers, we have
@@ -345,15 +348,217 @@ problem][neural-style-algorithm] and reproduce Prisma's visual
 effect. But now is a good time to pause on theory and work through
 your first exercise: [the TensorFlow MNIST classification
 tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning. Working through this tutorial will ensure that you have
+learning.
+
+Working through this tutorial will ensure that you have
 TensorFlow properly running on your machine, and allows you to
 experience coding up an image classifier to see all the pieces we
 talked about in action. The background material we've covered will
 allow you to appreciate the choices they've made in the tutorial.
 
-TODO: Introduce the CIFAR10 exercise as a natural extension to the
-TensorFlow tutorial. This gives a feeling for the ImageNet dataset and
-teaches how to feed a different kind of dataset to the classifier.
+Let's start by importing some packages we need.
+
+
+```python
+import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (5.0, 4.0)
+plt.rcParams['image.cmap'] = 'Greys'
+
+import numpy as np
+np.set_printoptions(suppress=True)
+np.set_printoptions(precision=2)
+```
+
+##### Getting a feel for the data
+
+MNIST is a dataset that contains 70,000 labelled images of handwritten digits that look like the following.
+
+![MNIST Data Sample](images/mnist-sample.png "MNIST Data Sample")
+
+We're going to train a linear classifier on a part of this data set, and test it against another portion of the data set to see how well we did.
+
+The TensorFlow tutorial comes with a handy loader for this dataset.
+
+
+```python
+mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+```
+
+    Extracting MNIST_data/train-images-idx3-ubyte.gz
+    Extracting MNIST_data/train-labels-idx1-ubyte.gz
+    Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+    Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+
+
+The loader even handily splits the data set into three parts:
+
+* A training set (55000 examples) used to train the model
+* A validation set (5000 examples) used to optimise hyperparameters (not shown today)
+* A test set (10000 examples) used to gauge the accuracy of the trained model
+
+The images are greyscale and each 28 pixels wide by 28 pixels tall, and this is stored as an array of length 784.
+
+The labels are a *one hot* vector of length 10, meaning it is a vector of all zeros except at the location that corresponds to the label it's referring to. E.g. An image with a label `3` will be represented as `(0, 0, 0, 1, 0, 0, 0, 0, 0, 0)`.
+
+
+
+```python
+print mnist.train.images.shape
+print mnist.train.labels.shape
+```
+
+    (55000, 784)
+    (55000, 10)
+
+
+
+```python
+print mnist.test.images.shape
+print mnist.test.labels.shape
+```
+
+    (10000, 784)
+    (10000, 10)
+
+
+We can get a better sense for one of these examples by visualising the image and looking at the label.
+
+
+```python
+example_image = mnist.train.images[1]
+example_image_reshaped = example_image.reshape((28, 28)) # Can't render a line of 784 numbers
+example_label = mnist.train.labels[1]
+
+print example_label
+plt.imshow(example_image_reshaped)
+```
+
+    [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
+
+
+
+
+
+    <matplotlib.image.AxesImage at 0x100ad2a90>
+
+
+
+
+![png](output_9_2.png)
+
+
+##### Setting up a score function, loss function and optimisation algorithm
+
+Now that we have a better sense of the dataset we're working with, let's move onto the machine learning bits.
+
+First, we setup some placeholders to hold batches of this training data for when we learn our model. The reason why we work in batches is that it's easier on memory than holding the entire set. And it's this notion of working with (random) batches of input rather than the entire set that moves us from the realm of *Gradient Descent* that we saw earlier, to *Stochastic Gradient Descent* that we have here.
+
+
+```python
+x = tf.placeholder(tf.float32, [None, 784])
+y_ = tf.placeholder(tf.float32, [None, 10])
+```
+
+We define our linear model for the score function after introducing two of parameters, **W** and **b**.
+
+![Linear model](images/linear.png "Linear model")
+
+
+```python
+W = tf.Variable(tf.zeros([784, 10]))
+b = tf.Variable(tf.zeros([10]))
+y = tf.nn.softmax(tf.matmul(x, W) + b)
+```
+
+We define our loss function to measure how poorly this model performs on images with known labels. We use the a specific form called the [cross entropy loss](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/).
+
+
+```python
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=[1]))
+```
+
+Using the magic of blackbox optimisation algorithms provided by TensorFlow, we can define a single step of the stochastic gradient descent optimiser (to improve our parameters for our score function and reduce the loss) in one line of code.
+
+
+```python
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+```
+
+##### Training the model
+
+The way TensorFlow works, we haven't really executed any of the code above in the classic sense. All we've done is defined what's called the computational graph.
+
+Now we go ahead and initialise a session to actually train the model and evaluate its performance.
+
+
+```python
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+```
+
+We train the model iteratively for 1000 steps, loading a batch of example images each time.
+
+
+```python
+for i in range(1000):
+  batch_xs, batch_ys = mnist.train.next_batch(100)
+  sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+```
+
+##### Verifying the results
+
+At this point, our model is trained. And we can deterime in the *accuracy* by passing in all the test images and labels, figuring out our own labels, and averaging out the results.
+
+
+```python
+correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+
+    0.9205
+
+
+Around 92%, that's pretty good!
+
+##### Extension: Using the trained model
+
+Here we try to actually use the model we learn to classify a single test example. It is also easy to [save and restore trained parameters](https://www.tensorflow.org/programmers_guide/variables) for later use.
+
+
+```python
+example_image = mnist.test.images[11]
+example_image_reshaped = example_image.reshape((28, 28)) # Can't render a line of 784 numbers
+plt.imshow(example_image_reshaped)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x10d7ea410>
+
+
+
+
+![png](output_26_1.png)
+
+
+
+```python
+normalised_scores = sess.run(y, feed_dict={x: [example_image]})
+print normalised_scores
+```
+
+    [[ 0.    0.    0.04  0.    0.    0.    0.84  0.    0.11  0.  ]]
+
+
+
+
 
 
 Have fun practising, and I'll see you when you're done!
@@ -1379,3 +1584,4 @@ iterations put into a GIF.
 [activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
 [automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [todo]: todo
+[notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
