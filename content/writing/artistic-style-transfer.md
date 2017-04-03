@@ -773,23 +773,24 @@ this is indeed true, there are some fundamental drawbacks with the
 general form of neural networks we've seen so far (the term for them
 is *standard* or *fully-connected neural networks*):
 
-1. They entirely disregard the 2D structure of the image at the
+Firstly, they entirely disregard the 2D structure of the image at the
 get-go. Remember that instead of working with the input as $28 \times
 28$ matrix, they worked with the input as a 784 number array. And you
 can imagine there is some useful information in pixels sharing
 proximity that's being lost.
-{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." >}}
 
-2. The number of parameters we would need to learn grows really
+{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." extra-class="-three-fourths-width" >}}
+
+Secondly, the number of parameters we would need to learn grows really
 rapidly as we add more layers. Here are the number of parameters
 corresponding to the examples we've seen so far:
 
-  - **Linear:** 784*10 + 10 = 7,850
-  - **Neural network (one hidden layer):** 784*100 + 100 + 100*10 + 10 = 79,510
-  - **Neural network (two hidden layers):** 784*400 + 400 + 400*100 + 100 + 100*10 + 10 = 355,110
+- **Linear:** 784*10 + 10 = 7,850
+- **Neural network (one hidden layer):** 784*100 + 100 + 100*10 + 10 = 79,510
+- **Neural network (two hidden layers):** 784*400 + 400 + 400*100 + 100 + 100*10 + 10 = 355,110
 
 The fundamental reason for this rapid growth in parameters is that
-every neuron in a given layer sees every neuron in the previous
+every neuron in a given layer sees all neurons in the previous
 layer. Furthermore, you can imagine how much worse this would be if
 our input image wasn't tiny (28&nbsp;px $\times$ 28&nbsp;px) but
 instead more realistically sized.
@@ -801,69 +802,53 @@ classifier that's state of the art.
 
 #### Architecture of convnets in general
 
-In many ways, CNNs are much the same as the ordinary (fully-connected)
-neural networks that we've seen so far. They're a collection neurons
-arranged into layers that each perform a linear map followed
-(potentially) by a nonlinear activation. As the input goes through
-these layers, it is sequentially transformed into a representation
-that makes it suitable to the problem at hand (image
-classification). As before, the whole network still represents a
-single score function that's passed to a loss function to evaluate how
-well it's doing.
+Convnets are very similar to fully-connected neural networks in that
+they're made up of neurons arranged in layers and they have learnable
+weights and biases. Each neuron receives some inputs, does a linear
+map and optionally follows it with a nonlinear activation. The whole
+network still expresses a single score function: from the raw image
+pixels on one end to class scores at the other.
 
-The things that make CNNs special are:
-
-1. Instead of dealing with the input data (and arranging intermediate
-layers of neurons) as linear arrays, they deal with information as 3D
-volumes (with width, height and depth).
-
-2. Neurons in one layer only connect to a small portion of the
-previous layer (as opposed to *every* neuron in the previous layer as
-in the case of fully-connected networks).
-
-3. Neurons in a given layer *share their weights*.
-
-Such an architecture allows CNN to retain a lot of the structure
-that's inherent to image data (the spatial arrangement of pixels, the
-fact that pixels nearby share context) and prevents the number of
-model parameters from growing too unwieldy, even as we introduce
-additional layers. This makes them more efficient to implement and
-greatly reduces memory requirements when compared to standard neural
-networks.
+The thing that makes convnets special is that they make the explicit
+assumptions on the structure of the input, in our case images, that
+allow them to encode certain nice properties in their
+architecture. These choices make them efficient to implement and
+vastly reduce the amount of parameters in the network as we'll soon
+see.
 
 TODO: Figure of the differences between standard and convolutional
 neural networks.
 
-In addition to the standard *fully-connected* (FC) layer and the *ReLU
-layer* we've already seen, CNNs are additionally made up of the
-following kinds of layers. Each layer of units can be understood as a
-collection of image filters, each of which extracts a certain feature
-from the input image.
+Instead of dealing with the input data (and arranging intermediate
+layers of neurons) as linear arrays, they deal with information as 3D
+volumes (with width, height and depth). i.e. Every layer takes as
+input a 3D volume of numbers and outputs a 3D volume of numbers. What
+one imagines as a 2D input image ($W \times H$) gets transformed into 3D
+by introducing the colour depth as the third dimension ($W \times H
+\times d$). (Recall that this for the MNIST digit data would be 1
+because it's greyscale, but for a colour RGB image the depth would be
+3.) Similarly what one might imagine as a linear output of length $C$
+is actually represented as $1 \times 1 \times C$.
+
+Convnets do this with the help of two different layer types.
 
 ##### Convolutional (Conv) layer
 
-TODO:
+TODO: Introduce animation from 231n notes.
 
-- Write this section introducing spatial intuition and parameters
-(depth, stride and zero-padding).
-- Parameter sharing greatly reduces the number of parameters we're
-dealing with.
-- Work in animation GIF from 231n notes.
+The first is the *convolution (Conv) layer*.
 
-The first is the convolution layer.
-
-You can think of this conv layer as a set of learnable filters. Let's
-say we have K such filters. Each filter is small spatially, with an
-extent denoted by F, but extends to the depth of its input. e.g. A
-typical filter might be 3x3x3 (F = 3 pixels wide and high, and 3 from
-the depth of the input 3-channel colour image). Now we slide (or
-convolve, which is where this layer gets its name from) this filter
-set over the input volume (with a stride S). (This input can be
-spatially padded with 0s as needed (P) for controlling output spatial
-dimensions.) As we slide, each filter computes a sort of volumetric
-dot product with the input to produce a 2D output, and when we stack
-these across all the filters we have in our set, we get a 3D output
-volume.
+You can think of a conv layer as a set of learnable filters. Let's say
+we have K such filters. Each filter is small spatially, with an extent
+denoted by F, but extends to the depth of its input. e.g. A typical
+filter might be 3x3x3 (F = 3 pixels wide and high, and 3 from the
+depth of the input 3-channel colour image). Now we slide (or convolve,
+which is where this layer gets its name from) this filter set over the
+input volume (with a stride S). (This input can be spatially padded
+with 0s as needed (P) for controlling output spatial dimensions.) As
+we slide, each filter computes a sort of volumetric dot product with
+the input to produce a 2D output, and when we stack these across all
+the filters we have in our set, we get a 3D output volume.
 
 This is going to take you a bit of time to think about and process,
 but the idea is quite simple when you get it.
