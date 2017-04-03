@@ -570,8 +570,8 @@ function and optimisation process) stays the same!
 #### Making the score function nonlinear
 
 To make the score function nonlinear, we first introduce what's called
-a *neuron*. This is the simple function shown in the following
-animation that does three things:
+a *neuron*. This is the simple function shown in the [following
+animation][perceptron-animation] that does three things:
 
 1. It multiplies each of its inputs by a weight.
 2. It sums these weighted inputs to a single number and adds a bias.
@@ -751,33 +751,54 @@ Over 96% accurate! Much better.
 We're in a really good place right now in terms of our understanding
 and capability. We've managed to build a (two-layer) neural network
 that does an excellent job of classifying images. (Over 96% on the
-MNIST data.) You would've realised through the exercise that this
-extension didn't take too much more code than the linear classifier we
-built in the first exercise.
+MNIST data.) You would've also noticed that this extension didn't take
+too much more code than the linear classifier we built initially.
 
 If I were to ask you now how we could further improve the accuracy of
 our classifier, you'd probably point out that this is easy to do by
-adding more layers to our score function (making our model
-*deeper*). This is indeed true, but if you were to take a step back
-and look at our model, you'll see two problems:
+adding more layers to our score function (i.e. making our model
+*deeper*). Perhaps something like the following:
 
-1. We began the classification process by representing the image as an
-array that's $W \times H \times 3$ long. By thinking of the input as a
-line of data, we've already lost information about the structure of
-the original image. (You can imagine that pixels that are nearby share
-context.)
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." >}}
 
-2. The number of parameters we would need to train quickly becomes
-unwieldy as the input image dimensions or number of layers
-grow. E.g. for our two-layer model, it is TODO. Extending this to a
-three-layer model with TODO.
+TODO: Insert somewhere around here the story about using the
+TensorFlow playground to get a feeling for the representative power of
+neural nets. That they can automatically learn features we'd need to
+otherwise hand engineer.
 
-Convolutional neural networks (CNNs) are architected to solve both
+The intuition being that even though each neuron is barely nonlinear,
+introducing more layers of them allows for more nonlinearity,
+increasing the approximation capability of the score function. While
+this is indeed true, there are some fundamental drawbacks with the
+general form of neural networks we've seen so far (the term for them
+is *standard* or *fully-connected neural networks*):
+
+1. They entirely disregard the 2D structure of the image at the
+get-go. Remember that instead of working with the input as $28 \times
+28$ matrix, they worked with the input as a 784 number array. And you
+and one can imagine there is some useful information in pixels sharing
+proximity that's being lost.
+{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully connected neural networks disregard the structure of the image." >}}
+
+2. The number of parameters we would need to learn grows really
+rapidly as we add more layers. Here are some real numbers from the
+examples we've seen so far:
+
+  - **Linear:** 784*10 + 10 = 7,850
+  - **Neural network (one hidden layer):** 784*100 + 100 + 100*10 + 10 = 79,510
+  - **Neural network (two hidden layers):** 784*400 + 400 + 400*100 + 100 + 100*10 + 10 = 355,110
+
+The fundamental reason for this is that every neuron in one layer sees
+every neuron in the previous layer. Furthermore, what if our input
+image wasn't tiny (28&nbsp;px $\times$ 28&nbsp;px), but instead
+sized more realtically?
+
+Convolutional neural networks (convnets) are architected to solve both
 these issues, making them particularly powerful for dealing with image
 data. And we'll soon see how we can use them to build a deep image
 classifier that's state of the art.
 
-#### Architecture of CNNs in general
+#### Architecture of convnets in general
 
 In many ways, CNNs are much the same as the ordinary (fully-connected)
 neural networks that we've seen so far. They're a collection neurons
@@ -1629,3 +1650,4 @@ iterations put into a GIF.
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
 [tf-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
 [xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+[perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
