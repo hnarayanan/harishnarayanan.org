@@ -578,7 +578,7 @@ animation that does three things:
 3. It passes this number through a nonlinear function called the
    *activation* and produces an output.
 
-{{< figure src="/images/writing/artistic-style-transfer/neuron.png" title="TODO: A schematic of a neuron.">}}
+{{< figure src="/images/writing/artistic-style-transfer/neuron.gif" title="An artificial neuron. (Reproduced from https://appliedgo.net/perceptron/)">}}
 
 These neurons can be arranged into layers to form a *neural network*
 that on the outer layers match the shape of our input and our
@@ -744,7 +744,7 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
     0.9654
 
 
-Over 96% accurate! Amazing.
+Over 96% accurate! Much better.
 
 ### And finally, convolutional neural networks
 
