@@ -380,10 +380,10 @@ np.set_printoptions(precision=2)
 MNIST is a dataset that contains 70,000 labelled images of handwritten
 digits that look like the following.
 
-{{< figure src="/images/writing/artistic-style-transfer/mnist-sample.png" title="A sample of the MNIST handwritten data set." >}}
+{{< figure src="/images/writing/artistic-style-transfer/mnist-sample.png" title="A sample of the MNIST handwritten dataset." >}}
 
-We're going to train a linear classifier on a part of this data set,
-and test it against another portion of the data set to see how well we
+We're going to train a linear classifier on a part of this dataset,
+and test it against another portion of the dataset to see how well we
 did.
 
 The TensorFlow tutorial comes with a handy loader for this dataset.
@@ -399,7 +399,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
     Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 
 
-The loader even handily splits the data set into three parts:
+The loader even handily splits the dataset into three parts:
 
 * A training set (55000 examples) used to train the model
 * A validation set (5000 examples) used to optimise
@@ -543,36 +543,29 @@ Around 92%, that's pretty good!
 
 ### Moving to neural networks
 
-The linear image classifier you just built following the tutorial
-above works surprisingly well for the [MNIST digit
-dataset][mnist-dataset] (around 92% accurate). But if you attempted to
-extend the tutorial to the more general [CIFAR10
-dataset][cifar10-dataset], you'd have realised that it performs rather
-poorly (around TODO% accurate). This is because what the linear
-classifier is attempting to do is to draw a bunch of lines ($n-1$
-dimensional hyperplanes, really) in a plane ($n$ dimensional space,
-really) of images, hoping to carve it out into categories. And if you
-think about it, you'll see that this approach can only succeed if the
-image data we're working with is conveniently linearly separable in
-our chosen space of images. (Somewhat true for the MNIST dataset, and
-not at all true in general.)
+The linear image classifier we just built works surprisingly well for
+the [MNIST digit dataset][mnist-dataset] (around 92% accurate). I
+think *this is pretty amazing*, because what this implies is that
+these images are (mostly) linearly separable in the 784 dimensional
+space that they're represented in. Meaning you can draw 10 lines
+($n-1$ dimensional hyperplanes, really) in a plane ($n$ dimensional
+space, really) with these digits and neatly separate them into
+categories.
 
-{{< figure src="/images/writing/artistic-style-transfer/image-classification-interpretation.png" title="TODO: Cartoon representation of the image space as a 2D plane, with the classifier being a bunch of lines." >}}
+{{< figure src="/images/writing/artistic-style-transfer/mnist-tsne.png" title="A t-SNE plot of the MNIST dataset that attempts to represent the digits in a 2D plane while preserving the topology of the data. (Reproduced from Maaten and Hinton, 2008.)" >}}
 
-Even so, the reason we spent so much time on the linear image
-classifier is that it was a way to introduce the *parameterised score
-function*, the *loss function*, and the *iterative optimisation
-process*, all without being bogged down by too many other technical
-details.  Now that we understand what these are and how they work
-together to build a learning image classifier, we are going to improve
-the performance of the classifier by extending the score function to
-more complex (nonlinear) forms. The first of these extensions will be
-to (fully-connected) [neural networks][todo], and we'll then move on
-to [convolutional neural networks][todo].
+But if you read the [TensorFlow tutorial][tensorflow-tutorial-mnist]
+that deals with the same dataset, they explicitly point out that:
 
-The cool thing is that as we're working through these generalisations
-of the score function, the rest of the ideas (the loss function and
-optimisation process) stay the same!
+> "Getting 92% accuracy on MNIST is bad. It's almost embarrassingly
+  bad."
+
+So if you're like the author of this tutorial and want to improve the
+performance of our classifier (or handle a more general dataset beyond
+neatly normalised greyscale digits) we need to move to a more
+general, nonlinear score function. The cool thing is that as we
+generalise the score function, the rest of the machinery (the loss
+function and optimisation process) stays the same!
 
 #### Making the score function nonlinear
 
@@ -627,7 +620,7 @@ These neurons can be arranged into layers to form a *neural network*
 that on the outer layers match the shape of our input and our
 output. For us, this is a vector of 784 numbers coming in, and 10
 numbers going out. The layer in the middle is called the *hidden layer*
-since we don’t directly access it on the input or the output. It can
+since we don't directly access it on the input or the output. It can
 be of arbitrary size, and this is the sort of thing that defines the
 *architecture* of the network.
 
@@ -648,10 +641,10 @@ That's it.
 
 If you read some neural network theory you'll soon stumble across the
 fact that this architecture, a network with a single hidden layer can
-approximate any functional form. This doesn’t get the mind-blown JIF
+approximate any functional form. This doesn't get the mind-blown JIF
 (GIF?) because if you look at the proofs you'll realise they cheat
 with having as many neurons as they need in the hidden layer. And then
-Weierstrass approximation theorem or whatever and you’re done.
+Weierstrass approximation theorem or whatever and you're done.
 
 
 {{< figure src="/images/writing/artistic-style-transfer/neural-network.svg" title="TODO: Some example neural networks." >}}
@@ -771,7 +764,7 @@ dealing with.
 
 The first is the convolution layer.
 
-You can think of this conv layer as a set of learnable filters. Let’s
+You can think of this conv layer as a set of learnable filters. Let's
 say we have K such filters. Each filter is small spatially, with an
 extent denoted by F, but extends to the depth of its input. e.g. A
 typical filter might be 3x3x3 (F = 3 pixels wide and high, and 3 from
@@ -790,12 +783,12 @@ but the idea is quite simple when you get it.
 The interesting things to note here are that:
 
 1. Because this filter set is the same as we vary spatial position,
-once they’ve learnt to get excited about a feature, say a slanted line
-in one position, they’ve learnt to get excited at any spatial
-position. i.e. Translation of features around the input image doesn’t
+once they've learnt to get excited about a feature, say a slanted line
+in one position, they've learnt to get excited at any spatial
+position. i.e. Translation of features around the input image doesn't
 matter.
 
-2. We’re no longer ballooning in terms of number of parameters even if
+2. We're no longer ballooning in terms of number of parameters even if
 the input image size grows a lot or our number of layers grow. All we
 need to learn are the weights and biases that correspond to our sets
 of filters, which are particularly small in number because of their
@@ -850,12 +843,12 @@ network, the system essentially transforms representations of the
 input into forms that are more suitable to the task at
 hand. Classification in our case.
 
-So if you look at visualisations like these, you’ll see that given
+So if you look at visualisations like these, you'll see that given
 pixel input, the first layers get excited by simple features like
 edges, the next layer perhaps things like contours, the next maybe
 simple shapes and part of objects. And the deeper you go, the more
 they start to grasp the entire input field, not just a narrow region,
-but more importantly, the closer they’re moving toward a
+but more importantly, the closer they're moving toward a
 representation that makes it easy for them to classify on.
 
 And this is generally true of all forms of deep learning, but images
@@ -1498,13 +1491,13 @@ iterations put into a GIF.
 </div>
 
 - TODO: Reiterate some insights.
-  - Turn to machine learning when you have general problems that seem intuitive to state, but where it’s hard to explicitly write down all the solution steps 
+  - Turn to machine learning when you have general problems that seem intuitive to state, but where it's hard to explicitly write down all the solution steps
   - Note that this difficulty often stems from a semantic gap between the input representation and the task at hand
-  - Just because a function can fit something doesn’t mean the learning algorithm will always find that fit
+  - Just because a function can fit something doesn't mean the learning algorithm will always find that fit
   - Deep learning is all about representation learning. They can learn
-  features we’d otherwise need to hand-engineer with domain knowledge.
-  - In studying the problem of cat vs. baby deeply, you’ve learnt how to see. You can repurpose this knowledge!
-  - Convnets are really good at computer vision tasks, but they’re not infallible
+  features we'd otherwise need to hand-engineer with domain knowledge.
+  - In studying the problem of cat vs. baby deeply, you've learnt how to see. You can repurpose this knowledge!
+  - Convnets are really good at computer vision tasks, but they're not infallible
     TensorFlow is great, but Keras is what you likely want to be using
   to experiment quickly
    - Instead of solving an optimisation problem, train a network to
