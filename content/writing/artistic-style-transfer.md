@@ -1009,7 +1009,7 @@ Since Gatys et al. is a very exciting paper, there exist many
 open source implementations of the algorithm online. One of the most
 popular and general purpose ones is by [Justin Johnson and implemented
 in Torch](https://github.com/jcjohnson/neural-style). I've instead
-followed a [simple example in Keras][todo] and expanded into [a
+followed a [simple example in Keras][keras-neural-style] and expanded into [a
 fully-fledged notebook][notebook-6] that explains many details step by
 step. I've reproduced it below.
 
@@ -1583,18 +1583,23 @@ iterations put into a GIF.
 
 ## Selected references and further reading
 
-1. [Deep learning][deep-learning-review], a review in Nature
-2. [The Stanford course on Convolutional Neural Networks][cs231n-course] and
-   [accompanying notes][cs231n-notes]
-3. [A Neural Algorithm of Artistic Style][arxiv-neural-style-gatys-etal],
+1. [Accompanying IPython notebooks on GitHub][notebooks]
+2. [The Stanford course on Convolutional Neural
+   Networks][cs231n-course] and [accompanying notes][cs231n-notes]
+3. [Deep Learning Book][deep-learning-book]
+4. [Deep Visualization Toolbox][deep-visualization-toolbox]
+5. [A Neural Algorithm of Artistic Style][arxiv-neural-style-gatys-etal],
    the seminal article
-4. [Very Deep Convolutional Networks for Large-Scale Image
+6. [Very Deep Convolutional Networks for Large-Scale Image
    Recognition][arxiv-vgg-simonyan-etal]
-5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
-6. [Our sample implementation on GitHub][neural-style-demo-project]
-7. TensorFlow: [Deep CNNs][tensorflow-tutorial-cnn], [GPU support on
-   macOS][tensorflow-gpu-macos]
-8. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
+7. [Perceptual Real-Time Style
+   Transfer][arxiv-fast-neural-style-johnson-etal] and [supplementary
+   material][arxiv-fast-neural-style-johnson-etal-supp]
+8. TensorFlow Website: MNIST digit classification tutorial [for
+   beginners][tensorflow-tutorial-mnist] and [for
+   experts][tensorflow-tutorial-mnist-pros], [Deep
+   CNNs][tensorflow-tutorial-cnn], [playground][tensorflow-playground]
+9. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
 [section-image-classification-problem]: #the-image-classification-problem
 [section-convnets]: #and-finally-convolutional-neural-networks
@@ -1622,20 +1627,23 @@ iterations put into a GIF.
 [cs231n-activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
 [arxiv-neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
 [arxiv-vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
+[arxiv-fast-neural-style-johnson-etal]: https://arxiv.org/abs/1603.08155
+[arxiv-fast-neural-style-johnson-etal-supp]: https://cs.stanford.edu/people/jcjohns/papers/fast-style/fast-style-supp.pdf
 [tensorflow-tutorial-cnn]: https://www.tensorflow.org/tutorials/deep_cnn
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/get_started/mnist/beginners
+[tensorflow-tutorial-mnist-pros]: https://www.tensorflow.org/get_started/mnist/pros
 [tensorflow-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
+[tensorflow-playground]: http://playground.tensorflow.org/
 [prisma]: http://prisma-ai.com
 [edtaonisl]: http://www.artic.edu/aic/collections/artwork/80062
 [imagenet]: http://image-net.org
-[deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
-[backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
 [perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
-[todo]: todo
+[deep-visualization-toolbox]: http://yosinski.com/deepvis
+[deep-learning-book]: http://www.deeplearningbook.org
+[keras-neural-style]: https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
 [xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
-[tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
