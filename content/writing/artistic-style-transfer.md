@@ -332,32 +332,34 @@ automatic differentiation*][automatic-differentiation].
 
 #### Notebook 1: A linear classifier for the MNIST handwritten digit dataset in TensorFlow
 
-TODO: Introduce the GitHub repo for the notebooks and the interplay
-with the blog post
-TODO: Polish the intro below to better connect with the notebook
-
 Finally we have all the pieces to make our first complete learning
 image classifier! Given some image as a raw array of numbers, we have
-a parameterised (score) function that takes us to category scores. We
-have a way of evaluating its performance (the loss function). We also
-have an algorithm to learn and improve the classifier's parameters
-with example data (optimisation via stochastic gradient descent).
+a parameterised score function (linear transformation followed by a
+softmax function) that takes us to category scores. We have a way of
+evaluating its performance (the cross entropy loss function). We also
+have an algorithm to learn from example data and improve the
+classifier's parameters (optimisation via stochastic gradient
+descent).
 
-We have quite a bit more theory to go before we understand all the
-bits we need to [solve Gatys et al.'s optimisation
-problem][neural-style-algorithm] and reproduce Prisma's visual
-effect. But now is a good time to pause on theory and work through
-your first exercise: [the TensorFlow MNIST classification
-tutorial][tensorflow-tutorial-mnist] aimed at beginners to machine
-learning.
-
-Working through this tutorial will ensure that you have
-TensorFlow properly running on your machine, and allows you to
+So let's pause on the theory for a bit to go work out our [first
+practical example][notebook-1] in the form of an IPython
+notebook. This example reproduces and expands upon [the MNIST digit
+classification tutorial on the TensorFlow
+website][tensorflow-tutorial-mnist] aimed at beginners to machine
+learning. Working through this example will ensure that you have
+TensorFlow running properly on your machine, and allows you to
 experience coding up an image classifier to see all the pieces we
-talked about in action. The background material we've covered will
-allow you to appreciate the choices they've made in the tutorial.
+talked about in action.
 
-Let's start by importing some packages we need.
+Note that all the embedded code in this article also exists as a
+[standalone GitHub repository][notebooks] as a collection of iPython
+notebooks. Apart from having all the code in one convenient place for
+you to play with and extend, the repository also contains setup notes
+on how to get started with the code. So do [fetch a copy][notebooks]
+and experiment alongside reading this article, it'll really help
+solidify concepts.
+
+With that, let's start by importing some packages we need.
 
 
 ```python
@@ -1568,7 +1570,7 @@ iterations put into a GIF.
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
 [tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
 [tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
-[tensorflow-tutorial-mnist]: https://www.tensorflow.org/versions/master/tutorials/mnist/beginners/index.html
+[tensorflow-tutorial-mnist]: https://www.tensorflow.org/get_started/mnist/beginners
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [cifar10-dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
@@ -1581,4 +1583,5 @@ iterations put into a GIF.
 [activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
 [automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [todo]: todo
+[notebooks]: https://github.com/hnarayanan/artistic-style-transfer
 [notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
