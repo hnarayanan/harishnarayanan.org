@@ -15,7 +15,7 @@ There's an amazing app out right now called [Prisma][prisma] that
 transforms your photos into works of art using the styles of famous
 artwork and motifs. The app performs this style transfer with the help
 of a branch of machine learning called [convolutional neural
-networks][cnn-wikipedia]. In this article we're going to take a
+networks][wiki-convnet]. In this article we're going to take a
 journey through the world of convolutional neural networks from theory
 to practice, as we systematically reproduce Prisma's core visual
 effect.
@@ -64,7 +64,7 @@ do we cleanly *discard* the existing style of the content image?
 
 I was stumped by many of these questions really early on, and as one
 does, turned to Google for help. My searches soon pointed me to a
-really popular paper ([Gatys et al., 2015][neural-style-gatys-etal])
+really popular paper ([Gatys et al., 2015][arxiv-neural-style-gatys-etal])
 that explains exactly how all this is achieved. In particular, the
 paper poses what we're trying to do in mathematical terms as an
 *optimisation problem*.
@@ -106,7 +106,7 @@ how much we want to emphasise the content relative to the style. We'll
 see some effects of playing with these weighting factors later.
 
 Now the crucial bit of insight in [this paper by Gatys et
-al.][neural-style-gatys-etal] is that the definitions of these content
+al.][arxiv-neural-style-gatys-etal] is that the definitions of these content
 and style losses are not based on *per-pixel differences* between
 images, but instead in terms of higher level, more *perceptual
 differences* between them. Interesting, but then how does one go about
@@ -121,14 +121,14 @@ down all the steps you need to follow to solve it. And over the course
 of this article, we're going to learn just how to do this.
 
 We start from a relatively classic place: [the image classification
-problem][image-classification-problem]. We're going to slowly step
+problem][section-image-classification-problem]. We're going to slowly step
 through solutions of this problem until we're familiar with a branch
 of machine learning that's great for dealing with images called
-[*Convolutional Neural Networks*][convnets] (or *convnets*). We're
+[*Convolutional Neural Networks*][section-convnets] (or *convnets*). We're
 then going to see how [convnets can be used to define these perceptual
-loss functions][neural-style-algorithm] central to our style-transfer
+loss functions][section-neural-style-algorithm] central to our style-transfer
 optimisation problem. We conclude with a [concrete implementation of
-the solution of the problem][neural-style-implementation] (in Keras
+the solution of the problem][section-neural-style-implementation] (in Keras
 and TensorFlow) that you can play with and extend.
 
 It is my hope that by starting our journey at a fairly basic place and
@@ -139,7 +139,7 @@ learn something interesting no matter what your level of expertise.
 
 This section offers a brief summary of parts of the Stanford course
 [Convolutional Neural Networks for Visual Recognition
-(CS231n)][cs231n] that are relevant to our style transfer problem. If
+(CS231n)][cs231n-course] that are relevant to our style transfer problem. If
 you're even vaguely interested in what you're reading here, you should
 go take this course. *It is outstanding*.
 
@@ -273,7 +273,7 @@ $\mathbf{b}$ (of size $K \times 1$, called the *biases*).
 
 Since we want to interpret the output vector of this linear map as the
 probability for each category, we pass this output through something
-called a *[softmax][softmax] function* $\sigma$ that squashes the
+called a *[softmax][wiki-softmax] function* $\sigma$ that squashes the
 scores to a set of numbers between 0 and 1 that add up to 1.
 
 $$
@@ -284,7 +284,7 @@ Let's suppose our training data is a set of $N$ pre-classified
 examples $\mathbf{x_i} \in \mathbb{R}^D$, each with correct category
 $y_i \in 1, \ldots, K$. A [good functional form][cross-entropy-reason]
 to determine the total loss across all these examples is the *[cross
-entropy][cross-entropy] loss*:
+entropy][wiki-cross-entropy] loss*:
 
 $$
 \mathcal{L}(\mathbf{s}) = - \sum\_i log(s\_{y\_i})
@@ -302,7 +302,7 @@ classifier, all we have left to do is to find parameters (weights and
 biases) that minimise this loss. This is a classic *optimisation
 problem* and in the practical example we're going to see soon, we use
 a method called [stochastic gradient
-descent][stochastic-gradient-descent] for this.
+descent][wiki-stochastic-gradient-descent] for this.
 
 To get a feeling for the method, let's consider a simpler loss
 function that has only one parameter, $w$. It looks something like the
@@ -328,7 +328,7 @@ The actual mechanism for finding these slopes (or gradients when we
 have multiple parameters) comes out of the box in TensorFlow as we're
 soon going to see. But if you're interested in the details of how this
 is done, you should go read about something called [*backward mode
-automatic differentiation*][automatic-differentiation].
+automatic differentiation*][wiki-automatic-differentiation].
 
 #### Notebook 1: A linear classifier for the MNIST handwritten digit dataset in TensorFlow
 
@@ -605,11 +605,11 @@ $$
 $$
 followed by the simplest possible nonlinearity we can
 imagine, a piece-wise linear function called [rectified linear
-unit][relu-wikipedia] (ReLU):
+unit][wiki-relu] (ReLU):
 $$
 \mathbf{h}\_1 = \max(0, \mathbf{y}\_1).
 $$
-(There are many other [functional forms][activation-functions] one
+(There are many other [functional forms][cs231n-activation-functions] one
 could use for this nonlinear activation function, but this one form is
 really popular todayand will suffice for our needs.)
 3. Finally we stack an additional matrix-vector linear operation
@@ -618,7 +618,7 @@ back to the size we want, 10 numbers going out.
 $$
 \mathbf{y}\_2 = \mathbf{W}\_2 \mathbf{h}_1 + \mathbf{b}\_2
 $$
-As before, we pass this output through a [softmax][softmax] function
+As before, we pass this output through a [softmax][wiki-softmax] function
 $\sigma$ so that we an interpret the output as the probability of each
 category.
 $$
@@ -635,7 +635,7 @@ functions.
 If you start digging into neural network theory, you'll stumble across
 the fact that the one hidden layer network architecture we just
 introduced can *[approximate any functional
-form][universal-approximation-theorem]*. Now, much like the fact that
+form][wiki-universal-approximation-theorem]*. Now, much like the fact that
 the linear classifier worked at all, this seems like a mind-blowing
 result. But if you look at the proofs for this a bit closer you'll
 realise that they cheat with having as many neurons as they need in
@@ -727,7 +727,7 @@ y = tf.nn.softmax(tf.matmul(h1, W2) + b2)
 ```
 
 We initialise the weights with
-[truncated normals][tf-truncated_normal] (literally picking values
+[truncated normals][tensorflow-truncated_normal] (literally picking values
 from a normal distribution that's been truncated to within two
 standard deviations around the mean) and initialise biases to a small
 positive constant, 0.1.
@@ -900,8 +900,8 @@ Linear: Input -> FC -> Loss
 NN: Input -> FC -> ReLU -> FC -> Loss
 ```
 
-TODO: A simple CNN-based image classifier for CIFAR10 goes here? Need
-to shift to Keras at some point to reduce boilerplate code.
+TODO: Need to shift to Keras at some point to reduce boilerplate
+code.
 
 Cool, now that our training is finished we see that our convnet
 classifier performs excellently. And that website we looked at while
@@ -934,11 +934,11 @@ each layer does something at least vaguely recognisable to humans.
 Now that we have the vocabulary to talk about CNNs in general, we turn
 our attention to a specific CNN-based image classifier, one that
 happens to be central to our original style transfer problem:
-[VGGNet][vgg-simonyan-etal]. VGGNet was introduced as one of the
+[VGGNet][arxiv-vgg-simonyan-etal]. VGGNet was introduced as one of the
 contenders in 2014's ImageNet Challenge and secured the first and the
 second places in the localisation and classification tracks
 respectively. It was later described in great detail in [a paper that
-came out the following year][vgg-simonyan-etal]. The paper describes
+came out the following year][arxiv-vgg-simonyan-etal]. The paper describes
 how a family of models  essentially composed of simple ($3 \times 3$)
 convolutional filters with increasing depth (11--19 layers) managed to
 perform so well at a range of computer vision tasks.
@@ -1009,8 +1009,8 @@ Since Gatys et al. is a very exciting paper, there exist many
 open source implementations of the algorithm online. One of the most
 popular and general purpose ones is by [Justin Johnson and implemented
 in Torch](https://github.com/jcjohnson/neural-style). I've instead
-followed a [simple example in Keras](todo) and expanded into [a
-fully-fledged notebook][todo] that explains many details step by
+followed a [simple example in Keras][todo] and expanded into [a
+fully-fledged notebook][notebook-6] that explains many details step by
 step. I've reproduced it below.
 
 TODO: Start with some initial comments on why the following are
@@ -1082,7 +1082,7 @@ print(style_array.shape)
 
 Before we proceed much further, we need to massage this input data to
 match what was done in [Simonyan and Zisserman
-(2015)][vgg-simonyan-etal], the paper that introduces the *VGG
+(2015)][arxiv-vgg-simonyan-etal], the paper that introduces the *VGG
 Network* model that we're going to use shortly.
 
 For this, we need to perform two transformations:
@@ -1584,57 +1584,58 @@ iterations put into a GIF.
 ## Selected references and further reading
 
 1. [Deep learning][deep-learning-review], a review in Nature
-2. [The Stanford course on Convolutional Neural Networks][cs231n] and
+2. [The Stanford course on Convolutional Neural Networks][cs231n-course] and
    [accompanying notes][cs231n-notes]
-3. [A Neural Algorithm of Artistic Style][neural-style-gatys-etal],
+3. [A Neural Algorithm of Artistic Style][arxiv-neural-style-gatys-etal],
    the seminal article
 4. [Very Deep Convolutional Networks for Large-Scale Image
-   Recognition][vgg-simonyan-etal]
+   Recognition][arxiv-vgg-simonyan-etal]
 5. [Calculus on Computational Graphs: Backpropagation][backprop-explanation]
 6. [Our sample implementation on GitHub][neural-style-demo-project]
-7. TensorFlow: [Deep CNNs][tensorflow-cnn], [GPU support on
+7. TensorFlow: [Deep CNNs][tensorflow-tutorial-cnn], [GPU support on
    macOS][tensorflow-gpu-macos]
 8. [Keras as a simplified interface to TensorFlow][keras-tensorflow]
 
-[edtaonisl]: http://www.artic.edu/aic/collections/artwork/80062
-[image-classification-problem]: #the-image-classification-problem
-[convnets]: #and-finally-convolutional-neural-networks
-[neural-style-implementation]: #concrete-implementation-of-the-artistic-style-transfer-algorithm
-[neural-style-notebook]: https://github.com/hnarayanan/stylist/blob/master/core/neural_style_transfer.ipynb
-[neural-style-algorithm]: #returning-to-the-style-transfer-problem
-[neural-style-demo-project]: https://github.com/hnarayanan/stylist
-[prisma]: http://prisma-ai.com
-[relu-wikipedia]: https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
-[cnn-wikipedia]: https://en.wikipedia.org/wiki/Convolutional_neural_network
-[neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
-[vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
-[imagenet]: http://image-net.org
-[deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
-[backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
-[cs231n]: http://cs231n.stanford.edu
-[cs231n-notes]: http://cs231n.github.io
-[cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
-[tensorflow-cnn]: https://www.tensorflow.org/versions/r0.10/tutorials/deep_cnn/index.html
-[tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
-[tensorflow-tutorial-mnist]: https://www.tensorflow.org/get_started/mnist/beginners
-[mnist-dataset]: http://yann.lecun.com/exdb/mnist/
-[cifar10-dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
-[keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
-[cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
-[cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
-[softmax]: https://en.wikipedia.org/wiki/Softmax_function
-[gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
-[gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
-[stochastic-gradient-descent]: https://en.wikipedia.org/wiki/Stochastic_gradient_descent
-[activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
-[automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
-[todo]: todo
+[section-image-classification-problem]: #the-image-classification-problem
+[section-convnets]: #and-finally-convolutional-neural-networks
+[section-neural-style-algorithm]: #returning-to-the-style-transfer-problem
+[section-neural-style-implementation]: #concrete-implementation-of-the-artistic-style-transfer-algorithm
 [notebooks]: https://github.com/hnarayanan/artistic-style-transfer
 [notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
 [notebook-2]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/2_Neural_Network-based_Image_Classifier-1.ipynb
 [notebook-3]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/3_Neural_Network-based_Image_Classifier-2.ipynb
-[universal-approximation-theorem]: https://en.wikipedia.org/wiki/Universal_approximation_theorem
+[notebook-4]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/4_Convolutional_Neural_Network-based_Image_Classifier.ipynb
+[notebook-5]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/5_VGG_Net_16_the_easy_way.ipynb
+[notebook-6]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/6_Artistic_style_transfer_with_a_repurposed_VGG_Net_16.ipynb
+[wiki-convnet]: https://en.wikipedia.org/wiki/Convolutional_neural_network
+[wiki-softmax]: https://en.wikipedia.org/wiki/Softmax_function
+[wiki-cross-entropy]: https://en.wikipedia.org/wiki/Cross_entropy
+[wiki-gradient-descent]: https://en.wikipedia.org/wiki/Gradient_descent
+[wiki-stochastic-gradient-descent]: https://en.wikipedia.org/wiki/Stochastic_gradient_descent
+[wiki-relu]: https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
+[wiki-automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
+[wiki-universal-approximation-theorem]: https://en.wikipedia.org/wiki/Universal_approximation_theorem
+[cs231n-course]: http://cs231n.stanford.edu
+[cs231n-notes]: http://cs231n.github.io
+[cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
+[cs231n-gradient-descent-family]: http://cs231n.github.io/neural-networks-3/#update
+[cs231n-activation-functions]: http://cs231n.github.io/neural-networks-1/#actfun
+[arxiv-neural-style-gatys-etal]: https://arxiv.org/abs/1508.06576
+[arxiv-vgg-simonyan-etal]: https://arxiv.org/abs/1409.1556
+[tensorflow-tutorial-cnn]: https://www.tensorflow.org/tutorials/deep_cnn
+[tensorflow-tutorial-mnist]: https://www.tensorflow.org/get_started/mnist/beginners
+[tensorflow-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
+[prisma]: http://prisma-ai.com
+[edtaonisl]: http://www.artic.edu/aic/collections/artwork/80062
+[imagenet]: http://image-net.org
+[deep-learning-review]: https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf
+[backprop-explanation]: http://colah.github.io/posts/2015-08-Backprop/
+[mnist-dataset]: http://yann.lecun.com/exdb/mnist/
+[keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
+[cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
-[tf-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
-[xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 [perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
+[todo]: todo
+[xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+[neural-style-demo-project]: https://github.com/hnarayanan/stylist
+[tensorflow-gpu-macos]: https://gist.github.com/ageitgey/819a51afa4613649bd18
