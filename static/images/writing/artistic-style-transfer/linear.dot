@@ -1,0 +1,64 @@
+digraph G {
+
+    bgcolor = "transparent";
+    rankdir = "LR";
+    compound=true;
+
+    graph [fontsize=11, nodesep=3, ranksep=2];
+    node [fontsize=11];
+    edge [fontname=11, arrowsize = 0.75, color="#666666"];
+
+    rankdir=LR
+        splines=line
+        nodesep=.05;
+
+    node [label=""];
+
+    subgraph cluster_0 {
+        bgcolor = "#f4cccc";
+        color = "#f4cccc";
+        node [style=filled, color="#660000", fillcolor="#fcf9f4", shape=circle];
+        x1 x2 x3, x3, x4, x5, x6, x7, x8;
+        label = "Input [784]";
+    }
+
+    subgraph cluster_1 {
+        bgcolor = "#d8ead2";
+        color = "#d8ead2";
+        node [style=filled, color="#006600", fillcolor="#fcf9f4", shape=circle];
+        O1 O2 O3;
+        label="Output [10]";
+    }
+
+    x1 -> O1;
+    x1 -> O2;
+    x1 -> O3;
+
+    x2 -> O1;
+    x2 -> O2;
+    x2 -> O3;
+
+    x3 -> O1;
+    x3 -> O2;
+    x3 -> O3;
+
+    x4 -> O1;
+    x4 -> O2;
+    x4 -> O3;
+
+    x5 -> O1;
+    x5 -> O2;
+    x5 -> O3;
+
+    x6 -> O1;
+    x6 -> O2;
+    x6 -> O3;
+
+    x7 -> O1;
+    x7 -> O2;
+    x7 -> O3;
+
+    x8 -> O1;
+    x8 -> O2;
+    x8 -> O3;
+}

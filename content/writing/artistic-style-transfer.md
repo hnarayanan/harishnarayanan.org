@@ -361,7 +361,6 @@ solidify concepts.
 
 With that, let's start by importing some packages we need.
 
-
 ```python
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -378,11 +377,14 @@ np.set_printoptions(precision=2)
 
 ##### Getting a feel for the data
 
-MNIST is a dataset that contains 70,000 labelled images of handwritten digits that look like the following.
+MNIST is a dataset that contains 70,000 labelled images of handwritten
+digits that look like the following.
 
-![MNIST Data Sample](images/mnist-sample.png "MNIST Data Sample")
+{{< figure src="/images/writing/artistic-style-transfer/mnist-sample.png" title="A sample of the MNIST handwritten data set." >}}
 
-We're going to train a linear classifier on a part of this data set, and test it against another portion of the data set to see how well we did.
+We're going to train a linear classifier on a part of this data set,
+and test it against another portion of the data set to see how well we
+did.
 
 The TensorFlow tutorial comes with a handy loader for this dataset.
 
@@ -400,13 +402,17 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 The loader even handily splits the data set into three parts:
 
 * A training set (55000 examples) used to train the model
-* A validation set (5000 examples) used to optimise hyperparameters (not shown today)
+* A validation set (5000 examples) used to optimise
+  hyperparameters. This is not discussed or used in this article.
 * A test set (10000 examples) used to gauge the accuracy of the trained model
 
-The images are greyscale and each 28 pixels wide by 28 pixels tall, and this is stored as an array of length 784.
+The images are greyscale and each 28 pixels wide by 28 pixels tall,
+and this is stored as an array of length 784.
 
-The labels are a *one hot* vector of length 10, meaning it is a vector of all zeros except at the location that corresponds to the label it's referring to. E.g. An image with a label `3` will be represented as `(0, 0, 0, 1, 0, 0, 0, 0, 0, 0)`.
-
+The labels are a *one hot* vector of length 10, meaning it is a vector
+of all zeros except at the location that corresponds to the label it's
+referring to. E.g. An image with a label `3` will be represented as
+`(0, 0, 0, 1, 0, 0, 0, 0, 0, 0)`.
 
 
 ```python
@@ -428,7 +434,8 @@ print mnist.test.labels.shape
     (10000, 10)
 
 
-We can get a better sense for one of these examples by visualising the image and looking at the label.
+We can get a better sense for one of these examples by visualising the
+image and looking at the label.
 
 
 ```python
@@ -443,22 +450,19 @@ plt.imshow(example_image_reshaped)
     [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
 
 
-
-
-
-    <matplotlib.image.AxesImage at 0x100ad2a90>
-
-
-
-
-![png](output_9_2.png)
-
+{{< figure src="/images/writing/artistic-style-transfer/output_9_2.png" title="Visualising an example image in the dataset." >}}
 
 ##### Setting up a score function, loss function and optimisation algorithm
 
-Now that we have a better sense of the dataset we're working with, let's move onto the machine learning bits.
+Now that we have a better sense of the dataset we're working with,
+let's move onto the machine learning bits.
 
-First, we setup some placeholders to hold batches of this training data for when we learn our model. The reason why we work in batches is that it's easier on memory than holding the entire set. And it's this notion of working with (random) batches of input rather than the entire set that moves us from the realm of *Gradient Descent* that we saw earlier, to *Stochastic Gradient Descent* that we have here.
+First, we setup some placeholders to hold batches of this training
+data for when we learn our model. The reason why we work in batches is
+that it's easier on memory than holding the entire set. And it's this
+notion of working with (random) batches of input rather than the
+entire set that moves us from the realm of *Gradient Descent* that we
+saw earlier, to *Stochastic Gradient Descent* that we have here.
 
 
 ```python
@@ -466,9 +470,10 @@ x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])
 ```
 
-We define our linear model for the score function after introducing two of parameters, **W** and **b**.
+We define our linear model for the score function after introducing
+two of parameters, **W** and **b**.
 
-![Linear model](images/linear.png "Linear model")
+{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A linear model." >}}
 
 
 ```python
@@ -477,14 +482,19 @@ b = tf.Variable(tf.zeros([10]))
 y = tf.nn.softmax(tf.matmul(x, W) + b)
 ```
 
-We define our loss function to measure how poorly this model performs on images with known labels. We use the a specific form called the [cross entropy loss](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/).
+We define our loss function to measure how poorly this model performs
+on images with known labels. We use the a specific form called the
+[cross entropy loss][cross-entropy-reason].
 
 
 ```python
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=[1]))
 ```
 
-Using the magic of blackbox optimisation algorithms provided by TensorFlow, we can define a single step of the stochastic gradient descent optimiser (to improve our parameters for our score function and reduce the loss) in one line of code.
+Using the magic of blackbox optimisation algorithms provided by
+TensorFlow, we can define a single step of the stochastic gradient
+descent optimiser (to improve our parameters for our score function
+and reduce the loss) in one line of code.
 
 
 ```python
@@ -515,7 +525,9 @@ for i in range(1000):
 
 ##### Verifying the results
 
-At this point, our model is trained. And we can deterime in the *accuracy* by passing in all the test images and labels, figuring out our own labels, and averaging out the results.
+At this point, our model is trained. And we can deterime in the
+*accuracy* by passing in all the test images and labels, figuring out
+our own labels, and averaging out the results.
 
 
 ```python
@@ -528,39 +540,6 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 
 
 Around 92%, that's pretty good!
-
-##### Extension: Using the trained model
-
-Here we try to actually use the model we learn to classify a single test example. It is also easy to [save and restore trained parameters](https://www.tensorflow.org/programmers_guide/variables) for later use.
-
-
-```python
-example_image = mnist.test.images[11]
-example_image_reshaped = example_image.reshape((28, 28)) # Can't render a line of 784 numbers
-plt.imshow(example_image_reshaped)
-```
-
-
-
-
-    <matplotlib.image.AxesImage at 0x10d7ea410>
-
-
-
-
-![png](output_26_1.png)
-
-
-
-```python
-normalised_scores = sess.run(y, feed_dict={x: [example_image]})
-print normalised_scores
-```
-
-    [[ 0.    0.    0.04  0.    0.    0.    0.84  0.    0.11  0.  ]]
-
-
-Have fun practising, and I'll see you when you're done!
 
 ### Moving to neural networks
 
