@@ -605,7 +605,7 @@ $$
 $$
 followed by the simplest possible nonlinearity we can
 imagine, a piece-wise linear function called [rectified linear
-unit][relu-wikipedia]:
+unit][relu-wikipedia] (ReLU):
 $$
 \mathbf{h}\_1 = \max(0, \mathbf{y}\_1).
 $$
@@ -698,44 +698,59 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 
     0.1135
 
-11%?!? We expected to see amazing gains in our accuracy, but instead
-see something horrible. *Why?* Why after all this talk of universal
-approximators is our outcome so poor?
+11%?!? We expected to see amazing gains over 92% in our accuracy, but
+instead see something terrible. *Why?* Why after all this talk of
+universal approximators is our outcome so poor?
+
+It turns out that *just because our score function can theoretically
+fit anything doesn't mean our learning algorithm can always find this
+fit*. And if you look at the model definition code above from
+[Notebook 2][notebook-2], you'll realise that this is because we
+initialised all our weights and biases to 0. And it just so happens
+that because of the way ReLUs are defined, starting everything at 0
+means that they're *dead* (or don't fire) from the get-go, and
+gradient descent can't really modify and improve upon the parameters.
+
+This explains the output of 10—11% accuracy, which is basically what
+you’d get if you guessed at random between 10 possible categories. So
+what we need to do is to improve the initialisation of these
+parameters as we've done in [Notebook 3](notebook-3).
+
+```python
+W1 = tf.Variable(tf.truncated_normal(shape=[784, 100], stddev=0.1))
+b1 = tf.Variable(tf.constant(0.1, shape=[100]))
+h1 = tf.nn.relu(tf.matmul(x, W1) + b1)
+
+W2 = tf.Variable(tf.truncated_normal(shape=[100, 10], stddev=0.1))
+b2 = tf.Variable(tf.constant(0.1, shape=[10]))
+y = tf.nn.softmax(tf.matmul(h1, W2) + b2)
+```
+
+We initialise the weights with
+[truncated normals][tf-truncated_normal] (literally picking values
+from a normal distribution that's been truncated to within two
+standard deviations around the mean) and initialise biases to a small
+positive constant, 0.1.
+
+With this seemingly trivial change, retraining the model and verifying
+its average accuracy on the test data tells a very different story.
+
+```python
+correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+
+    0.9654
 
 
----
-
-#### Some technicalities
-
-TODO: Talk about organising collections of neurons into (acyclic)
-graphs. This introduces the fully-connected (FC) layer. More layers
-allow for more nonlinearity, even though each neuron is barely
-nonlinear.
-
-TODO: Explain how to initialise such networks.
-
-TODO: Explain how to clean input data (subtracting average of
-channels).
-
-
-TODO: Offer some conclusions on NNs in general.
-
-TODO: Setup a simple exercise in TensorFlow. The point is to try to
-improve upon the linear image classifier we had earlier (2-Layer fully
-connected network +
-softmax on CIFAR10/MNIST). e.g. [1](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/multilayer_perceptron.ipynb),
-[2](http://cs231n.github.io/neural-networks-case-study/),
-[3](https://www.youtube.com/watch?v=lTFOw8-P02Y)?
-
-TODO: You now know enough to extend the one step MNIST tensorflow
-tutorial into multi-layer and try it out. Note that your accuracy on
-MNIST goes from ca 92 to 97.
+Over 96% accurate! Amazing.
 
 ### And finally, convolutional neural networks
 
 We're in a really good place right now in terms of our understanding
 and capability. We've managed to build a (two-layer) neural network
-that does an excellent job of classifying images. (Over 97% on the
+that does an excellent job of classifying images. (Over 96% on the
 MNIST data.) You would've realised through the exercise that this
 extension didn't take too much more code than the linear classifier we
 built in the first exercise.
@@ -1612,3 +1627,5 @@ iterations put into a GIF.
 [notebook-3]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/3_Neural_Network-based_Image_Classifier-2.ipynb
 [universal-approximation-theorem]: https://en.wikipedia.org/wiki/Universal_approximation_theorem
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
+[tf-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
+[xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
