@@ -639,7 +639,7 @@ form][universal-approximation-theorem]*. Now, much like the fact that
 the linear classifier worked at all, this seems like a mind-blowing
 result. But if you look at the proofs for this a bit closer you'll
 realise that they cheat with having as many neurons as they need in
-the hidden layer. Because then you can apply [Weierstrass
+the hidden layer. Because then you can [apply Weierstrass
 approximation theorem][universal-approximation-proof] or whatever and
 you're done.
 
@@ -647,17 +647,61 @@ We'll spend some time later getting a better feeling for the
 representative power of neural networks in general, but for now, let's
 pause with theory and return to our practical example. We're going to
 extend our linear image classifier to one based on a neural network,
-and hopefully see amazing gains in classification accuracy in the
+and hopefully see *amazing gains* in classification accuracy in the
 process!
 
 The code for this extension is developed across two new notebooks in
 the accompanying repository: [Notebook 2][notebook-2] and [Notebook
 3][notebook-3]. Since the actual code changes relative to the linear
 classifier are minimal (we're only replacing the score function with a
-nonlinear version after all), I'm only going to talk about the
+nonlinear version after all), I'm only going to step through the
 differences and their implications in what follows. Feel free to go
 through the [notebooks in their entirety][notebooks] if you would like
 more context.
+
+Recall that in the linear case we saw previously, the model for the
+score function was:
+
+````python
+W = tf.Variable(tf.zeros([784, 10]))
+b = tf.Variable(tf.zeros([10]))
+y = tf.nn.softmax(tf.matmul(x, W) + b)
+````
+
+Now we redefine this to be a nonlinear model with a few additional
+lines of code. Our new model is the one hidden layer network
+architecture we saw earlier. This introduces two sets of parameters:
+**W1**, **b1** and **W2**, **b2** that we need to learn.
+
+```python
+W1 = tf.Variable(tf.zeros([784, 100]))
+b1 = tf.Variable(tf.zeros([100]))
+h1 = tf.nn.relu(tf.matmul(x, W1) + b1)
+
+W2 = tf.Variable(tf.zeros([100, 10]))
+b2 = tf.Variable(tf.zeros([10]))
+y = tf.nn.softmax(tf.matmul(h1, W2) + b2)
+```
+
+As before, we then define the cross entropy loss function that
+quantifies how poorly his model performs on images with known labels
+and use the stochastic gradient descent optimiser to iteratively
+improve parameters and minimise the loss. And once this model is
+trained, we can pass it test images and labels and determine the
+average accuracy.
+
+```python
+correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+
+    0.1135
+
+11%?!? We expected to see amazing gains in our accuracy, but instead
+see something horrible. *Why?* Why after all this talk of universal
+approximators is our outcome so poor?
+
 
 ---
 
@@ -672,7 +716,6 @@ TODO: Explain how to initialise such networks.
 
 TODO: Explain how to clean input data (subtracting average of
 channels).
-
 
 
 TODO: Offer some conclusions on NNs in general.
