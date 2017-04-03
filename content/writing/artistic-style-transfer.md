@@ -334,6 +334,7 @@ automatic differentiation*][automatic-differentiation].
 
 TODO: Introduce the GitHub repo for the notebooks and the interplay
 with the blog post
+TODO: Polish the intro below to better connect with the notebook
 
 Finally we have all the pieces to make our first complete learning
 image classifier! Given some image as a raw array of numbers, we have
@@ -555,10 +556,6 @@ print normalised_scores
 ```
 
     [[ 0.    0.    0.04  0.    0.    0.    0.84  0.    0.11  0.  ]]
-
-
-
-
 
 
 Have fun practising, and I'll see you when you're done!
