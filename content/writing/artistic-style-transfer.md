@@ -714,7 +714,7 @@ gradient descent can't really modify and improve upon the parameters.
 This explains the output of 10—11% accuracy, which is basically what
 you’d get if you guessed at random between 10 possible categories. So
 what we need to do is to improve the initialisation of these
-parameters as we've done in [Notebook 3](notebook-3).
+parameters as we've done in [Notebook 3][notebook-3].
 
 ```python
 W1 = tf.Variable(tf.truncated_normal(shape=[784, 100], stddev=0.1))
