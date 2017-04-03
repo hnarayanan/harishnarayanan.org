@@ -834,21 +834,22 @@ Convnets do this with the help of two different layer types.
 
 ##### Convolutional (Conv) layer
 
-TODO: Introduce animation from 231n notes.
+The first is the *convolutional (Conv) layer*, and you can think of it
+as a set of learnable filters. Let's say we have $K$ such
+filters. Each filter is small spatially, with an extent denoted by
+$F$, but extends to the depth of its input. e.g. A typical filter
+might be $3 \times 3 \times 3$ ($F = 3$ pixels wide and high, and $3$
+from the depth of the input 3-channel colour image).
 
-The first is the *convolution (Conv) layer*.
+{{< figure src="/images/writing/artistic-style-transfer/conv-layer.gif" title="A demo of a conv layer with K = 2, F = 3, S = 2, P = 1. (Reproduced from CS231n notes.)" >}}
 
-You can think of a conv layer as a set of learnable filters. Let's say
-we have K such filters. Each filter is small spatially, with an extent
-denoted by F, but extends to the depth of its input. e.g. A typical
-filter might be 3x3x3 (F = 3 pixels wide and high, and 3 from the
-depth of the input 3-channel colour image). Now we slide (or convolve,
-which is where this layer gets its name from) this filter set over the
-input volume (with a stride S). (This input can be spatially padded
-with 0s as needed (P) for controlling output spatial dimensions.) As
-we slide, each filter computes a sort of volumetric dot product with
-the input to produce a 2D output, and when we stack these across all
-the filters we have in our set, we get a 3D output volume.
+Now we slide or *convolve* this filter set over the input volume (with
+a stride $S$ that denotes how fast we move). This input can be
+spatially padded with zeros as needed ($P$) for controlling output
+spatial dimensions. As we slide, each filter computes a sort of
+volumetric dot product with the input to produce a 2D output, and when
+we stack these across all the filters we have in our set, we get a 3D
+output volume.
 
 This is going to take you a bit of time to think about and process,
 but the idea is quite simple when you get it.
@@ -864,8 +865,8 @@ matter.
 2. We're no longer ballooning in terms of number of parameters even if
 the input image size grows a lot or our number of layers grow. All we
 need to learn are the weights and biases that correspond to our sets
-of filters, which are particularly small in number because of their
-small spatial size.
+of filters (denoted in red in the animation above), which are
+particularly small in number because of their small spatial size.
 
 ##### Pooling (Pool) layer
 
