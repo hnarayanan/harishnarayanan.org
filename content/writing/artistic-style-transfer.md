@@ -632,13 +632,34 @@ functions.
 
 #### Notebooks 2 & 3: A neural network-based MNIST digit classifier in TensorFlow
 
+If you start digging into neural network theory, you'll stumble across
+the fact that the one hidden layer network architecture we just
+introduced can *[approximate any functional
+form][universal-approximation-theorem]*. Now, much like the fact that
+the linear classifier worked at all, this seems like a mind-blowing
+result. But if you look at the proofs for this a bit closer you'll
+realise that they cheat with having as many neurons as they need in
+the hidden layer. Because then you can apply [Weierstrass
+approximation theorem][universal-approximation-proof] or whatever and
+you're done.
 
-If you read some neural network theory you'll soon stumble across the
-fact that this architecture, a network with a single hidden layer can
-approximate any functional form. This doesn't get the mind-blown JIF
-(GIF?) because if you look at the proofs you'll realise they cheat
-with having as many neurons as they need in the hidden layer. And then
-Weierstrass approximation theorem or whatever and you're done.
+We'll spend some time later getting a better feeling for the
+representative power of neural networks in general, but for now, let's
+pause with theory and return to our practical example. We're going to
+extend our linear image classifier to one based on a neural network,
+and hopefully see amazing gains in classification accuracy in the
+process!
+
+The code for this extension is developed across two new notebooks in
+the accompanying repository: [Notebook 2][notebook-2] and [Notebook
+3][notebook-3]. Since the actual code changes relative to the linear
+classifier are minimal (we're only replacing the score function with a
+nonlinear version after all), I'm only going to talk about the
+differences and their implications in what follows. Feel free to go
+through the [notebooks in their entirety][notebooks] if you would like
+more context.
+
+---
 
 #### Some technicalities
 
@@ -1546,3 +1567,5 @@ iterations put into a GIF.
 [notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
 [notebook-2]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/2_Neural_Network-based_Image_Classifier-1.ipynb
 [notebook-3]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/3_Neural_Network-based_Image_Classifier-2.ipynb
+[universal-approximation-theorem]: https://en.wikipedia.org/wiki/Universal_approximation_theorem
+[universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
