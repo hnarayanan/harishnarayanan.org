@@ -776,22 +776,23 @@ is *standard* or *fully-connected neural networks*):
 1. They entirely disregard the 2D structure of the image at the
 get-go. Remember that instead of working with the input as $28 \times
 28$ matrix, they worked with the input as a 784 number array. And you
-and one can imagine there is some useful information in pixels sharing
+can imagine there is some useful information in pixels sharing
 proximity that's being lost.
-{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully connected neural networks disregard the structure of the image." >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." >}}
 
 2. The number of parameters we would need to learn grows really
-rapidly as we add more layers. Here are some real numbers from the
-examples we've seen so far:
+rapidly as we add more layers. Here are the number of parameters
+corresponding to the examples we've seen so far:
 
   - **Linear:** 784*10 + 10 = 7,850
   - **Neural network (one hidden layer):** 784*100 + 100 + 100*10 + 10 = 79,510
   - **Neural network (two hidden layers):** 784*400 + 400 + 400*100 + 100 + 100*10 + 10 = 355,110
 
-The fundamental reason for this is that every neuron in one layer sees
-every neuron in the previous layer. Furthermore, what if our input
-image wasn't tiny (28&nbsp;px $\times$ 28&nbsp;px), but instead
-sized more realtically?
+The fundamental reason for this rapid growth in parameters is that
+every neuron in a given layer sees every neuron in the previous
+layer. Furthermore, you can imagine how much worse this would be if
+our input image wasn't tiny (28&nbsp;px $\times$ 28&nbsp;px) but
+instead more realistically sized.
 
 Convolutional neural networks (convnets) are architected to solve both
 these issues, making them particularly powerful for dealing with image
@@ -818,7 +819,7 @@ volumes (with width, height and depth).
 
 2. Neurons in one layer only connect to a small portion of the
 previous layer (as opposed to *every* neuron in the previous layer as
-in the case of fully connected networks).
+in the case of fully-connected networks).
 
 3. Neurons in a given layer *share their weights*.
 
@@ -833,7 +834,7 @@ networks.
 TODO: Figure of the differences between standard and convolutional
 neural networks.
 
-In addition to the standard *fully connected* (FC) layer and the *ReLU
+In addition to the standard *fully-connected* (FC) layer and the *ReLU
 layer* we've already seen, CNNs are additionally made up of the
 following kinds of layers. Each layer of units can be understood as a
 collection of image filters, each of which extracts a certain feature
@@ -1156,7 +1157,7 @@ model (VGG16). There is no noticeable qualitative difference in making
 this choice, and we gain a tiny bit in speed.
 
 Also, since we're not interested in the classification problem, we
-don't need the fully connected layers or the final softmax
+don't need the fully-connected layers or the final softmax
 classifier. We only need the part of the model marked in green in the
 table below.
 
@@ -1165,7 +1166,7 @@ table below.
 It is trivial for us to get access to this truncated model because
 Keras comes with a set of pretrained models, including the VGG16 model
 we're interested in. Note that by setting `include_top=False` in the
-code below, we don't include any of the fully connected layers.
+code below, we don't include any of the fully-connected layers.
 
 ```
 model = VGG16(input_tensor=input_tensor, weights='imagenet',
