@@ -473,7 +473,7 @@ y_ = tf.placeholder(tf.float32, [None, 10])
 We define our linear model for the score function after introducing
 two of parameters, **W** and **b**.
 
-{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A linear model." >}}
+{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." >}}
 
 
 ```python
@@ -569,75 +569,69 @@ function and optimisation process) stays the same!
 
 #### Making the score function nonlinear
 
-The score function we started this story with was the simplest
-possible we could imagine:
-
-$$f(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
-\mathbf{W}\mathbf{x} + \mathbf{b}$$
-
-TODO: Reiterate here that the way we wish to improve the performance
-of our classifier is to make it nonlinear.
-
-<div id="howaneuronworks_hype_container" style="margin: auto; position: relative; width: 600px; height: 400px; overflow: hidden; -webkit-transform-style: flat;" aria-live="polite" hyp_dn="howaneuronworks" aria-hidden="false">
-<script type="text/javascript" charset="utf-8" src="/media/perceptron/howaneuronworks.hyperesources/howaneuronworks_hype_generated_script.js?45489"></script>
-<div id="HYPE_persistent_symbols" aria-hidden="true" style="display: none;"></div><div class="HYPE_scene" id="hype-scene-9ORJQWV4P6VA2GL6TOZ2" hype_scene_index="0" aria-hidden="false" aria-flowto="hype-obj-783ZRQ8ZVLJ3BMJGYXW4" style="display: block; overflow: hidden; position: absolute; width: 600px; top: 0px; left: 0px; height: 400px; transform-origin: 50% 50%; z-index: 1; opacity: 1;"><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 17;"><div class="HYPE_element" id="hype-obj-783ZRQ8ZVLJ3BMJGYXW4" aria-flowto="hype-obj-8KY911WLQSUK95V1YG1Y" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 17; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(233px) translateY(154px) rotateY(0deg);">sum<br></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 16;"><div class="HYPE_element" id="hype-obj-8KY911WLQSUK95V1YG1Y" aria-flowto="hype-obj-HUOVJ57R8ZHKMX9PFRBX" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 16; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(283px) translateY(154px) rotateY(0deg);">bias<br></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 15;"><div class="HYPE_element" id="hype-obj-HUOVJ57R8ZHKMX9PFRBX" aria-flowto="hype-obj-RNVSUYZQ7SV6DMGENCAK" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 15; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(115px) translateY(154px) rotateY(0deg);">0.6</div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 14;"><div class="HYPE_element" id="hype-obj-RNVSUYZQ7SV6DMGENCAK" aria-flowto="hype-obj-EA0ICJDV5D5SZC7M1A00" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 14; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(140px) translateY(68px) rotateY(0deg);">0.7</div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 13;"><div class="HYPE_element" id="hype-obj-EA0ICJDV5D5SZC7M1A00" aria-flowto="hype-obj-6ASKK0FM4T09U1E5S8J0" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 13; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(141px) translateY(240px) rotateY(0deg);">1.4<br></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 12;"><div class="HYPE_element" id="hype-obj-6ASKK0FM4T09U1E5S8J0" aria-flowto="hype-obj-IMVNGWM80S4MMT7H57H9" style="pointer-events: auto; position: absolute; border: 1px solid rgb(216, 221, 228); opacity: 1; background-color: rgb(240, 120, 0); border-bottom-left-radius: 50%; overflow: visible; border-bottom-right-radius: 50%; z-index: 12; border-top-left-radius: 50%; transform-origin: 50% 50%; transform: translateX(606px) translateY(150px) rotateY(0deg); border-top-right-radius: 50%; width: 42px; height: 42px;"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 11;"><div class="HYPE_element" id="hype-obj-IMVNGWM80S4MMT7H57H9" aria-flowto="hype-obj-7SYEDBQ2B1MT4O4X24YM" style="pointer-events: auto; position: absolute; border: 1px solid rgb(216, 221, 228); transform-origin: 50% 50%; transform: translateX(253px) translateY(158px) rotateY(0deg); opacity: 1; background-color: rgb(240, 120, 0); border-bottom-left-radius: 50%; overflow: visible; border-bottom-right-radius: 50%; z-index: 11; border-top-left-radius: 50%; border-top-right-radius: 50%; width: 26px; height: 26px; display: none;"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 10;"><div class="HYPE_element" id="hype-obj-7SYEDBQ2B1MT4O4X24YM" aria-flowto="hype-obj-4HRK7HLVAZAJZJRCJQBF" style="pointer-events: auto; position: absolute; border: 1px solid rgb(216, 221, 228); opacity: 1; background-color: rgb(240, 120, 0); border-bottom-left-radius: 50%; overflow: visible; border-bottom-right-radius: 50%; z-index: 10; border-top-left-radius: 50%; transform-origin: 50% 50%; transform: translateX(243px) translateY(157px) rotateY(0deg); border-top-right-radius: 50%; width: 34px; height: 34px; display: none;"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 9;"><div class="HYPE_element" id="hype-obj-4HRK7HLVAZAJZJRCJQBF" aria-flowto="hype-obj-2F7E6PONJU631W88OHIV" style="pointer-events: auto; position: absolute; background-image: url(https://appliedgo.net/media/perceptron/howaneuronworks.hyperesources/sigmoid.svg); overflow: visible; background-size: 100% 100%; -webkit-background-size: 100%; display: inline; z-index: 9; width: 111px; height: 111px; transform-origin: 50% 50%; transform: translateX(333px) translateY(116px) rotateY(0deg); background-repeat: no-repeat no-repeat;"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 8;"><div class="HYPE_element" id="hype-obj-2F7E6PONJU631W88OHIV" aria-flowto="hype-obj-MB6EKOBLO9N4CJ5M6FH4" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 8; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(347px) translateY(349px) rotateY(0deg);">3. activate<br></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 7;"><div class="HYPE_element" id="hype-obj-MB6EKOBLO9N4CJ5M6FH4" aria-flowto="hype-obj-22BKRP8CULT500AAIV0B" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 7; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(237px) translateY(349px) rotateY(0deg);">2. sum up</div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 6;"><div class="HYPE_element" id="hype-obj-22BKRP8CULT500AAIV0B" aria-flowto="hype-obj-VE3FO0LVF0R1MCV5RV97" style="pointer-events: auto; position: absolute; padding: 8px; overflow: visible; word-wrap: break-word; z-index: 6; white-space: nowrap; font-family: Lato; font-size: 16px; display: inline; color: rgb(0, 0, 0); transform-origin: 50% 50%; transform: translateX(127px) translateY(349px) rotateY(0deg);">1. weigh</div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 5;"><div class="HYPE_element" id="hype-obj-VE3FO0LVF0R1MCV5RV97" aria-flowto="hype-obj-Y6ZL9YEUUMH34H0BLEZS" style="pointer-events: auto; position: absolute; border: 3px solid rgb(81, 81, 81); opacity: 0.4202927215189873; overflow: visible; z-index: 5; width: 100px; height: 332px; transform-origin: 50% 50%; transform: translateX(339px) translateY(6px) rotateY(0deg);"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 4;"><div class="HYPE_element" id="hype-obj-Y6ZL9YEUUMH34H0BLEZS" aria-flowto="hype-obj-8F8XJSERTBJJGLIL5WRD" style="pointer-events: auto; position: absolute; border: 3px solid rgb(81, 81, 81); opacity: 0.4202927215189873; overflow: visible; z-index: 4; width: 100px; height: 332px; transform-origin: 50% 50%; transform: translateX(225px) translateY(6px) rotateY(0deg);"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 3;"><div class="HYPE_element" id="hype-obj-8F8XJSERTBJJGLIL5WRD" aria-flowto="hype-obj-JKMXFKK2KH4HQ4QE5CQQ" style="pointer-events: auto; position: absolute; border: 3px solid rgb(81, 81, 81); opacity: 0.4202927215189873; overflow: visible; z-index: 3; width: 100px; height: 332px; transform-origin: 50% 50%; transform: translateX(111px) translateY(6px) rotateY(0deg);"></div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 2;"><div class="HYPE_element" id="hype-obj-JKMXFKK2KH4HQ4QE5CQQ" role="button" aria-flowto="hype-obj-D5M2ONVGLO61TSDG6SFB" style="pointer-events: auto; position: absolute; z-index: 2; border: 1px solid rgb(160, 160, 160); padding: 6px; -webkit-user-select: none; background-color: rgb(240, 240, 240); border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; word-wrap: break-word; display: inline; font-family: Lato; font-size: 16px; text-align: center; color: rgb(0, 0, 0); cursor: pointer; overflow: visible; width: 90px; height: 22px; transform-origin: 50% 50%; transform: translateX(480px) translateY(316px) rotateY(0deg);">Start</div></div><div class="HYPE_element_container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 1;"><div class="HYPE_element" id="hype-obj-D5M2ONVGLO61TSDG6SFB" style="pointer-events: auto; position: absolute; background-image: url(https://appliedgo.net/media/perceptron/howaneuronworks.hyperesources/insidetheneuron.svg); overflow: visible; background-size: 100% 100%; -webkit-background-size: 100%; display: inline; z-index: 1; width: 600px; height: 600px; transform-origin: 50% 50%; transform: translateX(0px) translateY(-128px) rotateY(0deg); background-repeat: no-repeat no-repeat;"></div></div></div></div>
-
-TODO: And for this, we first introduce what's called a "neuron." This
-is a simple function as you can see in this animation that does three
-things:
+To make the score function nonlinear, we first introduce what's called
+a *neuron*. This is the simple function shown in the following
+animation that does three things:
 
 1. It multiplies each of its inputs by a weight.
 2. It sums these weighted inputs to a single number and adds a bias.
-3. It passes this number through a nonlinearity called the activation
-   and produces an output.
+3. It passes this number through a nonlinear function called the
+   *activation* and produces an output.
 
-
-To extend this to a nonlinear regime, we're going to pass the output
-of this function (elementwise) through a simple nonlinear function
-called the [*rectified linear unit*][relu-wikipedia] (or *ReLU*) $g(x) = \max(0, x)$.
-
-TODO: Figure of the ReLU
-
-$$
-f(x; W_1, W_2) = W_2 \max(0, W_1 x)
-$$
-
-To increase the nonlinearity of the score function, we repeat this
-process, e.g.
-
-$$
-f(x; W_1, W_2, W_3) = W_3 \max(0, W_2 \max(0, W_1 x))
-$$
-
-TODO: Introduce ReLU as a first nonlinear extension, serving as our
-first model of a *neuron*. There are many other [functional
-forms][activation-functions] one could use, but this one form is really popular today
-and will suffice for our needs.
-
-#### Layer-wise organisation into a network
+{{< figure src="/images/writing/artistic-style-transfer/neuron.png" title="TODO: A schematic of a neuron.">}}
 
 These neurons can be arranged into layers to form a *neural network*
 that on the outer layers match the shape of our input and our
-output. For us, this is a vector of 784 numbers coming in, and 10
-numbers going out. The layer in the middle is called the *hidden layer*
-since we don't directly access it on the input or the output. It can
-be of arbitrary size, and this is the sort of thing that defines the
-*architecture* of the network.
+output. For the MNIST dataset that we've been working with, this is a
+vector of 784 numbers coming in and 10 numbers going out. The layer
+in the middle is called the *hidden layer* since we don't directly
+access it on the input or the output. It can be of arbitrary size, and
+this is the sort of thing that defines the *architecture of the
+network*. In neural network parlance the network shown below is called
+a *two layer network* or a *one hidden layer network*. (We can have as
+many of these hidden layers as we need.)
 
-In neural network parlance this is called a two layer network or a one
-hidden layer network. We can have as many of these hidden layers as we
-need.
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." >}}
 
-Shown below of the network are some equations in matrix-vector form
-that represent the operations performed by the layers. We have our
-input. The hidden layer first does a linear operation with some
-weights and biases. We then subject it to the simplest non-linearity
-(a piece-wise linear function called rectified linear unit shown on
-the graph). And finally we stack an additional matrix-vector linear
-operation to bring our output back to the size we want, 10 numbers
-going out.
+By stacking neurons in this fashion, we can express in a
+straightforward manner the operations performed by the network in
+matrix-vector notation:
 
-That's it.
+1. It takes in an input vector $\mathbf{x}$.
+2. The hidden layer first performs a linear operation with some
+weights and biases,
+$$
+\mathbf{y}\_1 = \mathbf{W}\_1 \mathbf{x} + \mathbf{b}\_1,
+$$
+followed by the simplest possible nonlinearity we can
+imagine, a piece-wise linear function called [rectified linear
+unit][relu-wikipedia]:
+$$
+\mathbf{h}\_1 = \max(0, \mathbf{y}\_1).
+$$
+(There are many other [functional forms][activation-functions] one
+could use for this nonlinear activation function, but this one form is
+really popular todayand will suffice for our needs.)
+3. Finally we stack an additional matrix-vector linear operation
+(introducing another set of weights and biases) to bring our output
+back to the size we want, 10 numbers going out.
+$$
+\mathbf{y}\_2 = \mathbf{W}\_2 \mathbf{h}_1 + \mathbf{b}\_2
+$$
+As before, we pass this output through a [softmax][softmax] function
+$\sigma$ so that we an interpret the output as the probability of each
+category.
+$$
+\mathbf{s} = \sigma(\mathbf{y}\_2)
+$$
+
+And that's all there is really to neural networks. If you stare at
+them closely, you'll see that they're just collections of matrix
+multiplications interwoven with element-wise nonlinear activation
+functions.
+
+#### Notebooks 2 & 3: A neural network-based MNIST digit classifier in TensorFlow
+
 
 If you read some neural network theory you'll soon stumble across the
 fact that this architecture, a network with a single hidden layer can
@@ -646,26 +640,19 @@ approximate any functional form. This doesn't get the mind-blown JIF
 with having as many neurons as they need in the hidden layer. And then
 Weierstrass approximation theorem or whatever and you're done.
 
-
-{{< figure src="/images/writing/artistic-style-transfer/neural-network.svg" title="TODO: Some example neural networks." >}}
-
-TODO: Note that this allows for a now classic architecture that
-employs matrix multiplications interwoven with nonlinear *activation*
-functions.
+#### Some technicalities
 
 TODO: Talk about organising collections of neurons into (acyclic)
 graphs. This introduces the fully-connected (FC) layer. More layers
 allow for more nonlinearity, even though each neuron is barely
 nonlinear.
 
-#### Some technicalities
-
 TODO: Explain how to initialise such networks.
 
 TODO: Explain how to clean input data (subtracting average of
 channels).
 
----
+
 
 TODO: Offer some conclusions on NNs in general.
 
@@ -1557,3 +1544,5 @@ iterations put into a GIF.
 [todo]: todo
 [notebooks]: https://github.com/hnarayanan/artistic-style-transfer
 [notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
+[notebook-2]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/2_Neural_Network-based_Image_Classifier-1.ipynb
+[notebook-3]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/3_Neural_Network-based_Image_Classifier-2.ipynb
