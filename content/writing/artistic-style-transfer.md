@@ -3,8 +3,9 @@ date: 2017-03-31T21:00:00+01:00
 title: Convolutional neural networks for artistic style transfer
 category: machine-learning
 tags:
-   - image-processing
    - convolutional-neural-networks
+   - image-processing
+   - style transfer
    - keras
    - tensorflow
 includes_code: yes
@@ -1074,16 +1075,44 @@ explanation for this is that when learning object recognition, the
 *network has to become invariant to all image variation that's
 superfluous to object identity*.
 
-Higher layers in the network capture the high-level content in terms of objects and their arrangement in the input image but do not constrain the exact pixel values of the reconstruction. To obtain a representation of the style of an input image, we employ correlations between the different filter responses over the spatial extent of the feature maps.
+So in what follows, we're first going to get acquainted with a
+particular deep convnet-based image classifier called
+[VGGNet][arxiv-vgg-simonyan-etal], and soon see how it can be
+repurposed for the style transfer problem.
+
+### The convnet-based classifier at the heart of the Gatys paper
+
+When we completed [Notebook 4][notebook-4], we'd worked out a simple
+convnet-based image classifier that did a great job at classifying the
+MNIST dataset. Now we're going to see a family of more powerful
+architectures called [VGGNet][arxiv-vgg-simonyan-etal] that can work
+with more general data: [colour images of different
+objects][imagenet]. This network is at the core of the [Gatys style
+transfer paper][arxiv-neural-style-gatys-etal] as we'll soon see.
+
+Recall that when we last implemented even our simple convnet, it was
+hard to write (in terms of boilerplate code, and keeping careful track
+of the shapes of the objects flowing through the code) and slow to
+train. To circumvent that, we aren't going to write VGGNet from
+scratch. We're going to instead use a version that someone else has
+already written and pre-trained.
+
+To simplify our lives even further, we're no longer going to use
+TensorFlow proper from this point on --- we're going to move to a
+higher-level library called [Keras][keras]. About a month ago it was
+[announced that Keras is going to be folded into the official
+TensorFlow project][keras-in-tensorflow] --- meaning that the simpler
+API you're going to see could soon be TensorFlow's API!
+
+This is great because TensorFlow often operates at a lower level than
+you care about when you want to simply quickly experiment with deep
+learning.
+
+#### Notebook 5: Fetching and playing with a pre-trained VGGNet (16) in Keras
+
 
 
 ---
-
-
-
-### Something about a powerful vgg classifier
-
-#### Notebook 5: A powerful convnet-based ImageNet dataset classifier in Keras
 
 A powerful CNN-based image classifier
 
@@ -1792,11 +1821,13 @@ return to the style transfer problem.
 [imagenet]: http://image-net.org
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
+[keras-in-tensorflow]: https://www.youtube.com/watch?v=UeheTiBJ0Io
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
 [perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
 [deep-visualization-toolbox]: http://yosinski.com/deepvis
 [deep-learning-book]: http://www.deeplearningbook.org
+[keras]: https://keras.io
 [keras-mnist-web]: https://transcranial.github.io/keras-js/#/mnist-cnn
 [keras-neural-style]: https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
 [xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
