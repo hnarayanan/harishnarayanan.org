@@ -940,8 +940,7 @@ def conv(x, W):
 def pool(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
-
-# A score function (model) involving some layers
+# A score function (model) composed of a few layers
 
 # Reshape the input to look like a volume (Input)
 x_image = tf.reshape(x, [-1, 28, 28, 1])
@@ -965,7 +964,7 @@ y = tf.nn.softmax(tf.matmul(h_fc1, W_fc2) + b_fc2)
 ```
 
 As before, we then define the cross entropy loss function that
-quantifies how poorly his model performs on images with known labels
+quantifies how poorly this model performs on images with known labels
 and use an optimiser to iteratively improve parameters and minimise
 the loss. And once this model is trained, we can pass it test images
 and labels and determine the average accuracy.
@@ -978,36 +977,50 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 
 Nearly 99% accurate! Great!
 
----
+#### How do convnets work (so well)?
 
-TODO: Need to shift to Keras at some point to reduce boilerplate
-code.
+If you found yourself working through [Notebook 4][notebook-4] being
+fuzzy about how our convnet-based classifier actually works, here is a
+[wonderful webpage][keras-mnist-web] that provides more insight.
 
-Cool, now that our training is finished we see that our convnet
-classifier performs excellently. And that website we looked at while
-it was training, the one that helped us visualise the layers, gave us
-some hints as to why this might be the case.
+<figure>
+  <a href="https://transcranial.github.io/keras-js/#/mnist-cnn"><img class="pure-img" src="/images/writing/artistic-style-transfer/mnist-web-demo.png" alt="Better understanding what a convnet-based classifier does with the MNIST data"></a>
+  <figcaption>Better understanding what a convnet-based classifier does with the MNIST data.</figcaption>
+</figure>
 
-It turns out that convolutional neural networks (and deep learning in
-general — and we call these models deep as we start to stack on more
-layers) are all about representation learning.
+You play around with it by drawing any digit you want. As you do, the
+webpage helps visualise the outputs of the different layers, leading
+to the (softmax) classification in the end. You get a sense that as
+you go from layer to layer, the system essentially transforms
+representations of the input into forms that are more suitable to the
+task at hand --- classification in our case.
 
-⭐ As you go from layer to layer down a deep convolutional neural
-network, the system essentially transforms representations of the
-input into forms that are more suitable to the task at
-hand. Classification in our case.
+To reiterate this, let's look at another visualisation of a convnet
+classifier.
 
-So if you look at visualisations like these, you'll see that given
-pixel input, the first layers get excited by simple features like
-edges, the next layer perhaps things like contours, the next maybe
-simple shapes and part of objects. And the deeper you go, the more
-they start to grasp the entire input field, not just a narrow region,
-but more importantly, the closer they're moving toward a
-representation that makes it easy for them to classify on.
+{{< figure src="/images/writing/artistic-style-transfer/representation-learning.png" title="Convnets (and deep learning in general) are all about learning representations. (Reproduced from the Deep Learning Book.)" >}}
 
-And this is generally true of all forms of deep learning, but images
-and convnets are disproportionately used as teaching examples because
-each layer does something at least vaguely recognisable to humans.
+Given raw pixel input, the first hidden layer get excited by simple
+features like edges, the next layer perhaps things like contours, and
+the next maybe simple shapes and part of objects. And the deeper you
+go, the more they start to grasp the entire input field, not just a
+narrow region, but more importantly, the closer they're moving toward
+a *representation that makes it easy for them to classify on*.
+
+It turns out that convolutional neural networks are all about
+*representation learning*. This is what makes them so powerful.
+
+In fact, this is true of *deep learning* in
+general (we call these models *deep* as we start to stack on more
+layers). It's just that convnets are disproportionately used as
+teaching examples (as I'm doing right now) because each layer does
+something at least [vaguely recognisable to
+humans][deep-visualization-toolbox].
+
+TODO: Polish this section and connect back to the idea that we turned
+to machine learning in the first place because we found it so
+difficult to write a program that hand-engineered features for image
+classification.
 
 #### A powerful CNN-based image classifier
 
@@ -1722,6 +1735,7 @@ iterations put into a GIF.
 [perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
 [deep-visualization-toolbox]: http://yosinski.com/deepvis
 [deep-learning-book]: http://www.deeplearningbook.org
+[keras-mnist-web]: https://transcranial.github.io/keras-js/#/mnist-cnn
 [keras-neural-style]: https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
 [xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
