@@ -1102,44 +1102,178 @@ TensorFlow proper from this point on --- we're going to move to a
 higher-level library called [Keras][keras]. About a month ago it was
 [announced that Keras is going to be folded into the official
 TensorFlow project][keras-in-tensorflow] --- meaning that the simpler
-API you're going to see could soon be TensorFlow's API!
+API you're going to see could soon be TensorFlow's API! This is great
+because TensorFlow often operates at a lower level than you care about
+when you want to simply quickly experiment with deep learning.
 
-This is great because TensorFlow often operates at a lower level than
-you care about when you want to simply quickly experiment with deep
-learning.
+I've incorporated [Notebook 5][notebook-5] in its entirety below since
+it is very different from the notebooks we've seen thus far.
 
 #### Notebook 5: Fetching and playing with a pre-trained VGGNet (16) in Keras
 
+Let's start by importing some packages we need. Note that even though
+we've moved to Keras, it uses TensorFlow in the background for
+low-level operations like tensor products and convolutions.
+
+```python
+import numpy as np
+from PIL import Image
+
+from keras.applications.vgg16 import VGG16
+from keras.applications.vgg16 import preprocess_input, decode_predictions
+```
+
+    Using TensorFlow backend.
 
 
----
+##### Getting a feel for the model and data it is trained on
 
-A powerful CNN-based image classifier
+In this notebook, we're going to fetch a network that is pre-trained
+on the [ImageNet][imagenet] data set. In particular, we're going to
+fetch the [VGGNet][arxiv-vgg-simonyan-etal] model with 16 layers
+(that we're going to refer to as `VGG16`).
 
-Now that we have the vocabulary to talk about CNNs in general, we turn
-our attention to a specific CNN-based image classifier, one that
-happens to be central to our original style transfer problem:
-[VGGNet][arxiv-vgg-simonyan-etal]. VGGNet was introduced as one of the
-contenders in 2014's ImageNet Challenge and secured the first and the
-second places in the localisation and classification tracks
-respectively. It was later described in great detail in [a paper that
-came out the following year][arxiv-vgg-simonyan-etal]. The paper describes
-how a family of models  essentially composed of simple ($3 \times 3$)
-convolutional filters with increasing depth (11--19 layers) managed to
-perform so well at a range of computer vision tasks.
+The ImageNet project is a large visual database designed for use in
+visual object recognition software research. As of 2016, [over ten
+million URLs of images][wiki-imagenet] have been hand-annotated by
+ImageNet to indicate what objects are pictured. ImageNet crowdsources
+its annotation process.
 
-TODO: Needs more writing to better describe VGGNet.
+{{< figure src="/images/writing/artistic-style-transfer/imagenet-sample.jpg" title="A sample of the ImageNet dataset." >}}
 
-{{< figure src="/images/projects/placeholder.svg" title="TODO: The architecture of the VGGNet family." >}}
+Since 2010, the annual ImageNet Large Scale Visual Recognition
+Challenge (ILSVRC) is a competition where research teams submit
+programs that classify and detect objects and scenes. (This is like
+the Olympics of computer vision challenges!)
 
-TODO: Note that this model has very many parameters, so it will take a
-long time to train, but they've shared their learnt weights, so we can
-*transfer* this knowledge over for our purposes.
+VGGNet was introduced as one of the contenders in 2014's ImageNet
+Challenge and [secured the first and the second
+places][imagenet-ilsvrc-2014] in the localisation and classification
+tracks respectively. It was later described in great detail in [a
+paper that came out the following year][arxiv-vgg-simonyan-etal]. The
+paper describes how a family of models essentially composed of simple
+($3 \times 3$) convolutional filters with increasing depth (11--19
+layers) managed to perform so well at a range of computer vision
+tasks.
 
-TODO: Replicate CNN tutorial from tensorflow.org. Modify to add many
-other layers to the network (get feeling for types). Get annoyed by
-boilerplate code. Redo the exercise in Keras to see how much simpler
-it is. This is what we're going to employ henceforth.
+{{< figure src="/images/writing/artistic-style-transfer/vgg-16-architecture.png" title="VGGNet Architectures highlighting the 16-layer variant." >}}
+
+We're going to first reproduce the 16 layer variant marked in green
+for classification, and in the next notebook we'll see how it can be
+repurposed for the style transfer problem.
+
+##### Fetching a pretrained model in Keras
+
+This is trivial to do in Keras, and can be done in a single
+line. [There is a selection][keras-applications] of such models one
+can import.
+
+
+```python
+model = VGG16(weights='imagenet', include_top=True)
+```
+
+Let's take a look at the model, convince ourselves it looks the same
+as the paper.
+
+
+```python
+layers = dict([(layer.name, layer.output) for layer in model.layers])
+layers
+```
+
+
+
+
+    {'block1_conv1': <tf.Tensor 'Relu:0' shape=(?, 224, 224, 64) dtype=float32>,
+     'block1_conv2': <tf.Tensor 'Relu_1:0' shape=(?, 224, 224, 64) dtype=float32>,
+     'block1_pool': <tf.Tensor 'MaxPool:0' shape=(?, 112, 112, 64) dtype=float32>,
+     'block2_conv1': <tf.Tensor 'Relu_2:0' shape=(?, 112, 112, 128) dtype=float32>,
+     'block2_conv2': <tf.Tensor 'Relu_3:0' shape=(?, 112, 112, 128) dtype=float32>,
+     'block2_pool': <tf.Tensor 'MaxPool_1:0' shape=(?, 56, 56, 128) dtype=float32>,
+     'block3_conv1': <tf.Tensor 'Relu_4:0' shape=(?, 56, 56, 256) dtype=float32>,
+     'block3_conv2': <tf.Tensor 'Relu_5:0' shape=(?, 56, 56, 256) dtype=float32>,
+     'block3_conv3': <tf.Tensor 'Relu_6:0' shape=(?, 56, 56, 256) dtype=float32>,
+     'block3_pool': <tf.Tensor 'MaxPool_2:0' shape=(?, 28, 28, 256) dtype=float32>,
+     'block4_conv1': <tf.Tensor 'Relu_7:0' shape=(?, 28, 28, 512) dtype=float32>,
+     'block4_conv2': <tf.Tensor 'Relu_8:0' shape=(?, 28, 28, 512) dtype=float32>,
+     'block4_conv3': <tf.Tensor 'Relu_9:0' shape=(?, 28, 28, 512) dtype=float32>,
+     'block4_pool': <tf.Tensor 'MaxPool_3:0' shape=(?, 14, 14, 512) dtype=float32>,
+     'block5_conv1': <tf.Tensor 'Relu_10:0' shape=(?, 14, 14, 512) dtype=float32>,
+     'block5_conv2': <tf.Tensor 'Relu_11:0' shape=(?, 14, 14, 512) dtype=float32>,
+     'block5_conv3': <tf.Tensor 'Relu_12:0' shape=(?, 14, 14, 512) dtype=float32>,
+     'block5_pool': <tf.Tensor 'MaxPool_4:0' shape=(?, 7, 7, 512) dtype=float32>,
+     'fc1': <tf.Tensor 'Relu_13:0' shape=(?, 4096) dtype=float32>,
+     'fc2': <tf.Tensor 'Relu_14:0' shape=(?, 4096) dtype=float32>,
+     'flatten': <tf.Tensor 'Reshape_13:0' shape=(?, ?) dtype=float32>,
+     'input_1': <tf.Tensor 'input_1:0' shape=(?, 224, 224, 3) dtype=float32>,
+     'predictions': <tf.Tensor 'Softmax:0' shape=(?, 1000) dtype=float32>}
+
+
+
+Looks good. And we now let's get a sense for how many parameters they
+are in this model.
+
+
+```python
+model.count_params()
+```
+
+
+
+
+    138357544
+
+
+Woah, that's a lot! We've just gotten around needing to train a model
+containing 138+ million parameters.
+
+##### Using it for classification
+
+Now that we have our pre-trained model loaded, we can use it for classification.
+
+###### Load an test image and preprocess it
+
+
+```python
+image_path = 'images/elephant.jpg'
+image = Image.open(image_path)
+image = image.resize((224, 224))
+image
+```
+
+
+
+
+![png](/images/writing/artistic-style-transfer/output_13_0.png)
+
+
+
+
+```python
+# Convert it into an array
+x = np.asarray(image, dtype='float32')
+# Convert it into a list of arrays
+x = np.expand_dims(x, axis=0)
+# Pre-process the input to match the training data
+x = preprocess_input(x)
+```
+
+###### Classify the test image
+
+The following code classifies the test image and decodes the results
+into a list of tuples (class, description, probability). There is one
+such list for each sample in the batch, but since we're only sending
+in one test image we only get one set of output.
+
+
+```python
+preds = model.predict(x)
+print('Predicted:', decode_predictions(preds, top=3)[0])
+```
+
+    ('Predicted:', [(u'n02504458', u'African_elephant', 0.84805286), (u'n01871265', u'tusker', 0.10270286), (u'n02504013', u'Indian_elephant', 0.049056333)])
+
 
 ### A neural algorithm of artistic style
 
@@ -1802,6 +1936,7 @@ return to the style transfer problem.
 [wiki-relu]: https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 [wiki-automatic-differentiation]: https://en.wikipedia.org/wiki/Automatic_differentiation
 [wiki-universal-approximation-theorem]: https://en.wikipedia.org/wiki/Universal_approximation_theorem
+[wiki-imagenet]: https://en.wikipedia.org/wiki/ImageNet
 [cs231n-course]: http://cs231n.stanford.edu
 [cs231n-notes]: http://cs231n.github.io
 [cs231n-softmax-classifier]: http://cs231n.github.io/linear-classify/#softmax-classifier
@@ -1816,19 +1951,20 @@ return to the style transfer problem.
 [tensorflow-tutorial-mnist-pros]: https://www.tensorflow.org/get_started/mnist/pros
 [tensorflow-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
 [tensorflow-playground]: http://playground.tensorflow.org/
+[keras]: https://keras.io
+[keras-mnist-web]: https://transcranial.github.io/keras-js/#/mnist-cnn
+[keras-neural-style]: https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
+[keras-applications]: https://github.com/fchollet/keras/tree/master/keras/applications
+[keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
+[keras-in-tensorflow]: https://www.youtube.com/watch?v=UeheTiBJ0Io
 [prisma]: http://prisma-ai.com
 [edtaonisl]: http://www.artic.edu/aic/collections/artwork/80062
 [imagenet]: http://image-net.org
+[imagenet-ilsvrc-2014]: http://image-net.org/challenges/LSVRC/2014/results
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
-[keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
-[keras-in-tensorflow]: https://www.youtube.com/watch?v=UeheTiBJ0Io
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
 [perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
 [deep-visualization-toolbox]: http://yosinski.com/deepvis
 [deep-learning-book]: http://www.deeplearningbook.org
-[keras]: https://keras.io
-[keras-mnist-web]: https://transcranial.github.io/keras-js/#/mnist-cnn
-[keras-neural-style]: https://github.com/fchollet/keras/blob/master/examples/neural_style_transfer.py
-[xavier-initialisation]: http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
