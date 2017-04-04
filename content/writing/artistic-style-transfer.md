@@ -391,7 +391,6 @@ did.
 
 The TensorFlow tutorial comes with a handy loader for this dataset.
 
-
 ```python
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 ```
@@ -400,7 +399,6 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
     Extracting MNIST_data/train-labels-idx1-ubyte.gz
     Extracting MNIST_data/t10k-images-idx3-ubyte.gz
     Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
-
 
 The loader even handily splits the dataset into three parts:
 
@@ -417,7 +415,6 @@ of all zeros except at the location that corresponds to the label it's
 referring to. E.g. An image with a label `3` will be represented as
 `(0, 0, 0, 1, 0, 0, 0, 0, 0, 0)`.
 
-
 ```python
 print mnist.train.images.shape
 print mnist.train.labels.shape
@@ -425,9 +422,6 @@ print mnist.train.labels.shape
 
     (55000, 784)
     (55000, 10)
-
-
-
 ```python
 print mnist.test.images.shape
 print mnist.test.labels.shape
@@ -436,10 +430,8 @@ print mnist.test.labels.shape
     (10000, 784)
     (10000, 10)
 
-
 We can get a better sense for one of these examples by visualising the
 image and looking at the label.
-
 
 ```python
 example_image = mnist.train.images[1]
@@ -451,7 +443,6 @@ plt.imshow(example_image_reshaped)
 ```
 
     [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]
-
 
 {{< figure src="/images/writing/artistic-style-transfer/output_9_2.png" title="Visualising an example image in the dataset." >}}
 
@@ -467,7 +458,6 @@ notion of working with (random) batches of input rather than the
 entire set that moves us from the realm of *Gradient Descent* that we
 saw earlier, to *Stochastic Gradient Descent* that we have here.
 
-
 ```python
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])
@@ -477,7 +467,6 @@ We define our linear model for the score function after introducing
 two of parameters, **W** and **b**.
 
 {{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." >}}
-
 
 ```python
 W = tf.Variable(tf.zeros([784, 10]))
@@ -489,7 +478,6 @@ We define our loss function to measure how poorly this model performs
 on images with known labels. We use the a specific form called the
 [cross entropy loss][cross-entropy-reason].
 
-
 ```python
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=[1]))
 ```
@@ -498,7 +486,6 @@ Using the magic of blackbox optimisation algorithms provided by
 TensorFlow, we can define a single step of the stochastic gradient
 descent optimiser (to improve our parameters for our score function
 and reduce the loss) in one line of code.
-
 
 ```python
 train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
@@ -510,7 +497,6 @@ The way TensorFlow works, we haven't really executed any of the code above in th
 
 Now we go ahead and initialise a session to actually train the model and evaluate its performance.
 
-
 ```python
 init = tf.global_variables_initializer()
 sess = tf.Session()
@@ -518,7 +504,6 @@ sess.run(init)
 ```
 
 We train the model iteratively for 1000 steps, loading a batch of example images each time.
-
 
 ```python
 for i in range(1000):
@@ -532,7 +517,6 @@ At this point, our model is trained. And we can deterime in the
 *accuracy* by passing in all the test images and labels, figuring out
 our own labels, and averaging out the results.
 
-
 ```python
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -540,7 +524,6 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 ```
 
     0.9205
-
 
 Around 92%, that's pretty good!
 
@@ -745,7 +728,6 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 ```
 
     0.9654
-
 
 Over 96% accurate! Much better.
 
@@ -1125,7 +1107,6 @@ from keras.applications.vgg16 import preprocess_input, decode_predictions
 
     Using TensorFlow backend.
 
-
 ##### Getting a feel for the model and data it is trained on
 
 In this notebook, we're going to fetch a network that is pre-trained
@@ -1168,7 +1149,6 @@ This is trivial to do in Keras, and can be done in a single
 line. [There is a selection][keras-applications] of such models one
 can import.
 
-
 ```python
 model = VGG16(weights='imagenet', include_top=True)
 ```
@@ -1176,14 +1156,10 @@ model = VGG16(weights='imagenet', include_top=True)
 Let's take a look at the model, convince ourselves it looks the same
 as the paper.
 
-
 ```python
 layers = dict([(layer.name, layer.output) for layer in model.layers])
 layers
 ```
-
-
-
 
     {'block1_conv1': <tf.Tensor 'Relu:0' shape=(?, 224, 224, 64) dtype=float32>,
      'block1_conv2': <tf.Tensor 'Relu_1:0' shape=(?, 224, 224, 64) dtype=float32>,
@@ -1208,22 +1184,14 @@ layers
      'flatten': <tf.Tensor 'Reshape_13:0' shape=(?, ?) dtype=float32>,
      'input_1': <tf.Tensor 'input_1:0' shape=(?, 224, 224, 3) dtype=float32>,
      'predictions': <tf.Tensor 'Softmax:0' shape=(?, 1000) dtype=float32>}
-
-
-
 Looks good. And we now let's get a sense for how many parameters they
 are in this model.
-
 
 ```python
 model.count_params()
 ```
 
-
-
-
     138357544
-
 
 Woah, that's a lot! We've just gotten around needing to train a model
 containing 138+ million parameters.
@@ -1234,7 +1202,6 @@ Now that we have our pre-trained model loaded, we can use it for classification.
 
 ###### Load an test image and preprocess it
 
-
 ```python
 image_path = 'images/elephant.jpg'
 image = Image.open(image_path)
@@ -1242,13 +1209,7 @@ image = image.resize((224, 224))
 image
 ```
 
-
-
-
 ![png](/images/writing/artistic-style-transfer/output_13_0.png)
-
-
-
 
 ```python
 # Convert it into an array
@@ -1266,14 +1227,12 @@ into a list of tuples (class, description, probability). There is one
 such list for each sample in the batch, but since we're only sending
 in one test image we only get one set of output.
 
-
 ```python
 preds = model.predict(x)
 print('Predicted:', decode_predictions(preds, top=3)[0])
 ```
 
     ('Predicted:', [(u'n02504458', u'African_elephant', 0.84805286), (u'n01871265', u'tusker', 0.10270286), (u'n02504013', u'Indian_elephant', 0.049056333)])
-
 
 ### A neural algorithm of artistic style
 
@@ -1765,7 +1724,6 @@ TODO: The following is not really the last iteration, but all
 iterations put into a GIF.
 
 {{< figure src="/images/writing/artistic-style-transfer/animation.gif" title="Iteratively improving upon the combination image." >}}
-
 
 ## Conclusion
 
