@@ -121,15 +121,17 @@ down all the steps you need to follow to solve it. And over the course
 of this article, we're going to learn just how to do this.
 
 We start from a relatively classic place: [the image classification
-problem][section-image-classification-problem]. We're going to slowly step
-through solutions of this problem until we're familiar with a branch
-of machine learning that's great for dealing with images called
-[*Convolutional Neural Networks*][section-convnets] (or *convnets*). We're
-then going to see how [convnets can be used to define these perceptual
-loss functions][section-neural-style-algorithm] central to our style-transfer
-optimisation problem. We conclude with a [concrete implementation of
-the solution of the problem][section-neural-style-implementation] (in Keras
-and TensorFlow) that you can play with and extend.
+problem][section-image-classification-problem]. We're going to slowly
+step through solutions of this problem until we're familiar with a
+branch of machine learning that's great for dealing with images called
+[*Convolutional Neural Networks*][section-convnets] (or
+*convnets*). We're then going to see how [convnets can be used to
+define these perceptual loss
+functions][section-neural-style-algorithm] central to our
+style-transfer optimisation problem. We conclude with a [concrete
+implementation of the solution of the
+problem][section-neural-style-implementation] (in Keras and
+TensorFlow) that you can play with and extend.
 
 It is my hope that by starting our journey at a fairly basic place and
 gradually stepping up in complexity as we go along, that you get to
@@ -139,9 +141,9 @@ learn something interesting no matter what your level of expertise.
 
 This section offers a brief summary of parts of the Stanford course
 [Convolutional Neural Networks for Visual Recognition
-(CS231n)][cs231n-course] that are relevant to our style transfer problem. If
-you're even vaguely interested in what you're reading here, you should
-go take this course. *It is outstanding*.
+(CS231n)][cs231n-course] that are relevant to our style transfer
+problem. If you're even vaguely interested in what you're reading
+here, you should go take this course. *It is outstanding*.
 
 ### The image classification problem
 
@@ -213,10 +215,10 @@ below in the context of the image classification problem:
 
 {{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." >}}
 
-1. We start with a set of pre-classified example images, which means we
-have a set of images with known labels. This is called the *training
-data*, and these serve as the ground truth that our system is going
-learn from.
+1. We start with a set of pre-classified example images, which means
+we have a set of images with known labels. This is called the
+*training data*, and these serve as the ground truth that our system
+is going learn from.
 
 2. The function we're trying to find is called the *score function*,
 which maps a given image to category scores. To define what we're
@@ -252,12 +254,12 @@ the image classification problem.
 
 Recall the classification problem we're trying to solve. We have an
 image $\mathbf{x}$ that's represented as an array of numbers of length
-$D$ ($= W \times H \times d$, where $d$, the *colour depth*, is $1$ for a
-greyscale image and $3$ for an RGB colour image). We want to find out
-which category (in a set of $K$ categories) that it belongs to. So
-what we're really looking for is a *score function* $\mathbf{f}:
-\mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data to class
-scores.
+$D$ ($= W \times H \times d$, where $d$, the *colour depth*, is $1$
+for a greyscale image and $3$ for an RGB colour image). We want to
+find out which category (in a set of $K$ categories) that it belongs
+to. So what we're really looking for is a *score function*
+$\mathbf{f}: \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data
+to class scores.
 
 The simplest possible example of such a function is a linear
 map:
@@ -823,8 +825,8 @@ Instead of dealing with the input data (and arranging intermediate
 layers of neurons) as linear arrays, they deal with information as 3D
 volumes (with width, height and depth). i.e. Every layer takes as
 input a 3D volume of numbers and outputs a 3D volume of numbers. What
-one imagines as a 2D input image ($W \times H$) gets transformed into 3D
-by introducing the colour depth as the third dimension ($W \times H
+one imagines as a 2D input image ($W \times H$) gets transformed into
+3D by introducing the colour depth as the third dimension ($W \times H
 \times d$). (Recall that this for the MNIST digit data would be 1
 because it's greyscale, but for a colour RGB image the depth would be
 3.) Similarly what one might imagine as a linear output of length $C$
@@ -887,14 +889,24 @@ depth slice to cover the entire input volume.
 
 You can also do *average pooling* and other kinds of downsampling.
 
-#### TODO: A simple CNN-based image classifier
+#### Notebook 4: A convnet-based MNIST digit classifier in TensorFlow
 
-- Recall that with this notation, the models we've seen so far
-look like the following:
-```
-Linear: Input -> FC -> Loss
-NN: Input -> FC -> ReLU -> FC -> Loss
-```
+Now that we've taken a theoretical look at the two kinds of layers
+that are core to convnets (Conv and Pool), we're going to get a better
+feeling for them by using them in a practical example. Let's return to
+extend our MNIST digit classifier with these additional two layers and
+see what kinds of gains we get in classification accuracy.
+
+This example is a simplification of [Deep MNIST for Experts
+tutorial][tensorflow-tutorial-mnist-pros] on the TensorFlow
+website. And as before, the complete code for this example lives [in a
+standalone notebook][notebook-4] in the accompanying repository. Here
+I only step through the differences relative to our earlier
+(fully-connected) neural network version.
+
+
+
+---
 
 TODO: Need to shift to Keras at some point to reduce boilerplate
 code.
@@ -946,8 +958,6 @@ TODO: Needs more writing to better describe VGGNet.
 TODO: Note that this model has very many parameters, so it will take a
 long time to train, but they've shared their learnt weights, so we can
 *transfer* this knowledge over for our purposes.
-
----
 
 TODO: Replicate CNN tutorial from tensorflow.org. Modify to add many
 other layers to the network (get feeling for types). Get annoyed by
