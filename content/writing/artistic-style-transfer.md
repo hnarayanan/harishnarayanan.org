@@ -904,7 +904,79 @@ standalone notebook][notebook-4] in the accompanying repository. Here
 I only step through the differences relative to our earlier
 (fully-connected) neural network version.
 
+Before we get to the code, let's reintroduce some abstract notation to
+better explain the changes we're making.
 
+````
+FC = Fully Connected Layer
+Softmax = Softmax Layer
+ReLU = Rectified Linear Unit Activation
+Conv = Convolutional Layer
+Pool = Pool Layer
+````
+
+Using this notation, the models we've used for the score function so
+far are:
+
+1. **Linear:** `FC -> Softmax`
+2. **Neural network (one hidden layer):** `FC -> ReLU -> FC -> Softmax`
+
+And the convnet-based model we're going to setup using the code below
+is:
+
+`Conv -> ReLU -> Pool -> FC -> ReLU -> FC -> Softmax`
+
+```python
+# Define some helper functions to ease the definition of the model
+def weight_variable(shape):
+    return tf.Variable(tf.truncated_normal(shape, stddev=0.1))
+
+def bias_variable(shape):
+    return tf.Variable(tf.constant(0.1, shape=shape))
+
+def conv(x, W):
+    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
+
+def pool(x):
+    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
+
+
+# A score function (model) involving some layers
+
+# Reshape the input to look like a volume (Input)
+x_image = tf.reshape(x, [-1, 28, 28, 1])
+
+# A convolutional layer (CONV -> RELU -> POOL)
+W_conv = weight_variable([5, 5, 1, 32])
+b_conv = bias_variable([32])
+h_conv = tf.nn.relu(conv(x_image, W_conv) + b_conv)
+h_pool = pool(h_conv)
+
+# A densely connected layer (FC)
+W_fc1 = weight_variable([14*14*32, 1024])
+b_fc1 = bias_variable([1024])
+h_pool_flat = tf.reshape(h_pool, [-1, 14*14*32])
+h_fc1 = tf.nn.relu(tf.matmul(h_pool_flat, W_fc1) + b_fc1)
+
+# Another densely connected layer (for "readout") (FC)
+W_fc2 = weight_variable([1024, 10])
+b_fc2 = bias_variable([10])
+y = tf.nn.softmax(tf.matmul(h_fc1, W_fc2) + b_fc2)
+```
+
+As before, we then define the cross entropy loss function that
+quantifies how poorly his model performs on images with known labels
+and use an optimiser to iteratively improve parameters and minimise
+the loss. And once this model is trained, we can pass it test images
+and labels and determine the average accuracy.
+
+```python
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+```
+
+    0.989
+
+Nearly 99% accurate! Great!
 
 ---
 
