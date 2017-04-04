@@ -1234,7 +1234,7 @@ print('Predicted:', decode_predictions(preds, top=3)[0])
 
     ('Predicted:', [(u'n02504458', u'African_elephant', 0.84805286), (u'n01871265', u'tusker', 0.10270286), (u'n02504013', u'Indian_elephant', 0.049056333)])
 
-### A neural algorithm of artistic style
+### The artistic style transfer algorithm
 
 In the process of learning how to classify images, the `VGG16` model
 that we just downloaded and played with (in [Notebook 5][notebook-5])
@@ -1249,7 +1249,8 @@ $\mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})$) and then uses
 these terms to pose the optimisation problem for style transfer.
 
 TODO: Fill out this section with the following notes, incorporating
-whatever theory that is not covered inline in the final notebook.
+whatever theory that is not covered inline in the final notebook. This
+corresponds to slides 37--39 of the talk.
 
 - Summarise the Gatys, et al. paper for the core ideas (and a
   sketch of the solution methodology):
@@ -1271,15 +1272,16 @@ whatever theory that is not covered inline in the final notebook.
   quasi-Newton approach to solve the optimisation problem.
 
 
-### Concrete implementation of the artistic style transfer algorithm
+#### Notebook 6: Concrete implementation of the artistic style transfer algorithm
 
-Since Gatys et al. is a very exciting paper, there exist many
-open source implementations of the algorithm online. One of the most
-popular and general purpose ones is by [Justin Johnson and implemented
-in Torch](https://github.com/jcjohnson/neural-style). I've instead
-followed a [simple example in Keras][keras-neural-style] and expanded into [a
+Since [Gatys et al. (2015)][arxiv-neural-style-gatys-etal] is a very
+exciting paper, there exist many open source implementations of the
+algorithm online. One of the most popular and general purpose ones is
+by [Justin Johnson and implemented in
+Torch][github-neural-style-torch]. I've instead followed a [simple
+example in Keras][keras-neural-style] and expanded into [a
 fully-fledged notebook][notebook-6] that explains many details step by
-step. I've reproduced it below.
+step. I've reproduced it below in its entirety.
 
 TODO: Start with some initial comments on why the following are
 needed. Notice it doesn't require a lot of packages.
@@ -1930,3 +1932,4 @@ return to the style transfer problem.
 [deep-visualization-toolbox]: http://yosinski.com/deepvis
 [deep-learning-book]: http://www.deeplearningbook.org
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
+[github-neural-style-torch]: https://github.com/jcjohnson/neural-style
