@@ -1242,7 +1242,7 @@ has actually learnt a lot more. As it has trained itself to transform
 the raw input pixels into category scores, it has learnt to encode
 quite a bit of perceptual and semantic information about images. The
 neural style algorithm introduced in [Gatys et
-al. (2015)][arxiv-neural-style-gatys-etal]) plays with these
+al. (2015)][arxiv-neural-style-gatys-etal] plays with these
 representations to first define the semantic loss terms
 ($\mathcal{L}\_{\mathrm{content}}(\mathbf{c}, \mathbf{x})$ and
 $\mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})$) and then uses
@@ -1271,7 +1271,6 @@ corresponds to slides 37--39 of the talk.
 - Additional technicalities: Introduce L-BFGS as a valid
   quasi-Newton approach to solve the optimisation problem.
 
-
 #### Notebook 6: Concrete implementation of the artistic style transfer algorithm
 
 Since [Gatys et al. (2015)][arxiv-neural-style-gatys-etal] is a very
@@ -1283,10 +1282,11 @@ example in Keras][keras-neural-style] and expanded into [a
 fully-fledged notebook][notebook-6] that explains many details step by
 step. I've reproduced it below in its entirety.
 
-TODO: Start with some initial comments on why the following are
-needed. Notice it doesn't require a lot of packages.
+As always, we start with importing some packages we need. Note that we
+don't require too many packages.
 
-```
+
+```python
 from __future__ import print_function
 
 import time
@@ -1301,14 +1301,18 @@ from scipy.optimize import fmin_l_bfgs_b
 from scipy.misc import imsave
 ```
 
-#### Load and preprocess the content and style images
+    Using TensorFlow backend.
+
+
+##### Load and preprocess the content and style images
 
 Our first task is to load the content and style images. Note that the
 content image we're working with is not particularly high quality, but
 the output we'll arrive at the end of this process still looks really
 good.
 
-```
+
+```python
 height = 512
 width = 512
 
@@ -1318,16 +1322,16 @@ content_image = content_image.resize((height, width))
 content_image
 ```
 
-TODO: Image output
+![png](/images/writing/artistic-style-transfer/output_3_0.png)
 
-```
-style_image_path = 'images/wave.jpg'
+```python
+style_image_path = 'images/styles/wave.jpg'
 style_image = Image.open(style_image_path)
 style_image = style_image.resize((height, width))
 style_image
 ```
 
-TODO: Image output
+![png](/images/writing/artistic-style-transfer/output_4_0.png)
 
 Then, we convert these images into a form suitable for numerical
 processing. In particular, we add another dimension (beyond the
@@ -1335,7 +1339,8 @@ classic height x width x 3 dimensions) so that we can later
 concatenate the representations of these two images into a common data
 structure.
 
-```
+
+```python
 content_array = np.asarray(content_image, dtype='float32')
 content_array = np.expand_dims(content_array, axis=0)
 print(content_array.shape)
@@ -1345,10 +1350,9 @@ style_array = np.expand_dims(style_array, axis=0)
 print(style_array.shape)
 ```
 
-```
-(1, 512, 512, 3)
-(1, 512, 512, 3)
-```
+    (1, 512, 512, 3)
+    (1, 512, 512, 3)
+
 
 Before we proceed much further, we need to massage this input data to
 match what was done in [Simonyan and Zisserman
@@ -1363,7 +1367,8 @@ from each pixel.
 2. Flip the ordering of the multi-dimensional array from *RGB* to
 *BGR* (the ordering used in the paper).
 
-```
+
+```python
 content_array[:, :, :, 0] -= 103.939
 content_array[:, :, :, 1] -= 116.779
 content_array[:, :, :, 2] -= 123.68
@@ -1377,10 +1382,11 @@ style_array = style_array[:, :, :, ::-1]
 
 Now we're ready to use these arrays to define variables in Keras'
 backend (the TensorFlow graph). We also introduce a placeholder
-variable to store the combination image that retains the content of
+variable to store the *combination* image that retains the content of
 the content image while incorporating the style of the style image.
 
-```
+
+```python
 content_image = backend.variable(content_array)
 style_image = backend.variable(style_array)
 combination_image = backend.placeholder((1, height, width, 3))
@@ -1389,13 +1395,14 @@ combination_image = backend.placeholder((1, height, width, 3))
 Finally, we concatenate all this image data into a single tensor
 that's suitable for processing by Keras' VGG16 model.
 
-```
+
+```python
 input_tensor = backend.concatenate([content_image,
                                     style_image,
                                     combination_image], axis=0)
 ```
 
-#### Reuse a model pre-trained for image classification to define loss functions
+##### Reuse a model pre-trained for image classification to define loss functions
 
 The core idea introduced by [Gatys et
 al. (2015)](https://arxiv.org/abs/1508.06576) is that convolutional
@@ -1424,7 +1431,8 @@ Keras comes with a set of pretrained models, including the VGG16 model
 we're interested in. Note that by setting `include_top=False` in the
 code below, we don't include any of the fully-connected layers.
 
-```
+
+```python
 model = VGG16(input_tensor=input_tensor, weights='imagenet',
               include_top=False)
 ```
@@ -1434,33 +1442,31 @@ lot of layers. Keras has its own names for these layers. Let's make a
 list of these names so that we can easily refer to individual layers
 later.
 
-```
+
+```python
 layers = dict([(layer.name, layer.output) for layer in model.layers])
-print layers
+layers
 ```
 
-```
-{'block1_conv1': <tf.Tensor 'Relu:0' shape=(3, 512, 512, 64) dtype=float32>,
- 'block1_conv2': <tf.Tensor 'Relu_1:0' shape=(3, 512, 512, 64) dtype=float32>,
- 'block1_pool': <tf.Tensor 'MaxPool:0' shape=(3, 256, 256, 64) dtype=float32>,
- 'block2_conv1': <tf.Tensor 'Relu_2:0' shape=(3, 256, 256, 128) dtype=float32>,
- 'block2_conv2': <tf.Tensor 'Relu_3:0' shape=(3, 256, 256, 128) dtype=float32>,
- 'block2_pool': <tf.Tensor 'MaxPool_1:0' shape=(3, 128, 128, 128) dtype=float32>,
- 'block3_conv1': <tf.Tensor 'Relu_4:0' shape=(3, 128, 128, 256) dtype=float32>,
- 'block3_conv2': <tf.Tensor 'Relu_5:0' shape=(3, 128, 128, 256) dtype=float32>,
- 'block3_conv3': <tf.Tensor 'Relu_6:0' shape=(3, 128, 128, 256) dtype=float32>,
- 'block3_pool': <tf.Tensor 'MaxPool_2:0' shape=(3, 64, 64, 256) dtype=float32>,
- 'block4_conv1': <tf.Tensor 'Relu_7:0' shape=(3, 64, 64, 512) dtype=float32>,
- 'block4_conv2': <tf.Tensor 'Relu_8:0' shape=(3, 64, 64, 512) dtype=float32>,
- 'block4_conv3': <tf.Tensor 'Relu_9:0' shape=(3, 64, 64, 512) dtype=float32>,
- 'block4_pool': <tf.Tensor 'MaxPool_3:0' shape=(3, 32, 32, 512) dtype=float32>,
- 'block5_conv1': <tf.Tensor 'Relu_10:0' shape=(3, 32, 32, 512) dtype=float32>,
- 'block5_conv2': <tf.Tensor 'Relu_11:0' shape=(3, 32, 32, 512) dtype=float32>,
- 'block5_conv3': <tf.Tensor 'Relu_12:0' shape=(3, 32, 32, 512) dtype=float32>,
- 'block5_pool': <tf.Tensor 'MaxPool_4:0' shape=(3, 16, 16, 512) dtype=float32>,
- 'input_1': <tf.Tensor 'concat:0' shape=(3, 512, 512, 3) dtype=float32>}
-```
-
+    {'block1_conv1': <tf.Tensor 'Relu:0' shape=(3, 512, 512, 64) dtype=float32>,
+     'block1_conv2': <tf.Tensor 'Relu_1:0' shape=(3, 512, 512, 64) dtype=float32>,
+     'block1_pool': <tf.Tensor 'MaxPool:0' shape=(3, 256, 256, 64) dtype=float32>,
+     'block2_conv1': <tf.Tensor 'Relu_2:0' shape=(3, 256, 256, 128) dtype=float32>,
+     'block2_conv2': <tf.Tensor 'Relu_3:0' shape=(3, 256, 256, 128) dtype=float32>,
+     'block2_pool': <tf.Tensor 'MaxPool_1:0' shape=(3, 128, 128, 128) dtype=float32>,
+     'block3_conv1': <tf.Tensor 'Relu_4:0' shape=(3, 128, 128, 256) dtype=float32>,
+     'block3_conv2': <tf.Tensor 'Relu_5:0' shape=(3, 128, 128, 256) dtype=float32>,
+     'block3_conv3': <tf.Tensor 'Relu_6:0' shape=(3, 128, 128, 256) dtype=float32>,
+     'block3_pool': <tf.Tensor 'MaxPool_2:0' shape=(3, 64, 64, 256) dtype=float32>,
+     'block4_conv1': <tf.Tensor 'Relu_7:0' shape=(3, 64, 64, 512) dtype=float32>,
+     'block4_conv2': <tf.Tensor 'Relu_8:0' shape=(3, 64, 64, 512) dtype=float32>,
+     'block4_conv3': <tf.Tensor 'Relu_9:0' shape=(3, 64, 64, 512) dtype=float32>,
+     'block4_pool': <tf.Tensor 'MaxPool_3:0' shape=(3, 32, 32, 512) dtype=float32>,
+     'block5_conv1': <tf.Tensor 'Relu_10:0' shape=(3, 32, 32, 512) dtype=float32>,
+     'block5_conv2': <tf.Tensor 'Relu_11:0' shape=(3, 32, 32, 512) dtype=float32>,
+     'block5_conv3': <tf.Tensor 'Relu_12:0' shape=(3, 32, 32, 512) dtype=float32>,
+     'block5_pool': <tf.Tensor 'MaxPool_4:0' shape=(3, 16, 16, 512) dtype=float32>,
+     'input_1': <tf.Tensor 'concat:0' shape=(3, 512, 512, 3) dtype=float32>}
 If you stare at the list above, you'll convince yourself that we
 covered all items we wanted in the table (the cells marked in
 green). Notice also that because we provided Keras with a concrete
@@ -1480,7 +1486,8 @@ scalar weights. These are  arbitrary, but the following set have been
 chosen after quite a bit of experimentation to find a set that
 generates output that's aesthetically pleasing to me.
 
-```
+
+```python
 content_weight = 0.025
 style_weight = 5.0
 total_variation_weight = 1.0
@@ -1490,11 +1497,12 @@ We'll now use the feature spaces provided by specific layers of our
 model to define these three loss functions. We begin by initialising
 the total loss to 0 and adding to it in stages.
 
-```
+
+```python
 loss = backend.variable(0.)
 ```
 
-##### The content loss
+###### The content loss
 
 For the content loss, we follow Johnson et al. (2016) and draw the
 content feature from `block2_conv2`, because the original choice in
@@ -1511,7 +1519,8 @@ images below (just mentally replace `reluX_Y` with our Keras notation
 The content loss is the (scaled, squared) Euclidean distance between
 feature representations of the content and combination images.
 
-```
+
+```python
 def content_loss(content, combination):
     return backend.sum(backend.square(combination - content))
 
@@ -1523,7 +1532,7 @@ loss += content_weight * content_loss(content_image_features,
                                       combination_features)
 ```
 
-##### The style loss
+###### The style loss
 
 This is where things start to get a bit intricate.
 
@@ -1543,8 +1552,7 @@ some measure (of local-ish statistics) that's spatially invariant.
 
 The Gram matrix can be computed efficiently by reshaping the feature
 spaces suitably and taking an outer product.
-
-```
+```python
 def gram_matrix(x):
     features = backend.batch_flatten(backend.permute_dimensions(x, (2, 0, 1)))
     gram = backend.dot(features, backend.transpose(features))
@@ -1559,7 +1567,8 @@ Gatys et al. (2015) because I find the end results more aesthetically
 pleasing. I encourage you to experiment with these choices to see
 varying results.
 
-```
+
+```python
 def style_loss(style, combination):
     S = gram_matrix(style)
     C = gram_matrix(combination)
@@ -1578,7 +1587,7 @@ for layer_name in feature_layers:
     loss += (style_weight / len(feature_layers)) * sl
 ```
 
-##### The total variation loss
+###### The total variation loss
 
 Now we're back on simpler ground.
 
@@ -1591,7 +1600,8 @@ term) that encourages spatial smoothness.
 You can experiment with reducing the `total_variation_weight` and play
 with the noise-level of the generated image.
 
-```
+
+```python
 def total_variation_loss(x):
     a = backend.square(x[:, :height-1, :width-1, :] - x[:, 1:, :width-1, :])
     b = backend.square(x[:, :height-1, :width-1, :] - x[:, :height-1, 1:, :])
@@ -1600,7 +1610,7 @@ def total_variation_loss(x):
 loss += total_variation_weight * total_variation_loss(combination_image)
 ```
 
-#### Define needed gradients and solve the optimisation problem
+##### Define needed gradients and solve the optimisation problem
 
 The goal of this journey was to setup an optimisation problem that
 aims to solve for a *combination image* that contains the content of
@@ -1610,22 +1620,11 @@ place, all we have left to do is define gradients of the total loss
 relative to the combination image, and use these gradients to
 iteratively improve upon our combination image to minimise the loss.
 
-TODO: Figure out if we can do this at a much higher level by replacing
-the `Evaluator` class, "manual" gradient calls and raw calls to
-`scipy` with `tensorflow.contrib.opt.ScipyOptimizerInterface`.
-
 We start by defining the gradients.
 
-```
+
+```python
 grads = backend.gradients(loss, combination_image)
-
-outputs = [loss]
-if type(grads) in {list, tuple}:
-    outputs += grads
-else:
-    outputs.append(grads)
-
-f_outputs = backend.function([combination_image], outputs)
 ```
 
 We then introduce an `Evaluator` class that computes loss and
@@ -1634,15 +1633,17 @@ functions, `loss` and `grads`. This is done because `scipy.optimize`
 requires separate functions for loss and gradients, but computing them
 separately would be inefficient.
 
-```
+
+```python
+outputs = [loss]
+outputs += grads
+f_outputs = backend.function([combination_image], outputs)
+
 def eval_loss_and_grads(x):
     x = x.reshape((1, height, width, 3))
     outs = f_outputs([x])
     loss_value = outs[0]
-    if len(outs[1:]) == 1:
-        grad_values = outs[1].flatten().astype('float64')
-    else:
-        grad_values = np.array(outs[1:]).flatten().astype('float64')
+    grad_values = outs[1].flatten().astype('float64')
     return loss_value, grad_values
 
 class Evaluator(object):
@@ -1678,7 +1679,8 @@ than standard gradient descent) to iteratively improve upon it.
 We stop after 10 iterations because the output looks good to me and
 the loss stops reducing significantly.
 
-```
+
+```python
 x = np.random.uniform(0, 255, (1, height, width, 3)) - 128.
 
 iterations = 10
@@ -1693,29 +1695,46 @@ for i in range(iterations):
     print('Iteration %d completed in %ds' % (i, end_time - start_time))
 ```
 
-```
-Start of iteration 0
-Current loss value: 7.97936e+10
-Iteration 0 completed in 365s
-Start of iteration 1
-Current loss value: 5.56155e+10
-Iteration 1 completed in 361s
-Start of iteration 2
-Current loss value: 4.4483e+10
-Iteration 2 completed in 360s
-...
-Start of iteration 9
-Current loss value: 3.56783e+10
-Iteration 9 completed in 365s
-```
+    Start of iteration 0
+    Current loss value: 8.10727e+10
+    Iteration 0 completed in 25s
+    Start of iteration 1
+    Current loss value: 5.51765e+10
+    Iteration 1 completed in 21s
+    Start of iteration 2
+    Current loss value: 4.37814e+10
+    Iteration 2 completed in 22s
+    Start of iteration 3
+    Current loss value: 3.97018e+10
+    Iteration 3 completed in 22s
+    Start of iteration 4
+    Current loss value: 3.80888e+10
+    Iteration 4 completed in 22s
+    Start of iteration 5
+    Current loss value: 3.71511e+10
+    Iteration 5 completed in 22s
+    Start of iteration 6
+    Current loss value: 3.65824e+10
+    Iteration 6 completed in 22s
+    Start of iteration 7
+    Current loss value: 3.61877e+10
+    Iteration 7 completed in 22s
+    Start of iteration 8
+    Current loss value: 3.59279e+10
+    Iteration 8 completed in 22s
+    Start of iteration 9
+    Current loss value: 3.57502e+10
+    Iteration 9 completed in 22s
 
-This took a while on my piddly laptop (that isn't discrete
-GPU-accelerated), but here is the beautiful output from the last
-iteration! (Notice that we need to subject our output image to the
-inverse of the transformation we did to our input images before it
-makes sense.)
 
-```
+This process takes some time even on a machine with a discrete GPU, so
+don't be surprised if it takes a lot longer on a machine without one!
+
+Note that we need to subject our output image to the inverse of the
+transformation we did to our input images before it makes sense.
+
+
+```python
 x = x.reshape((height, width, 3))
 x = x[:, :, ::-1]
 x[:, :, 0] += 103.939
@@ -1726,8 +1745,8 @@ x = np.clip(x, 0, 255).astype('uint8')
 Image.fromarray(x)
 ```
 
-TODO: The following is not really the last iteration, but all
-iterations put into a GIF.
+And instead of showing the output of the final iteration, I've made an
+animated GIF of all iterations for you to enjoy.
 
 {{< figure src="/images/writing/artistic-style-transfer/animation.gif" title="Iteratively improving upon the combination image." >}}
 
