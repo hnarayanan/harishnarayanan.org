@@ -1236,17 +1236,23 @@ print('Predicted:', decode_predictions(preds, top=3)[0])
 
 ### A neural algorithm of artistic style
 
-- TODO: Summarise the Gatys, et al. paper for the core ideas (and a
+In the process of learning how to classify images, the `VGG16` model
+that we just downloaded and played with (in [Notebook 5][notebook-5])
+has actually learnt a lot more. As it has trained itself to transform
+the raw input pixels into category scores, it has learnt to encode
+quite a bit of perceptual and semantic information about images. The
+neural style algorithm introduced in [Gatys et
+al. (2015)][arxiv-neural-style-gatys-etal]) plays with these
+representations to first define the semantic loss terms
+($\mathcal{L}\_{\mathrm{content}}(\mathbf{c}, \mathbf{x})$ and
+$\mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})$) and then uses
+these terms to pose the optimisation problem for style transfer.
+
+TODO: Fill out this section with the following notes, incorporating
+whatever theory that is not covered inline in the final notebook.
+
+- Summarise the Gatys, et al. paper for the core ideas (and a
   sketch of the solution methodology):
-  - Recall the Gatys problem, which now seems a lot less
-  intimidating. We're going to simply reuse a trained VGG to solve
-  the this optimisation problem.
-  - CNNs pre-trained for image classification (in particular the VGG
-  introduced above) have already learnt to encode perceptual and
-  semantic information that we need to measure our losses. The
-  explanation could be that when learning object recognition, the
-  network has to become invariant to all image variation that
-  preserves object identity.
   - Higher layers in the network capture the high-level content in
   terms of objects and their arrangement in the input image but do not
   constrain the exact pixel values of the reconstruction. To obtain a
@@ -1257,15 +1263,13 @@ print('Predicted:', decode_predictions(preds, top=3)[0])
   - The images are synthesised by finding an image that simultaneously
   matches the content representation of the photograph and the style
   representation of the respective piece of art.
-  - TODO: Based on VGG19 - 3 FC layers. Normal VGG takes an image and
+  - Based on VGG16 - 3 FC layers. Normal VGG takes an image and
   returns a category score, but Gatys instead take the outputs at
   intermediate layers and construct L_content and L_style.
-  - TODO: A figure showing off the algorithm.
+  - A figure showing off the algorithm.
+- Additional technicalities: Introduce L-BFGS as a valid
+  quasi-Newton approach to solve the optimisation problem.
 
-#### Some technicalities
-
-- TODO: Introduce L-BFGS as a valid quasi-Newton approach to solve
-  the optimisation problem.
 
 ### Concrete implementation of the artistic style transfer algorithm
 
