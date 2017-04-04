@@ -1748,7 +1748,7 @@ Image.fromarray(x)
 And instead of showing the output of the final iteration, I've made an
 animated GIF of all iterations for you to enjoy.
 
-{{< figure src="/images/writing/artistic-style-transfer/animation.gif" title="Iteratively improving upon the combination image." >}}
+{{< figure src="/images/writing/artistic-style-transfer/style-transfer-iterations.gif" title="Iteratively improving upon the combination image." >}}
 
 ## In Conclusion
 
