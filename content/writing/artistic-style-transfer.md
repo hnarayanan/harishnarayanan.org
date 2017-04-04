@@ -841,11 +841,11 @@ $F$, but extends to the depth of its input. e.g. A typical filter
 might be $3 \times 3 \times 3$ ($F = 3$ pixels wide and high, and $3$
 from the depth of the input 3-channel colour image).
 
-{{< figure src="/images/writing/artistic-style-transfer/conv-layer.gif" title="A demo of a conv layer with K = 2, F = 3, S = 2, P = 1. (Reproduced from CS231n notes.)" >}}
+{{< figure src="/images/writing/artistic-style-transfer/conv-layer.gif" title="A demo of a conv layer with K = 2 filters, each with a spatial extent F = 3 , moving at a stride S = 2, and input padding P = 1. (Reproduced from CS231n notes.)" >}}
 
 Now we slide or *convolve* this filter set over the input volume (with
 a stride $S$ that denotes how fast we move). This input can be
-spatially padded with zeros as needed ($P$) for controlling output
+spatially padded ($P$) with zeros as needed for controlling output
 spatial dimensions. As we slide, each filter computes a sort of
 volumetric dot product with the input to produce a 2D output, and when
 we stack these across all the filters we have in our set, we get a 3D
@@ -870,26 +870,22 @@ particularly small in number because of their small spatial size.
 
 ##### Pooling (Pool) layer
 
-TODO:
+The second important kind of layer in convnets is the *pooling (Pool)
+layer*. This is much easier to understand, as it simply acts as a
+downsampling filter. These are used to reduce computational cost, and
+to some extent also reduce overfitting. Note that it has no
+parameters to learn!
 
-- Has no parameters or hyperparameters, simply reduce the
-computational complexity of the problem at hand. Also reduces
-over-fitting.
-- Depict a pool layer in a figure.
+TODO: Depict a pool layer in a figure.
 
-The second important kind of layer in convnets is the pooling
-layer. This is a much easier to understand. It simply acts as a
-downsampling filter to reduce computational cost. It has no parameters
-to learn.
+For example, a max pooling layer with a spatial extent $F = 2$ and a
+stride $S = 2$ halves the input spatial dimension from $4 \times 4$ to
+$2 \times 2$, leaving the depth unchanged. It does this by picking the
+maximum of each set of $2 \times 2$ numbers and passing only those
+along to the output. You have one such pooling layer for each input
+depth slice to cover the entire input volume.
 
-For example, a max pooling layer with a spatial extent F = 2 and a
-stride S = 2, halves the input spatial dimension from 4x4 to 2x2. It
-leaves the depth unchanged. It does this by picking the maximum of
-each set of 2x2 numbers and passing only those along to the output.
-
-You have one such pooling layer for each input depth slice.
-
-One can also do average pooling and other kinds of downsampling.
+You can also do *average pooling* and other kinds of downsampling.
 
 #### TODO: A simple CNN-based image classifier
 
