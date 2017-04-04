@@ -1322,7 +1322,7 @@ content_image = content_image.resize((height, width))
 content_image
 ```
 
-![png](/images/writing/artistic-style-transfer/output_3_0.png)
+{{< figure src="/images/writing/artistic-style-transfer/output_3_0.png" >}}
 
 ```python
 style_image_path = 'images/styles/wave.jpg'
@@ -1331,7 +1331,7 @@ style_image = style_image.resize((height, width))
 style_image
 ```
 
-![png](/images/writing/artistic-style-transfer/output_4_0.png)
+{{< figure src="/images/writing/artistic-style-transfer/output_4_0.png" >}}
 
 Then, we convert these images into a form suitable for numerical
 processing. In particular, we add another dimension (beyond the
