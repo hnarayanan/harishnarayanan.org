@@ -1,4 +1,4 @@
 <figure>
-  <img class="pure-img" src="{{ .Get "src" }}" alt="{{ .Get "title" }}">
+  <img class="pure-img{{ .Get "extra-class" }}" src="{{ .Get "src" }}" alt="{{ .Get "title" }}">
   <figcaption>{{ .Get "title" }}</figcaption>
 </figure>
