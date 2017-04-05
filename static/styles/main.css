@@ -1589,3 +1589,15 @@ h2 a:hover {
 iframe {
     border: 0;
 }
+
+.pure-img-half-width {
+    max-width: 50%;
+    height: auto;
+    display: block;
+}
+
+.pure-img-three-fourths-width {
+    max-width: 75%;
+    height: auto;
+    display: block;
+}
