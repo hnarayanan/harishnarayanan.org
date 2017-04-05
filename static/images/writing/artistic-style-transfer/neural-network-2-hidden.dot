@@ -1,0 +1,135 @@
+digraph G {
+
+    bgcolor = "transparent";
+    rankdir = "LR";
+    compound=true;
+
+    graph [fontsize=11, nodesep=3, ranksep=2];
+    node [fontsize=11];
+    edge [fontname=11, arrowsize = 0.75, color="#666666"];
+
+    rankdir=LR
+        splines=line
+        nodesep=.05;
+
+    node [label=""];
+
+    subgraph cluster_0 {
+        bgcolor = "#f4cccc";
+        color = "#f4cccc";
+        node [style=filled, color="#000000", fillcolor="#ffffff", shape=circle];
+        x1 x2 x3, x3, x4, x5, x6, x7, x8;
+        label = "Input [784]";
+    }
+
+    subgraph cluster_1 {
+        bgcolor = "#c9daf8";
+        color = "#c9daf8";
+        node [style=filled, color="#000000", fillcolor="#ffffff", shape=circle];
+        h12 h22 h32 h42 h52;
+        label = "Hidden Layer 1 [400]";
+    }
+
+    subgraph cluster_2 {
+        bgcolor = "#c9daf8";
+        color = "#c9daf8";
+        node [style=filled, color="#000000", fillcolor="#ffffff", shape=circle];
+        h13 h23 h33 h43;
+        label = "Hidden Layer 2 [100]";
+    }
+
+    subgraph cluster_3 {
+        bgcolor = "#d8ead2";
+        color = "#d8ead2";
+        node [style=filled, color="#000000", fillcolor="#ffffff", shape=circle];
+        O1 O2 O3;
+        label="Output [10]";
+    }
+
+    x1 -> h12;
+    x1 -> h22;
+    x1 -> h32;
+    x1 -> h42;
+    x1 -> h52;
+
+    x2 -> h12;
+    x2 -> h22;
+    x2 -> h32;
+    x2 -> h42;
+    x2 -> h52;
+
+    x3 -> h12;
+    x3 -> h22;
+    x3 -> h32;
+    x3 -> h42;
+    x3 -> h52;
+
+    x4 -> h12;
+    x4 -> h22;
+    x4 -> h32;
+    x4 -> h42;
+    x4 -> h52;
+
+    x5 -> h12;
+    x5 -> h22;
+    x5 -> h32;
+    x5 -> h42;
+    x5 -> h52;
+
+    x6 -> h12;
+    x6 -> h22;
+    x6 -> h32;
+    x6 -> h42;
+    x6 -> h52;
+
+    x7 -> h12;
+    x7 -> h22;
+    x7 -> h32;
+    x7 -> h42;
+    x7 -> h52;
+
+    x8 -> h12;
+    x8 -> h22;
+    x8 -> h32;
+    x8 -> h42;
+    x8 -> h52;
+
+    h12 -> h13;
+    h22 -> h13;
+    h32 -> h13;
+    h42 -> h13;
+    h52 -> h13;
+
+    h12 -> h23;
+    h22 -> h23;
+    h32 -> h23;
+    h42 -> h23;
+    h52 -> h23;
+
+    h12 -> h33;
+    h22 -> h33;
+    h32 -> h33;
+    h42 -> h33;
+    h52 -> h33;
+
+    h12 -> h43;
+    h22 -> h43;
+    h32 -> h43;
+    h42 -> h43;
+    h52 -> h43;
+
+    h13 -> O1;
+    h23 -> O1;
+    h33 -> O1;
+    h43 -> O1;
+
+    h13 -> O2;
+    h23 -> O2;
+    h33 -> O2;
+    h43 -> O2;
+
+    h13 -> O3;
+    h23 -> O3;
+    h33 -> O3;
+    h43 -> O3;
+}
