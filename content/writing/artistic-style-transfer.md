@@ -159,12 +159,12 @@ to reproduce Prisma's visual effect.
 In more precise terms, imagine a three channel colour image (RGB)
 that's $W$ pixels wide and $H$ pixels tall. This image can be
 represented in a computer as an array of $D = W \times H \times 3$
-numbers, each going between $0$ (minimum brightness) and $1$
-(maximum brightness). Let's further assume that we have $K$ categories
-of things that we'd like to classify the image as being one of. The
-task then is to come up with a function that takes as input one of
-these large arrays of numbers, and outputs the correct label from our
-set of categories, e.g. "baby".
+numbers, each going between $0$ (minimum brightness) and $1$ (maximum
+brightness). Let's further assume that we have $K$ categories of
+things that we'd like to classify the image as being one of. The task
+then is to come up with a function that takes as input one of these
+large arrays of numbers, and outputs the correct label from our set of
+categories, e.g. "baby".
 
 {{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="-three-fourths-width">}}
 
@@ -192,14 +192,14 @@ passed as input to our function. How do we write our classification
 function to ignore these sorts of superfluous differences while still
 giving it the ability to distinguish between a "baby" and a "toddler"?
 
-These questions lead us to the same flavour of difficulty as the style
-transfer problem we saw earlier. And the reason for this is that there
-is a *semantic gap* between the input representation for images (an
-array of numbers) and what we're looking for (a category
-classification). So we give up on trying to write this function
-ourselves, and instead turn to *machine learning* to *automatically
-discover the appropriate representations* needed to solve this problem
-for us.
+These questions have the same flavour of difficulty as defining
+*perceptual differences* for the style transfer problem we saw
+earlier. And the reason for this is that there is a *semantic gap*
+between the input representation for images (an array of numbers) and
+what we're looking for (a category classification). So we give up on
+trying to write this classification function ourselves, and instead
+turn to *machine learning* to *automatically discover the appropriate
+representations* needed to solve this problem for us.
 
 This concept is the intellectual core of this article.
 
