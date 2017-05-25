@@ -16,10 +16,9 @@ There's an amazing app out right now called [Prisma][prisma] that
 transforms your photos into works of art using the styles of famous
 artwork and motifs. The app performs this style transfer with the help
 of a branch of machine learning called [convolutional neural
-networks][wiki-convnet]. In this article we're going to take a
-journey through the world of convolutional neural networks from theory
-to practice, as we systematically reproduce Prisma's core visual
-effect.
+networks][wiki-convnet]. In this article we're going to take a journey
+through the world of convolutional neural networks from theory to
+practice, as we systematically reproduce Prisma's core visual effect.
 
 ## So what is Prisma and how might it work?
 
@@ -52,23 +51,24 @@ semantic, higher level features like a toddler's face on another image
 
 Now, how would we even begin to achieve something like this? We could
 perhaps do some pixel-level image analysis on the style image to get
-things like spatially-averaged colours or maybe even aspects of its
-texture. This brings up the deeper question of how we would go about
+things like spatially-averaged colours or even aspects of its
+texture. But this brings up a deeper question: How do we go about
 explaining to our system that the texture and colour we're interested
-in is at the scale of the brush strokes, not so much the overall
-shapes in the painting.
+in is at the *scale of the brush strokes*, not so much the *overall
+shapes* in the painting.
 
 But let's say we managed to do this anyway. How do we then
-selectively *apply* this style over the content? We can't just copy and
-paste it without losing essential aspects of the content's structure. And how
-do we cleanly *discard* the existing style of the content image?
+*selectively apply* this style over the content? We can't just copy
+and paste it without losing essential aspects of the content's
+structure. Along the same lines, how do we cleanly *discard* the
+existing style of the content image?
 
 I was stumped by many of these questions really early on, and as one
 does, turned to Google for help. My searches soon pointed me to a
-really popular paper ([Gatys et al., 2015][arxiv-neural-style-gatys-etal])
-that explains exactly how all this is achieved. In particular, the
-paper poses what we're trying to do in mathematical terms as an
-*optimisation problem*.
+really popular paper ([Gatys et al.,
+2015][arxiv-neural-style-gatys-etal]) that explains *exactly* how all
+this is achieved. In particular, the paper poses what we're trying to
+do in mathematical terms as an *optimisation problem*.
 
 Let's suppose that we had a way of measuring *how different in
 content* two images are from one another. Which means we have a
@@ -79,10 +79,10 @@ loss*.
 
 {{< figure src="/images/writing/artistic-style-transfer/content-loss.png" title="A schematic of the content loss." extra-class="-half-width">}}
 
-Let's also suppose that had another function that told us
-*how close in style* two images are to one another. Again, this
-function grows as its two input images ($\mathbf{s}$ and $\mathbf{x}$)
-tend to deviate in style.  We call this function the *style loss*.
+Let's also suppose that had another function that told us *how close
+in style* two images are to one another. Again, this function grows as
+its two input images ($\mathbf{s}$ and $\mathbf{x}$) tend to deviate
+in style.  We call this function the *style loss*.
 
 {{< figure src="/images/writing/artistic-style-transfer/style-loss.png" title="A schematic of the style loss." extra-class="-half-width">}}
 
@@ -107,9 +107,9 @@ how much we want to emphasise the content relative to the style. We'll
 see some effects of playing with these weighting factors later.
 
 Now the crucial bit of insight in [this paper by Gatys et
-al.][arxiv-neural-style-gatys-etal] is that the definitions of these content
-and style losses are not based on *per-pixel differences* between
-images, but instead in terms of higher level, more *perceptual
+al.][arxiv-neural-style-gatys-etal] is that the definitions of these
+content and style losses are based not on *per-pixel differences*
+between images, but instead in terms of higher level, more *perceptual
 differences* between them. Interesting, but then how does one go about
 writing a program that understands enough about the *meaning* of
 images to perceive such semantic differences?
@@ -159,12 +159,12 @@ to reproduce Prisma's visual effect.
 In more precise terms, imagine a three channel colour image (RGB)
 that's $W$ pixels wide and $H$ pixels tall. This image can be
 represented in a computer as an array of $D = W \times H \times 3$
-numbers, each going between $0$ (minimum brightness) and $1$
-(maximum brightness). Let's further assume that we have $K$ categories
-of things that we'd like to classify the image as being one of. The
-task then is to come up with a function that takes as input one of
-these large arrays of numbers, and outputs the correct label from our
-set of categories, e.g. "baby".
+numbers, each going between $0$ (minimum brightness) and $1$ (maximum
+brightness). Let's further assume that we have $K$ categories of
+things that we'd like to classify the image as being one of. The task
+then is to come up with a function that takes as input one of these
+large arrays of numbers, and outputs the correct label from our set of
+categories, e.g. "baby".
 
 {{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="-three-fourths-width">}}
 
@@ -192,14 +192,14 @@ passed as input to our function. How do we write our classification
 function to ignore these sorts of superfluous differences while still
 giving it the ability to distinguish between a "baby" and a "toddler"?
 
-These questions lead us to the same flavour of difficulty as the style
-transfer problem we saw earlier. And the reason for this is that there
-is a *semantic gap* between the input representation for images (an
-array of numbers) and what we're looking for (a category
-classification). So we give up on trying to write this function
-ourselves, and instead turn to *machine learning* to *automatically
-discover the appropriate representations* needed to solve this problem
-for us.
+These questions have the same flavour of difficulty as defining
+*perceptual differences* for the style transfer problem we saw
+earlier. And the reason for this is that there is a *semantic gap*
+between the input representation for images (an array of numbers) and
+what we're looking for (a category classification). So we give up on
+trying to write this classification function ourselves, and instead
+turn to *machine learning* to *automatically discover the appropriate
+representations* needed to solve this problem for us.
 
 This concept is the intellectual core of this article.
 
