@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ .Title }}{{ if not .IsHome }} — {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ if .IsNode }}{{ if (index .Site.Data.Descriptions .Title) }}{{ index .Site.Data.Descriptions .Title }}{{ end }}{{ else }}{{ if .Description }}{{ .Description }}{{ else }}{{ if .Summary }}{{ .Summary }}{{ else }}A placeholder for the “{{ .Title }}” photo album{{ end }}{{ end }}{{ end }}">
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}">
     <meta name="author" content="Harish Narayanan">
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
