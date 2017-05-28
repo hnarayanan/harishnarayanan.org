@@ -1501,7 +1501,7 @@ hr {
 
 /* TODO: Clean the following up
 ------------------------------------------------------------------------ */
-.mainfooter {
+footer {
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     text-transform: uppercase;
     font-size: 12px;
@@ -1512,35 +1512,35 @@ hr {
     line-height: 6.5rem;
 }
 
-.mainfooter p {
+footer p {
     margin: 0;
 }
 
-.mainfooter a {
+footer a {
     color: #222;
 }
 
-.mainfooter a:hover {
+footer a:hover {
     color: #823711;
     text-decoration: underline;
 }
 
 @media (min-width: 375px) {
-    .mainfooter p {
+    footer p {
 	font-size: 11px;
 	letter-spacing: .1rem;
     }
 }
 
 @media (min-width: 480px) {
-    .mainfooter p {
+    footer p {
 	font-size: 12px;
 	letter-spacing: .15rem;
     }
 }
 
 @media (min-width: 620px) {
-    .mainfooter p {
+    footer p {
 	font-size: 12px;
 	letter-spacing: .2rem;
     }
