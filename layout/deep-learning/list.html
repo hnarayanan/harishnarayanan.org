@@ -1,0 +1,27 @@
+{{ partial "header.html" . }}
+<div class="container">
+  <!-- TODO: Highlight some things I'm particularly interested in? e.g. ML -->
+  <!-- TODO: Move nearly everything out to GitHub and link to READMEs? -->
+  <h1 id="main-description">Deep Learning</h1>
+
+  {{ .Content }}
+
+  <!-- TODO: Featured stuff goes here: shpotify, femtable -->
+  <!-- TODO: Also, when e.g., thinkbot/pde-zen-garden etc. are in better shape, demo them prominently here. -->
+
+  <h2 id="websites">Sites around the web</h2>
+  <div class="pure-g l-box-container">
+    {{ range where .Data.Pages "Params.category" "==" "website" }}
+    {{ .Render "summary" }}
+    {{ end }}
+  </div>
+
+  <h2 id="software">Simple software utilities</h2>
+  <p>The following tools were originally created to solve simple problems I stumbled across. I am releasing their code in the hope that they will be helpful to you too.</p>
+  <div class="pure-g l-box-container">
+    {{ range where .Data.Pages "Params.category" "==" "software" }}
+    {{ .Render "summary" }}
+    {{ end }}
+  </div>
+</div>
+{{ partial "footer.html" . }}

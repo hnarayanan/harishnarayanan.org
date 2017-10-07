@@ -1,0 +1,10 @@
+    <div class="pure-u-1 {{ if not .Params.featured }}pure-u-md-1-2{{ end }}">
+      <div class="l-box">
+        <h3 class="portfolio"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}">{{ .Params.short_title }}</a></h3>
+        <section class="post-meta summary">
+          <time class="post-date">{{ .Params.start_date }}</time>{{ if ne .Params.end_date .Params.start_date }} – {{ if .Params.end_date }}<time class="post-date">{{ .Params.end_date }}</time>{{ end }}{{ end }}
+        </section>
+        <p class="summary"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}"><img class="pure-img" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a></p>
+        <p>{{ .Description }}</p>
+      </div>
+    </div>
