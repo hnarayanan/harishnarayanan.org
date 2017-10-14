@@ -21,13 +21,13 @@ server {
   listen [::]:80;
   listen [::]:443 ssl http2;
 
-  ssl_certificate /etc/nginx/ssl/{{ domain_name }}.crt;
-  ssl_certificate_key /etc/nginx/ssl/{{ domain_name }}.key;
+  ssl_certificate /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
+  ssl_certificate_key /etc/letsencrypt/live/{{ domain_name }}/privkey.pem
 
   ssl_session_timeout 1d;
   ssl_session_cache shared:SSL:50m;
 
-  ssl_dhparam /etc/nginx/ssl/{{ domain_name }}.pem;
+  ssl_dhparam /etc/letsencrypt/live/{{ domain_name }}/dhparam.pem;
 
   ssl_protocols TLSv1.2;
   ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256';
@@ -66,13 +66,13 @@ server {
   charset utf-8;
   client_max_body_size 75M;
 
-  ssl_certificate /etc/nginx/ssl/{{ domain_name }}.crt;
-  ssl_certificate_key /etc/nginx/ssl/{{ domain_name }}.key;
+  ssl_certificate /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
+  ssl_certificate_key /etc/letsencrypt/live/{{ domain_name }}/privkey.pem
 
   ssl_session_timeout 1d;
   ssl_session_cache shared:SSL:50m;
 
-  ssl_dhparam /etc/nginx/ssl/{{ domain_name }}.pem;
+  ssl_dhparam /etc/letsencrypt/live/{{ domain_name }}/dhparam.pem;
 
   ssl_protocols TLSv1.2;
   ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256';
