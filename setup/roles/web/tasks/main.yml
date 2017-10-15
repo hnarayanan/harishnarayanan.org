@@ -46,13 +46,13 @@
 - name: Check if Diffie-Hellman key exchange parameters exist
   become: yes
   stat:
-    path: "/etc/letsencrypt/live/{{ domain_name }}/dhparam.pem"
+    path: "{{ certificate_dir }}/dhparam.pem"
   register: dhparam
 
 - name: Create parameters for Diffie-Hellman key exchange
   become: yes
   command:
-    "openssl dhparam -out /etc/letsencrypt/live/{{ domain_name }}/dhparam.pem 4096"
+    "openssl dhparam -out {{ certificate_dir }}/dhparam.pem 4096"
   when: dhparam.stat.exists == False
 
 - name: Setup the folders to hold site-specific nginx configuration

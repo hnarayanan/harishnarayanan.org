@@ -1,2 +1,3 @@
 ---
 content_dir: "/home/{{ remote_user_name }}"
+certificate_dir: "/etc/letsencrypt/live/{{ domain_name }}"
