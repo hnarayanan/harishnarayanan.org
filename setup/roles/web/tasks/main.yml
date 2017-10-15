@@ -41,7 +41,7 @@
 - name: Generate certificates to enable HTTPS
   become: yes
   command:
-    "certbot certonly --nginx --non-interactive --agree-tos --email {{ user_email }} --domain {{ domain_name }} --domain www.{{ domain_name }}"
+    "certbot certonly --nginx --non-interactive --agree-tos --email {{ user_email }} --keep-until-expiring --domain {{ domain_name }} --domain www.{{ domain_name }}"
 
 - name: Check if Diffie-Hellman key exchange parameters exist
   become: yes
