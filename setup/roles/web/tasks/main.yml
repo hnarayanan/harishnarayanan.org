@@ -100,3 +100,11 @@
   with_items:
     - { rule: 'allow', port: '80', proto: 'tcp' }
     - { rule: 'allow', port: '443', proto: 'tcp' }
+
+- name: Add a cron job to renew certificates when close to expiry
+  become: yes
+  cron:
+    name: Renew certificates using certbot
+    job: "certbot renew --quiet"
+    minute: 15
+    hour: 6
