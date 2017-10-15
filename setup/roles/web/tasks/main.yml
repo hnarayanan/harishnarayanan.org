@@ -73,7 +73,7 @@
 
 - name: Create a folder to house the site content
   file:
-    path: "/home/{{ remote_user_name }}/{{ domain_name }}"
+    path: "{{ content_dir }}/{{ domain_name }}"
     state: directory
 
 - name: Setup this website as one of the available nginx sites

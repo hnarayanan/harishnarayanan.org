@@ -1,2 +1,2 @@
 ---
-root_dir: "/home/{{ remote_user_name }}"
+content_dir: "/home/{{ remote_user_name }}"
