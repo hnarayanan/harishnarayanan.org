@@ -1318,7 +1318,7 @@ width = 512
 
 content_image_path = 'images/hugo.jpg'
 content_image = Image.open(content_image_path)
-content_image = content_image.resize((height, width))
+content_image = content_image.resize((width, height))
 content_image
 ```
 
@@ -1327,7 +1327,7 @@ content_image
 ```python
 style_image_path = 'images/styles/wave.jpg'
 style_image = Image.open(style_image_path)
-style_image = style_image.resize((height, width))
+style_image = style_image.resize((width, height))
 style_image
 ```
 
