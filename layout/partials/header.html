@@ -14,7 +14,54 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+      body {
+      font-family: Georgia;
+      // background-color: #f9d29d;
+      // background-image: linear-gradient(315deg, #f9d29d 0%, #ffd8cb 74%);
+      background-color: #ffcfdf;
+      background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+      //background-color: #feae96;
+      //background-image: linear-gradient(315deg, #feae96 0%, #fe0944 74%);
+      }
+
+      img {
+      width: 100%;
+      }
+
+      p {
+      background-color: #ff0;
+      }
+
+      .pure-g {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+//  grid-gap: 20px;
+      }
+
+      .blah
+      {
+      grid-column: 1 / span 2;
+      transform: rotate(5deg);
+  background-color: pink;
+      }
+
+      .bluh
+      {
+      grid-column: 2 / span 2;
+            transform: rotate(-20deg);
+      }
+
+      .container {
+      max-width: 960px;
+      margin: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+
+    </style>
     {{- if .Params.includes_code }}
     <link rel="stylesheet" href="/styles/highlight.css">
     {{- end }}

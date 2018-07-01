@@ -13,10 +13,10 @@ description: Dr. Harish Narayanan is a London-based applied mathematician, compu
   <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs pure-hidden-sm pure-hidden-md pure-hidden-lg">
     <img class="pure-img" src="/images/photos/harish-martina-malaysia.jpg" alt="Harish on vacation">
   </div>
-  <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs pure-hidden-sm pure-hidden-md pure-hidden-lg">
+  <div class="blah pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs pure-hidden-sm pure-hidden-md pure-hidden-lg">
     <img class="pure-img" src="/images/photos/harish-varun-anju-wedding.jpg" alt="Harish at a wedding">
   </div>
-  <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs">
+  <div class="bluh pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs">
     <img class="pure-img" src="/images/photos/harish-sleeping.jpg" alt="Harish taking a nap">
   </div>
   <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs">
