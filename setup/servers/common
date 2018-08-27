@@ -1,0 +1,7 @@
+[webserver]
+common ansible_ssh_user=ubuntu
+
+[all:vars]
+remote_user_name = ubuntu
+user_name = "Harish Narayanan"
+user_email = hnarayanan@gmail.com
