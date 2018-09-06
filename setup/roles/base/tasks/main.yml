@@ -45,7 +45,7 @@
     cache_valid_time=3600
   with_items:
     - fail2ban
-    - emacs24-nox
+    - emacs25-nox
     - htop
     - tree
     - git

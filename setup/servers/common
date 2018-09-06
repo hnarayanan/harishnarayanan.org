@@ -1,8 +1,5 @@
-[encryption]
-harishnarayanan.org ansible_ssh_user=ubuntu
-
 [webserver]
-harishnarayanan.org ansible_ssh_user=ubuntu
+common ansible_ssh_user=ubuntu
 
 [all:vars]
 remote_user_name = ubuntu
