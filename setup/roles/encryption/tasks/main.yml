@@ -29,7 +29,7 @@
     "openssl dhparam -out {{ certificate_dir }}/dhparam.pem 4096"
   when: dhparam.stat.exists == False
 
-  - name: Add a cron job to renew certificates when close to expiry
+- name: Add a cron job to renew certificates when close to expiry
   become: yes
   cron:
     name: Renew certificates using certbot
