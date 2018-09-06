@@ -1,0 +1,38 @@
+---
+- name: Add a custom repository for certbot
+  become: yes
+  apt_repository:
+    repo='ppa:certbot/certbot'
+    state=present
+
+- name: Install certbot
+  become: yes
+  apt:
+    name=python-certbot-nginx
+    state=latest
+    update_cache=yes
+
+- name: Generate certificates to enable HTTPS
+  become: yes
+  command:
+    "certbot certonly --nginx --non-interactive --agree-tos --email {{ user_email }} --keep-until-expiring --domain {{ domain_name }} --domain www.{{ domain_name }}"
+
+- name: Check if Diffie-Hellman key exchange parameters exist
+  become: yes
+  stat:
+    path: "{{ certificate_dir }}/dhparam.pem"
+  register: dhparam
+
+- name: Create parameters for Diffie-Hellman key exchange
+  become: yes
+  command:
+    "openssl dhparam -out {{ certificate_dir }}/dhparam.pem 4096"
+  when: dhparam.stat.exists == False
+
+  - name: Add a cron job to renew certificates when close to expiry
+  become: yes
+  cron:
+    name: Renew certificates using certbot
+    job: "certbot renew --quiet"
+    minute: 15
+    hour: 6
