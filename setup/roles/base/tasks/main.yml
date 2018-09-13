@@ -64,11 +64,8 @@
 - name: Configure base firewall rule to allow SSH
   become: yes
   ufw:
-    rule={{ item.rule }}
-    port={{ item.port }}
-    proto={{ item.proto }}
-  with_items:
-    - { rule: 'limit', port: '22', proto: 'tcp' }
+    rule: limit
+    name: OpenSSH
 
 - name: Enable firewall logging
   become: yes
