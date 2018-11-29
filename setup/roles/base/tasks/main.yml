@@ -39,18 +39,17 @@
 - name: Install common base packages
   become: yes
   apt:
-    name={{ item }}
-    state=latest
-    update_cache=yes
-    cache_valid_time=3600
-  with_items:
-    - fail2ban
-    - emacs25-nox
-    - htop
-    - tree
-    - git
-    - screen
-    - ufw
+    name:
+      - fail2ban
+      - emacs25-nox
+      - htop
+      - tree
+      - git
+      - screen
+      - ufw
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Configure default firewall rules
   become: yes
