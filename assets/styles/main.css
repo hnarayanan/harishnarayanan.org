@@ -1590,9 +1590,6 @@ iframe {
     display: block;
 }
 
-/* base16-atelier-cave
-base16-atelier-plateau
-base16-eighties */
 @media (prefers-color-scheme: dark) {
   body {
       color: #cccccc;
@@ -1603,11 +1600,26 @@ base16-eighties */
       color: #f99157;
   }
 
+  .navbar {
+      border-bottom: 1px solid #666;
+  }
+
   .navbar-link {
       color: #f99157;
+  }
+
+  .mainfooter {
+      border-top: 1px solid #666;
   }
 
   .mainfooter a {
       color: #f99157;
   }
 }
+
+
+/* Inspiration:
+base16-atelier-cave
+base16-atelier-plateau
+base16-eighties
+*/
