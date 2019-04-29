@@ -1600,6 +1600,14 @@ iframe {
       color: #f99157;
   }
 
+  h3.portfolio a {
+      color: #cccccc;
+  }
+
+  h2 a {
+      color: #cccccc;
+  }
+
   .navbar {
       border-bottom: 1px solid #666;
   }
