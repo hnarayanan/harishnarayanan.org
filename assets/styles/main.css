@@ -44,6 +44,7 @@
 :root {
     --body-background-color: #fcf9f4;
     --body-color: #2d2b27;
+    --body-color-meta: #9eabb3;
     --link-color: #c6531a;
     --link-hover-color: #823711;
     --line-color: #eeeeee;
@@ -57,6 +58,7 @@
     :root {
         --body-background-color: #292424;
         --body-color: #f4ecec;
+        --body-color-meta: #8a8585;
         --link-color: #b45a3c;
         --link-hover-color: #c6531a;
         --line-color: #5f5555;
@@ -1390,7 +1392,7 @@ th,
 td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid var(--code-border-color);
 }
 
 th:first-child,
@@ -1519,7 +1521,7 @@ hr {
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     font-size: 1.4rem;
     line-height: 2.2rem;
-    color: #9EABB3;
+    color: var(--body-color-meta);
 }
 
 .post-date {
@@ -1549,7 +1551,7 @@ hr {
 }
 
 .mainfooter a:hover {
-    color: #823711;
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
