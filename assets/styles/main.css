@@ -21,6 +21,7 @@
 
 /* Table of contents
 ------------------------------------------------------------------------
+- Variable Definitions
 - Container
 - Grid
 - Spacing
@@ -37,6 +38,30 @@
 - Navbar
 - Post
 */
+
+/* Variable Definitions
+------------------------------------------------------------------------ */
+:root {
+    --body-background-color: #fcf9f4;
+    --body-color: #2d2b27;
+    --link-color: #c6531a;
+    --link-hover-color: #823711;
+    --line-color: #eeeeee;
+    --navbar-link-color: #222222;
+    --footer-link-color: #222222;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-background-color: #2d2d2d;
+        --body-color: #cccccc;
+        --link-color: #f99157;
+        --link-hover-color: #f99157;
+        --line-color: #666666;
+        --navbar-link-color: #f99157;
+        --footer-link-color: #f99157;
+    }
+}
 
 /* Container
 ------------------------------------------------------------------------ */
@@ -1211,8 +1236,8 @@ body {
     font-size: 1.8em;
     font-weight: 400;
     line-height: 1.6;
-    color: #2D2B27;
-    background-color: #fcf9f4;
+    color: var(--body-color);
+    background-color: var(--body-background-color);
 }
 
 /* Typography
@@ -1295,12 +1320,12 @@ figcaption {
 ------------------------------------------------------------------------ */
 
 a {
-    color: #c6531a;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
-    color: #823711;
+    color: (--link-hover-color);
     text-decoration: underline;
 }
 
@@ -1413,7 +1438,7 @@ hr {
   margin-top: 0rem;
   margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--line-color);
 }
 
 .container:after {
@@ -1429,7 +1454,7 @@ hr {
     width: 100%;
     height: 6.5rem;
     z-index: 99;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line-color);
 }
 
 .navbar-list {
@@ -1451,7 +1476,7 @@ hr {
     margin-right: 10px;
     text-decoration: none;
     line-height: 6.5rem;
-    color: #222;
+    color: var(--navbar-link-color);
 }
 
 .navbar-link.active {
@@ -1507,7 +1532,7 @@ hr {
     font-weight: 400;
     letter-spacing: .2rem;
     color: #222;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--line-color);
     line-height: 6.5rem;
 }
 
@@ -1550,11 +1575,11 @@ code.hljs {
 }
 
 h3.portfolio a {
-    color: #2D2B27;
+    color: var(--body-color);
 }
 
 h2 a {
-    color: #2D2B27;
+    color: var(--body-color);
 }
 
 h2 a:hover {
@@ -1589,45 +1614,3 @@ iframe {
     height: auto;
     display: block;
 }
-
-@media (prefers-color-scheme: dark) {
-  body {
-      color: #cccccc;
-      background-color:  #2d2d2d;
-  }
-
-  a, a:hover {
-      color: #f99157;
-  }
-
-  h3.portfolio a {
-      color: #cccccc;
-  }
-
-  h2 a {
-      color: #cccccc;
-  }
-
-  .navbar {
-      border-bottom: 1px solid #666;
-  }
-
-  .navbar-link {
-      color: #f99157;
-  }
-
-  .mainfooter {
-      border-top: 1px solid #666;
-  }
-
-  .mainfooter a {
-      color: #f99157;
-  }
-}
-
-
-/* Inspiration:
-base16-atelier-cave
-base16-atelier-plateau
-base16-eighties
-*/
