@@ -21,7 +21,7 @@
 
 /* Table of contents
 ------------------------------------------------------------------------
-- Variable Definitions
+- Variables
 - Container
 - Grid
 - Spacing
@@ -39,7 +39,7 @@
 - Post
 */
 
-/* Variable Definitions
+/* Variables
 ------------------------------------------------------------------------ */
 :root {
     --body-background-color: #fcf9f4;
@@ -47,19 +47,23 @@
     --link-color: #c6531a;
     --link-hover-color: #823711;
     --line-color: #eeeeee;
-    --navbar-link-color: #222222;
-    --footer-link-color: #222222;
+    --navbar-link-color: #2d2b27;
+    --footer-link-color: #2d2b27;
+    --code-background-color: #f1f1f1;
+    --code-border-color: #e1e1e1;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --body-background-color: #2d2d2d;
-        --body-color: #cccccc;
-        --link-color: #f99157;
-        --link-hover-color: #f99157;
-        --line-color: #666666;
-        --navbar-link-color: #f99157;
-        --footer-link-color: #f99157;
+        --body-background-color: #292424;
+        --body-color: #f4ecec;
+        --link-color: #b45a3c;
+        --link-hover-color: #c6531a;
+        --line-color: #5f5555;
+        --navbar-link-color: #f4ecec;
+        --footer-link-color: #f4ecec;
+        --code-background-color: #585050;
+        --code-border-color: #7e7777;
     }
 }
 
@@ -1325,7 +1329,7 @@ a {
 }
 
 a:hover {
-    color: (--link-hover-color);
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -1363,8 +1367,8 @@ code {
     margin: 0 .2rem;
     font-size: 90%;
     white-space: nowrap;
-    background: #F1F1F1;
-    border: 1px solid #E1E1E1;
+    background: var(--code-background-color);
+    border: 1px solid var(--code-border-color);
     border-radius: 4px;
 }
 
@@ -1531,7 +1535,7 @@ hr {
     font-size: 12px;
     font-weight: 400;
     letter-spacing: .2rem;
-    color: #222;
+    color: var(--footer-link-color);
     border-top: 1px solid var(--line-color);
     line-height: 6.5rem;
 }
@@ -1541,7 +1545,7 @@ hr {
 }
 
 .mainfooter a {
-    color: #222;
+    color: var(--footer-link-color);
 }
 
 .mainfooter a:hover {
