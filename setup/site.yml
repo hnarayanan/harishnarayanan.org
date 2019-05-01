@@ -4,6 +4,13 @@
   roles:
     - base
 
+- name: "Setup certificates for transport layer security"
+  hosts: encryption
+  vars:
+    domain_name: harishnarayanan.org
+  roles:
+    - encryption
+
 - name: "Configure and deploy web server"
   hosts: webserver
   vars:

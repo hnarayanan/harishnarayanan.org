@@ -1,3 +1,6 @@
+[encryption]
+harishnarayanan.org ansible_ssh_user=ubuntu
+
 [webserver]
 harishnarayanan.org ansible_ssh_user=ubuntu
 
