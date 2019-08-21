@@ -1,5 +1,5 @@
 /*
-* Copyright 2017, Harish Narayanan
+* Copyright 2019, Harish Narayanan
 * https://harishnarayanan.org
 *
 * The following is mostly a Frankenstein merge of ideas and code from:
@@ -21,6 +21,7 @@
 
 /* Table of contents
 ------------------------------------------------------------------------
+- Variables
 - Container
 - Grid
 - Spacing
@@ -37,6 +38,37 @@
 - Navbar
 - Post
 */
+
+/* Variables
+------------------------------------------------------------------------ */
+:root {
+    color-scheme: light dark;
+    --body-background-color: #fcf9f4;
+    --body-color: #2d2b27;
+    --body-color-meta: #9eabb3;
+    --link-color: #c6531a;
+    --link-hover-color: #823711;
+    --line-color: #eeeeee;
+    --navbar-link-color: #2d2b27;
+    --footer-link-color: #2d2b27;
+    --code-background-color: #f1f1f1;
+    --code-border-color: #e1e1e1;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-background-color: #2d2d2d;
+        --body-color: #cccccc;
+        --body-color-meta: #999999;
+        --link-color: #66cccc;
+        --link-hover-color: #40bfbf;
+        --line-color: #515151;
+        --navbar-link-color: #f4ecec;
+        --footer-link-color: #f4ecec;
+        --code-background-color: #393939;
+        --code-border-color: #515151;
+    }
+}
 
 /* Container
 ------------------------------------------------------------------------ */
@@ -1211,8 +1243,8 @@ body {
     font-size: 1.8em;
     font-weight: 400;
     line-height: 1.6;
-    color: #2D2B27;
-    background-color: #fcf9f4;
+    color: var(--body-color);
+    background-color: var(--body-background-color);
 }
 
 /* Typography
@@ -1295,12 +1327,12 @@ figcaption {
 ------------------------------------------------------------------------ */
 
 a {
-    color: #c6531a;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
-    color: #823711;
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -1338,8 +1370,8 @@ code {
     margin: 0 .2rem;
     font-size: 90%;
     white-space: nowrap;
-    background: #F1F1F1;
-    border: 1px solid #E1E1E1;
+    background: var(--code-background-color);
+    border: 1px solid var(--code-border-color);
     border-radius: 4px;
 }
 
@@ -1361,7 +1393,7 @@ th,
 td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid var(--code-border-color);
 }
 
 th:first-child,
@@ -1413,7 +1445,7 @@ hr {
   margin-top: 0rem;
   margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--line-color);
 }
 
 .container:after {
@@ -1428,9 +1460,8 @@ hr {
     display: block;
     width: 100%;
     height: 6.5rem;
-    background: #fcf9f4;
     z-index: 99;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line-color);
 }
 
 .navbar-list {
@@ -1452,7 +1483,7 @@ hr {
     margin-right: 10px;
     text-decoration: none;
     line-height: 6.5rem;
-    color: #222;
+    color: var(--navbar-link-color);
 }
 
 .navbar-link.active {
@@ -1491,7 +1522,7 @@ hr {
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     font-size: 1.4rem;
     line-height: 2.2rem;
-    color: #9EABB3;
+    color: var(--body-color-meta);
 }
 
 .post-date {
@@ -1507,8 +1538,8 @@ hr {
     font-size: 12px;
     font-weight: 400;
     letter-spacing: .2rem;
-    color: #222;
-    border-top: 1px solid #eee;
+    color: var(--footer-link-color);
+    border-top: 1px solid var(--line-color);
     line-height: 6.5rem;
 }
 
@@ -1517,11 +1548,11 @@ hr {
 }
 
 .mainfooter a {
-    color: #222;
+    color: var(--footer-link-color);
 }
 
 .mainfooter a:hover {
-    color: #823711;
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -1551,11 +1582,11 @@ code.hljs {
 }
 
 h3.portfolio a {
-    color: #2D2B27;
+    color: var(--body-color);
 }
 
 h2 a {
-    color: #2D2B27;
+    color: var(--body-color);
 }
 
 h2 a:hover {

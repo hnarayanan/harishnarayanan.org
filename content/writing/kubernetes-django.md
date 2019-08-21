@@ -564,11 +564,11 @@ Kubernetes — [Part 1][kubernetes-rails-1], [Part
 [linux-containers]:
 https://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-and-more/
 [docker]: https://www.docker.com/
-[docker-containers]: https://www.docker.com/what-docker
-[kubernetes]: http://kubernetes.io
-[kubernetes-intro]: http://kubernetes.io/docs/whatisk8s/
+[docker-containers]: https://www.docker.com/why-docker
+[kubernetes]: https://kubernetes.io
+[kubernetes-intro]:  https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
 [django]: https://www.djangoproject.com
-[kubernetes-api]: http://kubernetes.io/kubernetes/third_party/swagger-ui/
+[kubernetes-api]: https://kubernetes.io/docs/reference/
 [gcp-scalable-webapps]: https://cloud.google.com/solutions/scalable-and-resilient-apps
 [kubernetes-rails-1]: http://www.thagomizer.com/blog/2015/05/12/basic-docker-rails-app.html
 [kubernetes-rails-2]: http://www.thagomizer.com/blog/2015/07/01/kubernetes-and-deploying-to-google-container-engine.html
@@ -579,16 +579,15 @@ https://aucouranton.com/2014/06/13/linux-containers-parallels-lxc-openvz-docker-
 [django-container]: http://michal.karzynski.pl/blog/2015/04/19/packaging-django-applications-as-docker-container-images/
 [digital-ocean-referral]: https://m.do.co/c/e3559ea013de
 [static-binaries]: https://en.wikipedia.org/wiki/Static_library
-[borg-omega-kubernetes]: http://queue.acm.org/detail.cfm?id=2898444
-[edgefolio]: https://edgefolio.com/company/
+[borg-omega-kubernetes]: https://queue.acm.org/detail.cfm?id=2898444
+[edgefolio]: https://edgefolio.com/about/
 [ansible]: https://www.ansible.com
-[kubernetes-postgres]: https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes/
+[kubernetes-postgres]: https://blog.oestrich.org/2015/08/running-postgres-inside-kubernetes
 [docker-install]: https://docs.docker.com/engine/installation/
-[kubernetes-install]: http://kubernetes.io/docs/getting-started-guides/
+[kubernetes-install]: https://kubernetes.io/docs/setup/
 [example-app]: https://github.com/hnarayanan/kubernetes-django/tree/master/containers/app
 [django-girls-tutorial]: http://tutorial.djangogirls.org
-[kubernetes]: http://kubernetes.io/
-[GKE]: https://cloud.google.com/container-engine/
+[GKE]: https://cloud.google.com/kubernetes-engine/
 [gcp-sdk]: https://cloud.google.com/sdk/
 [issues]: https://github.com/hnarayanan/kubernetes-django/issues
 [kubernetes-django-talk]: https://www.youtube.com/watch?v=HKKUgWuIZro

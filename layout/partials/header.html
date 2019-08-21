@@ -11,7 +11,8 @@
     <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}">
     <meta name="author" content="Harish Narayanan">
 
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="/styles/normalize.css">
     <link rel="stylesheet" href="/styles/main.css">
     {{- if .Params.includes_code }}
@@ -25,9 +26,11 @@
       <nav class="navbar">
         <div class="container">
           <ul class="navbar-list">
-            <li class="navbar-item"><a class="navbar-link{{ if eq .URL "/writing/" }} active{{ end }}" href="/writing/">Learn</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .URL "/projects/" }} active{{ end }}" href="/projects/">Apply</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .URL "/research/" }} active{{ end }}" href="/research/">Discuss</a></li>
+            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/" }} active{{ end }}" href="/">About</a></li>
+            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/writing/" }} active{{ end }}" href="/writing/">Writing</a></li>
+            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/projects/" }} active{{ end }}" href="/projects/">Projects</a></li>
+            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/research/" }} active{{ end }}" href="/research/">Research</a></li>
+            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/photos/" }} active{{ end }}" href="/photos/">Photos</a></li>
           </ul>
         </div>
       </nav>

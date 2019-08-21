@@ -16,4 +16,4 @@ free to sample [some entries from my personal
 journal][personal-journal-featured].
 
 [academic-writing]: /research/#writing
-[personal-journal-featured]: http://emphaticallystatic.org/featured/
+[personal-journal-featured]: https://emphaticallystatic.org/featured/
