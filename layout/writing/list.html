@@ -7,8 +7,8 @@
   <!-- TODO: Incorporate twitter feed somehow? -->
 
   <h1 id="main-description">Theory ⋂ Practice</h1>
-  <p>I’m usually playing with a handful of technologies at any given time. At the moment these include Kubernetes, TensorFlow, Go, Swift and Scheme. The articles below are an attempt to share some of the insights I’ve gathered along the way. They each contain a healthy mix of theoretical background and practical examples.</p>
-  <p>If you’re looking for my more formal writing on computational science, head on over to the <a href="/research/#writing">relevant section of the research page</a>. Or if that’s not your cup of tea, do feel free to sample <a href="http://emphaticallystatic.org/featured/">some entries from my personal journal</a>!</p>
+
+  {{ .Content }}
 
   {{ range .Data.Pages }}
   {{ .Render "summary"}}

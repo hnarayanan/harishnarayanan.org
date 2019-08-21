@@ -1,16 +1,4 @@
 ---
-- name: Import the GPG key for a custom nginx repository
-  become: yes
-  apt_key:
-    url=http://nginx.org/keys/nginx_signing.key
-    state=present
-
-- name: Add a custom repository for nginx
-  become: yes
-  apt_repository:
-    repo='deb http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx'
-    state=present
-
 - name: Install nginx
   become: yes
   apt:
@@ -25,39 +13,16 @@
     dest=/etc/nginx/nginx.conf
   notify: restart nginx
 
-- name: Create a directory to store SSL files
+- name: Delete the default website enabled by nginx
   become: yes
   file:
-    path=/etc/nginx/ssl
-    state=directory
-
-- name: Copy over SSL files
-  become: yes
-  copy:
-    src={{ item }}
-    dest=/etc/nginx/ssl/
-  with_fileglob:
-    - ssl/*
-
-- name: Setup the folders to hold site-specific nginx configuration
-  become: yes
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - /etc/nginx/sites-available
-    - /etc/nginx/sites-enabled
+    path: /etc/nginx/sites-enabled/default
+    state: absent
   notify: restart nginx
 
-- name: Configure nginx to start on boot
-  become: yes
-  service:
-    name=nginx
-    enabled=yes
-
-- name: Create a folder to house the site content
+- name: Create a folder to house the website content
   file:
-    path: "/home/{{ remote_user_name }}/{{ domain_name }}"
+    path: "{{ content_dir }}/{{ domain_name }}"
     state: directory
 
 - name: Setup this website as one of the available nginx sites
@@ -78,9 +43,11 @@
 - name: Configure firewall rules to allow HTTP(S)
   become: yes
   ufw:
-    rule={{ item.rule }}
-    port={{ item.port }}
-    proto={{ item.proto }}
-  with_items:
-    - { rule: 'allow', port: '80', proto: 'tcp' }
-    - { rule: 'allow', port: '443', proto: 'tcp' }
+    rule: allow
+    name: Nginx Full
+
+- name: Enable the nginx service
+  become: yes
+  service:
+    name=nginx
+    enabled=yes
