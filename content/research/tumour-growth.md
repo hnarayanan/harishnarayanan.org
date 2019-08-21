@@ -11,7 +11,7 @@ end_date: 2010
 
 Cancer is a collective term for a class of diseases that are a leading
 cause of death worldwide. The [World Health Organization
-reports](http://www.who.int/mediacentre/factsheets/fs297/en/) that in
+reports](https://www.who.int/en/news-room/fact-sheets/detail/cancer) that in
 2008 alone, 7.6 million deaths (about 13% of all deaths worldwide)
 were the result of various kinds of cancerous tumours. The development
 of a tumour is a complex phenomenon whose immediate cause is that some
@@ -27,7 +27,7 @@ in physical and mathematical terms allows them to be carefully studied
 through computer simulation. This research considers the tumour scale
 in the interest of eventually developing a system-level understanding
 of the progression of cancer. Starting with our broad [continuum
-physical model](http://localhost/research/continuum-biophysics/) for
+physical model](/research/continuum-biophysics/) for
 studying the growth and remodelling of biological tissue, we have
 developed an initial model [tuned to the bio-chemo-mechanics of tumour
 growth](http://dx.doi.org/10.1088/0953-8984/22/19/194122).
