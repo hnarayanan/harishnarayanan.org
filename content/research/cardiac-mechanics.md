@@ -51,6 +51,6 @@ coupled active response of the myocardium.
 The work-in-progress Python code for this effort is [available under
 the GPL](https://github.com/hnarayanan/cardiac-mechanics).
 
-[HolzapfelOgden2009]: http://rsta.royalsocietypublishing.org/content/367/1902/3445
-[AmbrosiPezzuto2011]: http://mox.polimi.it/~ambrosi/Papers/jelast.pdf
-[Riceetal2008]: http://www.ncbi.nlm.nih.gov/pubmed/18234826
+[HolzapfelOgden2009]: https://royalsocietypublishing.org/doi/full/10.1098/rsta.2009.0091
+[AmbrosiPezzuto2011]: http://calvino.polito.it/~ambrosi/Papers/jelast.pdf
+[Riceetal2008]: https://www.ncbi.nlm.nih.gov/pubmed/18234826

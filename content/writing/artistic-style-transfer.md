@@ -1318,7 +1318,7 @@ width = 512
 
 content_image_path = 'images/hugo.jpg'
 content_image = Image.open(content_image_path)
-content_image = content_image.resize((height, width))
+content_image = content_image.resize((width, height))
 content_image
 ```
 
@@ -1327,7 +1327,7 @@ content_image
 ```python
 style_image_path = 'images/styles/wave.jpg'
 style_image = Image.open(style_image_path)
-style_image = style_image.resize((height, width))
+style_image = style_image.resize((width, height))
 style_image
 ```
 
@@ -1594,7 +1594,7 @@ Now we're back on simpler ground.
 If you were to solve the optimisation problem with only the two loss
 terms we've introduced so far (style and content), you'll find that
 the output is quite noisy. We thus add another term, called the [total
-variation loss](http://arxiv.org/abs/1412.0035) (a regularisation
+variation loss](https://arxiv.org/abs/1412.0035) (a regularisation
 term) that encourages spatial smoothness.
 
 You can experiment with reducing the `total_variation_weight` and play
@@ -1950,7 +1950,7 @@ on the back.
 [section-image-classification-problem]: #the-image-classification-problem
 [section-convnets]: #and-finally-convolutional-neural-networks
 [section-neural-style-algorithm]: #returning-to-the-style-transfer-problem
-[section-neural-style-implementation]: #concrete-implementation-of-the-artistic-style-transfer-algorithm
+[section-neural-style-implementation]: #notebook-6-concrete-implementation-of-the-artistic-style-transfer-algorithm
 [notebooks]: https://github.com/hnarayanan/artistic-style-transfer
 [notebook-1]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/1_Linear_Image_Classifier.ipynb
 [notebook-2]: https://github.com/hnarayanan/artistic-style-transfer/blob/master/notebooks/2_Neural_Network-based_Image_Classifier-1.ipynb
@@ -1980,7 +1980,7 @@ on the back.
 [tensorflow-tutorial-cnn]: https://www.tensorflow.org/tutorials/deep_cnn
 [tensorflow-tutorial-mnist]: https://www.tensorflow.org/get_started/mnist/beginners
 [tensorflow-tutorial-mnist-pros]: https://www.tensorflow.org/get_started/mnist/pros
-[tensorflow-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/truncated_normal
+[tensorflow-truncated_normal]: https://www.tensorflow.org/api_docs/python/tf/random/truncated_normal
 [tensorflow-playground]: http://playground.tensorflow.org/
 [keras]: https://keras.io
 [keras-mnist-web]: https://transcranial.github.io/keras-js/#/mnist-cnn
@@ -1988,14 +1988,14 @@ on the back.
 [keras-applications]: https://github.com/fchollet/keras/tree/master/keras/applications
 [keras-tensorflow]: https://blog.keras.io/keras-as-a-simplified-interface-to-tensorflow-tutorial.html
 [keras-in-tensorflow]: https://www.youtube.com/watch?v=UeheTiBJ0Io
-[prisma]: http://prisma-ai.com
-[edtaonisl]: http://www.artic.edu/aic/collections/artwork/80062
+[prisma]: https://prisma-ai.com
+[edtaonisl]: https://www.artic.edu/artworks/80062/edtaonisl-ecclesiastic
 [imagenet]: http://image-net.org
 [imagenet-ilsvrc-2014]: http://image-net.org/challenges/LSVRC/2014/results
 [mnist-dataset]: http://yann.lecun.com/exdb/mnist/
 [cross-entropy-reason]: https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/
 [universal-approximation-proof]: http://neuralnetworksanddeeplearning.com/chap4.html
-[perceptron-animation]: https://appliedgo.net/perceptron/#inside-an-artificial-neuron
+[perceptron-animation]: https://appliedgo.net/perceptron/
 [deep-visualization-toolbox]: http://yosinski.com/deepvis
 [deep-learning-book]: http://www.deeplearningbook.org
 [neural-style-demo-project]: https://github.com/hnarayanan/stylist
