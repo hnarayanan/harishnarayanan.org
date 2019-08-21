@@ -42,6 +42,7 @@
 /* Variables
 ------------------------------------------------------------------------ */
 :root {
+    color-scheme: light dark;
     --body-background-color: #fcf9f4;
     --body-color: #2d2b27;
     --body-color-meta: #9eabb3;
@@ -56,16 +57,16 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --body-background-color: #292424;
-        --body-color: #f4ecec;
-        --body-color-meta: #8a8585;
-        --link-color: #b45a3c;
-        --link-hover-color: #c6531a;
-        --line-color: #5f5555;
+        --body-background-color: #2d2d2d;
+        --body-color: #cccccc;
+        --body-color-meta: #999999;
+        --link-color: #66cccc;
+        --link-hover-color: #40bfbf;
+        --line-color: #515151;
         --navbar-link-color: #f4ecec;
         --footer-link-color: #f4ecec;
-        --code-background-color: #585050;
-        --code-border-color: #7e7777;
+        --code-background-color: #393939;
+        --code-border-color: #515151;
     }
 }
 
