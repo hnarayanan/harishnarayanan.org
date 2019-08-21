@@ -28,6 +28,6 @@ weekend event where people were offering their skills to make the
 world a better place. And the illustrations above are by Mia
 Skåre. This project was my first foray into web development for a
 non-technical audience, and it was where I first learnt to work with
-[Ruby on Rails](http://rubyonrails.org).
+[Ruby on Rails](https://rubyonrails.org).
 
 It has since morphed into more of a book.

@@ -51,6 +51,6 @@ the University of Cambridge from November 2009 to February 2010\. The
 of human-readable Python sitting atop the [FEniCS Project][fpo]. It is
 released as Free Software under the GNU GPL.
 
-[dealiiexample]: http://www.dealii.org/6.2.1/doxygen/deal.II/step_21.html#plain-Singlecurvingcrackpermeability
+[dealiiexample]: https://www.dealii.org/6.2.1/doxygen/deal.II/step_21.html#Singlecurvingcrackpermeability
 [src]: https://github.com/hnarayanan/porous-flow
-[fpo]: http://fenicsproject.org/
+[fpo]: https://fenicsproject.org/

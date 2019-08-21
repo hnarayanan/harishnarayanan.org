@@ -140,6 +140,6 @@ fluid-solid interaction problems. It is available under the GNU GPL
 from its [project page on launchpad.net][cbctwist].
 
 [cbctwist]: https://launchpad.net/cbc.solve/
-[fenics]: http://fenicsproject.org/
+[fenics]: https://fenicsproject.org/
 [gnufreesw]: http://www.gnu.org/philosophy/free-sw.html
 [hyperelastic]: https://en.wikipedia.org/wiki/Hyperelastic_material
