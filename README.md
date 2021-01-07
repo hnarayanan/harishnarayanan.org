@@ -92,7 +92,7 @@ make checklinks
 
 ## Copyright and license
 
-Copyright (c) 2020 [Harish Narayanan](https://harishnarayanan.org).
+Copyright (c) 2021 [Harish Narayanan](https://harishnarayanan.org).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
