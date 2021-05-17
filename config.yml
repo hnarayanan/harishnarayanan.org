@@ -8,4 +8,8 @@ pluralizeListTitles: false
 staticDir: assets
 taxonomies: false
 title: Harish Narayanan
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 ...
