@@ -7,5 +7,4 @@ description: Fast artistic style transfer with convolutional neural networks.
 category: website
 exterior_link: https://github.com/hnarayanan/stylist
 start_date: 2016
-featured: true
 ---
