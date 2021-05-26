@@ -34,5 +34,5 @@
   cron:
     name: Renew certificates using certbot
     job: "certbot renew --quiet"
-    minute: 15
-    hour: 6
+    minute: "15"
+    hour: "6"
