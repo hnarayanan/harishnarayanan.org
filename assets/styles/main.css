@@ -68,6 +68,10 @@
         --code-background-color: #5a5354;
         --code-border-color: #766b6c;
     }
+
+    img {
+        background-color: #fcf9f4;
+    }
 }
 
 /* Container
