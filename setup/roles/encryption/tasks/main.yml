@@ -1,10 +1,4 @@
 ---
-- name: Add a custom repository for certbot
-  become: yes
-  apt_repository:
-    repo='ppa:certbot/certbot'
-    state=present
-
 - name: Install certbot
   become: yes
   apt:
