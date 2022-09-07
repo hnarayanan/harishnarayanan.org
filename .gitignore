@@ -4,3 +4,4 @@
 /scratch
 /kubernetes
 wget.log
+.hugo_build.lock
