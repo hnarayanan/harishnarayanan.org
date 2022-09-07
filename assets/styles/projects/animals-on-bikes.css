@@ -31,26 +31,32 @@ img {
 
 .image-1 {
     grid-area: image-1;
+    align-self: end;
 }
 
 .image-2 {
     grid-area: image-2;
+    align-self: end;
 }
 
 .image-3 {
     grid-area: image-3;
+    align-self: end;
 }
 
 .image-4 {
     grid-area: image-4;
+    align-self: start;
 }
 
 .image-5 {
     grid-area: image-5;
+    align-self: start;
 }
 
 .image-6 {
     grid-area: image-6;
+    align-self: start;
 }
 
 body {
@@ -63,5 +69,5 @@ body {
       "lp image-1 image-2 image-3 rp"
       "lp image-4 image-5 image-6 rp"
       "ft ft ft ft ft";
-    gap: 42px;
+    gap: 3.9vmin;
 }
