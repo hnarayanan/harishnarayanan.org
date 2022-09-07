@@ -4,19 +4,64 @@
     margin: 0;
 }
 
-body {
-    background-color: #1866DA;
+body, html {
+    height: 100vh;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr repeat(3, 380px) 1fr;
-    grid-template-rows: 1fr repeat(2, 380px) 1fr;
-    gap: 42px;
-    min-height: 100vh;
+header {
+    grid-area: hd;
+}
+
+footer {
+    grid-area: ft;
+ }
+
+.left-padding {
+    grid-area: lp;
+}
+
+.right-padding {
+    grid-area: rp;
 }
 
 img {
-    border: solid 14px #F8E427;
+    border: solid 14px #f8e427;
     width: 100%;
+}
+
+.image-1 {
+    grid-area: image-1;
+}
+
+.image-2 {
+    grid-area: image-2;
+}
+
+.image-3 {
+    grid-area: image-3;
+}
+
+.image-4 {
+    grid-area: image-4;
+}
+
+.image-5 {
+    grid-area: image-5;
+}
+
+.image-6 {
+    grid-area: image-6;
+}
+
+body {
+    background-color: #1866da;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, minmax(256px, 380px)) 1fr;
+    grid-template-rows: 1fr repeat(2, minmax(256px, 380px)) 1fr;
+    grid-template-areas:
+      "hd hd hd hd hd"
+      "lp image-1 image-2 image-3 rp"
+      "lp image-4 image-5 image-6 rp"
+      "ft ft ft ft ft";
+    gap: 42px;
 }
