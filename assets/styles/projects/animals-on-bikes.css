@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #1866DA;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 380px) 1fr;
+    grid-template-rows: 1fr repeat(2, 380px) 1fr;
+    gap: 42px;
+    min-height: 100vh;
+}
+
+img {
+    border: solid 14px #F8E427;
+    width: 100%;
+}
