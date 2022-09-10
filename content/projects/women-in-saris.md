@@ -3,7 +3,7 @@ date: 2022-09-10
 title: Women in Saris
 short_title: Women in Saris
 thumbnail: /images/projects/women-in-saris/women-in-saris.png
-description: A collection of stylised AI-generated pieces
+description: AI-generated cel shaded illustrations of women in saris.
 layout: women-in-saris
 category: art
 start_date: 2022
