@@ -5,10 +5,10 @@
 }
 
 body {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
 }
 
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
