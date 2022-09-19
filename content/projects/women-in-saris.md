@@ -84,7 +84,6 @@ end_date: 2022
 <img src="/images/projects/women-in-saris/grid-0896.png" alt="Stylised image of a woman in a sari">
 <img src="/images/projects/women-in-saris/grid-1131.png" alt="Stylised image of a woman in a sari">
 <img src="/images/projects/women-in-saris/grid-2008.png" alt="Stylised image of a woman in a sari">
-<!-- <img src="/images/projects/women-in-saris/grid-0762.png" alt="Stylised image of a woman in a sari"> -->
 <img src="/images/projects/women-in-saris/grid-2033.png" alt="Stylised image of a woman in a sari">
 <img src="/images/projects/women-in-saris/grid-0344.png" alt="Stylised image of a woman in a sari">
 <!-- <img src="/images/projects/women-in-saris/grid-1996.png" alt="Stylised image of a woman in a sari"> -->
@@ -135,3 +134,23 @@ end_date: 2022
 <img src="/images/projects/women-in-saris/grid-0365.png" alt="Stylised image of a woman in a sari">
 <img src="/images/projects/women-in-saris/grid-0961.png" alt="Stylised image of a woman in a sari">
 <img src="/images/projects/women-in-saris/grid-1814.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2298.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2306.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2406.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2649.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2814.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-0762.png" alt="Stylised image of a woman in a sari">
+<!-- <img src="/images/projects/women-in-saris/grid-1713.png" alt="Stylised image of a woman in a sari"> -->
+<img src="/images/projects/women-in-saris/grid-2794.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2416.png" alt="Stylised image of a woman in a sari">
+<!-- <img src="/images/projects/women-in-saris/grid-2351.png" alt="Stylised image of a woman in a sari"> -->
+<img src="/images/projects/women-in-saris/grid-1540.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2218.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2432.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-1945.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2745.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-1676.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2516.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-1743.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-2196.png" alt="Stylised image of a woman in a sari">
+<img src="/images/projects/women-in-saris/grid-1803.png" alt="Stylised image of a woman in a sari">
