@@ -36,6 +36,6 @@ description: Dr. Harish Narayanan is a London-based applied mathematician, compu
     <p>If this stuff is exciting to you too, do <a href="mailto:mail@harishnarayanan.org">get in touch</a>!</p>
     <p>I’m currently one of the founders at <a href="https://edgefolio.com/">Edgefolio</a>, a startup building effective solutions for different stakeholders in the asset management industry. My everyday work involves defining innovative products, shipping high-quality code, and growing and leading a team. Previously, I was an applied mathematician and computational biologist studying a range of <a href="/research/">interesting problems in biophysics</a>. You can find out more about my professional history on <a href="https://www.linkedin.com/in/drharishnarayanan">LinkedIn</a>.</p>
     <p>In addition to delving into new fields and growing a startup, these past few years have seen me becoming the father of <a href="https://narayanan.co/">two cute baby boys</a>.</p>
-    <p><a href="https://twitter.com/copingbear">Being silly on Twitter</a> is how I cope with the excitement of it all.</p>
+    <p><a href="https://hachyderm.io/@harish">Being silly on Mastodon</a> is how I cope with the excitement of it all.</p>
   </article>
 </div>
