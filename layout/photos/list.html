@@ -1,11 +1,9 @@
 {{ partial "header.html" . }}
 
 <div class="pure-g" id="gallery">
-  {{ $len := len .Data.Pages}}
-  {{ range $index, $element := .Data.Pages }}
-  {{ .Render "summary" }}
+  {{ range .Data.Pages }}
+  {{ .Render "summary"}}
   {{ end }}
 </div>
 
-<!-- TODO: Try to determine the maximum resolution needed for these thumbnail images and resize them appropriately -->
 {{ partial "footer.html" . }}
