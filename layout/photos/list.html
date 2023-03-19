@@ -7,13 +7,13 @@
 
 </div>
 
-<div class="pure-g" id="gallery">
+<div class="pure-g" id="children">
   {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "portrait" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
 
-<div class="pure-g" id="gallery">
+<div class="pure-g" id="pre-children">
   {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "landscape" }}
   {{ .Render "summary" }}
   {{ end }}
