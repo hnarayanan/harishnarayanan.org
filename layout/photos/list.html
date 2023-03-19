@@ -1,11 +1,15 @@
 {{ partial "header.html" . }}
 
 <div class="pure-g" id="gallery">
-  {{ $len := len .Data.Pages}}
-  {{ range $index, $element := .Data.Pages }}
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "portrait" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
 
-<!-- TODO: Try to determine the maximum resolution needed for these thumbnail images and resize them appropriately -->
+<div class="pure-g" id="gallery">
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "landscape" }}
+  {{ .Render "summary" }}
+  {{ end }}
+</div>
+
 {{ partial "footer.html" . }}
