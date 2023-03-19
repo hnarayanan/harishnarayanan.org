@@ -1,13 +1,13 @@
 {{ partial "header.html" . }}
 
 <div class="pure-g" id="gallery">
-  {{ range where .Data.Pages "Params.thumbnail_layout" "==" "portrait" }}
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "portrait" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
 
 <div class="pure-g" id="gallery">
-  {{ range where .Data.Pages "Params.thumbnail_layout" "==" "landscape" }}
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "landscape" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
