@@ -1,8 +1,14 @@
 {{ partial "header.html" . }}
 
 <div class="pure-g" id="gallery">
-  {{ range .Data.Pages }}
-  {{ .Render "summary"}}
+  {{ range where .Data.Pages "Params.thumbnail_layout" "==" "portrait" }}
+  {{ .Render "summary" }}
+  {{ end }}
+</div>
+
+<div class="pure-g" id="gallery">
+  {{ range where .Data.Pages "Params.thumbnail_layout" "==" "landscape" }}
+  {{ .Render "summary" }}
   {{ end }}
 </div>
 
