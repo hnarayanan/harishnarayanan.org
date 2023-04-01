@@ -1,5 +1,5 @@
 all:
-	${HOME}/Applications/hugo
+	hugo
 
 clean:
 	rm -fr public
