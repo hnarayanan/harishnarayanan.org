@@ -3,9 +3,9 @@ title: Photos
 description: Moments from my life.
 ---
 
-As a proud parent, you'll notice that most of the snapshots from the
-past few years are of my adorable kids. But if you keep
-scrolling down, you'll discover a [handful of my personal favorite
+As a proud parent, you'll notice that most of these snapshots from the
+past few years are of my adorable kids. But if you keep scrolling
+down, you'll discover a [handful of my personal favorite
 memories](/photos/#pre-children) from life before I became a father.
 
 These albums are just a peek into my extensive photo collection, which
