@@ -3,13 +3,16 @@ title: Photos
 description: Moments from my life.
 ---
 
-Most of the snapshots you’ll find here from the past few
-years are of my children. [Scroll down a bit further](/photos/#pre-children) and you’ll find a
-small selection of my favourite moments from life before I was a parent.
+As a proud parent, you'll notice that most of the snapshots from the
+past few years are of my adorable kids. But if you keep
+scrolling down, you'll discover a [handful of my personal favorite
+memories](/photos/#pre-children) from life before I became a father.
 
-These albums are just a glimpse into my larger photo collection, which
-you can find scattered across the web on my [personal
+These albums are just a peek into my extensive photo collection, which
+you can find all over the web on [my personal
 journal](https://emphaticallystatic.org/photos/), [family
 blog](https://narayanan.co),
-[Mastodon](https://hachyderm.io/@harish/media) and (previously)
-[Twitter](https://twitter.com/copingbear/media).
+[Mastodon](https://hachyderm.io/@harish/media) and
+[Twitter](https://twitter.com/copingbear/media) (before I took a break
+from it). I hope you enjoy browsing through them and getting to know
+me and my family a bit better!
