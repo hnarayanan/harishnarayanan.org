@@ -1477,11 +1477,13 @@ hr {
 .navbar-list {
     list-style: none;
     margin-bottom: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .navbar-item {
-    position: relative;
-    float: left;
+    display: flex;
     margin-bottom: 0;
 }
 
