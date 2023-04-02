@@ -1,7 +1,80 @@
 ---
 title: Harish Narayanan
 description: Dr. Harish Narayanan is a London-based applied mathematician, computational biologist and maker of fine web applications.
+heading: Hi, I'm Harish!
 ---
+
+I live in London and I am the proud parent of two adorable boys. I'm
+[trained in scientific computing](/research/) and make [beautiful
+things on the web](/projects/) for a living.
+
+I have always loved learning new things. For my day job, I'm one of
+the founders of a fintech startup[^1] called
+[Edgefolio](https://edgefolio.com/). In this context, I think a lot
+about what the *right things* to build are, and growing teams to build
+these things.
+
+Outside this, I am usually working on a handful of projects of
+interest to me.
+
+I'm really passionate about using cutting-edge technology to make a
+positive impact on the world. Right now, I'm working on two projects
+that reflect this passion. The first is called
+[Scancer](https://scancer.org/about/), which is all about making early
+detection of breast cancer more accessible. The second project is
+[HERO Index](http://www.heroindex.io), a platform that helps you
+invest based on your personal values. Both of these projects rely on
+the latest AI[^2] technology to solve problems that were once
+impossible for computers to tackle.
+
+Delving deeper into related tech, I am exploring using neural networks
+to solve differential equations. This is a fast and efficient method
+that can help design and control systems in challenging environments,
+like biomedicine and energy. Though I haven't made much progress yet
+beyond a lot of doodling on paper, I would like to make it my life's
+work.
+
+I'm very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
+tool I made some years ago called
+[Shpotify](https://github.com/hnarayanan/shpotify). Shpotify lets you
+control the music app Spotify from the command line on a Mac. Yes, I
+am a bit of a nerd.
+
+I also love taking photos (who doesn't?) and publish some of it
+online. More recently, I've been toying with AI models to style images
+and generate art. I very much enjoy programmatically generating
+thousands of different variants and hand-selecting a bunch to form a
+collection.
+
+As I get older, I find myself valuing connecting with and
+helping people more and more. Whether it's spending time with my
+children, volunteering, mentoring students, or supporting kids at an
+orphanage in my hometown, I'm always looking for ways to make a
+positive impact.
+
+I've been on a journey of growth and healing since my marriage ended,
+and it's empowered me in so many ways. Now, I'm feeling creative,
+energised, and excited to [find my forever person](/date-me/). ❤️
+
+Wow, we've covered *a lot* of ground. Thank you for sticking around.
+If you'd like to get to know me personally, you can [read 
+more](/date-me/), or even better, let's go on a date! If you think you
+might be intereted in working with me, please do check out [more of my
+projects](/projects/). Either way, please don't hesitate to reach out.
+I'm excited to get to know you too.
+
+
+[^1]: I say "startup," but it's over ten years old now and standing on
+    its own feet! 💫
+[^2]: Convolutional neural networks and large transformer models,
+    respectively.
+[^3]: This tool that I first built in a weekend has like tens of
+    thousands of downloads, whereas my Ph.D. thesis that took 5 years
+    to write has maybe been read by 5 people. *Including me.*
+
+
+
+<!--
 
 <div class="pure-g">
   <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 pure-hidden-xs pure-hidden-sm">
@@ -39,3 +112,4 @@ description: Dr. Harish Narayanan is a London-based applied mathematician, compu
     <p><a href="https://hachyderm.io/@harish">Being silly on Mastodon</a> is how I cope with the excitement of it all.</p>
   </article>
 </div>
+-->

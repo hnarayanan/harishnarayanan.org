@@ -37,6 +37,7 @@
 - Misc
 - Navbar
 - Post
+- Footnotes
 */
 
 /* Variables
@@ -1538,6 +1539,20 @@ hr {
     display: inline-block;
     white-space: nowrap;
 }
+
+/* Footnote
+------------------------------------------------------------------------ */
+
+.footnotes p, .footnotes li {
+    margin-bottom: 0em;
+    font-size: 1.4rem;
+}
+
+.footnotes hr {
+    margin-bottom: 1rem;
+}
+
+
 
 /* TODO: Clean the following up
 ------------------------------------------------------------------------ */
