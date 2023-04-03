@@ -8,6 +8,7 @@ layout: animals-on-bikes
 category: art
 start_date: 2022
 end_date: 2022
+featured: true
 ---
 
 <header></header>

@@ -8,6 +8,7 @@ layout: women-in-saris
 category: art
 start_date: 2022
 end_date: 2022
+featured: true
 ---
 
 <img src="/images/projects/women-in-saris/grid-0761.png" alt="Stylised image of a woman in a sari">
