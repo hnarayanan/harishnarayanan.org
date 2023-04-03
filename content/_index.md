@@ -1,5 +1,5 @@
 ---
-title: Hi, I'm Harish Narayanan
+title: Hi, I'm Harish Narayanan!
 description: Dr. Harish Narayanan is a London-based applied mathematician, computational biologist and maker of fine web applications.
 ---
 
@@ -8,7 +8,27 @@ boys](https://narayanan.co). I'm [trained in scientific
 computing](/research/) and make [beautiful things on the
 web](/projects/) for a living.
 
-## Professionally... 🧑‍💻
+</div>
+
+<div class="pure-g">
+  <div class="pure-u-1-8">
+  </div>
+  <div class="pure-u-1-4" style="margin: 0 8px">
+    <img class="pure-img" src="/images/photos/IMG_4012.jpg" alt="Harish making cupcakes">
+  </div>
+  <div class="pure-u-1-4" style="margin: 0 8px">
+    <img class="pure-img" src="/images/photos/IMG_8439.jpg" alt="Harish making cupcakes">
+  </div>
+  <div class="pure-u-1-4" style="margin: 0 8px">
+    <img class="pure-img" src="/images/photos/IMG_4977.jpg" alt="Harish making cupcakes">
+  </div>
+  <div class="pure-u-1-8">
+  </div>
+</div>
+
+<div class="container">
+
+## A professional perspective
 
 I'm one of the founders of a fintech startup[^1] called
 [Edgefolio](https://edgefolio.com/). In this setting, I spend a lot of
@@ -42,7 +62,7 @@ If any of this stuff is exciting to you too, do check out [more of my
 projects](/projects) and [get in
 touch](mailto:mail@harishnarayanan.org)!
 
-## Personally... 😻
+## A personal glimpse
 
 I'm very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
 tool I made some years ago called
