@@ -1431,6 +1431,10 @@ td:last-child {
     padding: 10px;
 }
 
+.l-gallery {
+    margin-bottom: 1em;
+}
+
 .u-full-width {
     width: 100%;
     box-sizing: border-box;
@@ -1447,6 +1451,12 @@ td:last-child {
 
 .u-pull-left {
     float: left;
+}
+
+@media only screen and (max-width:47.938em) {
+    .l-box {
+        padding: 0px;
+    }
 }
 
 /* Misc
