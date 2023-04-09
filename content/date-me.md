@@ -95,7 +95,8 @@ children. 👨‍👦‍👦 While I'm not sure I have the stamina to raise any 
 biological children at my age, I would absolutely love to support and
 care for any little ones you may already have.
 
-Thank you for taking the time to read through this page! 🤗
+And with that, thank you for taking the time to read through this
+page! 🤗
 
 If you feel that we could be a good match, please [write to
 me](mailto:mail@harishnarayanan.org). While I am searching for a
