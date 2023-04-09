@@ -1,5 +1,5 @@
 ---
-title: Hi, I'm Harish Narayanan!
+title: Hi! I’m Harish Narayanan
 description: Dr. Harish Narayanan is a London-based applied mathematician, computational biologist and maker of fine web applications.
 ---
 
@@ -8,37 +8,20 @@ boys](https://narayanan.co). I'm [trained in scientific
 computing](/research/) and make [beautiful things on the
 web](/projects/) for a living.
 
-</div>
-
-<div class="pure-g">
-  <div class="pure-u-1-8">
-  </div>
-  <div class="pure-u-1-4" style="margin: 0 8px">
-    <img class="pure-img" src="/images/photos/IMG_4012.jpg" alt="Harish making cupcakes">
-  </div>
-  <div class="pure-u-1-4" style="margin: 0 8px">
-    <img class="pure-img" src="/images/photos/IMG_8439.jpg" alt="Harish making cupcakes">
-  </div>
-  <div class="pure-u-1-4" style="margin: 0 8px">
-    <img class="pure-img" src="/images/photos/IMG_4977.jpg" alt="Harish making cupcakes">
-  </div>
-  <div class="pure-u-1-8">
-  </div>
-</div>
-
-<div class="container">
-
 ## A professional perspective
 
 I'm one of the founders of a fintech startup[^1] called
-[Edgefolio](https://edgefolio.com/). In this setting, I spend a lot of
-time thinking about what the *right things* to build are, and growing
+[Edgefolio](https://edgefolio.com/). For my day job, I spend a lot of
+time thinking about what the *right things* to make are, and growing
 teams to build these things.
 
-When I'm not on the job, I'm always eager to [explore new
-possibilities](/projects/). I take on exploratory projects that align
-with my passion for using innovative technologies to make the world a
-better place.
+{{< figure src="/images/projects/edgefolio.png" title="Cutting-edge platform connecting investors and hedge funds.">}}
+
+When I'm not on the job, I take on [exploratory projects](/projects/)
+that align with my passion for using techology to make the world a
+better place. I learn a lot while doing this, and share what I learn
+through [my writing](/writing/), talks and [open source
+projects](https://github.com/hnarayanan).
 
 Right now, I'm working on two projects that reflect this passion. The
 first is called [Scancer](https://scancer.org/about/), which is all
@@ -47,6 +30,8 @@ second project is [HERO Index](http://www.heroindex.io), a platform
 that assists you in investing based on your personal values. Both of
 these projects rely on recent AI[^2] technology to solve problems that
 were once impossible for computers to tackle.
+
+{{< gallery-two src1="/images/projects/scancer.jpg" title1="Accessible breast cancer detection." src2="/images/projects/hero-index-2.png" title2="Investing based on your personal values.">}}
 
 I'm also delving deeper into some fascinating ideas involving using
 neural networks to solve differential equations. It's a highly
@@ -58,23 +43,23 @@ Although I'm still in the early stages and have only been doing a lot
 of doodling on paper, I'm incredibly excited about this work and would
 love to make it my life's focus.
 
-If any of this stuff is exciting to you too, do check out [more of my
-projects](/projects) and [get in
-touch](mailto:mail@harishnarayanan.org)!
-
 ## A personal glimpse
 
-I'm very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
+I love taking photos (who doesn't?) and [publish some of it online](/photos/).
+More recently, I've been toying with AI models to style images and
+generate art. I very much enjoy programmatically generating thousands
+of different variants and hand-selecting a bunch to [form
+collections](/projects/#art).
+
+{{< gallery-two src1="/images/photos/hugo.jpg" title1="Accessible breast cancer detection." src2="/images/projects/women-in-saris/women-in-saris.png" title2="Investing based on your personal values.">}}
+
+I'm also very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
 tool I made some years ago called
 [Shpotify](https://github.com/hnarayanan/shpotify). Shpotify lets you
 control the music app Spotify from the command line on a Mac. Yes, I
 am a bit of a nerd.
 
-I also love taking photos (who doesn't?) and publish some of it
-online. More recently, I've been toying with AI models to style images
-and generate art. I very much enjoy programmatically generating
-thousands of different variants and hand-selecting a bunch to form
-collections.
+{{< figure src="/images/projects/shpotify.png" title="Cutting-edge platform connecting investors and hedge funds.">}}
 
 As I get older, I find myself valuing connecting with and
 helping people more and more. Whether it's spending time with my
@@ -94,7 +79,6 @@ might be intereted in working with me, please do check out [more of my
 projects](/projects/). Either way, please don't hesitate to reach out.
 I'm excited to get to know you too.
 
-
 [^1]: I say "startup," but it's over ten years old now and standing on
     its own feet! 💫
 [^2]: Convolutional neural networks and large transformer models,
@@ -102,3 +86,7 @@ I'm excited to get to know you too.
 [^3]: This tool that I first built in a weekend has like tens of
     thousands of downloads, whereas my Ph.D. thesis that took 5 years
     to write has maybe been read by 5 people. *Including me.*
+
+<!-- If any of this stuff is exciting to you too, do check out [more of my -->
+<!-- projects](/projects) and [get in -->
+<!-- touch](mailto:mail@harishnarayanan.org)! -->
