@@ -100,7 +100,9 @@ love to connect with you.
     thousands of downloads, whereas my Ph.D. thesis that took 5 years
     to write has maybe been read by 5 people. *Including me.*
 [^4]: I was previously active at a [local soup
-    kitchen](https://nextmeal.co.uk) and currently help at an organisation that [helps tackle elder loneliness](https://northlondoncares.org.uk).
+    kitchen](https://nextmeal.co.uk) and currently help at an
+    organisation that [helps tackle elder
+    loneliness](https://northlondoncares.org.uk).
 
 <!-- TODO: Consider adding back: Previously, I was an applied
     mathematician and computational biologist studying a range of
