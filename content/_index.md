@@ -82,7 +82,7 @@ app that fosters community building](https://github.com/textually-app/community)
 creatively charged, energised, and excited about the possibility of
 [finding my forever person](/date-me/). ❤️
 
-### And in conclusion...
+## And in conclusion...
 
 We've covered a lot of ground, haven't we? Thank you for sticking
 around. If you're interested in getting to know me on a personal
