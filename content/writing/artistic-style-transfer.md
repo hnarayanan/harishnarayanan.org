@@ -77,14 +77,14 @@ $\mathbf{x}$) are very close to each other in terms of content, and
 grows as their content deviates. We call this function the *content
 loss*.
 
-{{< figure src="/images/writing/artistic-style-transfer/content-loss.png" title="A schematic of the content loss." extra-class="-half-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/content-loss.png" title="A schematic of the content loss." extra-class="half-width add-background">}}
 
 Let's also suppose that had another function that told us *how close
 in style* two images are to one another. Again, this function grows as
 its two input images ($\mathbf{s}$ and $\mathbf{x}$) tend to deviate
 in style.  We call this function the *style loss*.
 
-{{< figure src="/images/writing/artistic-style-transfer/style-loss.png" title="A schematic of the style loss." extra-class="-half-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/style-loss.png" title="A schematic of the style loss." extra-class="half-width add-background">}}
 
 Suppose we had these two functions, then the style transfer problem is
 easy to state, right? All we need to do is to find an image
@@ -166,7 +166,7 @@ then is to come up with a function that takes as input one of these
 large arrays of numbers, and outputs the correct label from our set of
 categories, e.g. "baby".
 
-{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="-three-fourths-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="three-fourths-width add-background">}}
 
 In fact, instead of just reporting one category name, it would be more
 helpful to get a *confidence score* for each category. This way, we'll
@@ -214,7 +214,7 @@ demonstrated the most success in recent years. Supervised learning is
 now the classic procedure for *learning from data*, and it is outlined
 below in the context of the image classification problem:
 
-{{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." >}}
+{{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." extra-class="add-background" >}}
 
 1. We start with a set of pre-classified example images, which means
 we have a set of images with known labels. This is called the
@@ -313,7 +313,7 @@ bowl in the figure below, and we're trying to find this
 $w_{\mathrm{optimal}}$ where the loss $\mathcal{L}(w)$ is at the
 bottom of the bowl.
 
-{{< figure src="/images/writing/artistic-style-transfer/gradient-descent.png" title="A simplified look at gradient descent." >}}
+{{< figure src="/images/writing/artistic-style-transfer/gradient-descent.png" title="A simplified look at gradient descent." extra-class="add-background" >}}
 
 Since we don't know where this is to begin with, we start with a guess
 at any point $w\_0$. And then we feel around our local neighbourhood
@@ -466,7 +466,7 @@ y_ = tf.placeholder(tf.float32, [None, 10])
 We define our linear model for the score function after introducing
 two of parameters, **W** and **b**.
 
-{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." >}}
+{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." extra-class="add-background" >}}
 
 ```
 W = tf.Variable(tf.zeros([784, 10]))
@@ -538,7 +538,7 @@ space that they're represented in. Meaning you can draw 10 lines
 space, really) with these digits and neatly separate them into
 categories.
 
-{{< figure src="/images/writing/artistic-style-transfer/mnist-tsne.png" title="A t-SNE plot of the MNIST dataset that attempts to represent the digits in a 2D plane while preserving the topology of the data. (Reproduced from Maaten and Hinton, 2008.)" >}}
+{{< figure src="/images/writing/artistic-style-transfer/mnist-tsne.png" title="A t-SNE plot of the MNIST dataset that attempts to represent the digits in a 2D plane while preserving the topology of the data. (Reproduced from Maaten and Hinton, 2008.)" extra-class="add-background" >}}
 
 But if you read the [TensorFlow tutorial][tensorflow-tutorial-mnist]
 that deals with the same dataset, they explicitly point out that:
@@ -577,7 +577,7 @@ network*. In neural network parlance the network shown below is called
 a *two layer network* or a *one hidden layer network*. (We can have as
 many of these hidden layers as we need.)
 
-{{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." extra-class="add-background" >}}
 
 By stacking neurons in this fashion, we can express in a
 straightforward manner the operations performed by the network in
@@ -744,7 +744,7 @@ our classifier, you'd probably point out that this is easy to do by
 adding more layers to our score function (i.e. making our model
 *deeper*). Perhaps something like the following:
 
-{{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." extra-class="add-background" >}}
 
 TODO: Insert somewhere around here the story about using the
 TensorFlow playground to get a feeling for the representative power of
@@ -764,7 +764,7 @@ get-go. Remember that instead of working with the input as $28 \times
 can imagine there is some useful information in pixels sharing
 proximity that's being lost.
 
-{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." extra-class="-three-fourths-width" >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." extra-class="three-fourths-width add-background" >}}
 
 Secondly, the number of parameters we would need to learn grows really
 rapidly as we add more layers. Here are the number of parameters
@@ -1137,7 +1137,7 @@ paper describes how a family of models essentially composed of simple
 layers) managed to perform so well at a range of computer vision
 tasks.
 
-{{< figure src="/images/writing/artistic-style-transfer/vgg-16-architecture.png" title="VGGNet Architectures highlighting the 16-layer variant." >}}
+{{< figure src="/images/writing/artistic-style-transfer/vgg-16-architecture.png" title="VGGNet Architectures highlighting the 16-layer variant." extra-class="add-background" >}}
 
 We're going to first reproduce the 16 layer variant marked in green
 for classification, and in the next notebook we'll see how it can be
@@ -1424,7 +1424,7 @@ don't need the fully-connected layers or the final softmax
 classifier. We only need the part of the model marked in green in the
 table below.
 
-{{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." >}}
+{{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." extra-class="add-background" >}}
 
 It is trivial for us to get access to this truncated model because
 Keras comes with a set of pretrained models, including the VGG16 model

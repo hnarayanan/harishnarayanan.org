@@ -45,6 +45,7 @@
 :root {
     color-scheme: light dark;
     --body-background-color: #fcf9f4;
+    --img-background-color: #fcf9f4;
     --body-color: #2d2b27;
     --body-color-meta: #9eabb3;
     --link-color: #bf5019;
@@ -59,6 +60,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --body-background-color: #242323;
+        --img-background-color: #fcf9f4;
         --body-color: #fbf9f9;
         --body-color-meta: #b9aeac;
         --link-color: #f77c64;
@@ -68,10 +70,6 @@
         --footer-link-color: #fbf9f9;
         --code-background-color: #5a5354;
         --code-border-color: #766b6c;
-    }
-
-    img {
-        background-color: #fcf9f4;
     }
 }
 
@@ -1333,6 +1331,23 @@ figcaption {
     margin-top: .5em;
 }
 
+img.add-background {
+    background-color: #fcf9f4;
+}
+
+img.half-width {
+    max-width: 50%;
+    height: auto;
+    display: block;
+}
+
+img.three-fourths-width {
+    max-width: 75%;
+    height: auto;
+    display: block;
+}
+
+
 /* Links
 ------------------------------------------------------------------------ */
 
@@ -1644,16 +1659,4 @@ h2 a:hover {
 
 iframe {
     border: 0;
-}
-
-.pure-img-half-width {
-    max-width: 50%;
-    height: auto;
-    display: block;
-}
-
-.pure-img-three-fourths-width {
-    max-width: 75%;
-    height: auto;
-    display: block;
 }
