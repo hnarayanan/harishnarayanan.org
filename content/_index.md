@@ -32,7 +32,7 @@ that assists you in investing based on your personal values. Both of
 these projects rely on recent AI[^2] technology to solve problems that
 were once impossible for computers to tackle.
 
-{{< figure-2x src1="/images/projects/scancer.jpg" href1="https://scancer.org/" title1="Accessible breast cancer detection." src2="/images/projects/hero-index-2.png" href2="http://www.heroindex.io/" title2="Investing based on your personal values.">}}
+{{< figure-2x src1="/images/projects/scancer.jpg" href1="https://scancer.org/" title1="Accessible breast cancer detection." src2="/images/projects/hero-index.png" href2="http://www.heroindex.io/" title2="Investing based on your personal values.">}}
 
 I'm also delving deeper into some fascinating ideas involving using
 neural networks to solve differential equations. It's a highly
@@ -61,7 +61,7 @@ tool I made some years ago called
 control the music app Spotify from the command line on a Mac. Oh, you
 could say I'm a bit of a nerd! 🤓
 
-{{< figure src="/images/projects/shpotify.png" href="https://github.com/hnarayanan/shpotify" title="Cutting-edge platform connecting investors and hedge funds.">}}
+{{< figure src="/images/projects/shpotify.png" href="https://github.com/hnarayanan/shpotify" title="A command-line interface for Spotify on a Mac.">}}
 
 As you might be gathering, I've always had a passion for learning and
 creating things, which has given me a sense of purpose. However, as
@@ -79,7 +79,7 @@ since my marriage ended. This experience has empowered me in so many
 ways. I've reignited my love for [journaling on paper](https://hachyderm.io/@harish/110007235998489508) and [writing for
 myself](https://emphaticallystatic.org) on the web. I've even been brainstorming ideas for a [text-based
 app that fosters community building](https://github.com/textually-app/community). Most importantly, I'm feeling
-creatively charged, energized, and excited about the possibility of
+creatively charged, energised, and excited about the possibility of
 [finding my forever person](/date-me/). ❤️
 
 ### And in conclusion...
@@ -102,9 +102,7 @@ love to connect with you.
 [^4]: I was previously active at a [local soup
     kitchen](https://nextmeal.co.uk) and currently help at an organisation that [helps tackle elder loneliness](https://northlondoncares.org.uk).
 
-<!-- Previously, I was an applied mathematician and computational -->
-<!-- biologist studying a range of interesting problems in biophysics. -->
-<!-- You can find out more about my professional history on LinkedIn. -->
-
-<!-- Being silly on Mastodon is how I cope with the excitement of it -->
-<!-- all. -->
+<!-- TODO: Consider adding back: Previously, I was an applied
+    mathematician and computational biologist studying a range of
+    interesting problems in biophysics. You can find out more about my
+    professional history on LinkedIn. -->
