@@ -3,6 +3,7 @@ date: 2008-06-01
 title: Some thoughts on the Navier-Stokes equations
 short_title: Navier-Stokes formulation
 thumbnail: /images/research/navier-stokes/navier-stokes.png
+thumbnail_background: true
 description: Theoretically equivalent formulations aren’t always equal in practice.
 category: curiosity
 start_date: 2008
