@@ -7,5 +7,4 @@ description: Accessible deep learning for breast cancer detection.
 category: website
 exterior_link: https://scancer.org
 start_date: 2021
-featured: true
 ---
