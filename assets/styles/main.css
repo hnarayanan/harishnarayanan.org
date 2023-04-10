@@ -1331,7 +1331,7 @@ figcaption {
 }
 
 img.add-background {
-    background-color: #fcf9f4;
+    background-color: var(--img-background-color);
 }
 
 img.half-width {
