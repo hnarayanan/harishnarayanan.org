@@ -5,12 +5,12 @@ description: Bleep
 
 Hello! Thank you so much for stopping by and getting to know me.
 
-My name is Harish and I'm a 42-year-old man. I live in London with my
-[two adorable young boys](https://narayanan.co) who I care for part
-time. I'm a kind and genuine person with a lot of life experience,
-including a failed marriage. After quite some healing, I feel like I
-am in a good, creative place, and have the enthusiasm to find my
-forever person. ☺️
+My name is Harish and I'm a 42-year-old man. I live in North London
+with my [two adorable young boys](https://narayanan.co) who I care for
+part time. I'm a kind and genuine person with a lot of life
+experience, including a failed marriage. After quite some healing, I
+feel like I am in a good, creative place, and have the enthusiasm to
+find my forever person. ☺️
 
 </div>
 
@@ -56,8 +56,8 @@ struggled with social anxiety and depression in the past, I've made
 significant progress in my personal growth through therapy,
 [journaling](https://hachyderm.io/@harish/110007235998489508) and
 self-reflection. My journey has taught me to be a more compassionate
-and empathetic person, and I'm proud of the kind and gentle individual
-I've become today. 🙏
+and empathetic person, and I'm proud of the individual I've become
+today. 🙏
 
 I've been a lifelong vegetarian 🥕 for cultural reasons, and I tend
 vegan on some days just by happenstance. I believe we would have even
