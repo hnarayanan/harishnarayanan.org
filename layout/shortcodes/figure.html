@@ -1,4 +1,6 @@
 <figure>
+  {{ if .Get "href" }}<a href="{{ .Get "href" }}">{{ end }}
   <img class="pure-img{{ .Get "extra-class" }}" src="{{ .Get "src" }}" alt="{{ .Get "title" }}">
+  {{ if .Get "href" }}</a>{{ end }}
   <figcaption>{{ .Get "title" }}</figcaption>
 </figure>
