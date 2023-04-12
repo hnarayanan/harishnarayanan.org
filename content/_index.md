@@ -53,7 +53,7 @@ art](/projects/#art). I very much enjoy programmatically generating
 thousands of different variants and hand-selecting a bunch to form
 collections.
 
-{{< figure-2x src1="/images/photos/hugo.jpg" href1="/photos/" title1="Photos, mostly of my kids." src2="/images/projects/women-in-saris/women-in-saris.png" href2="/projects/#art" title2="AI-generated illustrations.">}}
+{{< figure-2x src1="/images/photos/hugo.jpg" href1="/photos/" title1="Photos, mostly of my kids." src2="/images/projects/women-in-saris/women-in-saris.png" href2="/projects/women-in-saris/" title2="AI-generated illustrations.">}}
 
 I'm also very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
 tool I made some years ago called
