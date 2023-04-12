@@ -14,7 +14,7 @@ find my forever person. ☺️
 
 </div>
 
-<div class="pure-g" style="margin-bottom: 1em;">
+<div class="pure-g l-box-container-full-width">
   <div class="pure-u-xl-1-8 pure-hidden-md">
   </div>
   <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-u-sm-1-2">
@@ -66,7 +66,7 @@ not a requirement for us to be a good match.
 
 </div>
 
-<div class="pure-g" style="margin-bottom: 1em;">
+<div class="pure-g l-box-container-full-width">
   <div class="pure-u-xl-1-8 pure-hidden-md">
   </div>
   <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-u-sm-1-2">

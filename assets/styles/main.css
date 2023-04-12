@@ -1414,6 +1414,10 @@ td:last-child {
     margin: -10px;
 }
 
+.l-box-container-full-width {
+    margin-bottom: 1em;
+}
+
 .l-box {
     padding: 10px;
 }
@@ -1441,7 +1445,7 @@ td:last-child {
 }
 
 @media only screen and (max-width:47.938em) {
-    .l-box {
+    .l-box-container-full-width .l-box {
         padding: 0px;
     }
 }
