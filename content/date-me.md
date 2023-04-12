@@ -27,7 +27,7 @@ find my forever person. ☺️
         <img class="pure-img" src="/images/date-me/harish-on-his-sofa.jpg" alt="Harish on his sofa">
     </div>
   </div>
-  <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-hidden-sm"">
+  <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-hidden-sm">
     <div class="l-box">
         <img class="pure-img" src="/images/date-me/harish-and-hugo.jpg" alt="Harish and Hugo at a fair">
     </div>
@@ -79,7 +79,7 @@ not a requirement for us to be a good match.
         <img class="pure-img" src="/images/date-me/harish-and-oscar-2.jpg" alt="Harish and Oscar">
     </div>
   </div>
-  <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-hidden-sm"">
+  <div class="pure-u-xl-1-4 pure-u-md-1-3 pure-hidden-sm">
     <div class="l-box">
         <img class="pure-img" src="/images/date-me/harish-at-a-park.jpg" alt="Harish at park">
     </div>
