@@ -19,7 +19,7 @@ create* are, and growing teams to build these things.
 {{< figure src="/images/projects/edgefolio.png" href="https://edgefolio.com/" title="Cutting-edge platform connecting investors and hedge funds.">}}
 
 When I'm not on the job, I take on [exploratory projects](/projects/)
-that align with my passion for using techology to make the world a
+that align with my passion for using technology to make the world a
 better place. I learn a lot while doing this, and share what I learn
 through [my writing](/writing/), talks and [open source
 projects](https://github.com/hnarayanan).
