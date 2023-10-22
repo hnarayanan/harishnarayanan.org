@@ -1,11 +1,11 @@
 ---
 title: Date Me
-description: Bleep
+description: I am excited to get to know you.
 ---
 
 Hello! Thank you so much for stopping by and getting to know me.
 
-My name is Harish and I'm a 42-year-old man. I live in North London
+My name is Harish and I'm a 43-year-old man. I live in North London
 with my [two adorable young boys](https://narayanan.co) who I care for
 part time. I'm a kind and genuine person with a lot of life
 experience, including a failed marriage. After quite some healing, I
