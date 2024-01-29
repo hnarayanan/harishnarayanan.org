@@ -55,8 +55,8 @@ collections.
 
 {{< figure-2x src1="/images/photos/hugo.jpg" href1="/photos/" title1="Photos, mostly of my kids." src2="/images/projects/women-in-saris/women-in-saris.png" href2="/projects/women-in-saris/" title2="AI-generated illustrations.">}}
 
-I'm also very into music (I love to sing! 🎤), and I'm internet famous[^3] for a
-tool I made some years ago called
+I'm also very into music (I love to sing! 🎤), and I'm internet
+famous[^3] for a tool I made some years ago called
 [Shpotify](https://github.com/hnarayanan/shpotify). Shpotify lets you
 control the music app Spotify from the command line on a Mac. Oh, you
 could say I'm a bit of a nerd! 🤓
