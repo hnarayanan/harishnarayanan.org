@@ -5,6 +5,7 @@ harishnarayanan.org ansible_ssh_user=ubuntu
 harishnarayanan.org ansible_ssh_user=ubuntu
 
 [all:vars]
+ansible_python_interpreter=/usr/bin/python3
 remote_user_name = ubuntu
 user_name = "Harish Narayanan"
 user_email = hnarayanan@gmail.com

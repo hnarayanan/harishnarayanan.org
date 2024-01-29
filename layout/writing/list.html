@@ -1,11 +1,6 @@
 {{ partial "header.html" . }}
 <div class="container">
 
-  <!-- TODO: Mark some articles as 'prominent, or 'weight' them heavily so they can be auto-pulled to prominence on this page. -->
-  <!-- TODO: Reintroduce taxonomy and organise articles into subsections when there is more content. -->
-  <!-- TODO: Introduce pagination when there is more content to sift through. -->
-  <!-- TODO: Incorporate twitter feed somehow? -->
-
   <h1 id="main-description">Theory ⋂ Practice</h1>
 
   {{ .Content }}
@@ -14,6 +9,5 @@
   {{ .Render "summary"}}
   {{ end }}
 
-  <!-- TODO: Auto-pull recommended reading list from starred articles on Readability here? -->
 </div>
 {{ partial "footer.html" . }}

@@ -41,7 +41,7 @@
   apt:
     name:
       - fail2ban
-      - emacs25-nox
+      - emacs-nox
       - htop
       - tree
       - git
