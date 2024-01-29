@@ -3,9 +3,10 @@ title: Research
 description: A summary of my academic research spanning continuous field theory, numerical algorithms, and a range of applications in biophysics.
 ---
 
-For the decade prior to becoming an entrepreneur (2002—2012), I
-enjoyed the lifestyle of a curious academic. My research in this
-period was motivated by a range of applications in biophysics, and
-focused on continuum field theory and numerical algorithms. This page
-links to [descriptions of my work](#areas), and serves as a sampling
-of my [scientific writing](#writing) and [talks](#talks).
+Before I became an entrepreneur in 2012, I spent a wonderful decade
+living the life of a curious academic. During that time, I delved deep
+into continuum field theory and numerical algorithms. My focus was on
+applications in biophysics. If you're interested, I've provided some
+links on this page that [showcase my work](#areas), including some of
+my [scientific writing](#writing) and [talks](#talks). Feel free to
+take a look!

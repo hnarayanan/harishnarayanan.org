@@ -52,7 +52,7 @@ Python, and is served up using the Gunicorn application server. And in
 front of all this, you have the NGINX web server acting both as a
 reverse proxy and a static content server.
 
-{{< figure src="/images/writing/kubernetes-django/standard-django-application.svg" title="Layout of a non-trivial Django application." >}}
+{{< figure src="/images/writing/kubernetes-django/standard-django-application.svg" title="Layout of a non-trivial Django application." extra-class="add-background" >}}
 
 When you're first starting out with your app and you only have a
 handful of users, it makes perfect sense to run all these pieces on a
@@ -61,7 +61,7 @@ provider][digital-ocean-referral], fire up a VPS running Debian or
 whatever, and install all these individual bits of software on the
 same machine.
 
-{{< figure src="/images/writing/kubernetes-django/all-in-one-server.svg" title="All pieces making up the app on a single machine." >}}
+{{< figure src="/images/writing/kubernetes-django/all-in-one-server.svg" title="All pieces making up the app on a single machine." extra-class="add-background" >}}
 
 Then, as your app starts to get more popular, you begin to work on
 scaling. At first, you follow the straightforward approach and simply
@@ -78,7 +78,7 @@ multiple instances of your Django app (called *horizontal scaling*) to
 handle your growing user base, while continuing to run your PostgreSQL
 server on only one (but potentially increasingly powerful) machine.
 
-{{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." >}}
+{{< figure src="/images/writing/kubernetes-django/on-separate-servers.svg" title="Running many instances of the app, talking to a single database." extra-class="add-background" >}}
 
 This is actually a pretty good deployment solution (and it's the basic idea
 underlying what we use today in practice at my [day job][edgefolio],
@@ -115,7 +115,7 @@ about the details. And we trust our underlying compute infrastructure
 to offer us some primitives such as persistent storage and load
 balancers (shown in green) that are common to any non-trivial webapp.
 
-{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." >}}
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." extra-class="add-background" >}}
 
 This philosophical shift --- [from *managing servers* to simply
 *running components of our app* ideally][borg-omega-kubernetes] --- is
@@ -173,7 +173,7 @@ cluster. These allow for things like running Docker containers (the
 centralised API server to ensure that the system is in the desired
 state.
 
-{{< figure src="/images/writing/kubernetes-django/kubernetes-architecture.svg" title="A simplified look at Kubernetes' architecture." >}}
+{{< figure src="/images/writing/kubernetes-django/kubernetes-architecture.svg" title="A simplified look at Kubernetes' architecture." extra-class="add-background" >}}
 
 The Kubernetes API exposes a collection of cluster configuration
 resources that we can modify to express the state we want our cluster
@@ -221,7 +221,7 @@ controlled by Kubernetes, split our blog application into separate
 Docker containers, and deploy them using Kubernetes. The final result
 matches the idealised diagram introduced earlier.
 
-{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." >}}
+{{< figure src="/images/writing/kubernetes-django/scheduled-on-cluster.svg" title="The application running on an abstract collection of resources." extra-class="add-background" >}}
 
 And once we have things up and running, we'll play around with the
 Kubernetes API to do different things, such as scaling your app,

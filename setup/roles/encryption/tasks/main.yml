@@ -1,10 +1,4 @@
 ---
-- name: Add a custom repository for certbot
-  become: yes
-  apt_repository:
-    repo='ppa:certbot/certbot'
-    state=present
-
 - name: Install certbot
   become: yes
   apt:
@@ -34,5 +28,5 @@
   cron:
     name: Renew certificates using certbot
     job: "certbot renew --quiet"
-    minute: 15
-    hour: 6
+    minute: "15"
+    hour: "6"

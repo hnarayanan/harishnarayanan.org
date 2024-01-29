@@ -43,13 +43,13 @@ channels. Our solver for this equation system is implemented in
 Octave, and [a current version is available][Source] as Free Software
 under the GNU GPL.
 
-{{< figure src="/images/research/chondrocyte-electrophysiology/chondrocyte-model.png" title="A schematic of the ion channels in a single chondrocyte." >}}
+{{< figure src="/images/research/chondrocyte-electrophysiology/chondrocyte-model.png" title="A schematic of the ion channels in a single chondrocyte." extra-class="add-background" >}}
 
 When our computer model of the chondrocyte is subjected to several
 different clinically-relevant environments, we begin to gain an
 understanding of the underlying behavior of the cell.
 
-{{< figure src="/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." >}}
+{{< figure src="/images/research/chondrocyte-electrophysiology/model-experiment-comparison.png" title="Comparing the model behaviour (blue) with experiment (red)." extra-class="add-background" >}}
 
  Our research suggests ideal conditions that the cell must be
  subjected to as it relates to the synthesis of viable cartilage, and
