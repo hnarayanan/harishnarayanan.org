@@ -3,6 +3,7 @@ date: 2013-03-15
 title: thinkbot
 short_title: thinkbot
 thumbnail: /images/projects/thinkbot/thinkbot.svg
+thumbnail_background: yes
 description: A modern platform for computational science.
 category: website
 start_date: 2013

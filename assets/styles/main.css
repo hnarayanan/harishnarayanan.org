@@ -1,5 +1,5 @@
 /*
-* Copyright 2019, Harish Narayanan
+* Copyright 2024, Harish Narayanan
 * https://harishnarayanan.org
 *
 * The following is mostly a Frankenstein merge of ideas and code from:
@@ -30,13 +30,13 @@
 - Typography
 - Figures
 - Links
-- Lists
 - Code
 - Tables
 - Utilities
 - Misc
 - Navbar
 - Post
+- Footnotes
 */
 
 /* Variables
@@ -44,9 +44,10 @@
 :root {
     color-scheme: light dark;
     --body-background-color: #fcf9f4;
+    --img-background-color: #fcf9f4;
     --body-color: #2d2b27;
     --body-color-meta: #9eabb3;
-    --link-color: #c6531a;
+    --link-color: #bf5019;
     --link-hover-color: #823711;
     --line-color: #eeeeee;
     --navbar-link-color: #2d2b27;
@@ -57,16 +58,17 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --body-background-color: #2d2d2d;
-        --body-color: #cccccc;
-        --body-color-meta: #999999;
-        --link-color: #66cccc;
-        --link-hover-color: #40bfbf;
-        --line-color: #515151;
-        --navbar-link-color: #f4ecec;
-        --footer-link-color: #f4ecec;
-        --code-background-color: #393939;
-        --code-border-color: #515151;
+        --body-background-color: #242323;
+        --img-background-color: #fcf9f4;
+        --body-color: #fbf9f9;
+        --body-color-meta: #b9aeac;
+        --link-color: #f77c64;
+        --link-hover-color: #f6684c;
+        --line-color: #5a5354;
+        --navbar-link-color: #fbf9f9;
+        --footer-link-color: #fbf9f9;
+        --code-background-color: #5a5354;
+        --code-border-color: #766b6c;
     }
 }
 
@@ -1173,6 +1175,7 @@ form {
     url('/fonts/Open_Sans_400.woff2') format('woff2'),
     url('/fonts/Open_Sans_400.svg#OpenSans') format('svg'),
     url('/fonts/Open_Sans_400.ttf') format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -1187,6 +1190,7 @@ form {
     url('/fonts/Open_Sans_700.woff2') format('woff2'),
     url('/fonts/Open_Sans_700.svg#OpenSans') format('svg'),
     url('/fonts/Open_Sans_700.ttf') format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -1201,6 +1205,7 @@ form {
     url('/fonts/Lora_400.woff2') format('woff2'),
     url('/fonts/Lora_400.svg#Lora') format('svg'),
     url('/fonts/Lora_400.ttf') format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -1215,6 +1220,7 @@ form {
     url('/fonts/Lora_400italic.woff2') format('woff2'),
     url('/fonts/Lora_400italic.svg#Lora') format('svg'),
     url('/fonts/Lora_400italic.ttf') format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
@@ -1229,6 +1235,7 @@ form {
     url('/fonts/Lora_700.woff2') format('woff2'),
     url('/fonts/Lora_700.svg#Lora') format('svg'),
     url('/fonts/Lora_700.ttf') format('truetype');
+    font-display: fallback;
 }
 
 
@@ -1323,6 +1330,23 @@ figcaption {
     margin-top: .5em;
 }
 
+img.add-background {
+    background-color: var(--img-background-color);
+}
+
+img.half-width {
+    max-width: 50%;
+    height: auto;
+    display: block;
+}
+
+img.three-fourths-width {
+    max-width: 75%;
+    height: auto;
+    display: block;
+}
+
+
 /* Links
 ------------------------------------------------------------------------ */
 
@@ -1334,33 +1358,6 @@ a {
 a:hover {
     color: var(--link-hover-color);
     text-decoration: underline;
-}
-
-/* Lists
------------------------------------------------------------------------- */
-ul {
-    list-style: circle inside;
-}
-
-ol {
-    list-style: decimal inside;
-}
-
-ol, ul {
-    padding-left: 0;
-    margin-top: 0;
-}
-
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-    margin: 1.5rem 0 1.5rem 3rem;
-    font-size: 90%;
-}
-
-li {
-    margin-bottom: 1rem;
 }
 
 /* Code
@@ -1417,8 +1414,16 @@ td:last-child {
     margin: -10px;
 }
 
+.l-box-container-full-width {
+    margin-bottom: 1em;
+}
+
 .l-box {
     padding: 10px;
+}
+
+.l-gallery {
+    margin-bottom: 1em;
 }
 
 .u-full-width {
@@ -1437,6 +1442,12 @@ td:last-child {
 
 .u-pull-left {
     float: left;
+}
+
+@media only screen and (max-width:47.938em) {
+    .l-box-container-full-width .l-box {
+        padding: 0px;
+    }
 }
 
 /* Misc
@@ -1467,11 +1478,13 @@ hr {
 .navbar-list {
     list-style: none;
     margin-bottom: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .navbar-item {
-    position: relative;
-    float: left;
+    display: flex;
     margin-bottom: 0;
 }
 
@@ -1490,11 +1503,36 @@ hr {
     font-weight: 700;
 }
 
+.navbar ul {
+    list-style: circle inside;
+}
+
+.navbar ol {
+    list-style: decimal inside;
+}
+
+.navbar ol, .navbar ul {
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.navbar ul ul,
+.navbar ul ol,
+.navbar ol ol,
+.navbar ol ul {
+    margin: 1.5rem 0 1.5rem 3rem;
+    font-size: 90%;
+}
+
+.navbar li {
+    margin-bottom: 1rem;
+}
+
 @media (min-width: 375px) {
     .navbar-link {
 	font-size: 11px;
 	letter-spacing: .1rem;
-	margin-right: 13px;
+	margin-right: 8px;
     }
 }
 
@@ -1502,7 +1540,7 @@ hr {
     .navbar-link {
 	font-size: 12px;
 	letter-spacing: .15rem;
-	margin-right: 20px;
+	margin-right: 16px;
     }
 }
 
@@ -1529,6 +1567,20 @@ hr {
     display: inline-block;
     white-space: nowrap;
 }
+
+/* Footnote
+------------------------------------------------------------------------ */
+
+.footnotes p, .footnotes li {
+    margin-bottom: 0em;
+    font-size: 1.4rem;
+}
+
+.footnotes hr {
+    margin-bottom: 1rem;
+}
+
+
 
 /* TODO: Clean the following up
 ------------------------------------------------------------------------ */
@@ -1608,16 +1660,4 @@ h2 a:hover {
 
 iframe {
     border: 0;
-}
-
-.pure-img-half-width {
-    max-width: 50%;
-    height: auto;
-    display: block;
-}
-
-.pure-img-three-fourths-width {
-    max-width: 75%;
-    height: auto;
-    display: block;
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ .Title }}{{ if not .IsHome }} — {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary }}{{ end }}">
+    <meta name="author" content="Harish Narayanan">
+
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="stylesheet" href="/styles/projects/women-in-saris.css">
+  </head>
+  <body>
+    {{ .Content }}
+  </body>
+</html>

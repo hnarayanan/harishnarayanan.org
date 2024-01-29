@@ -103,7 +103,7 @@ of other nifty features, including:
 * Built in support for a large class of material models.
 * Easy specification of additional material models using a syntax that
   closely mirrors how continuum mechanics is  posed on paper, e.g.:
-  ````
+````
 class MooneyRivlin(MaterialModel):
     """Defines the strain energy function for a (two term)
     Mooney-Rivlin material"""
@@ -118,8 +118,7 @@ class MooneyRivlin(MaterialModel):
 
         [C1, C2] = parameters
         return C1*(I1 - 3) + C2*(I2 - 3)
-  ````
-
+````
 * Support for material heterogeneity (spatially-varying material
   constants).
 * Support for time-dependent problems incorporating energy-momentum
