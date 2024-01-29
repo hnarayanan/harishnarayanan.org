@@ -76,21 +76,22 @@ make a positive impact in the lives of others.
 
 On a more personal note, I've been on a journey of growth and healing
 since my marriage ended. This experience has empowered me in so many
-ways. I've reignited my love for [journaling on paper](https://hachyderm.io/@harish/110007235998489508) and [writing for
-myself](https://emphaticallystatic.org) on the web. I've even been brainstorming ideas for a [text-based
-app that fosters community building](https://github.com/textually-app/community). Most importantly, I'm feeling
-creatively charged, energised, and excited about the possibility of
-[finding my forever person](/date-me/). ❤️
+ways. I've reignited my love for [journaling on
+paper](https://hachyderm.io/@harish/110007235998489508) and [writing
+for myself](https://emphaticallystatic.org) on the web. I've even been
+brainstorming ideas for a [text-based app that fosters community
+building](https://github.com/textually-app/community). Most
+importantly, I'm feeling creatively charged, energised, and excited
+about life.
 
 ## And in conclusion...
 
 We've covered a lot of ground, haven't we? Thank you for sticking
 around. If you're interested in getting to know me on a personal
-level, feel free to browse more of this site. Better yet, let's [go on
-a date](/date-me/)! And if you're considering working with me, please
-take a look at [some of my other projects](/projects/). Either way,
-don't hesitate to [get in touch](mailto:mail@harishnarayanan.org). I'd
-love to connect with you.
+level, feel free to browse more of this site. And if you're
+considering working with me, please take a look at [some of my other
+projects](/projects/). Either way, don't hesitate to [get in
+touch](mailto:mail@harishnarayanan.org). I'd love to connect with you.
 
 [^1]: I say "startup," but it's over ten years old now and standing on
     its own feet! 💫
