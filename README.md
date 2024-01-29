@@ -25,8 +25,8 @@ of things:
 
 1. Go to your favourite cloud provider (I use [Digital
    Ocean](https://m.do.co/c/e3559ea013de)) and provision a virtual
-   machine running [Ubuntu 18.04
-   LTS](http://releases.ubuntu.com/18.04/) to act as your new server.
+   machine running [Ubuntu 20.04
+   LTS](http://releases.ubuntu.com/20.04/) to act as your new server.
 
 2. Make sure you can SSH to this server. Edit
    `setup/servers/production` to reflect the domain name (or IP
@@ -92,7 +92,7 @@ make checklinks
 
 ## Copyright and license
 
-Copyright (c) 2019 [Harish Narayanan](https://harishnarayanan.org).
+Copyright (c) 2024 [Harish Narayanan](https://harishnarayanan.org).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,11 +1,21 @@
 {{ partial "header.html" . }}
+<div class="container">
 
-<div class="pure-g" id="gallery">
-  {{ $len := len .Data.Pages}}
-  {{ range $index, $element := .Data.Pages }}
+  <h1 id="main-description"><span class="pure-hidden-xs">Moments From My Life</span><span class="pure-visible-xs">My Photos</span></h1>
+
+  {{ .Content }}
+
+</div>
+
+<div class="pure-g" id="children">
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "portrait" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
 
-<!-- TODO: Try to determine the maximum resolution needed for these thumbnail images and resize them appropriately -->
+<div class="pure-g" id="pre-children">
+  {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "landscape" }}
+  {{ .Render "summary" }}
+  {{ end }}
+</div>
 {{ partial "footer.html" . }}

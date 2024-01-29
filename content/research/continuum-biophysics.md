@@ -32,7 +32,7 @@ mechanics of growing soft tissue, specifically tendon.
 
 ## General formulation for growth in tissues
 
-{{< figure src="/images/research/continuum-biophysics/tissue-continuum.png" title="The tissue as a continuum potato." >}}
+{{< figure src="/images/research/continuum-biophysics/tissue-continuum.png" title="The tissue as a continuum potato." extra-class="add-background" >}}
 
 _Growth_ in biological tissue is a direct outcome of cascades of
 complex, intracellular, biochemical reactions involving numerous
@@ -45,21 +45,21 @@ incorporating different modelling assumptions---such as the use of an
 enzyme kinetics-based growth law---to better represent cases of
 interest.
 
-{{< figure src="/images/research/continuum-biophysics/enzyme-kinetics.png" title="Enzyme kinetics-based growth law." >}}
+{{< figure src="/images/research/continuum-biophysics/enzyme-kinetics.png" title="Enzyme kinetics-based growth law." extra-class="add-background" >}}
 
 Recognising that a growing tissue is an open system undergoing
 irreversible thermodynamics, the model incorporates the physics of
 multi-phase reacting systems, and deduces balance laws and a
 constitutive framework obeying the Second Law of Thermodynamics.
 
-{{< figure src="/images/research/continuum-biophysics/balance-laws.png" title="Reference configuration statements of the balance of mass and momenta for all species." >}}
+{{< figure src="/images/research/continuum-biophysics/balance-laws.png" title="Reference configuration statements of the balance of mass and momenta for all species." extra-class="add-background" >}}
 
 Notably, the transport of the extracellular fluid relative to the
 matrix is shown to be driven by the gradients of stress, concentration
 and chemical potential---a coupling of mass transport and mechanics
 that emerges directly.
 
-{{< figure src="/images/research/continuum-biophysics/driving-force.png" title="A constitutive relationship relating the fluid flux to various driving forces." >}}
+{{< figure src="/images/research/continuum-biophysics/driving-force.png" title="A constitutive relationship relating the fluid flux to various driving forces." extra-class="add-background" >}}
 
 Assumptions central to existing mechanics theories, such as the nature
 of the split of deformation maps across the different species
@@ -74,7 +74,7 @@ incorporating non-linear projection methods to treat
 incompressibility, energy-momentum conserving algorithms for dynamics,
 and mixed methods for stress gradient-driven fluxes.
 
-{{< figure src="/images/research/continuum-biophysics/mesh.png" title="A representative mesh used in the finite element calculations." >}}
+{{< figure src="/images/research/continuum-biophysics/mesh.png" title="A representative mesh used in the finite element calculations." extra-class="add-background" >}}
 
 One highlight of the numerical methods is a rigorous treatment of
 numerical stability issues that arise with any operator-splitting
@@ -86,11 +86,11 @@ incompressibility constraint on the fluid phase, enabling a
 straightforward implementation of numerical stabilisation in the
 advection-dominated limit.
 
-{{< figure src="/images/research/continuum-biophysics/stabilisable-form.png" title="The solute transport equation in classical, stabilisable form." >}}
+{{< figure src="/images/research/continuum-biophysics/stabilisable-form.png" title="The solute transport equation in classical, stabilisable form." extra-class="add-background" >}}
 
 ## Mechanics of growing tissue
 
-{{< figure src="/images/research/continuum-biophysics/growth-kinematics.png" title="The kinematics of growth." >}}
+{{< figure src="/images/research/continuum-biophysics/growth-kinematics.png" title="The kinematics of growth." extra-class="add-background" >}}
 
 Using model geometries and imposing classes of initial and boundary
 conditions approximating experiments in our laboratory, the
@@ -116,7 +116,7 @@ immersed into a nutrient-rich bath, nutrient-rich fluid is transported
 into the tissue, and growth occurs due to the formation of additional
 collagen.
 
-{{< figure src="/images/research/continuum-biophysics/swell-after-growth.png" title="Distribution of collagen after growth." >}}
+{{< figure src="/images/research/continuum-biophysics/swell-after-growth.png" title="Distribution of collagen after growth." extra-class="add-background" >}}
 
 {{< video src="J9bB_R0KIew" width="720" height="540" title="The collagen concentration increases over half-an-hour as the infusing nutrient-rich fluid causes the tendon to grow." >}}
 
@@ -124,7 +124,7 @@ There is a rapid, fluid transport-dominated swelling of the tendon
 initially as it is immersed into the fluid bath. This is followed by a
 slower, reaction-driven growth phase.
 
-{{< figure src="/images/research/continuum-biophysics/swell-volume-evolution.png" title="Rapid swelling of a tendon immersed in a bath." >}}
+{{< figure src="/images/research/continuum-biophysics/swell-volume-evolution.png" title="Rapid swelling of a tendon immersed in a bath." extra-class="add-background" >}}
 
 {{< video src="3VMCupM3BCk" width="720" height="540" title="Pay close attention to observe the initial, fluid transport-dominated swelling of the tissue, followed by much slower reaction-driven growth." >}}
 
@@ -133,14 +133,14 @@ growth, it is observed that the grown tissue---having a higher
 concentration of collagen---is stiffer and stronger; which is in
 accordance with experiment.
 
-{{< figure src="/images/research/continuum-biophysics/swell-growth-mechanics.png" title="The grown tissue is stiffer and stronger." >}}
+{{< figure src="/images/research/continuum-biophysics/swell-growth-mechanics.png" title="The grown tissue is stiffer and stronger." extra-class="add-background" >}}
 
 Upon subjecting the tendon to a load-unload cycle, a stress-strain
 curve characteristic of viscoelastic tissue is observed. Here, the
 area between the loading and unloading paths is the hysteretic energy
 loss due to viscous dissipation.
 
-{{< figure src="/images/research/continuum-biophysics/tendon-viscoelasticity.png" title="Viscoelastic effects observed in the model." >}}
+{{< figure src="/images/research/continuum-biophysics/tendon-viscoelasticity.png" title="Viscoelastic effects observed in the model." extra-class="add-background" >}}
 
 {{< video src="uyo_AAP70kY" width="720" height="540" title="Observe the induced fluid flow as the tendon is subjected to a cyclically varying load. Friction between the solid and fluid phases results in energy dissipation." >}}
 
@@ -148,7 +148,7 @@ Qualitatively, this viscoelastic behaviour compares favourably with
 our corresponding experimental tests on two-week-old tibialis anterior
 tendons in the laboratory.
 
-{{< figure src="/images/research/continuum-biophysics/hysteresis-experiment.png" title="Hysteresis observed in experiments on tibialis anterior tendons." >}}
+{{< figure src="/images/research/continuum-biophysics/hysteresis-experiment.png" title="Hysteresis observed in experiments on tibialis anterior tendons." extra-class="add-background" >}}
 
 Application of a constrictive radial load---where the maximum strain
 in the radial direction is experienced half-way through the height of
@@ -156,7 +156,7 @@ the tendon---to a tendon immersed in a fluid-filled bath results in a
 stress-gradient induced fluid flux. This drives fluid away from the
 central plane.
 
-{{< figure src="/images/research/continuum-biophysics/constrict-vertical-flux.png" title="Vertical fluid flux in a constricted tendon." >}}
+{{< figure src="/images/research/continuum-biophysics/constrict-vertical-flux.png" title="Vertical fluid flux in a constricted tendon." extra-class="add-background" >}}
 
 {{< video src="RRT20euEX58" width="720" height="540" title="The constrictive radial load sets up a fluid flux in the vertical direction, driving fluid away from the central plane toward the top and bottom faces of the tendon." >}}
 
@@ -164,7 +164,7 @@ This pressure wave set up in the fluid travels toward the top and
 bottom faces, and as the fluid leaves these surfaces, we observe that
 the tendon relaxes.
 
-{{< figure src="/images/research/continuum-biophysics/constrict-top-face-displacement.png" title="Relaxation of the top face of a constricted tendon." >}}
+{{< figure src="/images/research/continuum-biophysics/constrict-top-face-displacement.png" title="Relaxation of the top face of a constricted tendon." extra-class="add-background" >}}
 
 {{< video src="jN0t7GBcvnc" width="720" height="540" title="The stress gradient-driven fluid flux causes a decrease in the reference fluid concentration near the central plane. Pay close attention to observe the relaxation of the top face as the fluid leaves the surface." >}}
 
@@ -183,7 +183,7 @@ the formulation in studying the efficacy of drug delivery
 mechanisms. Michaelis-Menten enzyme kinetics is used to determine the
 rates of solute consumption and, consequently, collagen production.
 
-{{< figure src="/images/research/continuum-biophysics/michaelis-menten.png" title="Michaelis-Menten enzyme kinetics." >}}
+{{< figure src="/images/research/continuum-biophysics/michaelis-menten.png" title="Michaelis-Menten enzyme kinetics." extra-class="add-background" >}}
 
 In addition to subjecting the tendon immersed in the bath to the
 constrictive radial load described earlier, a solute-rich bulb with
@@ -196,7 +196,7 @@ primarily diffuses locally, and as the solute concentration in a
 region increases, the enzyme-kinetics model predicts a small source
 term for collagen, and we observe nominal growth.
 
-{{< figure src="/images/research/continuum-biophysics/medicate-solute-concentration.png" title="Collagen growth localised to regions of medication." >}}
+{{< figure src="/images/research/continuum-biophysics/medicate-solute-concentration.png" title="Collagen growth localised to regions of medication." extra-class="add-background" >}}
 
 The following computation demonstrates the capability of the
 formulation in studying the self-healing of damaged
@@ -204,13 +204,13 @@ tissue. Incorporating a cell-signalling parameter into the chemical
 kinetics, the formation of collagen is spatially biased toward damaged
 regions of the tissue.
 
-{{< figure src="/images/research/continuum-biophysics/damage-healing-source.png" title="Chemical kinetics with a damage-healing parameter." >}}
+{{< figure src="/images/research/continuum-biophysics/damage-healing-source.png" title="Chemical kinetics with a damage-healing parameter." extra-class="add-background" >}}
 
 Turning to damaged skin as our tissue of interest, we begin by
 delineating the damaged regions---characterised by a sudden reduction
 in the concentration of collagen---from the rest of the tissue.
 
-{{< figure src="/images/research/continuum-biophysics/damaged-region.png" title="Damaged region of skin demarcated by green." >}}
+{{< figure src="/images/research/continuum-biophysics/damaged-region.png" title="Damaged region of skin demarcated by green." extra-class="add-background" >}}
 
 This damaged tissue is introduced to a nutrient-rich environment, and
 the cell-signalling parameter induces preferential growth in these
@@ -236,7 +236,7 @@ than the undamaged tissue along the originally-stiff direction of the
 tissue. Thus, upon being subjected to a load, these compliant healed
 regions experience a reduced stress.
 
-{{< figure src="/images/research/continuum-biophysics/damaged-vertical-stress.png" title="Vertical stress in skin recovering from damage." >}}
+{{< figure src="/images/research/continuum-biophysics/damaged-vertical-stress.png" title="Vertical stress in skin recovering from damage." extra-class="add-background" >}}
 
 This result is analogous to the experimentally observed hypertrophic
 scarring of skin as it recovers from damage under no applied load.
