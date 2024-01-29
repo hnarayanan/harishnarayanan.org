@@ -77,14 +77,14 @@ $\mathbf{x}$) are very close to each other in terms of content, and
 grows as their content deviates. We call this function the *content
 loss*.
 
-{{< figure src="/images/writing/artistic-style-transfer/content-loss.png" title="A schematic of the content loss." extra-class="-half-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/content-loss.png" title="A schematic of the content loss." extra-class="half-width add-background">}}
 
 Let's also suppose that had another function that told us *how close
 in style* two images are to one another. Again, this function grows as
 its two input images ($\mathbf{s}$ and $\mathbf{x}$) tend to deviate
 in style.  We call this function the *style loss*.
 
-{{< figure src="/images/writing/artistic-style-transfer/style-loss.png" title="A schematic of the style loss." extra-class="-half-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/style-loss.png" title="A schematic of the style loss." extra-class="half-width add-background">}}
 
 Suppose we had these two functions, then the style transfer problem is
 easy to state, right? All we need to do is to find an image
@@ -166,7 +166,7 @@ then is to come up with a function that takes as input one of these
 large arrays of numbers, and outputs the correct label from our set of
 categories, e.g. "baby".
 
-{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="-three-fourths-width">}}
+{{< figure src="/images/writing/artistic-style-transfer/image-classification-problem.png" title="The image classification problem." extra-class="three-fourths-width add-background">}}
 
 In fact, instead of just reporting one category name, it would be more
 helpful to get a *confidence score* for each category. This way, we'll
@@ -214,7 +214,7 @@ demonstrated the most success in recent years. Supervised learning is
 now the classic procedure for *learning from data*, and it is outlined
 below in the context of the image classification problem:
 
-{{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." >}}
+{{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." extra-class="add-background" >}}
 
 1. We start with a set of pre-classified example images, which means
 we have a set of images with known labels. This is called the
@@ -266,8 +266,8 @@ The simplest possible example of such a function is a linear
 map:
 
 $$
-\mathbf{f}(\mathbf{x}; \mathbf{W}, \mathbf{b}) = \mathbf{W}\mathbf{x}
-+ \mathbf{b},
+\mathbf{f}(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
+\mathbf{W}\mathbf{x} + \mathbf{b},
 $$
 
 which introduces two parameters we need to learn: a matrix
@@ -313,7 +313,7 @@ bowl in the figure below, and we're trying to find this
 $w_{\mathrm{optimal}}$ where the loss $\mathcal{L}(w)$ is at the
 bottom of the bowl.
 
-{{< figure src="/images/writing/artistic-style-transfer/gradient-descent.png" title="A simplified look at gradient descent." >}}
+{{< figure src="/images/writing/artistic-style-transfer/gradient-descent.png" title="A simplified look at gradient descent." extra-class="add-background" >}}
 
 Since we don't know where this is to begin with, we start with a guess
 at any point $w\_0$. And then we feel around our local neighbourhood
@@ -364,7 +364,7 @@ solidify concepts.
 
 With that, let's start by importing some packages we need.
 
-```python
+```
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -391,7 +391,7 @@ did.
 
 The TensorFlow tutorial comes with a handy loader for this dataset.
 
-```python
+```
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 ```
 
@@ -415,14 +415,14 @@ of all zeros except at the location that corresponds to the label it's
 referring to. E.g. An image with a label `3` will be represented as
 `(0, 0, 0, 1, 0, 0, 0, 0, 0, 0)`.
 
-```python
+```
 print mnist.train.images.shape
 print mnist.train.labels.shape
 ```
 
     (55000, 784)
     (55000, 10)
-```python
+```
 print mnist.test.images.shape
 print mnist.test.labels.shape
 ```
@@ -433,7 +433,7 @@ print mnist.test.labels.shape
 We can get a better sense for one of these examples by visualising the
 image and looking at the label.
 
-```python
+```
 example_image = mnist.train.images[1]
 example_image_reshaped = example_image.reshape((28, 28)) # Can't render a line of 784 numbers
 example_label = mnist.train.labels[1]
@@ -458,7 +458,7 @@ notion of working with (random) batches of input rather than the
 entire set that moves us from the realm of *Gradient Descent* that we
 saw earlier, to *Stochastic Gradient Descent* that we have here.
 
-```python
+```
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])
 ```
@@ -466,9 +466,9 @@ y_ = tf.placeholder(tf.float32, [None, 10])
 We define our linear model for the score function after introducing
 two of parameters, **W** and **b**.
 
-{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." >}}
+{{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." extra-class="add-background" >}}
 
-```python
+```
 W = tf.Variable(tf.zeros([784, 10]))
 b = tf.Variable(tf.zeros([10]))
 y = tf.nn.softmax(tf.matmul(x, W) + b)
@@ -478,7 +478,7 @@ We define our loss function to measure how poorly this model performs
 on images with known labels. We use the a specific form called the
 [cross entropy loss][cross-entropy-reason].
 
-```python
+```
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=[1]))
 ```
 
@@ -487,7 +487,7 @@ TensorFlow, we can define a single step of the stochastic gradient
 descent optimiser (to improve our parameters for our score function
 and reduce the loss) in one line of code.
 
-```python
+```
 train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 ```
 
@@ -497,7 +497,7 @@ The way TensorFlow works, we haven't really executed any of the code above in th
 
 Now we go ahead and initialise a session to actually train the model and evaluate its performance.
 
-```python
+```
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
@@ -505,7 +505,7 @@ sess.run(init)
 
 We train the model iteratively for 1000 steps, loading a batch of example images each time.
 
-```python
+```
 for i in range(1000):
   batch_xs, batch_ys = mnist.train.next_batch(100)
   sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
@@ -517,7 +517,7 @@ At this point, our model is trained. And we can deterime in the
 *accuracy* by passing in all the test images and labels, figuring out
 our own labels, and averaging out the results.
 
-```python
+```
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
@@ -538,7 +538,7 @@ space that they're represented in. Meaning you can draw 10 lines
 space, really) with these digits and neatly separate them into
 categories.
 
-{{< figure src="/images/writing/artistic-style-transfer/mnist-tsne.png" title="A t-SNE plot of the MNIST dataset that attempts to represent the digits in a 2D plane while preserving the topology of the data. (Reproduced from Maaten and Hinton, 2008.)" >}}
+{{< figure src="/images/writing/artistic-style-transfer/mnist-tsne.png" title="A t-SNE plot of the MNIST dataset that attempts to represent the digits in a 2D plane while preserving the topology of the data. (Reproduced from Maaten and Hinton, 2008.)" extra-class="add-background" >}}
 
 But if you read the [TensorFlow tutorial][tensorflow-tutorial-mnist]
 that deals with the same dataset, they explicitly point out that:
@@ -577,7 +577,7 @@ network*. In neural network parlance the network shown below is called
 a *two layer network* or a *one hidden layer network*. (We can have as
 many of these hidden layers as we need.)
 
-{{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." extra-class="add-background" >}}
 
 By stacking neurons in this fashion, we can express in a
 straightforward manner the operations performed by the network in
@@ -648,7 +648,7 @@ more context.
 Recall that in the linear case we saw previously, the model for the
 score function was:
 
-````python
+````
 W = tf.Variable(tf.zeros([784, 10]))
 b = tf.Variable(tf.zeros([10]))
 y = tf.nn.softmax(tf.matmul(x, W) + b)
@@ -659,7 +659,7 @@ lines of code. Our new model is the one hidden layer network
 architecture we saw earlier. This introduces two sets of parameters:
 **W1**, **b1** and **W2**, **b2** that we need to learn.
 
-```python
+```
 W1 = tf.Variable(tf.zeros([784, 100]))
 b1 = tf.Variable(tf.zeros([100]))
 h1 = tf.nn.relu(tf.matmul(x, W1) + b1)
@@ -676,7 +676,7 @@ improve parameters and minimise the loss. And once this model is
 trained, we can pass it test images and labels and determine the
 average accuracy.
 
-```python
+```
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
@@ -702,7 +702,7 @@ you’d get if you guessed at random between 10 possible categories. So
 what we need to do is to improve the initialisation of these
 parameters as we've done in [Notebook 3][notebook-3].
 
-```python
+```
 W1 = tf.Variable(tf.truncated_normal(shape=[784, 100], stddev=0.1))
 b1 = tf.Variable(tf.constant(0.1, shape=[100]))
 h1 = tf.nn.relu(tf.matmul(x, W1) + b1)
@@ -721,7 +721,7 @@ positive constant, 0.1.
 With this seemingly trivial change, retraining the model and verifying
 its average accuracy on the test data tells a very different story.
 
-```python
+```
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
@@ -744,7 +744,7 @@ our classifier, you'd probably point out that this is easy to do by
 adding more layers to our score function (i.e. making our model
 *deeper*). Perhaps something like the following:
 
-{{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." >}}
+{{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." extra-class="add-background" >}}
 
 TODO: Insert somewhere around here the story about using the
 TensorFlow playground to get a feeling for the representative power of
@@ -764,7 +764,7 @@ get-go. Remember that instead of working with the input as $28 \times
 can imagine there is some useful information in pixels sharing
 proximity that's being lost.
 
-{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." extra-class="-three-fourths-width" >}}
+{{< figure src="/images/writing/artistic-style-transfer/image-to-array.png" title="Fully-connected neural networks disregard the structure of the image." extra-class="three-fourths-width add-background" >}}
 
 Secondly, the number of parameters we would need to learn grows really
 rapidly as we add more layers. Here are the number of parameters
@@ -909,7 +909,7 @@ is:
 
 `Conv -> ReLU -> Pool -> FC -> ReLU -> FC -> Softmax`
 
-```python
+```
 # Define some helper functions to ease the definition of the model
 def weight_variable(shape):
     return tf.Variable(tf.truncated_normal(shape, stddev=0.1))
@@ -952,7 +952,7 @@ and use an optimiser to iteratively improve parameters and minimise
 the loss. And once this model is trained, we can pass it test images
 and labels and determine the average accuracy.
 
-```python
+```
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 ```
 
@@ -1097,7 +1097,7 @@ Let's start by importing some packages we need. Note that even though
 we've moved to Keras, it uses TensorFlow in the background for
 low-level operations like tensor products and convolutions.
 
-```python
+```
 import numpy as np
 from PIL import Image
 
@@ -1137,7 +1137,7 @@ paper describes how a family of models essentially composed of simple
 layers) managed to perform so well at a range of computer vision
 tasks.
 
-{{< figure src="/images/writing/artistic-style-transfer/vgg-16-architecture.png" title="VGGNet Architectures highlighting the 16-layer variant." >}}
+{{< figure src="/images/writing/artistic-style-transfer/vgg-16-architecture.png" title="VGGNet Architectures highlighting the 16-layer variant." extra-class="add-background" >}}
 
 We're going to first reproduce the 16 layer variant marked in green
 for classification, and in the next notebook we'll see how it can be
@@ -1149,14 +1149,14 @@ This is trivial to do in Keras, and can be done in a single
 line. [There is a selection][keras-applications] of such models one
 can import.
 
-```python
+```
 model = VGG16(weights='imagenet', include_top=True)
 ```
 
 Let's take a look at the model, convince ourselves it looks the same
 as the paper.
 
-```python
+```
 layers = dict([(layer.name, layer.output) for layer in model.layers])
 layers
 ```
@@ -1187,7 +1187,7 @@ layers
 Looks good. And we now let's get a sense for how many parameters they
 are in this model.
 
-```python
+```
 model.count_params()
 ```
 
@@ -1202,7 +1202,7 @@ Now that we have our pre-trained model loaded, we can use it for classification.
 
 ###### Load an test image and preprocess it
 
-```python
+```
 image_path = 'images/elephant.jpg'
 image = Image.open(image_path)
 image = image.resize((224, 224))
@@ -1211,7 +1211,7 @@ image
 
 ![png](/images/writing/artistic-style-transfer/output_13_0.png)
 
-```python
+```
 # Convert it into an array
 x = np.asarray(image, dtype='float32')
 # Convert it into a list of arrays
@@ -1227,7 +1227,7 @@ into a list of tuples (class, description, probability). There is one
 such list for each sample in the batch, but since we're only sending
 in one test image we only get one set of output.
 
-```python
+```
 preds = model.predict(x)
 print('Predicted:', decode_predictions(preds, top=3)[0])
 ```
@@ -1286,7 +1286,7 @@ As always, we start with importing some packages we need. Note that we
 don't require too many packages.
 
 
-```python
+```
 from __future__ import print_function
 
 import time
@@ -1312,7 +1312,7 @@ the output we'll arrive at the end of this process still looks really
 good.
 
 
-```python
+```
 height = 512
 width = 512
 
@@ -1324,7 +1324,7 @@ content_image
 
 {{< figure src="/images/writing/artistic-style-transfer/output_3_0.png" >}}
 
-```python
+```
 style_image_path = 'images/styles/wave.jpg'
 style_image = Image.open(style_image_path)
 style_image = style_image.resize((width, height))
@@ -1340,7 +1340,7 @@ concatenate the representations of these two images into a common data
 structure.
 
 
-```python
+```
 content_array = np.asarray(content_image, dtype='float32')
 content_array = np.expand_dims(content_array, axis=0)
 print(content_array.shape)
@@ -1368,7 +1368,7 @@ from each pixel.
 *BGR* (the ordering used in the paper).
 
 
-```python
+```
 content_array[:, :, :, 0] -= 103.939
 content_array[:, :, :, 1] -= 116.779
 content_array[:, :, :, 2] -= 123.68
@@ -1386,7 +1386,7 @@ variable to store the *combination* image that retains the content of
 the content image while incorporating the style of the style image.
 
 
-```python
+```
 content_image = backend.variable(content_array)
 style_image = backend.variable(style_array)
 combination_image = backend.placeholder((1, height, width, 3))
@@ -1396,7 +1396,7 @@ Finally, we concatenate all this image data into a single tensor
 that's suitable for processing by Keras' VGG16 model.
 
 
-```python
+```
 input_tensor = backend.concatenate([content_image,
                                     style_image,
                                     combination_image], axis=0)
@@ -1424,7 +1424,7 @@ don't need the fully-connected layers or the final softmax
 classifier. We only need the part of the model marked in green in the
 table below.
 
-{{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." >}}
+{{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." extra-class="add-background" >}}
 
 It is trivial for us to get access to this truncated model because
 Keras comes with a set of pretrained models, including the VGG16 model
@@ -1432,7 +1432,7 @@ we're interested in. Note that by setting `include_top=False` in the
 code below, we don't include any of the fully-connected layers.
 
 
-```python
+```
 model = VGG16(input_tensor=input_tensor, weights='imagenet',
               include_top=False)
 ```
@@ -1443,7 +1443,7 @@ list of these names so that we can easily refer to individual layers
 later.
 
 
-```python
+```
 layers = dict([(layer.name, layer.output) for layer in model.layers])
 layers
 ```
@@ -1487,7 +1487,7 @@ chosen after quite a bit of experimentation to find a set that
 generates output that's aesthetically pleasing to me.
 
 
-```python
+```
 content_weight = 0.025
 style_weight = 5.0
 total_variation_weight = 1.0
@@ -1498,7 +1498,7 @@ model to define these three loss functions. We begin by initialising
 the total loss to 0 and adding to it in stages.
 
 
-```python
+```
 loss = backend.variable(0.)
 ```
 
@@ -1520,7 +1520,7 @@ The content loss is the (scaled, squared) Euclidean distance between
 feature representations of the content and combination images.
 
 
-```python
+```
 def content_loss(content, combination):
     return backend.sum(backend.square(combination - content))
 
@@ -1552,7 +1552,7 @@ some measure (of local-ish statistics) that's spatially invariant.
 
 The Gram matrix can be computed efficiently by reshaping the feature
 spaces suitably and taking an outer product.
-```python
+```
 def gram_matrix(x):
     features = backend.batch_flatten(backend.permute_dimensions(x, (2, 0, 1)))
     gram = backend.dot(features, backend.transpose(features))
@@ -1568,7 +1568,7 @@ pleasing. I encourage you to experiment with these choices to see
 varying results.
 
 
-```python
+```
 def style_loss(style, combination):
     S = gram_matrix(style)
     C = gram_matrix(combination)
@@ -1601,7 +1601,7 @@ You can experiment with reducing the `total_variation_weight` and play
 with the noise-level of the generated image.
 
 
-```python
+```
 def total_variation_loss(x):
     a = backend.square(x[:, :height-1, :width-1, :] - x[:, 1:, :width-1, :])
     b = backend.square(x[:, :height-1, :width-1, :] - x[:, :height-1, 1:, :])
@@ -1623,7 +1623,7 @@ iteratively improve upon our combination image to minimise the loss.
 We start by defining the gradients.
 
 
-```python
+```
 grads = backend.gradients(loss, combination_image)
 ```
 
@@ -1634,7 +1634,7 @@ requires separate functions for loss and gradients, but computing them
 separately would be inefficient.
 
 
-```python
+```
 outputs = [loss]
 outputs += grads
 f_outputs = backend.function([combination_image], outputs)
@@ -1680,7 +1680,7 @@ We stop after 10 iterations because the output looks good to me and
 the loss stops reducing significantly.
 
 
-```python
+```
 x = np.random.uniform(0, 255, (1, height, width, 3)) - 128.
 
 iterations = 10
@@ -1734,7 +1734,7 @@ Note that we need to subject our output image to the inverse of the
 transformation we did to our input images before it makes sense.
 
 
-```python
+```
 x = x.reshape((height, width, 3))
 x = x[:, :, ::-1]
 x[:, :, 0] += 103.939

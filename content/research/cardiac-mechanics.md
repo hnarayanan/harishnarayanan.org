@@ -25,7 +25,7 @@ computational framework for nonlinear elasticity,
 [CBC.Twist](/research/automated-mechanics/), allows us to easily
 implement and test this physiologically-relevant constitutive model.
 
-{{< figure src="/images/research/cardiac-mechanics/orthotropic-passive-stress.png" title="The orthotropic response of the myocardium model demonstrated by varying simple shear-stress responses along different planes defined by the muscle fibre (f), myocite sheet (s) and sheet-normal (n) directions." >}}
+{{< figure src="/images/research/cardiac-mechanics/orthotropic-passive-stress.png" title="The orthotropic response of the myocardium model demonstrated by varying simple shear-stress responses along different planes defined by the muscle fibre (f), myocite sheet (s) and sheet-normal (n) directions." extra-class="add-background" >}}
 
 We then introduce, via a multiplicative decomposition of the
 deformation gradient ([Ambrosi and Pezzuto,
