@@ -870,7 +870,7 @@ downsampling filter. These are used to reduce computational cost, and
 to some extent also reduce [overfitting][wiki-overfitting]. Note that
 it has no parameters to learn!
 
-{{< figure src="/images/writing/artistic-style-transfer/pool-layer.svg" title="An illustration of 2x2 max pooling operation, where the maximum value from each 2x2 region is selected to form the output matrix." >}}
+{{< figure src="/images/writing/artistic-style-transfer/pool-layer.svg" title="An illustration of the 2x2 max pooling operation, where the maximum value from each 2x2 region is selected to form the output matrix." extra-class="reduce-top-margin">}}
 
 For example, a *max pooling* layer with a spatial extent $F = 2$ and a
 stride $S = 2$ halves the input spatial dimension from $4 \times 4$ to
@@ -879,7 +879,8 @@ maximum of each set of $2 \times 2$ numbers and passing only those
 along to the output. You have one such pooling layer for each input
 depth slice to cover the entire input volume.
 
-You can also do *average pooling* and other kinds of downsampling.
+You can similarly also do *average pooling* and other kinds of
+downsampling.
 
 #### Notebook 4: A convnet-based MNIST digit classifier in TensorFlow
 
@@ -992,12 +993,15 @@ classifier.
 
 {{< figure src="/images/writing/artistic-style-transfer/representation-learning.png" title="Convnets (and deep learning in general) are all about learning representations. (Reproduced from the Deep Learning Book.)" >}}
 
-Given raw pixel input, the first hidden layer get excited by simple
-features like edges, the next layer perhaps things like contours, and
-the next maybe simple shapes and part of objects. And the deeper you
-go, the more they start to grasp the entire input field, not just a
-narrow region, but more importantly, the closer they're moving toward
-a *representation that makes it easy for them to classify on*.
+Given raw pixel input, the first hidden layer gets excited by simple
+features like edges, the next by contours, and the next by shapes and
+parts of objects. As layers deepen, they grasp the entire input field
+and move toward a *representation that simplifies classification*.
+
+This progression highlights why we turned to machine learning.
+Handcrafting rules for every nuance in image classification is nearly
+impossible, but machine learning models excel by automatically
+learning these features from data.
 
 It turns out that convolutional neural networks are all about
 *representation learning*. This is what makes them so powerful.
@@ -1008,11 +1012,6 @@ layers). It's just that convnets are disproportionately used as
 teaching examples (as I'm doing right now) because each layer does
 something at least [vaguely recognisable to
 humans][deep-visualization-toolbox].
-
-TODO: Polish this section and connect back to the idea that we turned
-to machine learning in the first place because we found it so
-difficult to write a program that hand-engineered features for image
-classification.
 
 ## Returning to the style transfer problem
 
@@ -1067,8 +1066,8 @@ differences between images in terms of content and style.
 But now we do!
 
 It turns out that convnets pre-trained for image classification *have
-already learnt to encode perceptual and semantic information that we
-need to measure these semantic difference terms*! The primary
+already learnt to encode the perceptual and semantic information that
+we need to measure these semantic difference terms*! The primary
 explanation for this is that when learning object recognition, the
 *network has to become invariant to all image variation that's
 superfluous to object identity*.
@@ -1102,7 +1101,7 @@ higher-level library called [Keras][keras]. About a month ago it was
 TensorFlow project][keras-in-tensorflow] --- meaning that the simpler
 API you're going to see could soon be TensorFlow's API! This is great
 because TensorFlow often operates at a lower level than you care about
-when you want to simply quickly experiment with deep learning.
+when you want to quickly experiment with deep learning.
 
 I've incorporated [Notebook 5][notebook-5] in its entirety below since
 it is very different from the notebooks we've seen thus far.
@@ -1216,7 +1215,7 @@ containing 138+ million parameters.
 
 Now that we have our pre-trained model loaded, we can use it for classification.
 
-###### Load an test image and preprocess it
+###### Load a test image and preprocess it
 
 ```
 image_path = 'images/elephant.jpg'
@@ -1443,9 +1442,10 @@ table below.
 {{< figure src="/images/writing/artistic-style-transfer/vgg-architecture.png" title="VGG Network Architectures." extra-class="add-background" >}}
 
 It is trivial for us to get access to this truncated model because
-Keras comes with a set of pretrained models, including the VGG16 model
-we're interested in. Note that by setting `include_top=False` in the
-code below, we don't include any of the fully-connected layers.
+Keras provides a set of pretrained models, including the VGG16 model
+we need. By setting `include_top=False` in the code, Keras lets us
+exclude the unnecessary fully-connected layers, giving us exactly the
+portion of the network required for our purposes.
 
 
 ```
@@ -1552,9 +1552,9 @@ loss += content_weight * content_loss(content_image_features,
 
 This is where things start to get a bit intricate.
 
-For the style loss, we first define something called a *Gram
-matrix*. The terms of this matrix are proportional to the covariances
-of corresponding sets of features, and thus captures information about
+For the style loss, we first define something called a *Gram matrix*.
+The terms of this matrix are proportional to the covariances of
+corresponding sets of features, and thus captures information about
 which features tend to activate together. By only capturing these
 aggregate statistics across the image, they are blind to the specific
 arrangement of objects inside the image. This is what allows them to
@@ -1630,7 +1630,7 @@ def total_variation_loss(x):
 loss += total_variation_weight * total_variation_loss(combination_image)
 ```
 
-##### Define needed gradients and solve the optimisation problem
+##### Define required gradients and solve the optimisation problem
 
 The goal of this journey was to setup an optimisation problem that
 aims to solve for a *combination image* that contains the content of
@@ -1772,15 +1772,18 @@ animated GIF of all iterations for you to enjoy.
 
 ## In Conclusion
 
-Our road to the solution of the style transfer problem is a bit more
-straightforward in hindsight. We started at a seemingly innocuous
-place, the image classification problem. Before long, we realised that
-the semantic gap between the input representation (raw pixels) and the
-task at hand made it nearly impossible to write down a classifier as
-an explicit program. So we turned to supervised learning, which is a
-great tool for times like these when you have a problem that seems
-intuitive to state --- and you have lots of examples as to what you
-intend --- but where it's hard to write down all the solution steps.
+
+Our path to solving the style transfer problem was anything but
+straightforward.
+
+We started at a seemingly innocuous place, the image classification
+problem. Before long, we realised that the semantic gap between the
+input representation (raw pixels) and the task at hand made it nearly
+impossible to write down a classifier as an explicit program. So we
+turned to supervised learning, which is a great tool for times like
+these when you have a problem that seems intuitive to state --- and
+you have lots of examples as to what you intend --- but where it's
+hard to write down all the solution steps.
 
 As we worked through more and more sophisticated supervised learning
 solutions to the image classification problem, we found that deep
@@ -1930,7 +1933,7 @@ solving the expensive style transfer optimisation problem, they train
 another convnet to approximate solutions to it giving them a 1000x
 speedup!
 
-I'm working on implementing this idea as part of am open source
+I'm working on implementing this idea as part of an open source
 [webapp called *Stylist*][neural-style-demo-project]. Feel free to
 join me if you'd like to help!
 

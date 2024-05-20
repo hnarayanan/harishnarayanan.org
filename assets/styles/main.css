@@ -1346,6 +1346,10 @@ img.three-fourths-width {
     display: block;
 }
 
+img.reduce-top-margin {
+    margin-top: -1.5em;
+}
+
 
 /* Links
 ------------------------------------------------------------------------ */
