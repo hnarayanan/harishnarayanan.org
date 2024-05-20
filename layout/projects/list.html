@@ -4,8 +4,6 @@
 
   {{ .Content }}
 
-  <!-- TODO: Featured stuff (e.g. shpotify) goes to the home page? -->
-
   <h2 id="websites">Sites around the web</h2>
   <div class="pure-g l-box-container">
     {{ range where .Data.Pages "Params.category" "==" "website" }}
