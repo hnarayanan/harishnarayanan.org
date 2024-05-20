@@ -1,0 +1,37 @@
+digraph G {
+
+    bgcolor = "transparent";
+    rankdir=LR;
+    compound=true;
+    margin=0;
+
+    node [shape=plaintext, fontsize=11];
+
+    subgraph cluster_0 {
+        label = <<FONT POINT-SIZE="11">Input</FONT>>;
+        color = "transparent";
+
+        i1 [label=<
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10">
+                <TR><TD BGCOLOR="#f4cccc">12</TD><TD BGCOLOR="#f4cccc">20</TD><TD BGCOLOR="#fff2cb">30</TD><TD BGCOLOR="#fff2cb">0</TD></TR>
+                <TR><TD BGCOLOR="#f4cccc">8</TD><TD BGCOLOR="#f4cccc">12</TD><TD BGCOLOR="#fff2cb">2</TD><TD BGCOLOR="#fff2cb">0</TD></TR>
+                <TR><TD BGCOLOR="#c9daf8">34</TD><TD BGCOLOR="#c9daf8">70</TD><TD BGCOLOR="#d8ead2">37</TD><TD BGCOLOR="#d8ead2">4</TD></TR>
+                <TR><TD BGCOLOR="#c9daf8">112</TD><TD BGCOLOR="#c9daf8">100</TD><TD BGCOLOR="#d8ead2">25</TD><TD BGCOLOR="#d8ead2">12</TD></TR>
+            </TABLE>
+        >];
+    }
+
+    subgraph cluster_1 {
+        label = <<FONT POINT-SIZE="11">Output</FONT>>;
+        color = "transparent";
+
+        o1 [label=<
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10">
+                <TR><TD BGCOLOR="#f4cccc">20</TD><TD BGCOLOR="#fff2cb">30</TD></TR>
+                <TR><TD BGCOLOR="#c9daf8">112</TD><TD BGCOLOR="#d8ead2">37</TD></TR>
+            </TABLE>
+        >];
+    }
+
+    i1 -> o1 [label="2 × 2 Max-Pool" fontsize=11];
+}

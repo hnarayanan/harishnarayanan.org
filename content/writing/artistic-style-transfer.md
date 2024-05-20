@@ -870,7 +870,7 @@ downsampling filter. These are used to reduce computational cost, and
 to some extent also reduce [overfitting][wiki-overfitting]. Note that
 it has no parameters to learn!
 
-TODO: Depict a pool layer in a figure.
+{{< figure src="/images/writing/artistic-style-transfer/pool-layer.svg" title="An illustration of 2x2 max pooling operation, where the maximum value from each 2x2 region is selected to form the output matrix." >}}
 
 For example, a *max pooling* layer with a spatial extent $F = 2$ and a
 stride $S = 2$ halves the input spatial dimension from $4 \times 4$ to
