@@ -22,8 +22,8 @@ practice, as we systematically reproduce Prisma's core visual effect.
 
 ## So what is Prisma and how might it work?
 
-Prisma is a mobile app that allows you to transfer the style of one
-image, say [a cubist painting][edtaonisl], onto the content of
+[Prisma][prisma] is a mobile app that allows you to transfer the style
+of one image, say [a cubist painting][edtaonisl], onto the content of
 another, say a photo of your toddler, to arrive at gorgeous results
 like these:
 
@@ -1263,28 +1263,25 @@ representations to first define the semantic loss terms
 $\mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})$) and then uses
 these terms to pose the optimisation problem for style transfer.
 
-TODO: Fill out this section with the following notes, incorporating
-whatever theory that is not covered inline in the final notebook. This
-corresponds to slides 37--39 of the talk.
+The key idea in Gatys et al.'s paper is that higher layers in the
+network capture the high-level content in terms of objects and their
+arrangement in the input image but do not constrain the exact pixel
+values of the reconstruction. To obtain a representation of the style
+of an input image, the algorithm employs correlations between the
+different filter responses over the spatial extent of the feature
+maps. Essentially, *the representations of style and content in CNNs
+are separable*. The images are synthesised by solving the optimisation
+problem that simultaneously matches the content representation of the
+photograph and the style representation of the respective piece of
+art.
 
-- Summarise the Gatys, et al. paper for the core ideas (and a
-  sketch of the solution methodology):
-  - Higher layers in the network capture the high-level content in
-  terms of objects and their arrangement in the input image but do not
-  constrain the exact pixel values of the reconstruction. To obtain a
-  representation of the style of an input image, we employ
-  correlations between the different filter responses over the spatial
-  extent of the feature maps.
-  - The representations of style and content in CNNs are separable.
-  - The images are synthesised by finding an image that simultaneously
-  matches the content representation of the photograph and the style
-  representation of the respective piece of art.
-  - Based on VGG16 - 3 FC layers. Normal VGG takes an image and
-  returns a category score, but Gatys instead take the outputs at
-  intermediate layers and construct L_content and L_style.
-  - A figure showing off the algorithm.
-- Additional technicalities: Introduce L-BFGS as a valid
-  quasi-Newton approach to solve the optimisation problem.
+This optimisation problem is solved using the [L-BFGS
+algorithm][wiki-lbfgs]. L-BFGS efficiently handles the
+high-dimensional space of images, iteratively adjusting the pixels to
+minimize the combined loss function.
+
+If the above sounded abstract, don't worry. What follows is a complete
+and concrete implementation of the style transfer algorithm.
 
 #### Notebook 6: Concrete implementation of the artistic style transfer algorithm
 
@@ -1691,10 +1688,9 @@ evaluator = Evaluator()
 
 Now we're finally ready to solve our optimisation problem. This
 combination image begins its life as a random collection of (valid)
-pixels, and we use the
-[L-BFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS) algorithm
-(a quasi-Newton algorithm that's significantly quicker to converge
-than standard gradient descent) to iteratively improve upon it.
+pixels, and we use the [L-BFGS][wiki-lbfgs] algorithm (a quasi-Newton
+algorithm that's significantly quicker to converge than standard
+gradient descent) to iteratively improve upon it.
 
 We stop after 10 iterations because the output looks good to me and
 the loss stops reducing significantly.
@@ -1992,6 +1988,7 @@ on the back.
 [wiki-imagenet]: https://en.wikipedia.org/wiki/ImageNet
 [wiki-munch-scream]: https://en.wikipedia.org/wiki/The_Scream
 [wiki-overfitting]: https://en.wikipedia.org/wiki/Overfitting
+[wiki-lbfgs]: https://en.wikipedia.org/wiki/Limited-memory_BFGS
 [cs231n-course]: https://cs231n.stanford.edu
 [cs231n-notes]: https://cs231n.github.io
 [cs231n-softmax-classifier]: https://cs231n.github.io/linear-classify/#softmax-classifier
