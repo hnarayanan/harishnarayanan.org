@@ -1425,13 +1425,12 @@ input_tensor = backend.concatenate([content_image,
 
 ##### Reuse a model pre-trained for image classification to define loss functions
 
-The core idea introduced by [Gatys et
-al. (2015)](https://arxiv.org/abs/1508.06576) is that convolutional
-neural networks (CNNs) pre-trained for image classification already
-know how to encode perceptual and semantic information about
-images. We're going to follow their idea, and use the *feature spaces*
-provided by one such model to independently work with content and
-style of images.
+The core idea introduced by [Gatys et al.
+(2015)](https://arxiv.org/abs/1508.06576) is that convolutional neural
+networks pre-trained for image classification already know how to
+encode perceptual and semantic information about images. We're going
+to follow their idea, and use the *feature spaces* provided by one
+such model to independently work with content and style of images.
 
 The original paper uses the 19 layer VGG network model from [Simonyan
 and Zisserman (2015)](https://arxiv.org/abs/1409.1556), but we're
@@ -1877,7 +1876,7 @@ And how do we do relative to Prisma?
 
 <div class="pure-g" style="margin-bottom: 1em;">
   <div class="pure-u-1-8">
-    Style
+    <strong>Style</strong>
   </div>
   <div class="pure-u-1-4">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/edtaonisl.jpg" alt="">
@@ -1891,7 +1890,7 @@ And how do we do relative to Prisma?
   <div class="pure-u-1-8">
   </div>
   <div class="pure-u-1-8">
-    Prisma
+    <strong>Prisma</strong>
   </div>
   <div class="pure-u-1-4">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/IMG_2407.JPG" alt="">
@@ -1905,7 +1904,7 @@ And how do we do relative to Prisma?
   <div class="pure-u-1-8">
   </div>
   <div class="pure-u-1-8">
-    Ours
+    <strong>Ours</strong>
   </div>
   <div class="pure-u-1-4">
     <img class="pure-img" src="/images/writing/artistic-style-transfer/c_hugo_candy_s_gothic_cw_0.025_sw_5_tvw_1_i_9.png" alt="">
