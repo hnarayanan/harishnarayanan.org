@@ -224,22 +224,23 @@ below in the context of the image classification problem:
 
 {{< figure src="/images/writing/artistic-style-transfer/supervised-learning.png" title="The pieces that make up a supervised learning solution to the image classification problem." extra-class="add-background" >}}
 
-1. We start with a set of pre-classified example images, which means
-we have a set of images with known labels. This is called the
-*training data*, and these serve as the ground truth that our system
-is going learn from.
+1. We start with a set of pre-classified example images. This means
+that we have a set of images, $\mathbf{x}_i$, with known labels,
+$\mathbf{y}_i$. This is called the *training data*, and these serve as
+the ground truth that our system is going learn from.
 
 2. The function we're trying to find is called the *score function*,
-which maps a given image to category scores. To define what we're
-looking for, we first make a guess for its functional form and have it
-depend on a bunch of *parameters* $\mathbf{\theta}$ that we need to
-find.
+$f(\mathbf{x}_i, \mathbf{\theta})$, which maps a given image to
+category scores, $\mathbf{s}_i$. To define what we're looking for,
+we first make a guess for its functional form and have it depend on a
+bunch of *parameters* $\mathbf{\theta}$ that we need to find.
 
-3. We introduce a *loss* function, $\mathcal{L}$, which quantifies
-the disagreement between what our score function suggests for the
-category scores and what our training data provides as the known
-truth. Thus, this loss function goes up if the score function is doing
-a poor job and goes down if it's doing great.
+3. We introduce a *loss* function, $\mathcal{L} (\mathbf{s}_i,
+\mathbf{y}_i)$, which quantifies the disagreement between what our
+score function suggests for the category scores and what our training
+data provides as the known truth. Thus, this loss function goes up if
+the score function is doing a poor job and goes down if it's doing
+great.
 
 4. And finally, we have a *learning* or *optimisation algorithm*. This
 is a mechanism to feed our system a bunch of training data, and have
@@ -271,7 +272,7 @@ $\mathbf{f}: \mathbb{R}^D \mapsto \mathbb{R}^{K}$ that maps image data
 to class scores.
 
 The simplest possible example of such a function is a linear
-map:
+map (technically an *affine* map):
 
 $$
 \mathbf{f}(\mathbf{x}; \mathbf{W}, \mathbf{b}) =
@@ -472,7 +473,7 @@ y_ = tf.placeholder(tf.float32, [None, 10])
 ```
 
 We define our linear model for the score function after introducing
-two of parameters, **W** and **b**.
+two parameters, **W** and **b**.
 
 {{< figure src="/images/writing/artistic-style-transfer/linear.svg" title="A schematic of a linear model." extra-class="add-background" >}}
 
@@ -483,8 +484,8 @@ y = tf.nn.softmax(tf.matmul(x, W) + b)
 ```
 
 We define our loss function to measure how poorly this model performs
-on images with known labels. We use the a specific form called the
-[cross entropy loss][cross-entropy-reason].
+on images with known labels. We use the specific form of the [cross
+entropy loss][cross-entropy-reason] we saw earlier.
 
 ```
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=[1]))
@@ -521,9 +522,9 @@ for i in range(1000):
 
 ##### Verifying the results
 
-At this point, our model is trained. And we can determine the
-*accuracy* by passing in all the test images and labels, figuring out
-our own labels, and averaging out the results.
+At this point, our model is trained, and we can determine its
+*accuracy* by passing in all the test images and labels, predicting
+our own labels, and averaging the correct predictions.
 
 ```
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
@@ -575,15 +576,15 @@ animation][perceptron-animation] that does three things:
 {{< figure src="/images/writing/artistic-style-transfer/neuron.gif" title="An artificial neuron. (Reproduced from https://appliedgo.net/perceptron/)">}}
 
 These neurons can be arranged into layers to form a *neural network*
-that on the outer layers match the shape of our input and our
-output. For the MNIST dataset that we've been working with, this is a
-vector of 784 numbers coming in and 10 numbers going out. The layer
-in the middle is called the *hidden layer* since we don't directly
-access it on the input or the output. It can be of arbitrary size, and
-this is the sort of thing that defines the *architecture of the
-network*. In neural network parlance the network shown below is called
-a *two layer network* or a *one hidden layer network*. (We can have as
-many of these hidden layers as we need.)
+that on the outer layers match the shape of our input and our output.
+For the MNIST dataset that we've been working with, this is a vector
+of 784 numbers coming in and 10 numbers going out. The layer in the
+middle is called the *hidden layer* since we don't directly access it
+on the input or the output. It can be of arbitrary size, and this is
+the sort of thing that defines the *architecture of the network*. In
+neural network parlance, the network shown below is called a *two
+layer network* or a *one hidden layer network*. (We can have as many
+of these hidden layers as we need.)
 
 {{< figure src="/images/writing/artistic-style-transfer/neural-network-1-hidden.svg" title="Stacking neurons into a neural network with one hidden layer." extra-class="add-background" >}}
 
@@ -606,7 +607,7 @@ $$
 (There are many other [functional forms][cs231n-activation-functions] one
 could use for this nonlinear activation function, but this one form is
 really popular today, and will suffice for our needs.)
-3. Finally we stack an additional matrix-vector linear operation
+3. Finally, we stack an additional matrix-vector linear operation
 (introducing another set of weights and biases) to bring our output
 back to the size we want: 10 numbers going out.
 $$
@@ -665,7 +666,8 @@ y = tf.nn.softmax(tf.matmul(x, W) + b)
 Now we redefine this to be a nonlinear model with a few additional
 lines of code. Our new model is the one hidden layer network
 architecture we saw earlier. This introduces two sets of parameters:
-**W1**, **b1** and **W2**, **b2** that we need to learn.
+$\mathbf{W}_1, \mathbf{b}_1$ and $\mathbf{W}_2, \mathbf{b}_2$ that we
+need to learn.
 
 ```
 W1 = tf.Variable(tf.zeros([784, 100]))
@@ -678,7 +680,7 @@ y = tf.nn.softmax(tf.matmul(h1, W2) + b2)
 ```
 
 As before, we then define the cross entropy loss function that
-quantifies how poorly his model performs on images with known labels
+quantifies how poorly this model performs on images with known labels
 and use the stochastic gradient descent optimiser to iteratively
 improve parameters and minimise the loss. And once this model is
 trained, we can pass it test images and labels and determine the
@@ -754,13 +756,14 @@ adding more layers to our score function (i.e. making our model
 
 {{< figure src="/images/writing/artistic-style-transfer/neural-network-2-hidden.svg" title="A neural network with two hidden layers." extra-class="add-background" >}}
 
-To get a better sense of this, I encourage you to experiment with the
-[TensorFlow Playground][tensorflow-playground]. This interactive tool
-lets you visualize how neural networks learn to identify patterns and
-features automatically. By tweaking parameters like the number of
-layers, neurons, and activation functions, you can observe how the
-network evolves to capture complex data patterns. It’s a visceral way
-to appreciate the representative power of neural networks by seeing
+You would be on the right track, and to get a better sense of this, I
+encourage you to experiment with the [TensorFlow
+Playground][tensorflow-playground]. This interactive tool lets you
+visualize how neural networks learn to identify patterns and features
+automatically. By tweaking parameters like the number of layers,
+neurons, and activation functions, you can observe how the network
+evolves to capture complex data patterns. It’s a visceral way to
+appreciate the representative power of neural networks by seeing
 firsthand how increasing model depth and size enhances their
 capability.
 
@@ -768,8 +771,8 @@ The intuition being that even though each neuron is barely nonlinear,
 introducing more layers of them allows for more nonlinearity,
 increasing the approximation capability of the score function. While
 this is indeed true, there are some fundamental drawbacks with the
-general form of neural networks we've seen so far (the term for them
-is *standard* or *fully-connected neural networks*):
+general form of neural networks we've seen so far (the term for these
+are *standard* or *fully-connected neural networks*):
 
 Firstly, they entirely disregard the 2D structure of the image at the
 get-go. Remember that instead of working with the input as $28 \times
@@ -783,9 +786,9 @@ Secondly, the number of parameters we would need to learn grows really
 rapidly as we add more layers. Here are the number of parameters
 corresponding to the examples we've seen so far:
 
-- **Linear:** 784*10 + 10 = 7,850
-- **Neural network (one hidden layer):** 784*100 + 100 + 100*10 + 10 = 79,510
-- **Neural network (two hidden layers):** 784*400 + 400 + 400*100 + 100 + 100*10 + 10 = 355,110
+- **Linear:** 784x10 + 10 = 7,850
+- **Neural network (one hidden layer):** 784x100 + 100 + 100x10 + 10 = 79,510
+- **Neural network (two hidden layers):** 784x400 + 400 + 400x100 + 100 + 100x10 + 10 = 355,110
 
 The fundamental reason for this rapid growth in parameters is that
 every neuron in a given layer sees all neurons in the previous
@@ -911,13 +914,18 @@ Pool = Pool Layer
 Using this notation, the models we've used for the score function so
 far are:
 
-1. **Linear:** `FC -> Softmax`
-2. **Neural network (one hidden layer):** `FC -> ReLU -> FC -> Softmax`
+1. **Linear:**
+
+   FC -> Softmax
+
+2. **Neural network (one hidden layer):**
+
+   FC -> ReLU -> FC -> Softmax
 
 And the convnet-based model we're going to setup using the code below
 is:
 
-`Conv -> ReLU -> Pool -> FC -> ReLU -> FC -> Softmax`
+Conv -> ReLU -> Pool -> FC -> ReLU -> FC -> Softmax
 
 ```
 # Define some helper functions to ease the definition of the model
@@ -1077,7 +1085,7 @@ particular deep convnet-based image classifier called
 [VGGNet][arxiv-vgg-simonyan-etal], and soon see how it can be
 repurposed for the style transfer problem.
 
-### The convnet-based classifier at the heart of the Gatys paper
+### The VGGNet classifier at the heart of the Gatys paper
 
 When we completed [Notebook 4][notebook-4], we'd worked out a simple
 convnet-based image classifier that did a great job at classifying the
@@ -1268,17 +1276,18 @@ network capture the high-level content in terms of objects and their
 arrangement in the input image but do not constrain the exact pixel
 values of the reconstruction. To obtain a representation of the style
 of an input image, the algorithm employs correlations between the
-different filter responses over the spatial extent of the feature
-maps. Essentially, *the representations of style and content in CNNs
-are separable*. The images are synthesised by solving the optimisation
-problem that simultaneously matches the content representation of the
-photograph and the style representation of the respective piece of
-art.
+filter responses over different layers. Essentially, *the
+representations of style and content in CNNs are separable*. The
+images are synthesised by solving the optimisation problem that
+simultaneously matches the content representation of the photograph
+and the style representation of the respective piece of art.
 
 This optimisation problem is solved using the [L-BFGS
-algorithm][wiki-lbfgs]. L-BFGS efficiently handles the
-high-dimensional space of images, iteratively adjusting the pixels to
-minimize the combined loss function.
+algorithm][wiki-lbfgs]. Unlike the optimisation problem we've been
+solving so far, which involves adjusting the weights of a classifier,
+we are instead solving for the pixels of an image. L-BFGS efficiently
+handles the high-dimensional space of images, iteratively adjusting
+the pixels to minimize the combined loss function.
 
 If the above sounded abstract, don't worry. What follows is a complete
 and concrete implementation of the style transfer algorithm.
@@ -1290,7 +1299,7 @@ exciting paper, there exist many open source implementations of the
 algorithm online. One of the most popular and general purpose ones is
 by [Justin Johnson and implemented in
 Torch][github-neural-style-torch]. I've instead followed a [simple
-example in Keras][keras-neural-style] and expanded into [a
+example in Keras][keras-neural-style] and expanded it into [a
 fully-fledged notebook][notebook-6] that explains many details step by
 step. I've reproduced it below in its entirety.
 
@@ -1922,9 +1931,9 @@ pre-/post-processing steps we may have missed. But the big way in
 which our code is more problematic is that it takes *so long* to
 generate the output. While Prisma takes a few seconds to generate
 images, our code take tens (hundreds of seconds without a GPU) *per
-iteration*. In order to solve this speed up this process, one could
-follow a clever idea introduced in [Johnson et
-al. (2016)][arxiv-fast-neural-style-johnson-etal]. There, instead of
+iteration*. In order to speed up this process, one could follow a
+clever idea introduced in [Johnson et al.
+(2016)][arxiv-fast-neural-style-johnson-etal]. There, instead of
 solving the expensive style transfer optimisation problem, they train
 another convnet to approximate solutions to it giving them a 1000x
 speedup!
