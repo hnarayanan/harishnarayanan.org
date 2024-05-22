@@ -104,13 +104,11 @@ both the style and content losses.
 
 This is what is stated in slightly scary math notation below:
 
-<div class="mathjax-container">
 $$
 \mathbf{x}^* = \underset{\mathbf{x}}{\operatorname{argmin}}\left(\alpha
 \mathcal{L}\_{\mathrm{content}}(\mathbf{c}, \mathbf{x}) + \beta
 \mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})\right)
 $$
-</div>
 
 Here, $\alpha$ and $\beta$ are simply numbers that allow us to control
 how much we want to emphasise the content relative to the style. We'll
@@ -1060,13 +1058,11 @@ Recall also that after looking at the [original paper from Gatys et
 al.][arxiv-neural-style-gatys-etal], we were able to pose this as an
 optimisation problem:
 
-<div class="mathjax-container">
 $$
 \mathbf{x}^* = \underset{\mathbf{x}}{\operatorname{argmin}}\left(\alpha
 \mathcal{L}\_{\mathrm{content}}(\mathbf{c}, \mathbf{x}) + \beta
 \mathcal{L}\_{\mathrm{style}}(\mathbf{s}, \mathbf{x})\right)
 $$
-</div>
 
 That is, we are looking for an image $\mathbf{x}$ that differs as
 little as possible *in terms of content* from the content image
