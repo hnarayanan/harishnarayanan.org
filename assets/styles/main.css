@@ -31,6 +31,7 @@
 - Figures
 - Links
 - Code
+- Equations
 - Tables
 - Utilities
 - Misc
@@ -1380,6 +1381,15 @@ pre > code {
     display: block;
     padding: 1rem 1.5rem;
     white-space: pre;
+}
+
+/* Equations
+------------------------------------------------------------------------ */
+.mathjax-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    max-width: 100%;
 }
 
 /* Tables
