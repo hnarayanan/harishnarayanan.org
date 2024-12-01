@@ -37,6 +37,7 @@
 - Navbar
 - Post
 - Footnotes
+- Print
 */
 
 /* Variables
@@ -1585,6 +1586,91 @@ hr {
 }
 
 
+/* Print
+------------------------------------------------------------------------ */
+@media print {
+    /* General styles */
+    body {
+        font-family: "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+        font-size: 12pt;
+        line-height: 1.3;
+        background: white;
+        color: black;
+    }
+
+    /* Hide unnecessary elements */
+    .navbar,
+    .post-meta,
+    .share,
+    .mainfooter {
+        display: none;
+    }
+
+    /* Margins */
+    @page {
+        margin: 0.5in 10in;
+    }
+
+    /* Links */
+    a {
+        page-break-inside: avoid;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        word-wrap: break-word;
+    }
+
+    a:after > img {
+        content: "";
+    }
+
+    article a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Images */
+    img {
+        page-break-inside: avoid;
+        page-break-after: avoid;
+        max-width: 100% !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    }
+
+    h1 {
+        font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+    }
+
+    h3 {
+        font-size: 16pt;
+    }
+
+    /* Code blocks */
+    pre, blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /* Tables */
+    thead {
+        display: table-header-group;
+    }
+
+    tr, img {
+        page-break-inside: avoid;
+    }
+}
 
 /* TODO: Clean the following up
 ------------------------------------------------------------------------ */
