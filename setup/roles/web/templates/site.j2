@@ -110,4 +110,8 @@ server {
 	autoindex on;
     }
   }
+
+  location ^~ /date-me {
+    return 301 /;
+  }
 }
