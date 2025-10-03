@@ -1,10 +1,10 @@
-    <div class="pure-u-1 {{ if not .Params.featured }}pure-u-md-1-2{{ end }}">
+    <div class="u-1 {{ if not .Params.featured }}u-md-1-2{{ end }}">
       <section class="l-box">
         <h3 class="portfolio"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}">{{ .Params.short_title }}</a></h3>
         <div class="post-meta summary">
           <time class="post-date">{{ .Params.start_date }}</time>{{ if .Params.end_date }} – <time class="post-date">{{ .Params.end_date }}</time>{{ end }}
         </div>
-        <p class="summary"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}"><img class="pure-img{{ if .Params.thumbnail_background }} add-background{{ end }}" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a></p>
+        <p class="summary"><a href="{{ if .Params.exterior_link }}{{ .Params.exterior_link }}{{ else }}{{ .RelPermalink }}{{ end }}"><img class="img{{ if .Params.thumbnail_background }} add-background{{ end }}" src="{{ .Params.thumbnail }}" alt="{{ .Title }}" title="{{ .Title }}"></a></p>
         <p>{{ .Description }}</p>
       </section>
     </div>

@@ -1,19 +1,19 @@
 {{ partial "header.html" . }}
 <div class="container">
 
-  <h1 id="main-description"><span class="pure-hidden-xs">Moments From My Life</span><span class="pure-visible-xs">My Photos</span></h1>
+  <h1 id="main-description"><span class="hidden-xs">Moments From My Life</span><span class="visible-xs">My Photos</span></h1>
 
   {{ .Content }}
 
 </div>
 
-<div class="pure-g" id="children">
+<div class="g" id="children">
   {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "portrait" }}
   {{ .Render "summary" }}
   {{ end }}
 </div>
 
-<div class="pure-g" id="pre-children">
+<div class="g" id="pre-children">
   {{ range where .Data.Pages "Params.thumbnail_orientation" "==" "landscape" }}
   {{ .Render "summary" }}
   {{ end }}
