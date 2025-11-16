@@ -5,7 +5,7 @@ clean:
 	rm -fr public
 
 publish:
-	rsync -aOPvhe ssh --delete --exclude-from=.exclude public/ ubuntu@harishnarayanan.org:/home/ubuntu/sites/harishnarayanan.org
+	rsync -aOPvhe ssh --delete --exclude-from=.exclude public/ harish@metroplex:/var/www/harishnarayanan.org
 
 install: publish
 
