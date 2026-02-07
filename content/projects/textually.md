@@ -7,5 +7,5 @@ description: Textually is an inclusive and predominantly text-based dating app.
 category: website
 exterior_link: https://github.com/textually-app/community
 start_date: 2023
-featured: true
+end_date: 2023
 ---
