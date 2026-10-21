@@ -1,13 +1,16 @@
 {{ partial "header.html" . }}
-<div class="container">
 
-  <h1 id="main-description">Theory ⋂ Practice</h1>
+<article>
 
-  {{ .Content }}
+  <div>
+    <h1>Theory ⋂ Practice</h1>
+    {{ .Content }}
+  </div>
+  {{- range .Pages }}
 
-  {{ range .Data.Pages }}
-  {{ .Render "summary"}}
-  {{ end }}
+  {{ .Render "summary" }}
+  {{- end }}
 
-</div>
+</article>
+
 {{ partial "footer.html" . }}

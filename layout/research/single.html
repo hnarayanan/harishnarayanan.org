@@ -1,29 +1,17 @@
 {{ partial "header.html" . }}
-<div class="container">
+
 <article>
 
-  <header class="post-header">
-    <h1 class="post-title">{{ .Title }}</h1>
-    <section class="post-meta">
-      <time class="post-date">{{ .Params.start_date }}</time>{{ if .Params.end_date }} – <time class="post-date">{{ .Params.end_date }}</time>{{ end }}
-    </section>
-  </header>
+  <h1>{{ .Title }}</h1>
+  <p class="meta"><time>{{ .Params.start_date }}</time>{{ if .Params.end_date }} – <time>{{ .Params.end_date }}</time>{{ end }}</p>
 
-  <section class="post-content">
-    {{ if .Content }}{{ .Content }}{{ else }}<p>You can find out more about this work on <a href="{{ .Params.exterior_link }}">its own page</a>.</p>{{ end }}
-  </section>
+  {{ if .Content }}{{ partial "sidenotes.html" .Content | safeHTML }}{{ else }}<p>You can find out more about this work on <a href="{{ .Params.exterior_link }}">its own page</a>.</p>{{ end }}
+  {{- if .Content }}
 
-  {{ if .Content }}
-  <footer class="post-footer">
-    <section class="share">
-      <h4>Want to learn more?</h4>
-      <p>Did you enjoy this summary of my research? You might be interested in reading about <a href="/research/">other things I’ve studied</a>. And if you have questions or want to learn more about this stuff, don’t hesitate to <a href="mailto:mail@harishnarayanan.org">write to me</a>!</p>
-      <!-- TODO: Bring back some sharing options here, as a partial to be reused with the article template -->
-    </section>
-  </footer>
-  {{ end }}
+  <h2>Want to learn more?</h2>
+  <p>Did you enjoy this summary of my research? You might be interested in reading about <a href="/research/">other things I’ve studied</a>. And if you have questions or want to learn more about this stuff, don’t hesitate to <a href="mailto:mail@harishnarayanan.org">write to me</a>!</p>
+  {{- end }}
 
 </article>
-</div>
 
 {{ partial "footer.html" . }}

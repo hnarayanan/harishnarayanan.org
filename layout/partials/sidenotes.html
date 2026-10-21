@@ -1,0 +1,17 @@
+{{- /*
+  Returns rendered content with a copy of each footnote placed where it
+  is referred to. On a wide screen the stylesheet shows those copies as
+  side notes in the margin and hides the list of footnotes at the end;
+  otherwise the footnotes stay where Markdown put them.
+*/ -}}
+{{- $content := string . -}}
+{{- $notes := findRESubmatch `(?s)<li id="fn:(\d+)">\s*<p>(.*?)(?:&#160;)?<a href="#fnref:\d+"[^>]*>[^<]*</a></p>\s*</li>` $content -}}
+{{- if and $notes (eq (len $notes) (len (findRE `<li id="fn:` $content))) -}}
+  {{- range $notes -}}
+    {{- $n := index . 1 -}}
+    {{- $ref := printf `<a href="#fn:%s" class="footnote-ref" role="doc-noteref">%s</a></sup>` $n $n -}}
+    {{- $content = replace $content $ref (printf `%s<span class="sidenote"><sup>%s</sup> %s</span>` $ref $n (index . 2)) -}}
+  {{- end -}}
+  {{- $content = replace $content `<div class="footnotes"` `<div class="footnotes in-margin"` -}}
+{{- end -}}
+{{- return (chomp $content) -}}

@@ -1,24 +1,15 @@
 {{ partial "header.html" . }}
-<div class="container">
-<article class="">
-  <header class="post-header">
-    <h1 class="post-title">{{ .Title }}</h1>
-    <section class="post-meta">
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "2 Jan 2006" }}</time> — {{ .ReadingTime }} min read
-    </section>
-  </header>
 
-  <section class="post-content">
-    {{ .Content }}
-  </section>
+<article>
 
-  <footer class="post-footer">
-    <section class="share">
-      <h4>Enjoyed this article?</h4>
-      <p>Return to my <a href="/writing/">article collection</a> to find more fun stuff to read. And <a href="https://hachyderm.io/@harish">follow me on Mastodon</a> or <a href="/index.xml">subscribe to the RSS feed</a> to keep up-to-date with new writing!</p>
-    </section>
-  </footer>
+  <h1>{{ .Title }}</h1>
+  <p class="meta"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "2 Jan 2006" }}</time> — {{ .ReadingTime }} min read</p>
+
+  {{ partial "sidenotes.html" .Content | safeHTML }}
+
+  <h2>Enjoyed this article?</h2>
+  <p>Return to my <a href="/writing/">article collection</a> to find more fun stuff to read. And <a href="https://hachyderm.io/@harish">follow me on Mastodon</a> or <a href="/index.xml">subscribe to the RSS feed</a> to keep up-to-date with new writing!</p>
 
 </article>
-</div>
+
 {{ partial "footer.html" . }}

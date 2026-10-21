@@ -14,25 +14,21 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/main.css?v=8">
     {{- if .Params.includes_code }}
     <link rel="stylesheet" href="/styles/highlight.css">
     {{- end }}
   </head>
 
-  <body>
+  <body class="{{ .Kind }}">
 
     <header>
-      <nav class="navbar">
-        <div class="container">
-          <ul class="navbar-list">
-            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/" }} active{{ end }}" href="/">About</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/projects/" }} active{{ end }}" href="/projects/">Projects</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/research/" }} active{{ end }}" href="/research/">Research</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/writing/" }} active{{ end }}" href="/writing/">Writing</a></li>
-            <li class="navbar-item"><a class="navbar-link{{ if eq .RelPermalink "/photos/" }} active{{ end }}" href="/photos/">Photos</a></li>
-          </ul>
-        </div>
+      <a href="/" rel="home"{{ if eq .RelPermalink "/" }} aria-current="page"{{ end }}>Harish Narayanan</a>
+      <nav>
+        <a href="/projects/"{{ if eq .RelPermalink "/projects/" }} aria-current="page"{{ end }}>Projects</a>
+        <a href="/research/"{{ if eq .RelPermalink "/research/" }} aria-current="page"{{ end }}>Research</a>
+        <a href="/writing/"{{ if eq .RelPermalink "/writing/" }} aria-current="page"{{ end }}>Writing</a>
+        <a href="/photos/"{{ if eq .RelPermalink "/photos/" }} aria-current="page"{{ end }}>Photos</a>
       </nav>
     </header>
 

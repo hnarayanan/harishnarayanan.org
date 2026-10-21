@@ -1,9 +1,7 @@
     </main>
 
-    <footer class="mainfooter">
-      <div class="container">
-        <p>© 2025 <a href="mailto:mail@harishnarayanan.org">Harish Narayanan</a> — <a rel="me" href="https://hachyderm.io/@harish">Mastodon</a> · <a href="https://github.com/hnarayanan">GitHub</a> <span class="pure-hidden-xs">· <a href="https://www.linkedin.com/in/drharishnarayanan">LinkedIn</a> <span class="pure-hidden-sm">· <a href="/index.xml">RSS</a></span></span></p>
-      </div>
+    <footer>
+      <p>© 2025 <a href="mailto:mail@harishnarayanan.org">Harish Narayanan</a> — <a rel="me" href="https://hachyderm.io/@harish">Mastodon</a> · <a href="https://github.com/hnarayanan">GitHub</a> · <a href="https://www.linkedin.com/in/drharishnarayanan">LinkedIn</a> · <a href="/index.xml">RSS</a></p>
     </footer>
     {{ if .Params.includes_code }}
     <script src="/scripts/highlight.js"></script>
@@ -12,20 +10,6 @@
     {{- if .Params.includes_math }}
     <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_SVG"></script>
-    {{- end }}
-    {{- if .Params.includes_video }}
-    <script src="/scripts/jquery.js"></script>
-    <script src="/scripts/fitvids.js"></script>
-    <script>
-    (function ($, undefined) {
-      "use strict";
-      var $document = $(document);
-      $document.ready(function () {
-        var $postContent = $(".post-content");
-        $postContent.fitVids();
-      });
-    })(jQuery);
-    </script>
     {{- end }}
 
   </body>

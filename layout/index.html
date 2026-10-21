@@ -1,11 +1,11 @@
 {{ partial "header.html" . }}
 
-<div class="container">
+<article>
 
-  <h1 id="main-description">Hi! I’m Harish <span class="pure-hidden-xs">Narayanan</span></h1>
+  <h1>{{ .Title }}</h1>
 
-  {{ .Content }}
+  {{ partial "sidenotes.html" .Content | safeHTML }}
 
-</div>
+</article>
 
 {{ partial "footer.html" . }}
